@@ -1,0 +1,38 @@
+serv1=lmapexp1
+serv2=smapx251
+SERV1=SERVEUR1
+SERV2=SERVEUR2
+
+DATE=`date "+%d %h %H:%M"`
+
+
+function PROC_APP
+{
+
+vtserver=$(cat /exploit/systeme/suivi/surveil_process.log | grep STOP | grep -v grep) 
+
+
+
+if [ "$vtserver" -ge 0 ]
+then
+#echo "1 Process a STOP"
+exit 1
+else
+ nb_vtserver=$(cat /exploit/systeme/suivi/surveil_process.log | grep STOP | grep -v grep | wc -l)
+ echo "Serveur $serv1    $SERV1    $nb_vtserver   process a STOP" > /exploit/systeme/suivi/process_stop.log
+fi
+
+echo   "   PROD " $(date +%d-%m-%y\ %Hh%M) >> /exploit/systeme/suivi/process_stop.log
+
+}
+
+
+# programme principal
+clear
+echo   "   PROD " $(date +%d-%m-%y\ %Hh%M) >> /exploit/systeme/suivi/process_stop.log
+echo ""
+
+PROC_APP
+
+/bin/mailx -s "1 PROCESS DE LA LISTE A STOP" svc-exploit@mondial-assistance.fr < /exploit/systeme/suivi/process_stop.log
+

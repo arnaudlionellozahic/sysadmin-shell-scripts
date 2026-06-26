@@ -1,0 +1,14 @@
+
+# grep sur le 1er champ 
+# list => autorep -J 
+
+
+
+for i in $(list mpt1Cald |awk '$1 ~ /mpt1Cald_/ {print $1}')
+
+do
+
+sendevent -E CHANGE_STATUS -s INACTIVE -J $i
+
+done
+

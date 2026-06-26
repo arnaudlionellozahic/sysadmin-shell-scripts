@@ -1,0 +1,58 @@
+#!/bin/ksh 
+#__________________________________________________________
+#	demarrage du client Visual TOM
+#__________________________________________________________
+# 05/11/97
+
+# 16/12/97 - Compatibilite client et serveur backup/primaire
+unset TOM_PRIMARY_SERVER
+unset TOM_BACKUP_SERVER
+
+# ----------------------------------
+# Definition des caracteres speciaux
+# ----------------------------------
+gras=`tput bold`
+soul=`tput smul`
+reve=`tput rev`
+annu=`tput sgr0`
+clsc=`tput clear`
+
+sortie=0
+
+# Journal de lancement /arret du client
+	fileout=${TOM_HOME}/client.log
+	if [ ! -s $fileout ] ; then
+		print - "------------------------------------------------" 1> $fileout
+		print - "Journal de lancement /arret du client Visual TOM" 1>> $fileout
+		print - "------------------------------------------------\n" 1>> $fileout
+	fi
+	print - "\nDemarrage du client sur ${HOST} - \c" 	1>> ${fileout}
+	date +"%d/%m/%Y - %H:%M:%S" 				1>> ${fileout}	
+
+# Lancement du client
+	TOM_REMOTE_SERVER=localhost
+	export TOM_REMOTE_SERVER
+	$ABM_BIN/bdown 1>> $fileout 2>&1
+	unset TOM_REMOTE_SERVER
+	sleep 1
+	i=`wc -l $fileout`
+	i=`print - $i | cut -f1 -d" "`
+
+	$ABM_BIN/bdaemon 1>> $fileout 2>&1 &
+	sleep 2
+	
+# Gestion d'erreur
+	j=`wc -l $fileout`
+	j=`print - $j | cut -f1 -d" "`
+	j=$(( $j - 1 ))
+	k=$(( $j - $i ))
+	l=`tail -$k $fileout | grep abm_path | wc -l`
+	if [ $l = 1 ] ; then
+		print - "Le client Visual TOM est actif sur ${HOST}."
+	else
+		print - "${gras}Incident au demarrage du client :${annu}\n"
+		tail -$k $fileout 
+		sortie=1
+	fi
+	
+exit $sortie

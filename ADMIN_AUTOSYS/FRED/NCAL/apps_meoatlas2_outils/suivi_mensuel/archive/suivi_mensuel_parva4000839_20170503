@@ -1,0 +1,21 @@
+May 3 23:20 # 00.54.27 .CASH_I_0072 Jobset msfaCald 0200 Started at 00.54.27
+May 3 23:20 # 00.59.58 .CASH_I_0072 Jobset msuaCald 0200 Started at 00.59.58
+May 3 23:20 # 01.05.03 .CASH_I_0060 msfaCald 0200 Completed at 01.05.03, code: 00000000
+May 3 23:20 # 19.37.25 .CASH_I_0100 Jobset msuaCald, Job dask12, Jno 0001, Qual 0201 queued for submit
+May 3 23:20 # 19.37.27 .CASH_I_0069 msuaCald dask12 0001 0201 Started at 19.37.26 at node parva4000839, Pid = 51314852
+May 3 23:20 # 19.37.34 .CASH_I_0054 msuaCald dask12 0001 0201 Completed at 19.37.34, code: 00000000 at node parva4000839, Pid = 51314852
+May 3 23:20 # 19.38.16 .CASH_I_0060 msuaCald 0200 Completed at 19.38.16, code: 00000000
+May 3 23:20 # 19.38.17 .CASH_I_0072 Jobset mww0Cald 0200 Started at 19.38.17
+May 3 23:20 # 19.38.58 .CASH_I_0060 mww0Cald 0200 Completed at 19.38.58, code: 00000000
+May 3 23:20 # 19.42.03 .CASH_I_0072 Jobset mdi1Cald 0200 Started at 19.42.03
+May 3 23:20 # 19.48.42 .CASH_I_0060 mdi1Cald 0200 Completed at 19.48.42, code: 00000000
+May 3 23:20 # 19.49.22 .CASH_I_0072 Jobset mrf4Cald 0200 Started at 19.49.22
+May 3 23:20 # 19.49.37 .CASH_I_0060 mrf4Cald 0200 Completed at 19.49.37, code: 00000000
+May 3 23:20 # 19.49.37 .CASH_I_0072 Jobset mrfaCald 0200 Started at 19.49.37
+May 3 23:20 # 19.51.49 .CASH_I_0060 mrfaCald 0200 Completed at 19.51.49, code: 00000000
+May 3 23:20 # 19.53.33 .CASH_I_0072 Jobset mrf8Cald 0200 Started at 19.53.33
+May 3 23:20 # 19.53.44 .CASH_I_0060 mrf8Cald 0200 Completed at 19.53.44, code: 00000000
+May 3 23:20 # 19.58.47 .CASH_I_0072 Jobset mfu99Cald 0300 Started at 19.58.47
+May 3 23:20 # 19.58.48 .CASH_I_0072 Jobset mrfcCald 0200 Started at 19.58.48
+May 3 23:20 # 19.58.58 .CASH_I_0060 mrfcCald 0200 Completed at 19.58.58, code: 00000000
+May 3 23:20 # 20.02.37 .CASH_I_0060 mfu99Cald 0300 Completed at 20.02.37, code: 00000000

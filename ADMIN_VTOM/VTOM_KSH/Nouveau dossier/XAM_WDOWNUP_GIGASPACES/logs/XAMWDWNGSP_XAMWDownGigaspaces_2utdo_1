@@ -1,0 +1,227 @@
+***** Debut du job : 2013/06/22 16:00:11 *****
+
+Stop gigaspaces on msampdgs01 :
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 12554
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+
+Stop gigaspaces on msampdgs02 :
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 28796
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+
+Stop gigaspaces on msampdgs03 :
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 5164
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+
+Stop gigaspaces on msampdgs04 :
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 7571
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+
+Stop gigaspaces on msampdgs05 :
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 9333
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+
+Stop gigaspaces on msampdgs06 :
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 14216
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+
+Stop gigaspaces on msampdgs07 :
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 19110
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+
+Stop gigaspaces on msampdgs08 :
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 1946
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+
+Stop gigaspaces on msampdgs09 :
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 5804
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+
+Stop gigaspaces on msampdgs10 :
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 11456
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Process GSC still up ->  ... kill ... 
+
+[INFO] : stop done
+
+Stop gigaspaces on msampdgs11 :
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 8960
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+
+Stop gigaspaces on msampdgs12 :
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 29748
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+
+Stop gigaspaces on msampdgs13 :
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 3643
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+
+Stop gigaspaces on msampdgs14 :
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 25303
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Process GSC still up ->  ... kill ... 
+
+[INFO] : stop done
+
+Stop gigaspaces on msampdgs15 :
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 6061
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Process GSC still up ->  ... kill ... 
+
+[INFO] : stop done
+
+Stop gigaspaces on msampdgs16 :
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 19776
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+
+***** Fin du job : 2013/06/22 16:24:39 *****

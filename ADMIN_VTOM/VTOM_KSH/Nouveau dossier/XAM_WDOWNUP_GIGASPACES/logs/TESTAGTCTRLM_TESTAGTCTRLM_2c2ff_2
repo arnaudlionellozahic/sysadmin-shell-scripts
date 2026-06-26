@@ -1,0 +1,6 @@
+msampdgs01
+uid=7420(xgsprocs) gid=7099(xgs)
+total 9
+drwxr-xr-x   4 xgsadmin xgs            4 Jan 15 11:05 XAM_ODEPLOY_GIGASPACES
+drwxr-xr-x   4 xgsadmin xgs            4 Jan 15 10:51 XAM_WDOWNUP_GIGASPACES
+drwxr-xr-x   2 xgsadmin xgs            2 Sep 20 10:43 etc

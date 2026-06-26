@@ -1,0 +1,37 @@
+#!/usr/bin/ksh
+# Cet outil sert à lister les paramètre d'une queue d'impression
+# Prerequis : 	/apps/meoatlas2/scripts
+# $1: queue
+# Version    : 1.0
+# 29/03/2013 : Creation A.MARIE-JEANNE 
+#=================================================================
+[[ $# -lt 1 ]] && echo "Usage : $0 [queue]" && exit
+[[ $(id -un) != "root" ]] && echo "Seul un user <root> a le droit d'executer le script." && exit
+
+MEO_Q=$1
+MEO_HOSTQ=$(lsallqdev -q $MEO_Q)
+NB_MEO_HOSTQ=$(echo $MEO_HOSTQ |wc -w)
+
+if [[ $NB_MEO_HOSTQ -ne '1' && -z $2 ]] then
+	echo "\nATTENTION : Il y a plusieurs HOSTS \nUsage : $0 [queue] [@host]\n"
+	echo "Liste des hosts : lsallqdev -q $MEO_Q" 
+	lsallqdev -q $MEO_Q; echo"" ; exit
+	
+elif [[ $NB_MEO_HOSTQ -ne '1' && -n $2 ]] then
+	if (echo $MEO_HOSTQ |grep -wq $2) then
+		MEO_HOSTQ=$2
+	else
+		echo "\nATTENTION : host [$2] non valide..."
+		echo "Liste des hosts : lsallqdev -q $MEO_Q" 
+		lsallqdev -q $MEO_Q ; echo"" ; exit
+	fi	
+fi
+
+/usr/sbin/lsvirprt -q $MEO_Q -d $MEO_HOSTQ -a _L -a _j -a _l -a _p -a _s -a _v -a _w -a _z -a mA -a mB -a mL -a mq -a mt -a mv -a s0 -a s1 -a s2 -a s3 -a zM -a zP
+
+echo "
+/etc/qconfig :
+--------------"
+grep -p"backend" $MEO_Q /etc/qconfig
+echo ""
+

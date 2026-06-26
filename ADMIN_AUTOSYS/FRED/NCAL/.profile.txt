@@ -1,0 +1,64 @@
+export HOST=$(hostname)
+export PATH=/usr/local/bin:/apps/exploit/outilsite:/usr/bin:/etc:/usr/sbin:/usr/ucb:$HOME/bin:/usr/bin/X11:/sbin:/apps/sys/shell/exploit:/apps/exploit/shell:/ap                                                   ps/exploit/shell/gestion
+export VISUAL=vi
+export TERM=vt220
+export NLSPATH=/conv/unix/msg/%L/%N:/conv/unix/msg/%L/%N.cat
+stty erase ^?
+
+if [ -s "$MAIL" ]           # This is at Shell startup.  In normal
+then echo "$MAILMSG"        # operation, the Shell checks
+fi                          # periodically.
+export VISUAL=vi
+export TERM=vt220
+tty .s && stty erase ^H
+stty erase ^?
+
+#########################################
+# MISE EN PLACE DES VARIABLES UNICENTER #
+#########################################
+#. /usr/bin/EnvironnementTNG
+#. /usr/bin/EnvironnementEM
+. $A2_PRODUITS/exploit/profiles/profileA2.$(hostname)
+. /home/atlas/profile.cft
+#. $A2_PRODUITS/exploit/outils/profileS2
+#export BFI_INTEGRATION="$A2_PRODUITS/exploit/Integration"
+#export CAIGLBL0000=/apps/unicenter/EM/3.1/
+#CAIGLBL0000=/apps/unicenter
+#export CAIGLBL0000
+#. $CAIGLBL0000/scripts/envusr
+#. $CAIGLBL0000/scripts/envusr
+#. /usr/bin/EnvironnementEM
+#. $BFI_INTEGRATION/profile_integration
+
+#########################################
+# MISE EN PLACE DES VARIABLES AUTOSYS    #
+#########################################
+
+export AUTOSERV=P20
+. /etc/auto.profile
+
+. /apps/cft/product/home/profile
+
+# Chargement des variables CFT
+. ~cft/ENV_CFT
+
+unset LINES
+
+# Definition des variables et alias utilises pour les specifiques sites
+# suite à la création de la structure par creenvdevsite.
+#. /apps/exploit/outils/profileS2
+
+export TMOUT=0
+export A2_WORK=/apps/exploit/work
+export TMPDIR=/apps/exploit/work
+
+export SAV_LIBPATH=$LIBPATH
+export SAV_NLSPATH=$NLSPATH
+export ENV=$HOME/.kshrc
+
+# ALIAS
+alias ll='ls -al'
+alias kixsnap='kixsnap;/apps/sys/shell/exploit/kixahd.ksh'
+export PATH=$PATH:/apps/exploit/shell:/apps/exploit/shell/gestion
+
+. modpath

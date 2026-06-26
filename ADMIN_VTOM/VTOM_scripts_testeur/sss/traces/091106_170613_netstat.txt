@@ -1,0 +1,251 @@
+HP-UX itanium B.11.23 U ia64 1220372574 unlimited-user license
+
+netstat -a
+----------
+
+Active Internet connections (including servers)
+Proto Recv-Q Send-Q  Local Address          Foreign Address        (state)
+tcp        0      0  *.pl_vtnotifier        *.*                     LISTEN
+tcp        0      0  *.135                  *.*                     LISTEN
+tcp        0      0  localhost.7161         *.*                     LISTEN
+tcp        0      0  *.49204                *.*                     LISTEN
+tcp        0      0  *.diagmond             *.*                     LISTEN
+tcp        0      0  *.pl_vtserver          *.*                     LISTEN
+tcp        0      0  itanium.797            dev-nfs.nfsd            FIN_WAIT_2
+tcp        0      0  *.49152                *.*                     LISTEN
+tcp        0      0  *.49154                *.*                     LISTEN
+tcp        0      0  *.49153                *.*                     LISTEN
+tcp        0      0  *.pl_vtsgbd            *.*                     LISTEN
+tcp        0      0  *.pl_gwd               *.*                     LISTEN
+tcp        0      0  itanium.838            support-nfs.nfsd        FIN_WAIT_2
+tcp        0      0  *.recserv              *.*                     LISTEN
+tcp        0      0  *.49163                *.*                     LISTEN
+tcp        0      0  *.swat                 *.*                     LISTEN
+tcp        0      0  itanium.49159          support-nfs.DAServer    CLOSE_WAIT
+tcp        0      0  *.mg_bdaemon           *.*                     LISTEN
+tcp        0      0  itanium.49152          itanium.49157           ESTABLISHED
+tcp        0      0  *.49299                *.*                     LISTEN
+tcp        0      0  itanium.793            support-nfs.nfsd        FIN_WAIT_2
+tcp        0      0  *.pl_tomDBd            *.*                     LISTEN
+tcp      116      0  itanium.598            support-nfs.nfsd        ESTABLISHED
+tcp        0      0  itanium.22             mayenne.2261            ESTABLISHED
+tcp        0      0  *.pl_ntfy              *.*                     LISTEN
+tcp        0      0  *.587                  *.*                     LISTEN
+tcp        0      0  itanium.576            support-nfs.nfsd        FIN_WAIT_2
+tcp        0      0  itanium.968            support-nfs.nfsd        FIN_WAIT_2
+tcp        0      0  *.smtp                 *.*                     LISTEN
+tcp        0      0  itanium.830            dev-nfs.nfsd            FIN_WAIT_2
+tcp       52      0  itanium.22             mayenne.4770            ESTABLISHED
+tcp        0      0  itanium.843            dev-nfs.nfsd            FIN_WAIT_2
+tcp        0      0  *.2121                 *.*                     LISTEN
+tcp        0      0  itanium.registrar      itanium.49206           ESTABLISHED
+tcp        0      0  *.wbem-https           *.*                     LISTEN
+tcp        0      0  *.49165                *.*                     LISTEN
+tcp        0      0  *.klogin               *.*                     LISTEN
+tcp        0      0  *.dtspc                *.*                     LISTEN
+tcp        0      0  *.kshell               *.*                     LISTEN
+tcp        0      0  itanium.603            support-nfs.nfsd        FIN_WAIT_2
+tcp        0      0  itanium.49206          itanium.registrar       ESTABLISHED
+tcp        0      0  *.cv_bdaemon           *.*                     LISTEN
+tcp        0      0  *.49298                *.*                     LISTEN
+tcp        0      0  *.portmap              *.*                     LISTEN
+tcp        0      0  *.22                   *.*                     LISTEN
+tcp        0      0  *.printer              *.*                     LISTEN
+tcp        0      0  *.49155                *.*                     LISTEN
+tcp        0      0  *.4045                 *.*                     LISTEN
+tcp        0      0  *.49156                *.*                     LISTEN
+tcp        0      0  itanium.49157          itanium.49152           ESTABLISHED
+tcp        0      0  *.pl_vtlicense         *.*                     LISTEN
+tcp        0      0  itanium.595            dev-nfs.nfsd            TIME_WAIT
+tcp        0      0  itanium.594            frodon.nfsd             TIME_WAIT
+udp        0      0  *.snmp                 *.*                   
+udp        0      0  *.49185                *.*                   
+udp        0      0  *.*                    *.*                   
+udp        0      0  *.1023                 *.*                   
+udp        0      0  *.61439                *.*                   
+udp        0      0  *.xdmcp                *.*                   
+udp        0      0  *.2121                 *.*                   
+udp        0      0  *.49157                *.*                   
+udp        0      0  *.49158                *.*                   
+udp        0      0  *.4045                 *.*                   
+udp        0      0  *.63118                *.*                   
+udp        0      0  *.ntalk                *.*                   
+udp        0      0  *.135                  *.*                   
+udp        0      0  *.*                    *.*                   
+udp        0      0  *.49152                *.*                   
+udp        0      0  *.866                  *.*                   
+udp        0      0  *.49161                *.*                   
+udp        0      0  *.*                    *.*                   
+udp        0      0  *.portmap              *.*                   
+udp        0      0  *.*                    *.*                   
+udp        0      0  *.49156                *.*                   
+udp        0      0  *.49153                *.*                   
+
+Active UNIX domain sockets
+Address          Type   Recv-Q Send-Q            Inode             Conn             Refs          Nextref Addr
+e00000010e973040 dgram       0      0 e00000010e94dbc0                0                0                0 /opt/dcelocal/var/rpc/local/s-3/2121
+e00000010e973200 dgram       0      0 e00000010e8f2780                0                0                0 /var/spool/sockets/pwgr/client1249
+e00000010e9733c0 stream      0      0                0 e000000113f51cc0                0                0 /tmp/.AgentSockets/A
+e00000010ee63ac0 dgram       0      0 e00000010fa873c0                0                0                0 /var/spool/sockets/pwgr/client25845
+e00000010e973c80 dgram       0      0 e00000010e59fc40                0                0                0 /var/spool/sockets/pwgr/client1365
+e00000010f074040 stream      0      0 e00000010cc64e80                0                0                0 /tmp/.s.PGSQL.33109
+e00000010e428040 stream      0      0                0 e000000113f51740                0                0 
+e00000010e4b8200 dgram       0      0 e00000010e4ae4c0                0 e000000113f51940                0 /opt/dcelocal/var/rpc/local/s-3/135
+e00000010e428200 stream      0      0                0 e000000113f515c0                0                0 
+e00000010e4283c0 stream      0      0                0 e000000113f51640                0                0 /tmp/.AgentSockets/A
+e00000010e4b8580 dgram       0      0 e00000010d018a80 e000000113f518c0                0                0 /opt/dcelocal/var/rpc/local/01071/c-3/7000
+e00000010e428580 stream      0      0                0 e000000113f516c0                0                0 /tmp/.AgentSockets/A
+e00000010e4b8740 dgram       0      0 e00000010d5c27c0                0 e000000113f51a40                0 /opt/dcelocal/var/rpc/local/01071/c-3/shared
+e00000010e4b8900 dgram       0      0 e00000010d5d3640 e000000113f519c0                0                0 /opt/dcelocal/var/rpc/local/01071/c-3/7002
+e00000010e428900 dgram       0      0 e00000010e45f980                0                0                0 /opt/dcelocal/var/rpc/local/01071/reaper
+e00000010e4b8c80 dgram       0      0 e000000113e0b980                0                0                0 /var/spool/pwgr/daemon
+e00000010e428c80 stream      0      0 e00000010e4ae2c0                0                0                0 /opt/dcelocal/var/rpc/local/s-0/135
+e00000010e4b8e40 dgram       0      0 e00000010e828e40                0                0                0 /var/spool/sockets/pwgr/client1215
+e00000010e428e40 stream      0      0 e00000010d7d3e40                0                0                0 /var/opt/wbem/socket/cimxml.socket
+e00000010e87b040 dgram       0      0 e000000113e04040                0                0                0 /var/spool/sockets/pwgr/client1232
+e00000010e87b200 stream      0      0                0 e000000113f51f40                0                0 
+e00000010e87b740 dgram       0      0 e00000010e8e0d40                0                0                0 /opt/dcelocal/var/rpc/local/01249/reaper
+e00000010e87bac0 stream      0      0 e00000010e94dac0                0                0                0 /opt/dcelocal/var/rpc/local/s-0/2121
+e00000010d39c040 dgram       0      0 e000000119508200                0                0                0 /var/spool/sockets/pwgr/client20216
+e000000113ecc040 stream      0      0 e000000113f156c0                0                0                0 /etc/useracct/utmpd_read
+e000000113ecc200 stream      0      0 e000000113f15ac0                0                0                0 /etc/useracct/utmpd_write
+e000000115d0c3c0 dgram       0      0 e000000119508f00                0                0                0 /var/spool/sockets/pwgr/client29209
+e00000010d39c3c0 dgram       0      0 e00000011bea4a00                0                0                0 /var/spool/sockets/pwgr/client29645
+e000000113ecc740 dgram       0      0 e00000010d2fb6c0                0                0                0 /dev/log.un
+e000000115d0cc80 dgram       0      0 e000000115d08700                0                0                0 /var/spool/sockets/pwgr/client29208
+e00000010d39cc80 dgram       0      0 e00000010cbe4940                0                0                0 /var/spool/sockets/pwgr/client4084
+e00000010d39ce40 dgram       0      0                0                0                0                0 
+e00000010e3ae200 stream      0      0                0 e000000113f51340                0                0 
+e00000010e3ae3c0 stream      0      0                0 e000000113f51240                0                0 /tmp/.AgentSockets/A
+e00000010e2ce580 dgram       0      0 e000000113e04340                0                0                0 /var/spool/sockets/pwgr/client980
+e00000010e3ae740 stream      0      0                0 e000000113f51440                0                0 
+e00000010e3ae900 stream      0      0                0 e000000113f513c0                0                0 /tmp/.AgentSockets/A
+e00000010e3aec80 stream      0      0                0 e000000113f51540                0                0 
+e00000010e2cec80 stream      0      0 e00000010d0eb2c0                0                0                0 /tmp/.AgentSockets/A
+e00000010e3aee40 stream      0      0                0 e000000113f514c0                0                0 /tmp/.AgentSockets/A
+e00000010ed6fe40 dgram       0      0 e00000011b52dec0                0                0                0 /var/spool/sockets/pwgr/client28719
+
+netstat -an
+-----------
+
+Active Internet connections (including servers)
+Proto Recv-Q Send-Q  Local Address          Foreign Address        (state)
+tcp        0      0  *.33108                *.*                     LISTEN
+tcp        0      0  *.135                  *.*                     LISTEN
+tcp        0      0  127.0.0.1.7161         *.*                     LISTEN
+tcp        0      0  *.49204                *.*                     LISTEN
+tcp        0      0  *.1508                 *.*                     LISTEN
+tcp        0      0  *.33107                *.*                     LISTEN
+tcp        0      0  192.90.84.194.797      192.90.84.213.2049      FIN_WAIT_2
+tcp        0      0  *.49152                *.*                     LISTEN
+tcp        0      0  *.49154                *.*                     LISTEN
+tcp        0      0  *.49153                *.*                     LISTEN
+tcp        0      0  *.33109                *.*                     LISTEN
+tcp        0      0  *.33102                *.*                     LISTEN
+tcp        0      0  192.90.84.194.838      192.90.84.215.2049      FIN_WAIT_2
+tcp        0      0  *.7815                 *.*                     LISTEN
+tcp        0      0  *.49163                *.*                     LISTEN
+tcp        0      0  *.901                  *.*                     LISTEN
+tcp        0      0  192.90.84.194.49159    192.90.84.215.987       CLOSE_WAIT
+tcp        0      0  *.31004                *.*                     LISTEN
+tcp        0      0  192.90.84.194.49152    192.90.84.194.49157     ESTABLISHED
+tcp        0      0  *.49299                *.*                     LISTEN
+tcp        0      0  192.90.84.194.793      192.90.84.215.2049      FIN_WAIT_2
+tcp        0      0  *.33101                *.*                     LISTEN
+tcp      116      0  192.90.84.194.598      192.90.84.215.2049      ESTABLISHED
+tcp        0      0  192.90.84.194.22       192.90.84.142.2261      ESTABLISHED
+tcp        0      0  *.33103                *.*                     LISTEN
+tcp        0      0  *.587                  *.*                     LISTEN
+tcp        0      0  192.90.84.194.576      192.90.84.215.2049      FIN_WAIT_2
+tcp        0      0  192.90.84.194.968      192.90.84.215.2049      FIN_WAIT_2
+tcp        0      0  *.25                   *.*                     LISTEN
+tcp        0      0  192.90.84.194.830      192.90.84.213.2049      FIN_WAIT_2
+tcp        0      0  192.90.84.194.22       192.90.84.142.4770      ESTABLISHED
+tcp        0      0  192.90.84.194.843      192.90.84.213.2049      FIN_WAIT_2
+tcp        0      0  *.2121                 *.*                     LISTEN
+tcp        0      0  192.90.84.194.1712     192.90.84.194.49206     ESTABLISHED
+tcp        0      0  *.5989                 *.*                     LISTEN
+tcp        0      0  *.49165                *.*                     LISTEN
+tcp        0      0  *.543                  *.*                     LISTEN
+tcp        0      0  *.6112                 *.*                     LISTEN
+tcp        0      0  *.544                  *.*                     LISTEN
+tcp        0      0  192.90.84.194.603      192.90.84.215.2049      FIN_WAIT_2
+tcp        0      0  192.90.84.194.49206    192.90.84.194.1712      ESTABLISHED
+tcp        0      0  *.34204                *.*                     LISTEN
+tcp        0      0  *.49298                *.*                     LISTEN
+tcp        0      0  *.111                  *.*                     LISTEN
+tcp        0      0  *.22                   *.*                     LISTEN
+tcp        0      0  *.515                  *.*                     LISTEN
+tcp        0      0  *.49155                *.*                     LISTEN
+tcp        0      0  *.4045                 *.*                     LISTEN
+tcp        0      0  *.49156                *.*                     LISTEN
+tcp        0      0  192.90.84.194.49157    192.90.84.194.49152     ESTABLISHED
+tcp        0      0  *.33105                *.*                     LISTEN
+tcp        0      0  192.90.84.194.595      192.90.84.213.2049      TIME_WAIT
+tcp        0      0  192.90.84.194.594      192.90.84.46.2049       TIME_WAIT
+udp        0      0  *.161                  *.*                   
+udp        0      0  *.49185                *.*                   
+udp        0      0  *.*                    *.*                   
+udp        0      0  *.1023                 *.*                   
+udp        0      0  *.61439                *.*                   
+udp        0      0  *.177                  *.*                   
+udp        0      0  *.2121                 *.*                   
+udp        0      0  *.49157                *.*                   
+udp        0      0  *.49158                *.*                   
+udp        0      0  *.4045                 *.*                   
+udp        0      0  *.63118                *.*                   
+udp        0      0  *.518                  *.*                   
+udp        0      0  *.135                  *.*                   
+udp        0      0  *.*                    *.*                   
+udp        0      0  *.49152                *.*                   
+udp        0      0  *.866                  *.*                   
+udp        0      0  *.49161                *.*                   
+udp        0      0  *.*                    *.*                   
+udp        0      0  *.111                  *.*                   
+udp        0      0  *.*                    *.*                   
+udp        0      0  *.49156                *.*                   
+udp        0      0  *.49153                *.*                   
+
+Active UNIX domain sockets
+Address          Type   Recv-Q Send-Q            Inode             Conn             Refs          Nextref Addr
+e00000010e973040 dgram       0      0 e00000010e94dbc0                0                0                0 /opt/dcelocal/var/rpc/local/s-3/2121
+e00000010e973200 dgram       0      0 e00000010e8f2780                0                0                0 /var/spool/sockets/pwgr/client1249
+e00000010e9733c0 stream      0      0                0 e000000113f51cc0                0                0 /tmp/.AgentSockets/A
+e00000010ee63ac0 dgram       0      0 e00000010fa873c0                0                0                0 /var/spool/sockets/pwgr/client25845
+e00000010e973c80 dgram       0      0 e00000010e59fc40                0                0                0 /var/spool/sockets/pwgr/client1365
+e00000010f074040 stream      0      0 e00000010cc64e80                0                0                0 /tmp/.s.PGSQL.33109
+e00000010e428040 stream      0      0                0 e000000113f51740                0                0 
+e00000010e4b8200 dgram       0      0 e00000010e4ae4c0                0 e000000113f51940                0 /opt/dcelocal/var/rpc/local/s-3/135
+e00000010e428200 stream      0      0                0 e000000113f515c0                0                0 
+e00000010e4283c0 stream      0      0                0 e000000113f51640                0                0 /tmp/.AgentSockets/A
+e00000010e4b8580 dgram       0      0 e00000010d018a80 e000000113f518c0                0                0 /opt/dcelocal/var/rpc/local/01071/c-3/7000
+e00000010e428580 stream      0      0                0 e000000113f516c0                0                0 /tmp/.AgentSockets/A
+e00000010e4b8740 dgram       0      0 e00000010d5c27c0                0 e000000113f51a40                0 /opt/dcelocal/var/rpc/local/01071/c-3/shared
+e00000010e4b8900 dgram       0      0 e00000010d5d3640 e000000113f519c0                0                0 /opt/dcelocal/var/rpc/local/01071/c-3/7002
+e00000010e428900 dgram       0      0 e00000010e45f980                0                0                0 /opt/dcelocal/var/rpc/local/01071/reaper
+e00000010e4b8c80 dgram       0      0 e000000113e0b980                0                0                0 /var/spool/pwgr/daemon
+e00000010e428c80 stream      0      0 e00000010e4ae2c0                0                0                0 /opt/dcelocal/var/rpc/local/s-0/135
+e00000010e4b8e40 dgram       0      0 e00000010e828e40                0                0                0 /var/spool/sockets/pwgr/client1215
+e00000010e428e40 stream      0      0 e00000010d7d3e40                0                0                0 /var/opt/wbem/socket/cimxml.socket
+e00000010e87b040 dgram       0      0 e000000113e04040                0                0                0 /var/spool/sockets/pwgr/client1232
+e00000010e87b200 stream      0      0                0 e000000113f51f40                0                0 
+e00000010e87b740 dgram       0      0 e00000010e8e0d40                0                0                0 /opt/dcelocal/var/rpc/local/01249/reaper
+e00000010e87bac0 stream      0      0 e00000010e94dac0                0                0                0 /opt/dcelocal/var/rpc/local/s-0/2121
+e00000010d39c040 dgram       0      0 e000000119508200                0                0                0 /var/spool/sockets/pwgr/client20216
+e000000113ecc040 stream      0      0 e000000113f156c0                0                0                0 /etc/useracct/utmpd_read
+e000000113ecc200 stream      0      0 e000000113f15ac0                0                0                0 /etc/useracct/utmpd_write
+e000000115d0c3c0 dgram       0      0 e000000119508f00                0                0                0 /var/spool/sockets/pwgr/client29209
+e00000010d39c3c0 dgram       0      0 e00000011bea4a00                0                0                0 /var/spool/sockets/pwgr/client29645
+e000000113ecc740 dgram       0      0 e00000010d2fb6c0                0                0                0 /dev/log.un
+e000000115d0cc80 dgram       0      0 e000000115d08700                0                0                0 /var/spool/sockets/pwgr/client29208
+e00000010d39cc80 dgram       0      0 e00000010cbe4940                0                0                0 /var/spool/sockets/pwgr/client4084
+e00000010d39ce40 dgram       0      0                0                0                0                0 
+e00000010e3ae200 stream      0      0                0 e000000113f51340                0                0 
+e00000010e3ae3c0 stream      0      0                0 e000000113f51240                0                0 /tmp/.AgentSockets/A
+e00000010e2ce580 dgram       0      0 e000000113e04340                0                0                0 /var/spool/sockets/pwgr/client980
+e00000010e3ae740 stream      0      0                0 e000000113f51440                0                0 
+e00000010e3ae900 stream      0      0                0 e000000113f513c0                0                0 /tmp/.AgentSockets/A
+e00000010e3aec80 stream      0      0                0 e000000113f51540                0                0 
+e00000010e2cec80 stream      0      0 e00000010d0eb2c0                0                0                0 /tmp/.AgentSockets/A
+e00000010e3aee40 stream      0      0                0 e000000113f514c0                0                0 /tmp/.AgentSockets/A
+e00000010ed6fe40 dgram       0      0 e00000011b52dec0                0                0                0 /var/spool/sockets/pwgr/client28719

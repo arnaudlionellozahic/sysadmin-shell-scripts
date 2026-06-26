@@ -1,0 +1,35 @@
+SCHEDULE;SCHEDTIME;JOB;STATUS;PRIORITY;START;ELAPSE;RETCODE;DEPS;ACTION
+ ;  ; BHEBSQL+ ; ABEND ; 10 ; 07/17 ; 00:10 ; 12 ; #J26979 ; 
+ ;  ; HEXP507+ ; ABEND ; 10 ; 07/17 ; 00:01 ; 1 ; #J28120 ; 
+PVL0-CY+#EXPHEB5+ ; 0800 07/17 ; *LIM 5* ; ABEND ; 10 ; 07/17 ; 12:01 ;  ; [07/17/15] ;  ; 
+ ;  ; HEXP511+ ; ABEND ; 10 ; 07/17 ; 00:01 ; 1 ; #J747 ; 
+PVL0-CY+#EXPJOUR+ ; 0830 07/17 ; *LIM 5* ; ABEND ; 10 ; 07/17 ; 12:31 ;  ; [07/17/15] ;  ; 
+ ;  ; JEXP605+ ; ABEND ; 10 ; 07/17 ; 00:01 ; 1 ; #J16989 ; 
+ ;  ; BDUMPIF+ ; ABEND ; 10 ; 07/18 ; 00:01 ; 1 ; #J25505 ; 
+ ;  ; BNIMZEU+ ; ABEND ; 10 ; 07/19 ; 00:15 ; 1 ; #J11595 ; 
+ ;  ; BHEBSQL+ ; ABEND ; 10 ; 07/19 ; 00:16 ; 12 ; #J5128 ; 
+PVL0-CY+#BHEBSQL+ ; 0800 07/19 ; *LIM 5* ; ABEND ; 10 ; 07/19 ; 00:01 ;  ; [07/19/15] ;  ; 
+ ;  ; JEXP705+ ; ABEND ; 10 ; 07/19 ; 00:01 ; 1 ; #J27292 ; 
+PVL0-CY+#EXPHEB7+ ; 0800 07/19 ; *LIM 5* ; ABEND ; 10 ; 07/19 ; 18:46 ;  ; [07/19/15] ;  ; 
+ ;  ; HEXP703+ ; ABEND ; 10 ; 07/19 ; 00:01 ; 1 ; #J26958 ; 
+PVL0BE-+#BARCSQL+ ; 0330 07/19 ; *LIM 5* ; ABEND ; 10 ; 07/19 ; 29:31 ;  ; [07/18/15] ;  ; 
+ ;  ; JEXP707+ ; ABEND ; 10 ; 09:00 ; 00:01 ; 1 ; #J10761 ; 
+ ;  ; BARCSQL+ ; ABEND ; 10 ; 03:30 ; 00:01 ; 1 ; #J8911 ; 
+PVL0BE-+#BHEBORA+ ; 2300 07/19 ; *LIM 5* ; ABEND ; 10 ; 07/19 ; 01:47 ;  ; [07/19/15] ;  ; 
+ ;  ; BHEBORA+ ; ABEND ; 10 ; 00:15 ; 00:01 ; 2 ; #J4204 ; 
+
+JOBS_UNIX
+expl
+expl
+expl
+bnimzeus"
+expl
+expl
+jexp707
+barcsqls.sh"'
+bhebora_SMIV2PRD.sh"'
+
+JOBS WINDOWS
+bheb.bat"'
+bdumpifc.bat"'
+bhebsqls.bat"'

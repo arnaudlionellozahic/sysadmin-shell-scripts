@@ -1,0 +1,80 @@
+#!/usr/bin/ksh
+#Suivi des PROD ATLAS2
+#Equipe: MEO ATLAS2
+#Planification crontab: 30 08 * * 2-6 ksh /apps/meoatlas2/outils/newcheck.sh
+#---------------------
+
+#-------------------------
+#Mise en place envt TNG
+#-------------------------
+if type cautil >/dev/null
+  then
+      :
+  else
+  . /usr/bin/EnvironnementTNG
+fi
+
+
+
+. /apps/meoatlas2/outils/param_check
+DATE=$(date +"%d%m%Y")
+LOG=/apps/meoatlas2/log/check_prod.lst.$DATE
+
+echo "Subject: Suivi PROD $(hostname)" > $LOG 
+echo "To: $MAIL_DEST" >> $LOG
+(
+echo "\nverif si Sauvegardes apres EOD OK\n******************************\n"
+for i in $FILES
+  do
+/usr/bin/dsmc q ar $INST_TSM $NODE_TSM $PASS_TSM "$i" |tail -1 
+done
+
+
+echo "\nHeure Déchargement infocentre (infoc)\n******************************\n"
+for i in $A1 
+  do
+    cautil sel jobsethist id=${i}* list |grep "^ Start:" | tail -1
+done | sort +5
+
+
+OUV_TP1=`cautil sel jobhist id=jtp1*,jcics1,* list | grep "^ Start:" | tail -2 | head -1`
+echo "\nHeure debut BATCH (jcics2)\n*********************\n"
+FER_TP1=`cautil sel jobhist id=jtp2*,jcics2,* list | grep "^ Start:" | tail -1`
+echo $FER_TP1
+echo "\nHeure ouverture TP (jcics1)\n*********************\n"
+OUV_TP2=`cautil sel jobhist id=jtp1*,jcics1,* list | grep "^ Start:" | tail -1`
+echo $OUV_TP2
+Date1_batch=$(echo $FER_TP1 | awk '{ print $2","$3 }'| cut -d. -f1 )
+Date2_batch=$(echo $OUV_TP2 | awk '{ print $2","$3 }'| cut -d. -f1 )
+Date1_tp=$(echo $OUV_TP1 | awk '{ print $2","$3 }'| cut -d. -f1 )
+Date2_tp=$Date1_batch
+Date1=$(echo $OUV_TP1 | awk '{ print $2}')
+Date2=$(echo $OUV_TP2 | awk '{ print $2}')
+
+#echo "Date1=$Date1 // Date2=$Date2 // Date1_tp=$Date1_tp // Date2_tp=$Date2_tp // Date1_batch=$Date1_batch // Date2_batch=$Date2_batch"
+
+echo "\nBATCH: JOBS EN ABORT\n*********************\n"
+cautil select conlog start="$Date1_batch" end="$Date2_batch" list conlog | grep CASH_I_0062 | grep "(.)"  | grep GENERATED | sed "s/(1)//g" | grep "cau8trk" | awk '
+{ print $22,$23,$6,$7 }' | sed  -e "s/(//g" -e "s/)//g" | sort -un +0 +1 |
+while read a b c d
+do
+#echo $a ge $Date1
+if [[ $a -ge $Date1 ]]
+then
+echo "$c $d $a $b" $(cautil sel job id=$c,$d,* list | grep "Description" )
+fi
+done
+
+echo "\nTP: JOBS EN ABORT\n*********************\n"
+cautil select conlog start="$Date1_tp" end="$Date2_tp" list conlog | grep CASH_I_0062 | grep "(.)"  | grep GENERATED | sed "s/(1)//g" | grep "cau8trk" | awk '{ print $22,$23,$6,$7 }' | sed  -e "s/(//g" -e "s/)//g" | sort -un +0 +1 |
+while read a b c d
+do
+#echo $a ge $Date1
+if [[ $a -ge $Date1 ]]
+then
+echo "$c $d $a $b" $(cautil sel job id=$c,$d,* list | grep "Description" )
+fi
+done
+) >> $LOG 
+
+#sendmail -f paris_sig_pbcb2_atlas@bnpparibas.com -t < $LOG >/dev/null

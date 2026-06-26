@@ -1,0 +1,21 @@
+req ()
+{
+OUTPUT_FILE=/home4/alozahic/Linux/athis/Ver543b/scripts/domi.csv
+cd /home4/alozahic/Linux/athis/Ver543b/sgbd/bin
+./psql -A -F \; -t -c "SELECT vtenvname, vtapplname, vtjobname,vtend - vtbegin, vtexpdatevalue, vtretcode, vterrmess,vtbegin, vtend FROM vt_stats_job WHERE $CLAUSE AND vtjobname IS NOT NULL ORDER BY vtend ASC" -d vtom -h localhost -p 33909 -U vtom
+
+}
+
+printf "\n $(date "+%d-%m-%Y %Hh%M") \n"
+[ "$(date "+%d-%m-%Y")" != "$(tgetdate -name=arn_date)" ] && echo " Attention date d'exploit arn_date desynchronisee"
+[ "$(date "+%d-%m-%Y")" != "$(tgetdate -name=arn_sur)" ] && echo " Attention date d'exploit arn_sur desynchronisee"
+printf "\t date d'exploit arn_date : `tgetdate -name=arn_date` \n"
+printf "\t date d'exploit arn_sur : `tgetdate -name=arn_sur` \n"
+
+printf "%-15s %-15s %-10s %-10s %-11s %-15s %-15s %-15s \n" ENV APP JOB EXPDATE CODE_RETOUR MESSAGE BEGIN END
+DATE_D=`TZ=MET+24 date +"%Y-%m-%d"`; DATE_F=`date +"%Y-%m-%d"`; CLAUSE="vtexpdatevalue >= cast ('$DATE_D' as date) AND vtexpdatevalue <= cast ('$DATE_F' as date)";
+req
+
+NB_TEST=$(grep "en erreur" $OUTPUT_FILE|wc -l)
+
+tmail -se "arnaud.lozahic@absyss.com" -to "arnaud.lozahic@absyss.com" -smtp "jupiter" -sub "[VTOM RECETTE] Erreurs ($NB_TEST)" -msg "Statistiques du $DATE_D au $DATE_F extraites le $(date +'%d/%m/%Y a %H:%M')" -att "$OUTPUT_FILE"

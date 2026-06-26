@@ -1,0 +1,50 @@
+#
+# iserver.ini sample
+# 
+# [server]
+# name=<server hostname>
+# location=<location>
+# contact=<contact email>
+# listePort=<iserver port name or number>
+#
+# [domain]
+# host=<server domain>
+# dserverPort=<tomDBd port name or number>
+# gserverPort=<gwg port name or number>
+# pserverPort=<ntfy port name or number>
+#
+# [security]
+# file=<absolute file path (security.ini included)>
+# 
+# [extra]
+#
+# [options]
+# FamilylnLists=<0/1>
+# LastExeclnLists=<0/1>
+#
+
+[server]
+name=localhost
+location=client location
+contact=admin@sample.fr
+listenPort=20005
+
+[domain]
+host=AUSTIN
+dserverPort=20001
+gserverPort=20002
+pserverPort=20003
+
+[security]
+file=/home/vtom/security.ini
+
+[extras]
+
+[options]
+FamilylnLists=1
+LastExeclnLists=0
+
+
+
+
+

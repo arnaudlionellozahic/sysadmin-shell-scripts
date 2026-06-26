@@ -1,0 +1,28 @@
+#!/usr/bin/ksh
+#Recherche Qui a fait Quoi ?
+#GB 23/04/2010
+#AMJ 28/10/2010 : ajout time
+#---------------------------
+
+[[ $# -ne 2 ]] && echo "Usage: $0 \"mot\" [nb jours avant]" && exit 1
+
+PARM=$1
+tps=$2
+
+cd /apps/meoatlas2/trace
+
+for i in $(find . -type f -mtime -$tps)
+do
+   strings $i | grep -q $PARM
+   if [[ $? -eq 0 ]]
+     then
+         user=$(echo $i | awk -F"_" '{print $1}')
+         QUI=$(grep $user /etc/passwd | awk -F":" '{print $5}' | awk -F"," '{print $1}')
+         echo "\n---- $i == $QUI ----"
+         strings $i | grep $PARM
+   fi
+done
+
+echo "\n"
+cd /apps/meoatlas2/outils
+

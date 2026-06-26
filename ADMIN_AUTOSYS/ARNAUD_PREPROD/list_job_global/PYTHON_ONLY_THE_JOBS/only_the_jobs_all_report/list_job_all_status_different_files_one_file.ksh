@@ -1,0 +1,157 @@
+#!/bin/ksh
+
+entete ()
+{
+echo "----------------------------------------------------------------------------------------------------------"
+echo "----------------------------------------------------------------------------------------------------------"
+echo ""
+echo "#### DEBUT JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+echo ""
+echo "Report of the autosys jobs le $(date "+%Y%m%d a %H%M%S")"
+echo ""
+echo "###################################################################"
+}
+
+###########################################################################################
+
+jobs_report_FA ()
+{
+# autorep -j ALL | grep -w FA | awk '{print $1}'
+toto=`autorep -j ALL -L0 | grep -w FA | awk '{print $1}' | awk 1 ORS='|' | sed 's/|$//'`
+autorep -j ALL | grep -w FA | grep -v BOX | egrep -v "$toto"
+}
+
+jobs_report_RU ()
+{
+# autorep -j ALL | grep -w RU | awk '{print $1}'
+toto=`autorep -j ALL -L0 | grep -w RU | awk '{print $1}' | awk 1 ORS='|' | sed 's/|$//'`
+autorep -j ALL | grep -w RU | grep -v BOX | egrep -v "$toto"
+}
+
+jobs_report_OH ()
+{
+# autorep -j ALL | grep -w OH | awk '{print $1}'
+toto=`autorep -j ALL -L0 | grep -w OH | awk '{print $1}' | awk 1 ORS='|' | sed 's/|$//'`
+autorep -j ALL | grep -w OH | grep -v BOX | egrep -v "$toto"
+}
+
+jobs_report_OI ()
+{
+# autorep -j ALL | grep -w OI | awk '{print $1}'
+toto=`autorep -j ALL -L0 | grep -w OI | awk '{print $1}' | awk 1 ORS='|' | sed 's/|$//'`
+autorep -j ALL | grep -w OI | grep -v BOX | egrep -v "$toto"
+}
+
+
+verif_jobs ()
+{
+
+if [ `awk '/FA/' ${FILE_FA} | wc -l` -lt 1 ]; then
+  echo ""
+  echo "Pas de jobs en erreur"
+        else
+        echo ""
+        echo "There are `awk '/FA/' ${FILE_FA} | wc -l` jobs in error"
+        echo ""
+        cat ${FILE_FA}
+fi
+
+echo ""
+echo "###################################################################"
+
+if [ `awk '/RU/' ${FILE_RU} | wc -l` -lt 1 ]; then
+  echo ""
+  echo "Pas de jobs en running"
+        else
+        echo ""
+        echo "There are `awk '/RU/' ${FILE_RU} | wc -l` jobs running"
+        echo ""
+        cat ${FILE_RU}
+fi
+
+echo ""
+echo "###################################################################"
+
+if [ `awk '/OH/' ${FILE_OH} | wc -l` -lt 1 ]; then
+  echo ""
+  echo "Pas de jobs en hold"
+        else
+        echo ""
+        echo "There are `awk '/OH/' ${FILE_OH} | wc -l` jobs on hold"
+        echo ""
+        cat ${FILE_OH}
+fi
+
+echo ""
+echo "###################################################################"
+
+if [ `awk '/OI/' ${FILE_OI} | wc -l` -lt 1 ]; then
+  echo ""
+  echo "Pas de jobs on ice"
+  echo ""
+  echo "-------------------------------------------------------------------"
+  echo ""
+  echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+  echo "exit 0"
+  exit 0
+        else
+        echo ""
+        echo "There are `awk '/OI/' ${FILE_OI} | wc -l` jobs on ice"
+        echo ""
+        cat ${FILE_OI}
+        echo ""
+        echo "###################################################################"
+        echo ""
+        echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+        echo ""
+        echo "----------------------------------------------------------------------------------------------------------"
+        echo "----------------------------------------------------------------------------------------------------------"
+        echo "exit ${?}"
+        exit ${?}
+fi
+
+}
+
+
+# Main
+#############################################################
+# Initialisation des variables n'ayant pas a etre modifiees #
+#############################################################
+
+DATE=`date +"%y%m%d_%H%M%S"`
+#DATE=$(date "+%Y%m%d a %H%M%S")
+
+REP=/apps/meoatlas2/arnaud
+FILE_LOG=${REP}/report.log_KSH
+
+FILE_FA=${REP}/jobs_error.txt_KSH
+FILE_RU=${REP}/jobs_running.txt_KSH
+FILE_OH=${REP}/jobs_hold.txt_KSH
+FILE_OI=${REP}/jobs_ice.txt_KSH
+
+#######################
+##LANCEMENT DU SCRIPT##
+#######################
+#-------------------------------------------------------------------
+# Debut du job
+#-------------------------------------------------------------------
+
+jobs_report_FA | tee ${FILE_FA}
+jobs_report_RU | tee ${FILE_RU}
+jobs_report_OH | tee ${FILE_OH}
+jobs_report_OI | tee ${FILE_OI}
+
+entete | tee ${FILE_LOG}
+
+verif_jobs | tee -a ${FILE_LOG}
+
+cd ${REP}
+ksh rapport_html_FA.ksh
+ksh rapport_html_RU.ksh
+ksh rapport_html_OH.ksh
+ksh rapport_html_OI.ksh
+
+
+#-------------------------------------------------------------------
+# Fin du job proprement dit
+#-------------------------------------------------------------------

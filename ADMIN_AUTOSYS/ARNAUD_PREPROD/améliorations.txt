@@ -1,0 +1,26 @@
+
+VARIABILISER LES CHEMINS
+
+
+
+ensuite utiliser la base
+
+time ... tester les temps
+
+
+
+
+list_job_all_status_different_files_one_file.ksh
+exit 0
+real    2m59.683s
+user    0m2.644s
+sys     0m3.143s
+
+
+
+
+list_job_all_status_different_files_one_file.pl
+exit 0
+real    0m52.300s
+user    0m5.878s
+sys     0m3.400s

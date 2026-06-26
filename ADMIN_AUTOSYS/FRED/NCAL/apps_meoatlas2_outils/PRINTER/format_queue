@@ -1,0 +1,16 @@
+>./queue_format.txt
+echo "entrez les file d attente à supprimer"
+sleep 3
+vi ./queue_format.txt
+
+while read line
+ do
+if grep "^$line" /etc/qconfig > /dev/null
+
+then
+export dev=$(lsallqdev -q$line)
+/usr/lib/lpd/pio/etc/piochpq -q $line -d $dev -l '43' -w '132' -z '+' -a s1='4' -a  s2='4' -a s3='3' -a s0='4' -p'12'
+echo "$line:$dev"
+fi
+
+done < ./queue_format.txt

@@ -1,0 +1,6 @@
+echo "`date` : Lancement de $0" >> /home/user6/luc.log
+
+ps -ef|grep cyb >> /home/user6/luc.log
+
+
+echo "`date` : Fin de $0" >> /home/user6/luc.log

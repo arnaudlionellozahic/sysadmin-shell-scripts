@@ -1,0 +1,32 @@
+savigny:/home4/alozahic/Linux/savigny/Ver541/abm > ksh -x stop_moteurs SUPERVISIONS
++ tput bold
++ gras=$'\E[1m'
++ tput smul
++ soul=$'\E[4m'
++ tput rev
++ reve=$'\E[7m'
++ tput sgr0
++ annu=$'\E(B\E[m'
++ tput clear
++ clsc=$'\E[H\E[2J'
++ list=SUPERVISIONS
++ [ SUPERVISIONS = all ]
++ ps -ef
++ grep tengine
++ grep ' SUPERVISIONS '
++ wc -l
++ i=1
++ i=2
++ cut -f1 '-d '
++ epresent SUPERVISIONS
++ flag_1=Un
++ [ Un = Environnement ]
++ [ Un = Un ]
++ j=1
++ [ Un = Aucun ]
++ k=2
++ print - 'arret normal du moteur sur SUPERVISIONS'
+arret normal du moteur sur SUPERVISIONS
++ estop SUPERVISIONS
++ 1> /dev/null
++ exit

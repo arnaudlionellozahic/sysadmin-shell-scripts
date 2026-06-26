@@ -1,0 +1,21 @@
+#!/bin/ksh
+
+warninglimit=94
+lowlimit=96
+
+filesystems="/usr /home /var /tmp /"
+
+for fs in $filesystems
+do
+size=`df -h $fs | grep $fs | awk '{ print $4 }' | sed 's/%//g'`
+if [ $size -ge $lowlimit ]
+then
+stop_moteurs CYCLIQUE 
+tmail -se "arnaud.lozahic@absyss.com" -to "arnaud.lozahic@absyss.com" -smtp "jupiter" -sub "URGENT: Low disk space on CENTOS63 for $fs ($size%)" -msg "Surveillance FS extraite le $(date +'%d/%m/%Y a %H:%M')" 
+break
+fi
+if [ $size -ge $warninglimit ]
+then
+tmail -se "arnaud.lozahic@absyss.com" -to "arnaud.lozahic@absyss.com" -smtp "jupiter" -sub "WARNING: Low disk space on CENTOS63 for $fs ($size%)" -msg "Surveillance FS extraite le $(date +'%d/%m/%Y a %H:%M')"
+fi
+done

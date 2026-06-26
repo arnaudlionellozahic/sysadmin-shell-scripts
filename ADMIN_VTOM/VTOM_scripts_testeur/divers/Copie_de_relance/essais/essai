@@ -1,0 +1,13 @@
+#!/bin/ksh
+
+if [ -f "truc.txt" -o -f "mach1.txt" ] ; then
+	echo "1 fichier present"
+fi
+
+if [ ! -f "truc.txt" -a ! -f "mach1.txt" ] ; then
+	echo "aucun fichier"
+fi
+
+if [ -f "s*" ] ; then
+	echo "fichiers s\* trouve"
+fi

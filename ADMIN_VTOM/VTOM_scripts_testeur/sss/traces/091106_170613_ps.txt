@@ -1,0 +1,118 @@
+HP-UX itanium B.11.23 U ia64 1220372574 unlimited-user license
+
+Lise des processus (ps -ef)
+------------------
+
+     UID   PID  PPID  C    STIME TTY       TIME COMMAND
+    root     0     0  0  Feb 12  ?        23:24 swapper
+    root     1     0  0  Feb 12  ?         6:45 init
+    root     8     0  0  Feb 12  ?         0:00 ioconfigd
+    root     9     0  0  Feb 12  ?         2:45 nfsktcpd
+    root    10     0  0  Feb 12  ?         0:16 autofskd
+    root    11     0  0  Feb 12  ?         0:02 lvmkd
+    root    12     0  0  Feb 12  ?         0:01 lvmkd
+    root    13     0  0  Feb 12  ?         0:01 lvmkd
+    root    14     0  0  Feb 12  ?         0:01 lvmkd
+    root    15     0  0  Feb 12  ?         0:01 lvmkd
+    root    16     0  0  Feb 12  ?         0:01 lvmkd
+    root    17     0  0  Feb 12  ?         0:00 lvmschedd
+    root    18     0  0  Feb 12  ?         0:00 lvmdevd
+    root    19     0  0  Feb 12  ?         0:00 pagetable_init_daemon
+    root    20     0  0  Feb 12  ?        680:28 supsched
+    root    21     0  0  Feb 12  ?         0:00 strmem
+    root    22     0  0  Feb 12  ?         0:00 strweld
+    root    23     0  0  Feb 12  ?         0:00 strfreebd
+    root     2     0  0  Feb 12  ?        32:18 vhand
+    root     3     0  0  Feb 12  ?        59:48 statdaemon
+    root     4     0  0  Feb 12  ?         2:00 unhashdaemon
+    root    24     0  0  Feb 12  ?         0:00 kmemdaemon
+    root    25     0  0  Feb 12  ?         0:00 ttisr
+    root    26     0  0  Feb 12  ?         8:58 ipmid
+    root    33     0  0  Feb 12  ?         0:00 eventdaemon
+    root    34     0  0  Feb 12  ?        76:16 schedcpu
+    root    35     0  0  Feb 12  ?         0:00 kend
+    root  1057     1  0  Feb 12  ?         0:00 /usr/sbin/fddi4subagt
+    root   648     1  0  Feb 12  ?         0:00 /usr/sbin/rpcbind
+    root    41     0  0  Feb 12  ?        49:15 vxfsd
+    root    66     0  0  Feb 12  console   0:00 rng
+    root   343     1  0  Feb 12  ?        12:43 /usr/sbin/utmpd
+    root   340     1  0  Feb 12  ?         5:45 /usr/sbin/syncer
+    root   483     1  0  Feb 12  ?         0:09 /usr/sbin/syslogd -D
+    root   665     1  0  Feb 12  ?        72:17 /usr/sbin/biod 16
+    root   460     1  0  Feb 12  ?        11:00 ipmon -sD
+   plair 29225 29214  0 16:40:51 ?         0:00 postgres: vtom vtom ::1(55350) idle
+    root   627     1  0  Feb 12  ?         0:00 /opt/ssh/sbin/sshd
+    root   508     1  0  Feb 12  ?         0:00 /usr/lbin/nktl_daemon 0 0 0 0 0 1 -2
+    root  1346     1  0  Feb 12  ?         0:00 /sbin/sh /usr/dt/bin/dtrc
+    root   664     1  0  Feb 12  ?        74:05 /usr/sbin/biod 16
+    root   666     1  0  Feb 12  ?        72:05 /usr/sbin/biod 16
+    root   663     1  0  Feb 12  ?        75:22 /usr/sbin/biod 16
+    root   667     1  0  Feb 12  ?        74:07 /usr/sbin/biod 16
+    root   668     1  0  Feb 12  ?        75:44 /usr/sbin/biod 16
+    root   669     1  0  Feb 12  ?        72:41 /usr/sbin/biod 16
+    root   670     1  0  Feb 12  ?        72:21 /usr/sbin/biod 16
+    root   671     1  0  Feb 12  ?        72:48 /usr/sbin/biod 16
+    root   672     1  0  Feb 12  ?        74:25 /usr/sbin/biod 16
+    root   673     1  0  Feb 12  ?        71:49 /usr/sbin/biod 16
+    root   674     1  0  Feb 12  ?        71:28 /usr/sbin/biod 16
+    root   675     1  0  Feb 12  ?        74:39 /usr/sbin/biod 16
+    root   676     1  0  Feb 12  ?        72:24 /usr/sbin/biod 16
+    root   677     1  0  Feb 12  ?        70:32 /usr/sbin/biod 16
+    root   678     1  0  Feb 12  ?        72:20 /usr/sbin/biod 16
+    root   690     1  0  Feb 12  ?         0:00 /usr/sbin/rpc.lockd
+    root   684     1  0  Feb 12  ?         0:00 /usr/sbin/rpc.statd
+    root   696     1  0  Feb 12  ?         3:37 /usr/sbin/automountd
+    root   988     1  0  Feb 12  ?         0:00 /usr/sbin/snmpdm
+    root   711     1  0  Feb 12  ?         2:55 /usr/sbin/inetd
+    root   980     1  0  Feb 12  ?        81:23 sendmail: accepting connections
+    root  1032     1  0  Feb 12  ?         0:00 /usr/sbin/trapdestagt
+    root   999     1  0  Feb 12  ?         0:00 /usr/sbin/hp_unixagt
+    root  1008     1  0  Feb 12  ?        12:14 /usr/sbin/ipv6agt
+    root  1016     1  0  Feb 12  ?        15:24 /usr/sbin/mib2agt
+    root  1071     1  0  Feb 12  ?         1:37 /opt/dce/sbin/rpcd
+    root  1242     1  0  Feb 12  ?         0:00 /usr/sbin/hubd
+    root  1074     1  0  Feb 12  ?        173:12 /opt/wbem/sbin/cimserver
+    root  1235     1  0  Feb 12  ?         0:00 /usr/sbin/envd
+    root  1203     1  0  Feb 12  ?        16:20 /usr/sbin/pwgrd
+    root  1359     1  0  Feb 12  console   0:00 /usr/sbin/getty console console
+    root  1215     1  0  Feb 12  ?         0:00 /usr/sbin/cron
+    root  1249     1  0  Feb 12  ?         5:23 /usr/sbin/swagentd -r
+    root  1430  1232  0  Feb 12  ?         3:11 diaglogd
+    root  1431  1232  0  Feb 12  ?        114:13 psmctd
+    root  1232     1  0  Feb 12  ?         7:59 /usr/sbin/stm/uut/bin/sys/diagmond
+    root  1291     1  0  Feb 12  ?         0:00 /etc/opt/resmon/lbin/emsagent
+    root  1360     1  0  Feb 12  ?         0:03 /sbin/krsd -i
+    root  1365  1346  0  Feb 12  ?         0:02 /usr/dt/bin/dtlogin
+    root  1361     1  0  Feb 12  ?         0:00 /sbin/sfd
+    root  1367     1  0  Feb 12  ?         8:51 /etc/opt/resmon/lbin/p_client
+    root  1368     1  0  Feb 12  ?         2:23 /opt/wbem/sbin/cimserverd
+    root  1437   711  0  Feb 12  ?         0:00 /etc/opt/resmon/lbin/registrar
+    root  1472     1  0  Feb 12  ?         0:04 /usr/sbin/stm/uut/bin/tools/monitor/cmc_em
+    root  1788     1  0  Feb 12  ?         0:03 /usr/sbin/stm/uut/bin/tools/monitor/memory_ia64
+    root  1815     1  0  Feb 12  ?         0:22 /usr/sbin/stm/uut/bin/tools/monitor/sysstat_em
+    root  1508     1  0  Feb 12  ?         0:03 /usr/sbin/stm/uut/bin/tools/monitor/cpe_em
+    root  1734     1  0  Feb 12  ?        202:12 /usr/sbin/stm/uut/bin/tools/monitor/ia64_corehw
+    root  1535     1  0  Feb 12  ?         0:20 /usr/sbin/stm/uut/bin/tools/monitor/disk_em
+   plair 28726 28719  0 16:13:13 pts/0     0:00 -ksh
+    root  1698     1  0  Feb 12  ?         1:07 /usr/sbin/stm/uut/bin/tools/monitor/fpl_em
+    root 28719   627  0 16:13:05 ?         0:00 sshd: plair@0
+    root 29741  1734  1 17:06:05 ?         0:00 <defunct>
+   plair 29227 29214  0 16:40:51 ?         0:00 postgres: vtom vtom ::1(55352) idle
+   plair 29216 29214  0 16:40:46 ?         0:00 postgres: writer process   
+   plair 29229 29214  0 16:40:51 ?         0:00 postgres: vtom vtom ::1(55354) idle
+    root 29645     1  0  Oct 26  ?         0:14 /home4/mgaudy/vtom_hp/abm/bin/bdaemon
+   plair 29219 29214  0 16:40:46 ?         0:00 postgres: stats collector process   
+   plair 29218 29214  0 16:40:46 ?         0:00 postgres: autovacuum launcher process   
+   plair 29212 29208  0 16:40:46 pts/0     0:00 sh -c /home4/plair/HP_ITA/Ver521/vtom/sgbd/bin/postgres -D "/ho
+   plair 29226 29214  0 16:40:51 ?         0:00 postgres: vtom vtom ::1(55351) idle
+    root 25845   627  0 11:35:15 ?         0:00 sshd: plair@1
+   plair 29217 29214  0 16:40:46 ?         0:00 postgres: wal writer process   
+    root 20216     1  0  Jul  8  ?         2:02 /usr/lbin/kcmond
+    root  4084     1  0  Sep 25  ?         0:01 /home4/cvandyck/HP_UX/Ver465/abm/bin/bdaemon
+   plair 29784 29743  1 17:06:19 pts/0     0:00 ps -ef
+   plair 29208     1  0 16:40:46 pts/0     0:00 /home4/plair/HP_ITA/Ver521/vtom/vtom/bin/vtsgbd
+   plair 29743 28726  0 17:06:13 pts/0     0:00 /bin/ksh ./collectevtom5x
+   plair 29214 29212  0 16:40:46 pts/0     0:00 /home4/plair/HP_ITA/Ver521/vtom/sgbd/bin/postgres -D /home4/pla
+   plair 29228 29214  0 16:40:51 ?         0:00 postgres: vtom vtom ::1(55353) idle
+   plair 25847 25845  0 11:35:20 pts/1     0:00 -ksh
+   plair 29209     1  0 16:40:46 pts/0     0:00 /home4/plair/HP_ITA/Ver521/vtom/vtom/bin/vtserver

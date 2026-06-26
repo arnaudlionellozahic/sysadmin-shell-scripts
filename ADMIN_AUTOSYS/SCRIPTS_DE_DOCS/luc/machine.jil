@@ -1,0 +1,41 @@
+/*
+insert_machine: LucOS
+machine: rh602
+*/
+
+ update_job: jluc01   job_type: CMD
+ machine: LucOS
+ update_job: GR6_lucFT1   job_type: FT
+ machine: LucOS
+ update_job: GR6_lucj01   job_type: CMD
+ machine: LucOS
+  update_job: GR6_lucFT2   job_type: FT
+  machine: LucOS
+  update_job: GR6_lucj02   job_type: CMD
+  machine: LucOS
+  update_job: GR6_lucj03   job_type: CMD
+  machine: LucOS
+ update_job: GR6_lucj04   job_type: CMD
+ machine: LucOS
+  update_job: GR6_lucj05   job_type: CMD
+  machine: LucOS
+  update_job: GR6_lucj06   job_type: CMD
+  machine: LucOS
+  update_job: GR6_lucj07   job_type: CMD
+  machine: LucOS
+ update_job: GR6_lucj21   job_type: CMD
+ machine: LucOS
+ update_job: GR6_lucj22   job_type: CMD
+ machine: LucOS
+ update_job: GR6_lucj23   job_type: CMD
+ machine: LucOS
+ update_job: GR6_lucj24   job_type: CMD
+ machine: LucOS
+ update_job: GR6_lucj25   job_type: CMD
+ machine: LucOS
+ update_job: GR6_lucj26   job_type: CMD
+ machine: LucOS
+ update_job: GR6_lucj27   job_type: CMD
+ machine: LucOS
+ update_job: GR6_lucj28   job_type: CMD
+ machine: LucOS

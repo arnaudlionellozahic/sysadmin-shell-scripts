@@ -1,0 +1,360 @@
+extended_calendar: CALapn101
+workday: mo,tu,we,th,fr
+non_workday: W
+holiday: W
+holcal: hday01
+cyccal: 
+adjust: 0
+condition: **/01/01
+extended_calendar: CALhcb101
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday: S
+holcal: hday01
+cyccal: 
+adjust: 0
+condition: WEEKD#3
+extended_calendar: CALhpn101
+workday: mo,tu,we,th,fr
+non_workday: P
+holiday: P
+holcal: hday01
+cyccal: 
+adjust: 0
+condition: **/12/31 or fri
+extended_calendar: CALhsta01
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday: S
+holcal: hday01
+cyccal: 
+adjust: 0
+condition: Sun
+extended_calendar: CALji2201
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday: S
+holcal: hday01
+cyccal: 
+adjust: 0
+condition: Sun or Tue or Wed or Thu or Fri
+extended_calendar: CALjiia01
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday: O
+holcal: hday01
+cyccal: 
+adjust: 0
+condition: 
+extended_calendar: CALjim501
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday: S
+holcal: hday01
+cyccal: 
+adjust: 0
+condition: Mon or Tue or Wed or Thu or Fri
+extended_calendar: CALjpn201
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday: S
+holcal: hday01
+cyccal: 
+adjust: 0
+condition: weekdays or mon
+extended_calendar: CALmcb201
+workday: mo,tu,we,th,fr
+non_workday: P
+holiday: P
+holcal: hday01
+cyccal: 
+adjust: 0
+condition: MNTHD#15
+extended_calendar: CALmip901
+workday: mo,tu,we,th,fr
+non_workday: P
+holiday: P
+holcal: hday01
+cyccal: 
+adjust: 0
+condition: MNTHD#15
+extended_calendar: CALmrpd01
+workday: mo,tu,we,th,fr
+non_workday: W
+holiday: W
+holcal: hday01
+cyccal: 
+adjust: 0
+condition: **/**/25
+extended_calendar: CALmrsc01
+workday: mo,tu,we,th,fr
+non_workday: P
+holiday: P
+holcal: hday01
+cyccal: 
+adjust: 0
+condition: MNTHD#15
+extended_calendar: CALmrse01
+workday: mo,tu,we,th,fr
+non_workday: W
+holiday: W
+holcal: hday01
+cyccal: 
+adjust: 0
+condition: MNTHD#7
+extended_calendar: CALmtf301
+workday: mo,tu,we,th,fr
+non_workday: W
+holiday: W
+holcal: hday01
+cyccal: 
+adjust: 0
+condition: WORKD#02
+extended_calendar: CALtis101
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday: S
+holcal: hday01
+cyccal: 
+adjust: 0
+condition: Sun or Tue or Wed or Thu or Fri
+extended_calendar: adel01
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: FOMWORK
+extended_calendar: base
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: DAILY
+extended_calendar: bim01
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: MNTHD#16 | MNTHD#1
+extended_calendar: bom01
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: FOMWORK
+extended_calendar: cal_dim
+workday: tu,we,th,fr,sa
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: sun
+extended_calendar: cal_sam
+workday: tu,we,th,fr,sa
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: sat
+extended_calendar: cal_tlj
+workday: tu,we,th,fr,sa
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: ALL
+extended_calendar: cati01
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: DAILY
+extended_calendar: cdle01
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: MNTHD#04
+extended_calendar: dec01
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: MNTHD#11 | MNTHD#21
+extended_calendar: eom05
+workday: tu,we,th,fr,sa
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: jan#05 OR feb#05 OR mar#05 OR apr#07 OR may#05 OR jun#05 OR jul#06 OR aug#05 OR sep#07 OR oct#05 OR nov#05 OR dec#07
+extended_calendar: eom901
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: EOMWORK
+extended_calendar: eoy01
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: **/01/01
+extended_calendar: fic101
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: DAILY
+extended_calendar: h_actv
+workday: we
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: FOMWORK
+extended_calendar: h_actv01
+workday: 
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: FOMWORK
+extended_calendar: heb01
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: fri
+extended_calendar: j_actv01
+workday: 
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: FOMWORK
+extended_calendar: pur01
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: sat#1
+extended_calendar: pur201
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday:  
+holcal: hday01
+cyccal: 
+adjust: 0
+condition: WORKDAYS
+extended_calendar: reor01
+workday: 
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: sat and sun
+extended_calendar: saof01
+workday: mo,tu,we,th,fr,su
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: 
+extended_calendar: sat01
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: sat
+extended_calendar: sfdi1
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday: W
+holcal: 
+cyccal: 
+adjust: 0
+condition: jan#06 OR feb#06 OR mar#06 OR apr#07 OR may#06 OR jun#08 OR jul#06 OR aug#06 OR sep#07 OR oct#06 OR nov#06 OR dec#07
+extended_calendar: suof01
+workday: mo,tu,we,th,fr,sa
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: 
+extended_calendar: tip01
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: EOMWORK | fri
+extended_calendar: wday01
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday:  
+holcal: hday01
+cyccal: 
+adjust: 0
+condition: WORKDAYS
+extended_calendar: wdcb01
+workday: mo,tu,we,th,fr
+non_workday:  
+holiday:  
+holcal: hday01
+cyccal: 
+adjust: 0
+condition: WORKDAYS
+extended_calendar: wkee01
+workday: mo,tu,we,th,fr,sa
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: mon OR tue OR wed OR thu OR fri OR sat
+extended_calendar: wkee02
+workday: tu,we,th,fr,sa
+non_workday:  
+holiday:  
+holcal: 
+cyccal: 
+adjust: 0
+condition: tue OR wed OR thu OR fri OR sat

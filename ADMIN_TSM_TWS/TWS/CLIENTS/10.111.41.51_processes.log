@@ -1,0 +1,5 @@
+batchman -parm 32000
+jobman
+mailman -parm 32000 -- 2002 HADES MAILMAN UNIX 8.5 SONONLY
+netman
+writer -- 2001 HADES MAILMAN UNIX 8.5 13

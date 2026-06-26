@@ -1,0 +1,83 @@
+#!/bin/ksh
+#
+# vtom
+# chkconfig: 3 58 80
+# description: Lancement ou arret des demons vtom
+
+### BEGIN INIT INFO
+# Provides: vtom
+# Required-Start:
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start up/down  the vtom server daemon
+# Description:   Lancement ou arret des demons(vtsgbd, vtserver, bdaemon, ..)
+### END INIT INFO
+
+#set -x
+
+TOM=vtom
+TOM_BIN=$( su -l $TOM -c "echo \$TOM_BIN")
+
+Start() {
+	if [ -n "$TOM_BIN" ]
+	then
+		su -l $TOM -c start_servers
+		loop=0 ; X=0
+		while [ $loop == 0 ]
+		do   # On attend 60s le demarrage avant de sortir en erreur
+			X=$(( X + 1 )) ; [ $X -gt 12 ] && exit 1 || sleep 5
+			loop=$($TOM_BIN/tlist env |wc -l |cut -c1)
+		done
+		su -l $TOM -c "\$TOM_BIN/vthttpd &"
+	fi
+	su -l $TOM -c start_client
+	sleep 5
+	Status
+}
+
+Status() {
+	if [ -n "$TOM_BIN" ]
+	then
+		su -l $TOM -c vtping
+	else
+		su -l $TOM -c vtping |grep bdaemon
+	fi
+}
+
+Stop() {
+	VTPID=$(ps -ef|awk '/bdaemon/ && !/awk/ {print $2}')
+	[ -n "$VTPID" ] && su -l $TOM -c stop_client
+	sleep 5
+	if [ -n "$TOM_BIN" ]
+	then
+		VTPID=$(ps -ef|awk '/vts/ && !/awk/ {print $2}')
+		[ -n "$VTPID" ] && su -l $TOM -c stop_servers
+		#su -l $TOM -c stop_servers
+		sleep 5
+		VTPID=$(ps -ef|awk '/vthttpd/ && !/awk/ {print $2}')
+		[ -n "$VTPID" ] && kill -15 $VTPID
+	fi
+	Status
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	Start
+	;;
+  stop)
+	Stop
+	;;
+  status)
+	Status
+	;;
+  restart|force-reload)
+	Stop
+	Start
+	;;
+  *)
+	echo $"Usage: $0 {start|stop|status|restart|force-reload}"
+	exit 2
+	;;
+esac

@@ -1,0 +1,5 @@
+0 7 * * * /apps/meoatlas2/fred/Rapport.ksh
+
+
+/ficsav/EQUIPE_MEO/fred
+/apps/meoatlas2/fred/

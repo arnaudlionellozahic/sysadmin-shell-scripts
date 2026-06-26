@@ -1,0 +1,107 @@
+#!/bin/ksh 
+# -------------------------------------------------------------- #
+#		Demarrage des servers Visual TOM		 #
+#								 #
+# Codes exit :							 #
+# 	0 : les serveurs sont demarres correctement		 #
+# 	1 : incident lors du demarrage				 #
+#								 #
+# Ce script est appele par 					 #
+#	- admin_serveur 					 #
+#	- boot_start_servers					 #
+# -------------------------------------------------------------- #
+# 18/12/97
+
+# ----------------------------------
+# Definition des caracteres speciaux
+# ----------------------------------
+gras=`tput bold`
+soul=`tput smul`
+reve=`tput rev`
+annu=`tput sgr0`
+clsc=`tput clear`
+
+sortie=0
+
+# Journal de lancement /arret des serveurs
+	fileout=${TOM_HOME}/serveurs.log
+	if [ ! -s $fileout ] ; then
+		print - "---------------------------------------------------" 1> $fileout
+		print - "Journal de lancement /arret des serveurs Visual TOM" 1>> $fileout
+		print - "---------------------------------------------------\n" 1>> $fileout
+	fi
+	print - "\nDemarrage des serveurs sur ${HOST} - \c" 	1>> ${fileout}
+	date +"%d/%m/%Y - %H:%M:%S" 				1>> ${fileout}	
+
+# Serveur de backup : synchronisation des bases
+	if [ -n "${TOM_PRIMARY_SERVER}" ] ; then
+		print - "Serveur de backup du serveur primaire $TOM_PRIMARY_SERVER"
+		print - "Synchronisation de la base de donnees:"
+		print - "Synchronisation avec la base du serveur primaire $TOM_PRIMARY_SERVER" 1>> $fileout
+		export TOM_REMOTE_SERVER=$TOM_PRIMARY_SERVER
+	# A personnaliser si necessaire
+		print - "Veuillez appuyer sur la touche [ENTER] pour lancer la synchronisation de la base"
+		print - "Pour arreter, faites CTRL C"
+		read a
+		BASE_BACKUP=${TOM_HOME}/backup
+		vtbackup /path=$BASE_BACKUP  1>> $fileout 2>&1
+		print - "Synchronisation en cours..."
+		sleep 5
+		mv $TOM_BASES $TOM_BASES/../bases.$(date +"%Y-%m-%d-%Hh%Mm%Ss")
+		mkdir $TOM_BASES
+ 	       	rcp -rp ${TOM_PRIMARY_SERVER}:${BASE_BACKUP}/* $TOM_BASES
+		print - "Synchronisation avec la base du serveur primaire $TOM_PRIMARY_SERVER terminee"  1>> $fileout
+		unset TOM_REMOTE_SERVER
+	fi
+	
+# Lancement des serveurs
+	i=`wc -l $fileout`
+	i=`print - $i | cut -f1 -d" "`
+	nohup ${TOM_BIN}/vtsgbd 1>> $fileout 2>&1 &
+	child_process="$!"
+	nohup ${TOM_BIN}/vtserver 1>> $fileout 2>&1 &
+	child_process="$child_process $!"
+
+# module optionnel vthttpd (si backup alors pas de vthttpd)
+#       if [ -n "${TOM_PRIMARY_SERVER}" ] ; then
+#       echo "Serveur de Backup : pas de démarrage du vthttpd" 
+#       else 
+#            nohup ${TOM_BIN}/vthttpd 1>> $fileout 2>&1 &
+#            child_process="$child_process $!"
+#       fi     
+
+# module optionnel tsnmp (si backup alors pas d'agent SNMP)
+#      if [ -n "${TOM_PRIMARY_SERVER}" ] ; then
+#      echo "Serveur de Backup : pas de démarrage du tsnmp"
+#      tval -name RES_BACULE -value KO
+#      else
+#           cd $TOM_BIN ; ./tsnmp -s 1>> $fileout2 2>&1 &
+#      fi
+
+# Gestion d'erreur
+	sleep 4
+	j=`wc -l $fileout`
+	j=`print - $j | cut -f1 -d" "`
+	for process in $child_process ; do
+		ps -p $process 1> /dev/null 2>&1
+		if [ $? -ne 0 ] && [ $sortie -ne 1 ] ; then
+			print - "${gras}Incident au demarrage des serveurs :${annu}\n"
+			if [ $i != $j ] ; then
+				j=$(( $j + 1 ))
+				tail -$(( $j - $i )) $fileout
+			fi
+			sortie=1
+		fi
+	done
+
+	if [ $sortie -ne 1 ] ; then
+		print - "Les serveurs Visual TOM sont actifs sur ${HOST}."
+	fi
+
+# Serveur primaire : le serveur de backup est a activer
+	if [ -n "${TOM_BACKUP_SERVER}" ] ; then
+		mkdir -p /tmp/base_backup
+		print - "Vous pouvez maintenant activer le serveur de backup ${gras}${TOM_BACKUP_SERVER}${annu}"
+	fi
+	
+exit $sortie

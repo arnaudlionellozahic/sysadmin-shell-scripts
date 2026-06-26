@@ -1,0 +1,23 @@
+Aug 1 23:59 # 23.34.12 .CASH_I_0072 Jobset msfaCald 0100 Started at 23.34.12
+Aug 1 23:59 # 23.40.03 .CASH_I_0072 Jobset msuaCald 0100 Started at 23.40.03
+Aug 1 23:59 # 23.44.32 .CASH_I_0060 msfaCald 0100 Completed at 23.44.32, code: 00000000
+Aug 2 23:17 # 03.01.11 .CASH_I_0100 Jobset msuaCald, Job dask12, Jno 0001, Qual 0101 queued for submit
+Aug 2 23:17 # 03.01.12 .CASH_I_0069 msuaCald dask12 0001 0101 Started at 03.01.11 at node parva4000839, Pid = 65732660
+Aug 2 23:17 # 03.01.24 .CASH_I_0054 msuaCald dask12 0001 0101 Completed at 03.01.24, code: 00000000 at node parva4000839, Pid = 65732660
+Aug 2 23:17 # 03.02.13 .CASH_I_0060 msuaCald 0100 Completed at 03.02.13, code: 00000000
+Aug 2 23:17 # 03.02.13 .CASH_I_0072 Jobset mww0Cald 0100 Started at 03.02.13
+Aug 2 23:17 # 03.03.00 .CASH_I_0060 mww0Cald 0100 Completed at 03.03.00, code: 00000000
+Aug 2 23:17 # 03.06.33 .CASH_I_0072 Jobset mdi1Cald 0100 Started at 03.06.33
+Aug 2 23:17 # 03.18.40 .CASH_I_0060 mdi1Cald 0100 Completed at 03.18.40, code: 00000000
+Aug 2 23:17 # 03.19.20 .CASH_I_0072 Jobset mrf4Cald 0100 Started at 03.19.20
+Aug 2 23:17 # 03.19.42 .CASH_I_0060 mrf4Cald 0100 Completed at 03.19.42, code: 00000000
+Aug 2 23:17 # 03.19.42 .CASH_I_0072 Jobset mrfaCald 0100 Started at 03.19.42
+Aug 2 23:17 # 03.19.52 .CASH_I_0062 mrfaCald mapt21 0001 0101 Aborted at 03.19.52, code: 00000222 at node parva4000839, Pid = 32702542
+Aug 2 23:17 # 03.24.07 .CASH_I_0072 Jobset mrf8Cald 0100 Started at 03.24.07
+Aug 2 23:17 # 03.24.28 .CASH_I_0060 mrf8Cald 0100 Completed at 03.24.28, code: 00000000
+Aug 2 23:17 # 04.50.22 .CASH_I_0062 mrfaCald mapt21 0001 0101 Aborted at 04.50.22, code: 00000222 at node parva4000839, Pid = 66191574
+Aug 2 23:17 # 04.54.11 .CASH_I_0060 mrfaCald 0100 Completed at 04.54.11, code: 00000222
+Aug 2 23:17 # 05.04.28 .CASH_I_0072 Jobset mfu99Cald 0200 Started at 05.04.28
+Aug 2 23:17 # 05.04.29 .CASH_I_0072 Jobset mrfcCald 0100 Started at 05.04.29
+Aug 2 23:17 # 05.04.50 .CASH_I_0060 mrfcCald 0100 Completed at 05.04.50, code: 00000000
+Aug 2 23:17 # 05.08.14 .CASH_I_0060 mfu99Cald 0200 Completed at 05.08.14, code: 00000000

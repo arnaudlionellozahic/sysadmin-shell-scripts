@@ -1,0 +1,217 @@
+#!/bin/ksh 
+# ----------------------------------------------------------------------------
+# DECOMPFILE : Decompression des fichiers gunzip et tar presents dans travaux
+# ----------------------------------------------------------------------------
+# Parametres     :
+# Entrees        :
+# Sorties        :
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+
+######################################################
+# Diverses initialisations de variables obligatoires #
+######################################################
+
+# Parametres passes en arguments par CONTROL-M
+ODATE=${1}
+[ "X${ODATE}" = "X" ] && echo "Parm ODATE non specifie" && exit 1
+
+REP=${2}
+[ "X${REP}" = "X" ] && echo "Parm REP non specifie" && exit 1
+
+# exporte les variables CTM0, GEHLOG, GEDAA, GEDAACC et GEDSOFT
+ctrlmExports ${0}
+
+# source l'environnement de la machine logique
+switch ${GEHLOG} > /dev/null
+
+
+############################################
+# Chargement des variables d'environnement #
+############################################
+
+GENERAL_ENV="${GEDAA}/etc/`echo ${GEIENV} | tr "UQP" "uqp"`v/env_q04.ksh"
+LOCAL_ENV="${REP}/`echo ${GEIENV} | tr "UQP" "uqp"`v/etc/env.ksh"
+
+if [ -f ${GENERAL_ENV} ]; then
+  . ${GENERAL_ENV}
+  [ $? -ne 0 ] && MsgError "impossible de charger l'environnement" && exit 1
+fi
+
+if [ -f ${LOCAL_ENV} ]; then
+  . ${LOCAL_ENV}
+  [ $? -ne 0 ] && MsgError "impossible de charger l'environnement" && exit 1
+fi
+
+#############################################################
+# Initialisation des variables n'ayant pas a etre modifiees #
+#############################################################
+
+DATE=`date +"%Y%m%d_%H%M%S"`
+
+#code retour pour gunzip en erreur
+_CODE4=0
+#code retour pour tar xvf en erreur
+_CODE5=0
+#code retour si pas de fichier a decompresser 
+_CODE6=0
+
+###################################################
+# Initialisation des variables specifiques au job #
+###################################################
+
+REP_WORK=${REP}/travaux
+
+CODEAPP=Q04
+
+#######################
+##LANCEMENT DU SCRIPT##
+#######################
+#-------------------------------------------------------------------
+# Debut du job
+#-------------------------------------------------------------------
+echo "----------------------------------------------------------------------------------------------------------"
+echo ""
+echo "#### DEBUT JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+echo ""
+
+echo "VARIABLES CTLM"
+echo "REP=${REP}"
+echo ""
+echo "VARIABLES VALORISEES DANS LE SCRIPT"
+echo "REP_WORK=${REP_WORK}"
+
+fic_avant_decomp()
+{
+# ---------------------------------------------------------------------------- #
+# Information sur les fichiers presents dans le repertoire de travaux avant decompression
+# ---------------------------------------------------------------------------- #
+if [ -s `ls -A ${REP_WORK}` ] && echo "" || echo ""; then
+	echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Avant decompression : Information sur les fichiers presents dans ${REP_WORK}"
+	echo "`ls -ltr ${REP_WORK} | grep -v total`" 
+	echo ""
+fi
+}
+
+
+fic_apres_decomp()
+{
+# ---------------------------------------------------------------------------- #
+# Information sur les fichiers presents dans le repertoire de travaux apres decompression
+# ---------------------------------------------------------------------------- #
+if [ -s `ls -A ${REP_WORK}` ] && echo "" || echo ""; then
+	echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Apres decompression : Information sur les fichiers presents dans ${REP_WORK}"
+	echo "`ls -ltr ${REP_WORK} | grep -v total`"
+	echo ""
+fi
+}
+ 
+
+decomp_gz ()
+{
+# ---------------------------------------------------------------------------- #
+# Decompression des fichiers gunzip
+# ---------------------------------------------------------------------------- #
+
+if [ ! -s *.gz ]; then
+        echo "**********************************************************************************************************"
+        echo ""
+        echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Pas de fichiers gz a decompresser"
+        echo ""
+        echo "**********************************************************************************************************"
+else
+for i in `ls -1 ${REP_WORK} | grep gz`
+do
+        if [ -s ${i} ]; then
+                echo "**********************************************************************************************************"
+                echo ""
+                echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : decompression de ${i}"
+                /usr/bin/gunzip -f ${i}
+                _CODE4=$?
+                if [ ${_CODE4} -ne 0 ]; then
+                        echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Le gunzip du fichier ${i} dans ${REP_WORK} a echoue"
+                        echo ""
+                        echo "**********************************************************************************************************"
+                        let "_CODE4+=4"
+                        echo "code retour pour gunzip en erreur : ${_CODE4}"
+                                else
+                                echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Le gunzip du fichier ${i} dans ${REP_WORK} est ok"
+                                echo ""
+                                echo "**********************************************************************************************************"
+                fi
+        fi
+done
+
+fi
+ 
+}
+
+
+decomp_tar ()
+{
+# ---------------------------------------------------------------------------- #
+# Decompression des fichiers tar
+# ---------------------------------------------------------------------------- #
+
+if [ ! -s *.tar ]; then
+        echo "**********************************************************************************************************"
+        echo ""
+        echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Pas de fichiers tar a decompresser"
+        echo ""
+        echo "**********************************************************************************************************"
+else
+for i in `ls -1 ${REP_WORK} | grep tar`
+do
+        if [ -s ${i} ]; then
+                echo "**********************************************************************************************************"
+                echo ""
+                echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : decompression de ${i}"
+                /usr/bin/tar xvf ${i}
+                _CODE5=$?
+                if [ ${_CODE5} -ne 0 ]; then
+                        echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Le tar xvf du fichier ${i} dans ${REP_WORK} a echoue"
+                        echo ""
+                        echo "**********************************************************************************************************"
+                        let "_CODE5+=5"
+                        echo "code retour pour tar xvf en erreur : ${_CODE5}"
+                                else
+                                echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Le tar xvf du fichier ${i} dans ${REP_WORK} est ok"
+                                echo ""
+                                echo "**********************************************************************************************************"
+                                \rm -f ${i}
+                fi
+        fi
+done
+
+fi
+
+}
+
+#Main
+cd ${REP_WORK}
+echo ""
+echo "**********************************************************************************************************"
+fic_avant_decomp
+decomp_gz
+decomp_tar
+fic_apres_decomp
+echo "**********************************************************************************************************"
+
+echo ""
+echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+#-------------------------------------------------------------------
+# Fin du job proprement dit
+#-------------------------------------------------------------------
+if [ ${_CODE4} -ne 0 ]; then
+        #echo "code retour pour gunzip en erreur : ${_CODE4}"
+        echo "exit ${_CODE4}"
+        exit ${_CODE4}
+                elif [ ${_CODE5} -ne 0 ]; then
+                #echo "code retour pour tar xvf en erreur : ${_CODE5}"
+                echo "exit ${_CODE5}"
+                exit ${_CODE5}
+			else
+			#echo "code retour si pas de fichier a decompresser"
+			echo "exit ${_CODE6}"
+			exit ${_CODE6}
+fi

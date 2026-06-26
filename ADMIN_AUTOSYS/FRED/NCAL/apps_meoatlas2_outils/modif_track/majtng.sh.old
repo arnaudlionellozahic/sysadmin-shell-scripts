@@ -1,0 +1,153 @@
+#/usr/bin/ksh I=0
+
+#set -x
+
+. /.profile
+
+
+export A2_LIBENV=atcald-prd
+export A2_WORK=apps/exploit/work
+
+
+if [[ ! -d  /$A2_WORK/Modif_Track ]]
+             then
+                 mkdir /$A2_WORK/Modif_Track
+                 chmod 777 /$A2_WORK/Modif_Track
+        fi
+
+>/$A2_WORK/Modif_Track/tt.tmp
+
+cat /apps/atlas/atlas2v0/uf1/jobset/parm/*.txt >/$A2_WORK/Modif_Track/jobset.list
+jfin=$(date +%d)
+moisf=$(date +%m)
+Fannee=`date +%Y`
+
+
+datemj=$Fannee$moisf$jfin
+annemj=$(echo $datemj|cut -c 1-4)
+moismj=$(echo $datemj|cut -c 5-6)
+jourmj=$(echo $datemj|cut -c 7-8)
+datemj="$jourmj"-"$moismj"-"$annemj"
+
+
+/apps/unicenter/EM/3.1/bin/cautil list jobset id=*|grep -iE 'update'  | awk '  {print $5}'>/$A2_WORK/Modif_Track/tngmaj
+
+
+nbmaj=$(grep "$datemj" /$A2_WORK/Modif_Track/tngmaj|wc -l)
+ if [[ $nbmaj -eq "0" ]]
+        then
+
+(echo "Subject : PAS DE M.A.J TNG $A2_LIBENV $datemj"; print  Bonjour ; echo "\n\n" ;print  Pas de mise a jour TNG  ; echo "\n\n" ; echo "Cordialement, M.O.A") |sendmail  -f paris_sig_pbcb2_atlas@bnpparibas.com -v mohamed.abaach@externe.bnpparibas.com sebastien.couasnon@externe.bnpparibas.com christian.llavador@bnpparibas.com
+
+ 
+        exit
+ 
+fi
+
+
+
+cd /$A2_WORK/Modif_Track
+
+more  jobset.list |sed -e "s/^\([A-Za-z0-9 :,+=()]*\)DESCRIPTION[-A-Za-z0-9 :.,_+='éèàîê]*\(STATION=[A-Za-z0-9 :,+=]*\)/\1\2/" >jobset.list2
+            
+
+ 
+####################
+while read var0 var1 var2 var3 var4 var5 var6 var7 var8 var9 var10 var11 var12 var13 var14 var15 var16
+do
+if [[ $var11 = "AUTOSEL=Yes" || $var11 = "AUTOSEL=No" ]] then
+var12=$var11
+fi
+if [[ $var16 = "" && $var1 = "JOBSET" ]] then
+var16=$var15
+fi
+if  [[  $var1 = "JOB" ]] then
+vardate=""
+fi
+if  [[  $var1 = "JOBSET" ]] then
+etat="$var2 $var7 $var8 $var12 $var16"
+if [[  $var7 = "USERENV=No" ]] then
+etat="$var2 $var10 $var15"
+fi
+fi
+if [[  $var1 = "JOBSETPRED" ]] then
+etat="$var2 $var1 $var3 $var4 $var5 $var6"
+fi
+if  [[  $var1 = "JOBSET" ]] then
+jobs=$(echo $var2|cut -c 4-11)
+#vardate=$(cautil list jobset id=$jobs|grep -iE 'update'|awk '  {print var,$5}')
+vardate=$(/apps/unicenter/EM/3.1/bin/cautil list jobset id=$jobs|grep -iE $datemj| wc -l)
+fi
+#if [[ $vardate -ge $datemj ]] then
+if [[ $vardate -ne "0" ]] then
+echo $etat >>/$A2_WORK/Modif_Track/tt.tmp
+fi
+done </$A2_WORK/Modif_Track/jobset.list2
+
+
+more tt.tmp |sed -e "s/^\([A-Za-z0-9 .:,+=()]*\)HISTORY[-A-Za-z0-9 =]*\(CALENDAR[A-Za-z0-9 :,+=]*\)/\1\2/" >jobset.list2
+
+zblanc="                                                                  "
+
+
+echo "">/$A2_WORK/Modif_Track/ficres.xls
+
+
+echo "                         COMPTE RENDU M.A.J BASE TNG" $A2_LIBENV  au     $datemj " >>/$A2_WORK/Modif_Track/ficres.xls  
+
+
+echo "">>/$A2_WORK/Modif_Track/ficres.xls
+
+
+echo " NOM JOBSET  Mode charg. Calendrier  Heure Début  Heure Fin              Prédécesseurs  " >>/$A2_WORK/Modif_Track/ficres.xls
+
+
+echo " NOM JOBSET  Mode charg. Calendrier  Heure Début  Heure Fin              Prédécesseurs  "
+
+
+while read var1 var2 var3 var4 var5 var6 
+do
+jobs=$(echo $var1|cut -c 4-11)
+auto=$(echo $var4|cut -c 1-7)
+auto1=$(echo $var2|cut -c 1-7)
+auto2=$(echo $var2|cut -c 1-7)
+
+
+if [[ $auto = "AUTOSEL" ]] then
+earl=$(echo $var2|cut -c 11-18)
+must=$(echo $var3|cut -c 14-21)
+cald=$(echo $var5|cut -c 10-15)
+sele=$(echo $var4|cut -c 9-11)
+if [[ $auto1 = "MUSTSTA" ]] then
+earl=$(echo $var2|cut -c 15-22)
+fi
+fi
+
+if [[ $auto1 = "AUTOSEL" ]] then
+sele=$(echo $var2|cut -c 9-11)
+cald=$(echo $var3|cut -c 10-15)
+earl="        "
+must="        "
+fi
+
+if [[ $var4 = "WORKDAY=CURRENT" ]] then
+var4=""
+fi
+
+
+if [[ $var2 = "JOBSETPRED" ]] then
+echo "$zblanc" $var3 $var4  >>/$A2_WORK/Modif_Track/ficres.xls
+else 
+
+echo " " $jobs "     " $sele "      " $cald "    " $earl "  "  $must  >>/$A2_WORK/Modif_Track/ficres.xls
+
+fi
+done </$A2_WORK/Modif_Track/jobset.list2
+
+(echo "Subject : COMPTE RENDU M.A.J TNG $A2_LIBENV $datemj"; print  Bonjour ; echo "\n\n" ;print  Veulliez trouver ci-joint le document du compte rendu m.a.j tng   ; echo "\n\n" ; uuencode ficres.xls ficres.xls;  echo "\n\n" ; echo "Cordialement, M.O.A") |sendmail  -f paris_sig_pbcb2_atlas@bnpparibas.com -v mohamed.abaach@externe.bnpparibas.com sebastien.couasnon@externe.bnpparibas.com christian.llavador@bnpparibas.com
+
+
+cd /$A2_WORK
+  rm -rf Modif_Track
+
+

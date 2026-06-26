@@ -1,0 +1,52 @@
+#!/usr/bin/perl -w
+
+use strict;
+use warnings;
+use POSIX qw/strftime/;
+#my $date = strftime("%Y%m%d", localtime());
+#my $time = strftime("%H:%M:%S", localtime());
+my $J_DAY = strftime("%Y%m%d", localtime());
+#J_DAY1=`TZ=MET+24 date "+%Y%m%d"`
+#J_DAY2=`date --date '2 days ago' "+%Y%m%d"`
+
+my $i;
+my @list_groups = qw /P3G_ PAM_ PAJ_ PAH_ PBX_ PCL_ PDQ1_ PEJ_ PFE_ PFG_ PKD_ PKS_ POJ_ PR3_ PRR_ PSR_ PX6A_ PMO_ QM62_ QDL7_ QQ34_ QQ04_/;
+my $J_DAY = strftime("%Y%m%d", localtime());
+
+my $rep="/slqdl7bdd01/appli/dl7/sp/tests_ctlm/daily_report/EXPORTS";
+my $rep0="/slqdl7bdd01/appli/dl7/sp/tests_ctlm/daily_report";
+my $out_groups_JDAY="$rep/error_groups_$J_DAY.csv";
+#out_groups_JDAY1=${rep}/error_groups_`TZ=MET+24 date "+%Y%m%d"`.csv
+#out_groups_JDAY2=${rep}/error_groups_`date --date '2 days ago' "+%Y%m%d"`.csv
+#out2=${rep}/export_tables_temp.txt
+#ENVI=PREX
+#export_jobs=${rep0}/export_jobs.ksh
+
+print "$rep\n";
+print "$rep0\n";
+print "$out_groups_JDAY\n";
+
+chdir("/slqdl7bdd01/appli/dl7/sp/tests_ctlm/daily_report/EXPORTS");
+opendir(DIR,".");
+closedir(DIR);
+
+ sub req {
+ open(FIC, ">", "/slqdl7bdd01/appli/dl7/sp/tests_ctlm/daily_report/EXPORTS/export_tables_temp.txt") or die "Couldn't open: $!";
+ select (FIC);
+ foreach $i (@list_groups) {
+   system("ctmpsm -LISTALL | grep $i >> /slqdl7bdd01/appli/dl7/sp/tests_ctlm/daily_report/EXPORTS/export_tables_temp.txt 2>&1");
+   print "\n";
+}
+ close (FIC);
+}
+
+&req
+
+#cat $out2 | grep TBL | grep NOTOK | grep ${J_DAY} | awk -F "|" '{print $2}' > ${out_groups_JDAY}
+#cat $out2 | grep TBL | grep NOTOK | grep ${J_DAY1} | awk -F "|" '{print $2}' > ${out_groups_JDAY1}
+#cat $out2 | grep TBL | grep NOTOK | grep ${J_DAY2} | awk -F "|" '{print $2}' > ${out_groups_JDAY2}
+
+#rm -f $out2
+
+#ksh -x ${export_jobs}
+

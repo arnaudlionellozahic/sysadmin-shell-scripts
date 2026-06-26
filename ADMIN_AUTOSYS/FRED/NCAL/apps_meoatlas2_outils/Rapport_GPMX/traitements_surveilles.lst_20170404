@@ -1,0 +1,7 @@
+# label:jobset:qualifier de surveillance (J ou J-1)
+Fermeture TP:jtp2Cald:J-1
+Début FINJOUR:jfjaCald:J-1
+Mise à jour des comptes:jfjbCald:J-1
+Dernier job du FINJOUR:jfj1Cald:J-1
+Provisio:jrp5Cald:J-1
+Integration fichiers reçus:jcb2Cald:J-1

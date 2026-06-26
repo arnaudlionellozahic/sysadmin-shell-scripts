@@ -1,0 +1,65 @@
+10:24:28 13-11-2009 | th-009c | 02 |               fdblock.c    31 | Configuration des traces modifiee.
+10:24:28 13-11-2009 | th-009c | 06 |               fdblock.c     9 | fdblock(socket:172 block:1)...
+10:24:28 13-11-2009 | th-009c | 06 |               fdblock.c    31 | La socket 172 est en mode non bloquant.
+10:24:32 13-11-2009 | th-0074 | 01 |                vtsgbd.c   550 | VTSGBD Start...
+10:24:32 13-11-2009 | th-0074 | 01 |                vtsgbd.c   559 | 
+10:24:32 13-11-2009 | th-0074 | 01 |                vtsgbd.c   560 | VTSGBD : VERSION 5.2.2 FR 2009/10/02 Visual Tom (c) Absyss10:24:32 13-11-2009 | th-0074 | 01 |                vtsgbd.c   561 | 
+10:24:32 13-11-2009 | th-0074 | 01 |                vtsgbd.c   612 |  - using TOM_BASE 'D:\VTOM5\BASES'...
+10:24:32 13-11-2009 | th-0074 | 01 |                vtsgbd.c   639 |  - Force Environment Variable "PGUSER" to "vtom"
+10:24:32 13-11-2009 | th-0080 | 01 |                vtsgbd.c   298 |  - abs_pg_start...
+10:24:32 13-11-2009 | th-0080 | 06 |              ser2port.c    61 | Le nom du port vtsgbd n'est pas surcharge par la variable d'environnement TOM_PORT_vtsgbd.
+10:24:33 13-11-2009 | th-0080 | 06 |              ser2port.c    28 | Utilisation des parametres depuis le fichier "C:\WINDOWS\vtom.ini"
+10:24:33 13-11-2009 | th-0080 | 06 |              ser2port.c    79 | Le nom du port vtsgbd n'est pas surcharge dans la section [ports] du fichier C:\WINDOWS\vtom.ini.
+10:24:33 13-11-2009 | th-0080 | 06 |              ser2port.c    86 | On utilise le nom du port par defaut vtsgbd.
+10:24:33 13-11-2009 | th-0080 | 06 |              ser2port.c    92 | Le port tcp du service vtsgbd vaut 30009.
+10:24:33 13-11-2009 | th-0080 | 01 |              abs_sgbd.c   185 | Using port from vtsgbd service (30009).
+10:24:33 13-11-2009 | th-0080 | 06 |               fdblock.c     9 | fdblock(socket:152 block:1)...
+10:24:33 13-11-2009 | th-0080 | 06 |               fdblock.c    31 | La socket 152 est en mode non bloquant.
+10:24:34 13-11-2009 | th-0080 | 01 |                common.c    64 | Using sgbd data directory:D:\VTOM5\BASES/sgbd.
+10:24:34 13-11-2009 | th-0080 | 03 |                vtsgbd.c    66 | ## apr_procattr_create 0
+10:24:35 13-11-2009 | th-0080 | 03 |                vtsgbd.c    69 | ## apr_temp_dir_get 0
+10:24:35 13-11-2009 | th-0080 | 03 |                vtsgbd.c    72 | ## apr_filepath_merge 0
+10:24:35 13-11-2009 | th-0080 | 03 |                vtsgbd.c    75 | ## apr_file_mktemp 0 (C:\DOCUME~1\vtomsgbd\LOCALS~1\Temp\tempfileCerL6Q)
+10:24:35 13-11-2009 | th-0080 | 03 |                vtsgbd.c    78 | ## apr_procattr_child_out_set 0
+10:24:36 13-11-2009 | th-0080 | 01 |                common.c    42 | Using sgbd binaries directory:D:\VTOM5\sgbd\bin.
+10:24:36 13-11-2009 | th-0080 | 03 |                vtsgbd.c    86 | ## apr_proc_create 0 (D:\VTOM5\sgbd\bin/pg_config.exe)
+10:24:36 13-11-2009 | th-0080 | 03 |                vtsgbd.c    89 | ## apr_proc_wait 70005
+10:24:36 13-11-2009 | th-0080 | 03 |                vtsgbd.c    92 | ## apr_file_seek 0
+10:24:37 13-11-2009 | th-0080 | 01 |                vtsgbd.c   107 |  - found 'VERSION = PostgreSQL 8.3.4'
+10:24:37 13-11-2009 | th-0080 | 01 |                vtsgbd.c   111 |  - using postgres
+10:24:37 13-11-2009 | th-0080 | 01 |                vtsgbd.c   450 |  - start sgdb (D:\VTOM5\sgbd\bin/postgres -D "D:\VTOM5\BASES/sgbd" -p 30009)...
+10:27:44 13-11-2009 | th-0098 | 01 |                vtsgbd.c   256 | - abs_pg_stop...
+10:27:44 13-11-2009 | th-0098 | 06 |               fdblock.c     9 | fdblock(socket:172 block:1)...
+10:27:44 13-11-2009 | th-0098 | 06 |               fdblock.c    31 | La socket 172 est en mode non bloquant.
+10:27:45 13-11-2009 | th-0098 | 01 |                vtsgbd.c   272 |  - Stop sgbd (D:\VTOM5\sgbd\bin/pg_ctl -s -w -m fast -D "D:\VTOM5\BASES/sgbd" -o "-p 30009" stop)...
+10:27:45 13-11-2009 | th-0080 | 01 |                vtsgbd.c   452 |  - start sgdb return 0.
+10:27:46 13-11-2009 | th-0098 | 01 |                vtsgbd.c   274 |  - Stop sgbd return 0.
+10:30:22 13-11-2009 | th-07b4 | 01 |                vtsgbd.c   550 | VTSGBD Start...
+10:30:22 13-11-2009 | th-07b4 | 01 |                vtsgbd.c   559 | 
+10:30:23 13-11-2009 | th-07b4 | 01 |                vtsgbd.c   560 | VTSGBD : VERSION 5.2.2 FR 2009/10/02 Visual Tom (c) Absyss10:30:23 13-11-2009 | th-07b4 | 01 |                vtsgbd.c   561 | 
+10:30:23 13-11-2009 | th-07b4 | 01 |                vtsgbd.c   612 |  - using TOM_BASE 'D:\VTOM5\BASES'...
+10:30:23 13-11-2009 | th-07b4 | 01 |                vtsgbd.c   639 |  - Force Environment Variable "PGUSER" to "vtom"
+10:30:23 13-11-2009 | th-07b4 | 01 |                vtsgbd.c   298 |  - abs_pg_start...
+10:30:23 13-11-2009 | th-07b4 | 06 |              ser2port.c    61 | Le nom du port vtsgbd n'est pas surcharge par la variable d'environnement TOM_PORT_vtsgbd.
+10:30:23 13-11-2009 | th-07b4 | 06 |              ser2port.c    28 | Utilisation des parametres depuis le fichier "C:\WINDOWS\vtom.ini"
+10:30:23 13-11-2009 | th-07b4 | 06 |              ser2port.c    79 | Le nom du port vtsgbd n'est pas surcharge dans la section [ports] du fichier C:\WINDOWS\vtom.ini.
+10:30:23 13-11-2009 | th-07b4 | 06 |              ser2port.c    86 | On utilise le nom du port par defaut vtsgbd.
+10:30:23 13-11-2009 | th-07b4 | 06 |              ser2port.c    92 | Le port tcp du service vtsgbd vaut 30009.
+10:30:23 13-11-2009 | th-07b4 | 01 |              abs_sgbd.c   185 | Using port from vtsgbd service (30009).
+10:30:24 13-11-2009 | th-07b4 | 06 |               fdblock.c     9 | fdblock(socket:1940 block:1)...
+10:30:24 13-11-2009 | th-07b4 | 06 |               fdblock.c    31 | La socket 1940 est en mode non bloquant.
+10:30:25 13-11-2009 | th-07b4 | 01 |                common.c    64 | Using sgbd data directory:D:\VTOM5\BASES/sgbd.
+10:30:25 13-11-2009 | th-07b4 | 03 |                vtsgbd.c    66 | ## apr_procattr_create 0
+10:30:25 13-11-2009 | th-07b4 | 03 |                vtsgbd.c    69 | ## apr_temp_dir_get 0
+10:30:25 13-11-2009 | th-07b4 | 03 |                vtsgbd.c    72 | ## apr_filepath_merge 0
+10:30:25 13-11-2009 | th-07b4 | 03 |                vtsgbd.c    75 | ## apr_file_mktemp 0 (C:\DOCUME~1\ABSYSS\LOCALS~1\Temp\tempfileOdtQ0k)
+10:30:25 13-11-2009 | th-07b4 | 03 |                vtsgbd.c    78 | ## apr_procattr_child_out_set 0
+10:30:25 13-11-2009 | th-07b4 | 01 |                common.c    42 | Using sgbd binaries directory:D:\VTOM5\sgbd\bin.
+10:30:26 13-11-2009 | th-07b4 | 03 |                vtsgbd.c    86 | ## apr_proc_create 0 (D:\VTOM5\sgbd\bin/pg_config.exe)
+10:30:26 13-11-2009 | th-07b4 | 03 |                vtsgbd.c    89 | ## apr_proc_wait 70005
+10:30:26 13-11-2009 | th-07b4 | 03 |                vtsgbd.c    92 | ## apr_file_seek 0
+10:30:26 13-11-2009 | th-07b4 | 01 |                vtsgbd.c   107 |  - found 'VERSION = PostgreSQL 8.3.4'
+10:30:26 13-11-2009 | th-07b4 | 01 |                vtsgbd.c   111 |  - using postgres
+10:30:26 13-11-2009 | th-07b4 | 01 |                vtsgbd.c   450 |  - start sgdb (D:\VTOM5\sgbd\bin/postgres -D "D:\VTOM5\BASES/sgbd" -p 30009)...
+10:30:28 13-11-2009 | th-07b4 | 01 |                vtsgbd.c   452 |  - start sgdb return 1.
+10:30:28 13-11-2009 | th-07b4 | 01 |                vtsgbd.c   455 |  ! Can't start sgdb.

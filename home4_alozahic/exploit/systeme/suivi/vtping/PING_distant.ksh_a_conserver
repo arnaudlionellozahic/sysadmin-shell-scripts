@@ -1,0 +1,27 @@
+#!/bin/ksh
+
+set -xv
+
+cd /exploit/systeme/suivi/vtping
+
+tlist machines | grep -v k5* | grep -v aid2* | grep -v siebel* > liste_machine.lis
+
+list=`cat liste_machine.lis`
+
+for i in $list
+do
+tremote /machine=$i vtping
+done
+
+cat *.out | grep bdaemon | grep arret > count
+rm *.out
+rm *.err
+
+vt_bdaemon=$(cat count)
+
+if [ "$vt_bdaemon" != "" ]
+then
+ printf "process vt_bdaemon  %-8s %-24s %+4s \n" STOP > vt_bdaemon.log | /bin/mailx -s "Surveillance des process bdaemon" arnaud.lozahic@mondial-assistance.fr < vt_bdaemon.log
+else
+ echo "process vt_bdaemon OK" > vt_bdaemon.log
+fi

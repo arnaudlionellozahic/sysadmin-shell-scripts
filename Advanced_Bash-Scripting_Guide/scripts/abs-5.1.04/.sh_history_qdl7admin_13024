@@ -1,0 +1,8 @@
+ll
+set -o vi
+ls -ltr
+bash -x 9-6.ksh
+./9-6.ksh
+bash -x 9-6.ksh un deux trois 
+./9-6.ksh un deux trois
+exit

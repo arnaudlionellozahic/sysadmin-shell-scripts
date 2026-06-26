@@ -1,0 +1,5 @@
+#bin/ksh
+for i in `tlist env`
+do
+vtexport -f $i >/home4/cnavel/HP-UX/itanium/Ver544/logs/$i.txt
+done

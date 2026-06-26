@@ -1,0 +1,295 @@
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+
+#### DEBUT JOB 2017-06-30_18:00:58 ####
+
+Report of the autosys jobs le 2017-06-30 a 18:00:58 
+
+################################################################### 
+
+There are 151 jobs in error, check the file : /apps/meoatlas2/arnaud/jobs_error.txt_PL 
+
+  ITEST-TEST2-COMM                                               02/01/2017 15:12:08  02/01/2017 15:12:08  FA    317640/1 127    
+  IHRAX01-Q2APP01-HRA_PURGE_REDoZO                               05/27/2016 02:00:56  05/27/2016 02:00:56  FA    134629/1 127    
+ ISOLP01-C1FTR01-JIBADM01-TRIGGER-TFUNDM01                       05/30/2016 11:00:11  05/30/2016 11:00:11  FA    136754/1 1      
+ ISOLP01-C1FTR01-JIBBDM01-TRIGGER-TEQUDM01                       05/30/2016 11:00:21  05/30/2016 11:00:21  FA    136752/1 1      
+ ISOLP01-Q1FTR01-JCNTDM01-TRIGGER-TCNTDM01                       05/31/2016 01:00:12  05/31/2016 01:00:12  FA    137123/1 1      
+ ISOLP01-Q2FTR01-JOP2DM01-B-TOP2DM01                             05/31/2016 01:00:26  05/31/2016 01:00:26  FA    137120/1 1      
+ ISOLP01-Q1MIG01-JSNTDM01-B-JVIBS2_0001                          06/30/2017 08:00:02  06/30/2017 08:00:02  FA    448451/1 127    
+ ISOLP01-Q1FTR01-TCFTDM01-TRIGGER-TCFTDM01                       05/31/2016 01:00:38  05/31/2016 01:00:38  FA    137122/1 1      
+ ISOLP01-Q1FTR01-TPRFDM01-TRIGGER-TPRFDM01                       05/31/2016 01:00:37  05/31/2016 01:00:37  FA    137121/1 1      
+ IBFFP01-Q1FTR01-WDAYANTI-TRIGGER-TBIAANTI                       06/07/2016 01:00:32  06/07/2016 01:00:32  FA    141529/1 1      
+ IBFFP01-Q1FTR01-WDAYANTI-TRIGGER-TBIBANTI                       06/07/2016 01:00:32  06/07/2016 01:00:42  FA    141529/1 1      
+ IBFFP01-Q1FTR01-WDAYREUN-TRIGGER-TBIAREUN                       06/07/2016 01:00:32  06/07/2016 01:00:32  FA    141527/1 1      
+ IBFFP01-Q1FTR01-WDAYREUN-TRIGGER-TBIBREUN                       06/07/2016 01:00:12  06/07/2016 01:00:12  FA    141527/1 1      
+ IHRAQ01-Q1APP01-REST-BASE                                       05/25/2017 03:01:51  05/25/2017 03:06:55  FA    423193/1 1      
+ IRTMP01-Q1PRG-CLEAN_AUX_STRUCTURES                              06/29/2017 23:00:20  06/29/2017 23:00:20  FA    448168/2 1      
+ IRTMP01-Q1MAJ-REFRESH_RATADOSS                                  06/30/2017 01:02:45  06/30/2017 01:04:53  FA    448200/2 1      
+  TEST_FRED_2                                                    06/01/2017 13:45:37  06/01/2017 13:45:37  FA    428365/1 127    
+ IOPFP01-Q1APP01-ALGE_EXP_JEXPASC                                06/29/2017 14:15:02  06/29/2017 14:15:02  FA    447904/1 1      
+ IOPFP01-Q1APP01-ALGE_EXP_JEXPVIRU                               06/29/2017 15:55:02  06/29/2017 15:56:29  FA    447956/1 15     
+ IOPFP01-Q1APP01-ALGE_EXP_JEXPVIR                                06/29/2017 15:55:02  06/29/2017 15:56:33  FA    447957/1 15     
+ IOPFP01-Q1APP01-ALGE_IMP_JIMPINSCB                              06/30/2017 15:34:48  06/30/2017 17:35:52  FA    448671/1 1      
+ IOPFP01-Q1APP01-ALGE_IMP_JIMPMT940                              04/03/2017 17:38:49  04/03/2017 19:39:55  FA    263936/1 1      
+ IOPFP01-Q1APP01-ALGE_IMP_JIMPRLV                                12/07/2016 10:01:04  12/07/2016 12:43:52  FA    265116/1 1      
+ IDCI00P01-Q1MAJ-BOUBURK-SETVAR                                  11/18/2016 01:02:42  11/18/2016 01:04:51  FA    251566/1 1      
+ IDCI00P01-Q1MAJ-BOUSENE-SETVAR                                  11/18/2016 01:02:19  11/18/2016 01:04:17  FA    251544/1 1      
+ IDCI00P01-Q1MAJ-BOUTUNI-SETVAR                                  11/18/2016 01:02:56  11/18/2016 01:05:04  FA    251579/1 1      
+ IDCI00P01-Q1MAJ-CBLREUN-SETVAR                                  11/18/2016 01:02:43  11/18/2016 01:04:52  FA    251569/1 1      
+ IDCI00P01-Q1MAJ-CLIEGYP-SETVAR                                  11/18/2016 01:03:04  11/18/2016 01:05:12  FA    251615/1 1      
+ IDCI00P01-Q1MAJ-CLIGUAD-SETVAR                                  11/18/2016 01:02:14  11/18/2016 01:03:13  FA    251545/1 1      
+ IDCI00P01-Q1MAJ-CLIGUIN-SETVAR                                  11/18/2016 01:03:06  11/18/2016 01:05:13  FA    251640/1 1      
+ IDCI00P01-Q1MAJ-CLIGUYA-SETVAR                                  11/18/2016 01:02:31  11/18/2016 01:04:36  FA    251542/1 1      
+ IDCI00P01-Q1MAJ-CLIIVOI-SETVAR                                  11/18/2016 01:02:29  11/18/2016 01:04:32  FA    251525/1 1      
+ IDCI00P01-Q1MAJ-CLIMALI-SETVAR                                  11/18/2016 01:03:07  11/18/2016 01:05:13  FA    251642/1 1      
+ IDCI00P01-Q1MAJ-CLIMARO-SETVAR                                  11/18/2016 01:02:19  11/18/2016 01:04:18  FA    251522/1 1      
+ IDCI00P01-Q1MAJ-CLIMART-SETVAR                                  11/18/2016 01:03:00  11/18/2016 01:05:08  FA    251625/1 1      
+ IDCI00P01-Q1MAJ-CLISENE-SETVAR                                  11/18/2016 01:03:05  11/18/2016 01:05:12  FA    251632/1 1      
+ IDCI00P01-Q1MAJ-CLITUNI-SETVAR                                  11/18/2016 01:02:36  11/18/2016 01:04:45  FA    251524/1 1      
+ IDCI00P01-Q1MAJ-DEVCALE-SETVAR                                  11/18/2016 01:02:51  11/18/2016 01:05:00  FA    251570/1 1      
+ IDCI00P01-Q1MAJ-DEVEGYP-SETVAR                                  11/18/2016 01:02:30  11/18/2016 01:04:35  FA    251549/1 1      
+ IDCI00P01-Q1MAJ-DEVGABO-SETVAR                                  11/18/2016 01:03:03  11/18/2016 01:05:10  FA    251637/1 1      
+ IDCI00P01-Q1MAJ-DEVGUAD-SETVAR                                  11/18/2016 01:02:33  11/18/2016 01:04:40  FA    251558/1 1      
+ IDCI00P01-Q1MAJ-DEVGUIN-SETVAR                                  11/18/2016 01:02:59  11/18/2016 01:05:07  FA    251638/1 1      
+ IDCI00P01-Q1MAJ-DEVGUYA-SETVAR                                  11/18/2016 01:02:31  11/18/2016 01:04:37  FA    251562/1 1      
+ IDCI00P01-Q1MAJ-DEVIVOI-SETVAR                                  11/18/2016 01:02:39  11/18/2016 01:04:47  FA    251563/1 1      
+ IDCI00P01-Q1MAJ-DEVMALI-SETVAR                                  11/18/2016 01:02:38  11/18/2016 01:04:47  FA    251513/1 1      
+ IDCI00P01-Q1MAJ-DEVMARO-SETVAR                                  11/18/2016 01:02:33  11/18/2016 01:04:41  FA    251529/1 1      
+ IDCI00P01-Q1MAJ-DEVMART-SETVAR                                  11/18/2016 01:02:37  11/18/2016 01:04:46  FA    251555/1 1      
+ IDCI00P01-Q1MAJ-DEVREUN-SETVAR                                  11/18/2016 01:03:01  11/18/2016 01:05:09  FA    251644/1 1      
+ IDCI00P01-Q1MAJ-DEVSENE-SETVAR                                  11/18/2016 01:02:38  11/18/2016 01:04:47  FA    251567/1 1      
+ IDCI00P01-Q1MAJ-DEVTUNI-SETVAR                                  11/18/2016 01:02:49  11/18/2016 01:04:58  FA    251585/1 1      
+ IDCI00P01-Q1MAJ-ICBREUN-SETVAR                                  11/18/2016 01:01:24  11/18/2016 01:03:12  FA    251493/1 1      
+ IDCI00P01-Q1MAJ-IMPMARO-SETVAR                                  11/18/2016 01:02:43  11/18/2016 01:04:52  FA    251572/1 1      
+ IDCI00P01-Q1MAJ-IMVMARO-SETVAR                                  11/18/2016 01:02:23  11/18/2016 01:04:24  FA    251534/1 1      
+ IDCI00P01-Q1MAJ-INIIVOI-SETVAR                                  11/18/2016 01:01:27  11/18/2016 01:03:14  FA    251506/1 1      
+ IDCI00P01-Q1MAJ-IPRIVOI-SETVAR                                  11/18/2016 01:03:01  11/18/2016 01:05:09  FA    251622/1 1      
+ IDCI00P01-Q1MAJ-IPRSENE-SETVAR                                  11/18/2016 01:02:20  11/18/2016 01:04:20  FA    251537/1 1      
+ IDCI00P01-Q1MAJ-J20BURK-SETVAR                                  11/18/2016 01:03:02  11/18/2016 01:05:10  FA    251624/1 1      
+ IDCI00P01-Q1MAJ-J20CALE-SETVAR                                  11/18/2016 01:02:50  11/18/2016 01:04:59  FA    251605/1 1      
+ IDCI00P01-Q1MAJ-J20GABO-SETVAR                                  11/18/2016 01:02:14  11/18/2016 01:03:13  FA    251530/1 1      
+ IDCI00P01-Q1MAJ-J20GUAD-SETVAR                                  11/18/2016 01:03:01  11/18/2016 01:05:09  FA    251634/1 1      
+ IDCI00P01-Q1MAJ-J20IVOI-SETVAR                                  11/18/2016 01:02:52  11/18/2016 01:05:01  FA    251601/1 1      
+ IDCI00P01-Q1MAJ-J20MALI-SETVAR                                  11/18/2016 01:01:24  11/18/2016 01:03:38  FA    251472/1 1      
+ IDCI00P01-Q1MAJ-J20SENE-SETVAR                                  11/18/2016 01:03:02  11/18/2016 01:05:10  FA    251639/1 1      
+ IDCI00P01-Q1MAJ-J20TUNI-SETVAR                                  11/18/2016 01:03:10  11/18/2016 01:05:15  FA    251619/1 1      
+ IDCI00P01-Q1MAJ-J40BURK-SETVAR                                  11/18/2016 01:02:39  11/18/2016 01:04:48  FA    251573/1 1      
+ IDCI00P01-Q1MAJ-J40EGYP-SETVAR                                  11/18/2016 01:03:07  11/18/2016 01:05:14  FA    251645/1 1      
+ IDCI00P01-Q1MAJ-J40GABO-SETVAR                                  11/18/2016 01:02:28  11/18/2016 01:04:30  FA    251565/1 1      
+ IDCI00P01-Q1MAJ-J40GUIN-SETVAR                                  11/18/2016 01:02:33  11/18/2016 01:04:40  FA    251568/1 1      
+ IDCI00P01-Q1MAJ-J40IVOI-SETVAR                                  11/18/2016 01:02:17  11/18/2016 01:04:41  FA    251533/1 1      
+ IDCI00P01-Q1MAJ-J40MALI-SETVAR                                  11/18/2016 01:02:37  11/18/2016 01:04:46  FA    251560/1 1      
+ IDCI00P01-Q1MAJ-J40MART-SETVAR                                  11/18/2016 01:01:23  11/18/2016 01:03:38  FA    251487/1 1      
+ IDCI00P01-Q1MAJ-J40REUN-SETVAR                                  11/18/2016 01:02:59  11/18/2016 01:05:08  FA    251621/1 1      
+ IDCI00P01-Q1MAJ-J40SENE-SETVAR                                  11/18/2016 01:02:54  11/18/2016 01:05:03  FA    251592/1 1      
+ IDCI00P01-Q1MAJ-J40TUNI-SETVAR                                  11/18/2016 01:02:34  11/18/2016 01:04:41  FA    251564/1 1      
+ IDCI00P01-Q1MAJ-J42BURK-SETVAR                                  11/18/2016 01:02:35  11/18/2016 01:04:42  FA    251559/1 1      
+ IDCI00P01-Q1MAJ-J42EGYP-SETVAR                                  11/18/2016 01:02:53  11/18/2016 01:05:02  FA    251595/1 1      
+ IDCI00P01-Q1MAJ-J42GABO-SETVAR                                  11/18/2016 01:02:58  11/18/2016 01:05:06  FA    251593/1 1      
+ IDCI00P01-Q1MAJ-J42GUYA-SETVAR                                  11/18/2016 01:03:06  11/18/2016 01:05:13  FA    251641/1 1      
+ IDCI00P01-Q1MAJ-J42IVOI-SETVAR                                  11/18/2016 01:03:05  11/18/2016 01:05:12  FA    251626/1 1      
+ IDCI00P01-Q1MAJ-J42MALI-SETVAR                                  11/18/2016 01:02:54  11/18/2016 01:05:03  FA    251553/1 1      
+ IDCI00P01-Q1MAJ-J42MARO-SETVAR                                  11/09/2016 01:00:41  11/09/2016 01:01:50  FA    243896/1 1      
+ IDCI00P01-Q1MAJ-J42REUN-SETVAR                                  11/18/2016 01:03:04  11/18/2016 01:05:12  FA    251629/1 1      
+ IDCI00P01-Q1MAJ-J42SENE-SETVAR                                  11/18/2016 01:02:32  11/18/2016 01:04:38  FA    251531/1 1      
+ IDCI00P01-Q1MAJ-J42TUNI-SETVAR                                  11/18/2016 01:02:35  11/18/2016 01:04:43  FA    251557/1 1      
+ IDCI00P01-Q1MAJ-JIMGUAD-SETVAR                                  11/18/2016 01:03:01  11/18/2016 01:05:09  FA    251635/1 1      
+ IDCI00P01-Q1MAJ-JIMGUIN-SETVAR                                  11/18/2016 01:02:53  11/18/2016 01:05:02  FA    251571/1 1      
+ IDCI00P01-Q1MAJ-JIMGUYA-SETVAR                                  11/18/2016 01:02:43  11/18/2016 01:04:52  FA    251591/1 1      
+ IDCI00P01-Q1MAJ-JIMIVOI-SETVAR                                  11/18/2016 01:02:30  11/18/2016 01:04:35  FA    251548/1 1      
+ IDCI00P01-Q1MAJ-JIMMALI-SETVAR                                  11/18/2016 01:03:01  11/18/2016 01:05:08  FA    251617/1 1      
+ IDCI00P01-Q1MAJ-JIMMART-SETVAR                                  11/18/2016 01:02:29  11/18/2016 01:04:33  FA    251516/1 1      
+ IDCI00P01-Q1MAJ-JIMREUN-SETVAR                                  11/18/2016 01:02:32  11/18/2016 01:04:39  FA    251521/1 1      
+ IDCI00P01-Q1MAJ-JIMSENE-SETVAR                                  11/18/2016 01:03:06  11/18/2016 01:05:13  FA    251633/1 1      
+ IDCI00P01-Q1MAJ-MBPMARO-SETVAR                                  11/18/2016 01:03:07  11/18/2016 01:05:14  FA    251620/1 1      
+ IDCI00P01-Q1MAJ-MBVMARO-SETVAR                                  11/18/2016 01:02:41  11/18/2016 01:04:50  FA    251584/1 1      
+ IDCI00P01-Q1MAJ-MCFBURK-SETVAR                                  11/18/2016 01:03:03  11/18/2016 01:05:11  FA    251627/1 1      
+ IDCI00P01-Q1MAJ-MCFEGYP-SETVAR                                  11/18/2016 01:03:01  11/18/2016 01:05:09  FA    251636/1 1      
+ IDCI00P01-Q1MAJ-MCFGABO-SETVAR                                  11/18/2016 01:02:32  11/18/2016 01:04:39  FA    251547/1 1      
+ IDCI00P01-Q1MAJ-MCFGUIN-SETVAR                                  11/18/2016 01:03:02  11/18/2016 01:05:10  FA    251631/1 1      
+ IDCI00P01-Q1MAJ-MCFIVOI-SETVAR                                  11/18/2016 01:02:33  11/18/2016 01:04:40  FA    251554/1 1      
+ IDCI00P01-Q1MAJ-MCFMALI-SETVAR                                  11/18/2016 01:02:42  11/18/2016 01:04:51  FA    251597/1 1      
+ IDCI00P01-Q1MAJ-MCFMARO-SETVAR                                  11/18/2016 01:02:39  11/18/2016 01:04:48  FA    251602/1 1      
+ IDCI00P01-Q1MAJ-MCFMART-SETVAR                                  11/18/2016 01:02:49  11/18/2016 01:04:57  FA    251587/1 1      
+ IDCI00P01-Q1MAJ-MCFREUN-SETVAR                                  11/18/2016 01:02:59  11/18/2016 01:05:08  FA    251628/1 1      
+ IDCI00P01-Q1MAJ-MCFSENE-SETVAR                                  11/18/2016 01:02:49  11/18/2016 01:04:57  FA    251599/1 1      
+ IDCI00P01-Q1MAJ-MCFTUNI-SETVAR                                  11/18/2016 01:03:05  11/18/2016 01:05:12  FA    251616/1 1      
+ IDCI00P01-Q1MAJ-PEAGUAD-SETVAR                                  11/18/2016 01:03:07  11/18/2016 01:05:14  FA    251618/1 1      
+ IDCI00P01-Q1MAJ-PEAREUN-SETVAR                                  11/18/2016 01:02:40  11/18/2016 01:04:49  FA    251561/1 1      
+ IDCI00P01-Q1MAJ-PREREUN-SETVAR                                  11/18/2016 01:02:35  11/18/2016 01:04:44  FA    251586/1 1      
+ IDCI00P01-Q1MAJ-PRESENE-SETVAR                                  11/18/2016 01:02:14  11/18/2016 01:03:12  FA    251535/1 1      
+ IDCI00P01-Q1MAJ-PRVREUN-SETVAR                                  11/18/2016 01:02:29  11/18/2016 01:04:35  FA    251512/1 1      
+ IDCI00P01-Q1MAJ-RLVBURK-SETVAR                                  11/18/2016 01:02:23  11/18/2016 01:04:24  FA    251540/1 1      
+ IDCI00P01-Q1MAJ-RLVCALE-SETVAR                                  11/18/2016 01:03:07  11/18/2016 01:05:14  FA    251623/1 1      
+ IDCI00P01-Q1MAJ-RLVGABO-SETVAR                                  11/18/2016 01:02:50  11/18/2016 01:04:58  FA    251598/1 1      
+ IDCI00P01-Q1MAJ-RLVGUIN-SETVAR                                  11/18/2016 01:02:24  11/18/2016 01:04:25  FA    251536/1 1      
+ IDCI00P01-Q1MAJ-RLVGUYA-SETVAR                                  11/18/2016 01:02:19  11/18/2016 01:04:17  FA    251541/1 1      
+ IDCI00P01-Q1MAJ-RLVMALI-SETVAR                                  11/18/2016 01:02:34  11/18/2016 01:04:41  FA    251551/1 1      
+ IDCI00P01-Q1MAJ-RLVMARO-SETVAR                                  11/18/2016 01:02:32  11/18/2016 01:04:38  FA    251556/1 1      
+ IDCI00P01-Q1MAJ-RLVMART-SETVAR                                  11/18/2016 01:02:30  11/18/2016 01:04:35  FA    251550/1 1      
+ IDCI00P01-Q1MAJ-RLVREUN-SETVAR                                  11/18/2016 01:02:19  11/18/2016 01:04:18  FA    251527/1 1      
+ IDCI00P01-Q1MAJ-RLVSENE-SETVAR                                  11/18/2016 01:02:12  11/18/2016 01:03:11  FA    251546/1 1      
+ IDCI00P01-Q1MAJ-RLVTUNI-SETVAR                                  11/18/2016 01:02:10  11/18/2016 01:03:37  FA    251518/1 1      
+ IDCI00P01-Q1MAJ-TITGUAD-SETVAR                                  11/18/2016 01:02:28  11/18/2016 01:04:32  FA    251552/1 1      
+ IDCI00P01-Q1MAJ-TITGUYA-SETVAR                                  11/18/2016 01:03:00  11/18/2016 01:05:08  FA    251630/1 1      
+ IDCI00P01-Q1MAJ-TITIVOI-SETVAR                                  11/10/2016 01:00:21  11/10/2016 01:01:36  FA    244730/1 1      
+ IDCI00P01-Q1MAJ-TITMARO-SETVAR                                  11/18/2016 01:02:22  11/18/2016 01:04:22  FA    251539/1 1      
+ IDCI00P01-Q1MAJ-TITMART-SETVAR                                  11/18/2016 01:03:04  11/18/2016 01:05:12  FA    251643/1 1      
+ JOB_TEST_s00va9932992                                           -----                11/10/2016 16:48:36  FA    245337/1 12     
+ IOPFP01-Q1APP01-ALGE_EXP_JEXPVII                                03/16/2017 13:45:01  03/16/2017 13:46:04  FA    360500/1 1      
+ IOPFP01-Q1APP01-ALGE_EXP_JEXPALE                                06/29/2017 16:55:02  06/29/2017 16:56:37  FA    447984/1 1      
+ IOPFQ01-Q1APP01-ALGE_JDBMAINTWDAY-QL                            06/30/2017 00:15:02  06/30/2017 00:15:02  FA    448217/1 15     
+ IRTMP01-Q1EXP-PPRCONF                                           06/30/2017 16:40:01  06/30/2017 16:40:04  FA    448701/1 1      
+ IRTMP01-Q1IMP-PPRRES_RES                                        06/30/2017 17:30:02  06/30/2017 17:30:02  FA    448728/1 1      
+ IRTMP01-Q1EXP-PPRRES                                            06/30/2017 16:50:01  06/30/2017 16:50:04  FA    448706/1 1      
+ IRTMP01-Q1IMP-PPRCONF_RES                                       06/30/2017 17:20:01  06/30/2017 17:20:01  FA    448722/1 1      
+ QAPPI01-C0CMD-CONVERT_REFOG                                     -----                04/04/2017 02:15:03  FA    379175/1 2      
+ QAPPI01-C0CMD-CHECKPOINT                                        -----                04/04/2017 02:15:02  FA    379175/1 2      
+ QAPPI01-C0CMD-CHECKPOINT-2                                      -----                04/04/2017 02:15:04  FA    379175/1 2      
+ QAPPI01-C0CMD-CLEANUP-DATA-2                                    -----                06/20/2017 15:15:14  FA    379175/1 2      
+ QAPPI01-C0CMD-CONVERT_REFOG-2                                   -----                04/04/2017 02:15:03  FA    379175/1 2      
+ dvbpCald                                                        06/29/2017 20:30:01  06/29/2017 20:31:08  FA    448093/1 1      
+  dvbpCald_dasa9c_01                                             -----                06/29/2017 20:31:07  FA    448093/3 -655   
+  dvbpCald_jvge04_01                                             -----                06/29/2017 20:31:07  FA    448093/3 -655   
+  jfl99alg5_dasa9c_01                                            06/16/2017 14:54:13  06/16/2017 14:54:13  FA    436996/4 126    
+ jvismalg5                                                       06/29/2017 23:45:01  06/29/2017 23:45:03  FA    448191/1 1      
+  jvismalg5_jvlism_01                                            06/29/2017 23:45:02  06/29/2017 23:45:02  FA    448191/1 127    
+  hrmanMalg5_xsrmafull_m_01                                      06/15/2017 15:58:59  06/15/2017 15:58:59  FA    436997/1 127    
+ jrmanalg5_dasa9c_01                                             06/15/2017 15:58:59  06/15/2017 15:58:59  FA    437256/1 127    
+ hrmanalg5_dasa9c_01                                             06/18/2017 12:00:02  06/18/2017 12:00:03  FA    440168/1 127    
+ jfl82alg5_dasa9c_01                                             06/15/2017 15:58:59  06/15/2017 15:58:59  FA    436834/1 127    
+ drmanalg5_dasa9c_01                                             06/15/2017 15:58:59  06/15/2017 15:58:59  FA    437010/1 127    
+ DAPPI02-C0CMD-CHECKPOINT                                        -----                06/30/2017 02:15:01  FA    448287/1 2      
+
+################################################################### 
+
+There are 66 jobs running, check the file : /apps/meoatlas2/arnaud/jobs_running.txt_PL 
+
+ TEST                                                            06/01/2017 13:45:02  -----                RU    428365/1        
+ IOPFP01-Q0FT01-ALGE_IMP_JIMPBEN                                 06/30/2017 15:33:01  -----                RU    448670/1        
+ IOPFP01-Q0FT01-ALGE_IMP_JIMPCLI                                 06/30/2017 15:35:01  -----                RU    448673/1        
+ IOPFP01-Q0FT01-ALGE_IMP_JIMPDEV                                 06/30/2017 15:38:01  -----                RU    448675/1        
+ IOPFP01-Q0FT01-ALGE_IMP_JIMPDIG                                 12/02/2016 16:53:01  -----                RU    261851/1        
+ IOPFP01-Q0FT01-ALGE_IMP_JIMPPRETS                               06/30/2017 15:38:01  -----                RU    448676/1        
+ IDCI00P01-Q1FTR-BOUIVOI-BOUIVOI                                 11/19/2016 01:00:18  -----                RU    252302/1        
+ IDCI00P01-Q1FTR-BOUMARO-BOUMARO                                 11/19/2016 01:00:16  -----                RU    252327/1        
+ IDCI00P01-Q1FTR-CBLCALE-CBLCALE                                 11/19/2016 01:01:42  -----                RU    252363/1        
+ IDCI00P01-Q1FTR-CBLGUAD-CBLGUAD                                 11/19/2016 01:01:44  -----                RU    252367/1        
+ IDCI00P01-Q1FTR-CBLGUYA-CBLGUYA                                 11/19/2016 01:01:42  -----                RU    252364/1        
+ IDCI00P01-Q1FTR-CBLMARO-CBLMARO                                 11/19/2016 01:00:15  -----                RU    252305/1        
+ IDCI00P01-Q1FTR-CBLMART-CBLMART                                 11/19/2016 01:01:43  -----                RU    252358/1        
+ IDCI00P01-Q1FTR-CBLTUNI-CBLTUNI                                 11/19/2016 01:00:15  -----                RU    252309/1        
+ IDCI00P01-Q1FTR-CLIBURK-CLIBURK                                 11/19/2016 01:00:17  -----                RU    252326/1        
+ IDCI00P01-Q1FTR-CLICALE-CLICALE                                 11/19/2016 01:01:41  -----                RU    252345/1        
+ IDCI00P01-Q1FTR-CLIGABO-CLIGABO                                 11/19/2016 01:01:41  -----                RU    252341/1        
+ IDCI00P01-Q1FTR-CLIREUN-CLIREUN                                 11/19/2016 01:01:45  -----                RU    252368/1        
+ IDCI00P01-Q1FTR-INIMALI-INIMALI                                 11/19/2016 01:00:15  -----                RU    252312/1        
+ IDCI00P01-Q1FTR-INISENE-INISENE                                 11/19/2016 01:01:38  -----                RU    252351/1        
+ IDCI00P01-Q1FTR-IPRCALE-IPRCALE                                 11/19/2016 01:01:37  -----                RU    252339/1        
+ IDCI00P01-Q1FTR-IPRGABO-IPRGABO                                 11/19/2016 01:01:36  -----                RU    252340/1        
+ IDCI00P01-Q1FTR-J20GUIN-J20GUIN                                 11/19/2016 01:01:42  -----                RU    252354/1        
+ IDCI00P01-Q1FTR-J20GUYA-J20GUYA                                 11/19/2016 01:01:44  -----                RU    252359/1        
+ IDCI00P01-Q1FTR-J20MART-J20MART                                 11/19/2016 01:01:38  -----                RU    252352/1        
+ IDCI00P01-Q1FTR-J20REUN-J20REUN                                 11/19/2016 01:00:13  -----                RU    252306/1        
+ IDCI00P01-Q1FTR-J40CALE-J40CALE                                 11/19/2016 01:00:15  -----                RU    252322/1        
+ IDCI00P01-Q1FTR-J40GUAD-J40GUAD                                 11/19/2016 01:00:09  -----                RU    252320/1        
+ IDCI00P01-Q1FTR-J40GUYA-J40GUYA                                 11/19/2016 01:01:40  -----                RU    252366/1        
+ IDCI00P01-Q1FTR-J40MARO-J40MARO                                 11/19/2016 01:00:17  -----                RU    252324/1        
+ IDCI00P01-Q1FTR-J42CALE-J42CALE                                 11/19/2016 01:00:06  -----                RU    252314/1        
+ IDCI00P01-Q1FTR-J42GUAD-J42GUAD                                 11/19/2016 01:00:11  -----                RU    252316/1        
+ IDCI00P01-Q1FTR-J42GUIN-J42GUIN                                 11/19/2016 01:00:11  -----                RU    252317/1        
+ IDCI00P01-Q1FTR-J42MART-J42MART                                 11/19/2016 01:00:10  -----                RU    252315/1        
+ IDCI00P01-Q1FTR-JIMCALE-JIMCALE                                 11/19/2016 01:00:10  -----                RU    252303/1        
+ IDCI00P01-Q1FTR-JIMGABO-JIMGABO                                 11/19/2016 01:01:41  -----                RU    252336/1        
+ IDCI00P01-Q1FTR-JIMMARO-JIMMARO                                 11/19/2016 01:01:37  -----                RU    252337/1        
+ IDCI00P01-Q1FTR-JIMTUNI-JIMTUNI                                 11/19/2016 01:00:07  -----                RU    252311/1        
+ IDCI00P01-Q1FTR-MBRMARO-MBRMARO                                 11/19/2016 01:00:13  -----                RU    252300/1        
+ IDCI00P01-Q1FTR-MCFCALE-MCFCALE                                 11/19/2016 01:01:42  -----                RU    252362/1        
+ IDCI00P01-Q1FTR-MCFGUYA-MCFGUYA                                 11/19/2016 01:01:42  -----                RU    252361/1        
+ IDCI00P01-Q1FTR-MSGGUIN-MSGGUIN                                 11/19/2016 01:00:12  -----                RU    252313/1        
+ IDCI00P01-Q1FTR-MSGREUN-MSGREUN                                 11/19/2016 01:01:39  -----                RU    252335/1        
+ IDCI00P01-Q1FTR-PEAGUYA-PEAGUYA                                 11/19/2016 01:00:17  -----                RU    252328/1        
+ IDCI00P01-Q1FTR-PEAMART-PEAMART                                 11/19/2016 01:00:08  -----                RU    252308/1        
+ IDCI00P01-Q1FTR-RLVGUAD-RLVGUAD                                 11/19/2016 01:00:18  -----                RU    252307/1        
+ IDCI00P01-Q1FTR-RLVIVOI-RLVIVOI                                 11/19/2016 01:00:16  -----                RU    252323/1        
+ IDCI00P01-Q1FTR-TITREUN-TITREUN                                 11/19/2016 01:00:16  -----                RU    252330/1        
+ IDCI00P01-Q1FTR-VBOMARO-VBOMARO                                 11/19/2016 01:01:38  -----                RU    252365/1        
+ IPRT00P01-Q1FTR01-WDAYALGE-TRIGGER-TPR1ALGE                     11/18/2016 22:00:06  -----                RU    252209/1        
+ IPRT00P01-Q1FTR01-WDAYIVOI-TRIGGER-TPR1IVOI                     11/18/2016 22:00:06  -----                RU    252200/1        
+ IPRT00P01-Q2FTR01-JI91MARO-B-TPR1MARO                           11/19/2016 22:00:04  -----                RU    252928/1        
+ IPRT00P01-Q2FTR01-JI91MARO-B-TPR2MARO                           11/19/2016 22:00:04  -----                RU    252928/1        
+ IPRT00P01-Q1FTR01-WDAYSENE-TRIGGER-TPR1SENE                     11/18/2016 22:00:06  -----                RU    252202/1        
+ IOPFP01-Q0FT01-ALGE_IMP_JIMPPSR                                 12/04/2016 17:07:01  -----                RU    263242/1        
+ IFNDP01-Q1BCV-MA20634-TRIGGER                                   02/13/2017 20:00:09  -----                RU    328345/1        
+ IFNDP01-Q1BCV-MA10634-TRIGGER                                   02/13/2017 20:00:08  -----                RU    328341/1        
+ IFNDP01-Q1BCV-MBCV20634-TRIGGER                                 02/13/2017 11:30:02  -----                RU    327973/1        
+ ICMIR01-Q1AAP01-JCMI-Expiration                                 06/30/2017 00:01:06  -----                RU    448201/1        
+ tfl99guin                                                       06/06/2017 11:33:17  -----                RU    431774/1        
+ til1alg5                                                        06/29/2017 23:45:01  -----                RU    448191/1        
+ jfl99alg5                                                       06/14/2017 17:45:52  -----                RU    436996/1        
+ til2alg5                                                        06/13/2017 12:00:06  -----                RU    436663/1        
+ hrmanMalg5                                                      06/13/2017 23:45:02  -----                RU    436997/1        
+ tv88alg5                                                        06/15/2017 15:58:59  -----                RU    437673/1        
+ til3alg5                                                        06/13/2017 12:00:06  -----                RU    436662/1        
+
+################################################################### 
+
+There are 2 jobs on hold, check the file : /apps/meoatlas2/arnaud/jobs_hold.txt_PL 
+
+ IDCI00P01-Q1IMP01-MCFGUAD-JMCF_0001                             -----                11/07/2016 11:16:22  OH    243111/0        
+ IOPFQ01-Q1APP01-ALGE_JDBMAINTWDAY-PP                            10/26/2016 00:15:02  10/26/2016 00:15:18  OH    233287/1 0      
+
+################################################################### 
+
+There are 43 jobs on ice, check the file : /apps/meoatlas2/arnaud/jobs_ice.txt_PL 
+
+ IBFFP01-Q1MIG01-DBIXREUN-B-DBIFTX_0001                          -----                -----                OI    0/0             
+ IBFFP01-Q1MIG01-DBIYREUN-B-DBIFTY_0001                          -----                -----                OI    0/0             
+ IBFFP01-Q1MIG01-DBIZREUN-B-DBIFTZ_0001                          -----                -----                OI    0/0             
+ IDCI00P01-Q1EXT01-BNPIBURK-JEXPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1IMP01-BNPIBURK-JIMPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1APP01-BNPIGUAD-JVIRU_0001                           -----                -----                OI    0/0             
+ IDCI00P01-Q1EXT01-BNPIGUIN-JEXPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1IMP01-BNPIGUIN-JIMPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1APP01-BNPIGUYA-JVIRU_0001                           -----                -----                OI    0/0             
+ IDCI00P01-Q1EXT01-BNPIIVOI-JEXPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1IMP01-BNPIIVOI-JIMPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1EXT01-BNPIMALI-JEXPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1IMP01-BNPIMALI-JIMPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1APP01-BNPIMART-JVIRU_0001                           -----                -----                OI    0/0             
+ IDCI00P01-Q1APP01-BNPIREUN-JVIRU_0001                           -----                -----                OI    0/0             
+ IDCI00P01-Q1EXT01-BNPIREUN-JEXPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1IMP01-BNPIREUN-JIMPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1EXT01-BNPISENE-JEXPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1IMP01-BNPISENE-JIMPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1IMP01-BNPISENE-JMSG_0001                            -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSJOURNALIER-CI_JJOURNALIER_0200           -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL01_0001               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL02_0002               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL03_0003               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL04_0004               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL05_0005               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL06_0006               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL07_0007               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL08_0008               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL09_0009               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL10_0010               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL11_0011               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL12_0012               -----                -----                OI    0/0             
+  IPRT00P01-H1SAV01-HSAVMARO-JDOCU1_0001                         -----                -----                OI    0/0             
+  IPRT00P01-Q1SAV01-JPURMARO-JBASE6_0001                         -----                -----                OI    0/0             
+  IPRT00P01-Q1TSM01-JPURMARO-JBASE5_0001                         -----                -----                OI    0/0             
+  IPRT00P01-Q1SAV01-JSAVMARO-JBASE1_0001                         -----                -----                OI    0/0             
+  IPRT00P01-Q1SAV01-JSAVMARO-JBASE2_0001                         -----                -----                OI    0/0             
+  IPRT00P01-Q1SAV01-JTSMMARO-JBASE3_0001                         -----                -----                OI    0/0             
+  IPRT00P01-Q1SAV01-JTSMMARO-JBASE4_0001                         -----                -----                OI    0/0             
+ IRTMP01-Q1EXP-VENDOR                                            -----                01/30/2017 00:00:12  OI    315667/1        
+ ICTHQ01-Q1SAV01-RMAN-UOA-Q11606BP10_BACKUP                      03/27/2017 22:00:10  03/28/2017 16:39:43  OI    371934/1        
+ ICTHQ01-Q1PUR01-BTSAUV-UOA-Q11606BP10_PURGE                     03/27/2017 22:00:15  03/27/2017 22:23:37  OI    371934/1        
+
+################################################################### 
+
+#### FIN JOB 2017-06-30_18:00:58 ####
+
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------

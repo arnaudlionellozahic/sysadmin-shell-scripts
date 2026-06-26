@@ -1,0 +1,168 @@
+dans la vraie vie c'est bien alligné
+ 
+bizzzzzzzzzzzzzz
+ 
+ 
+ 
+03-05-2012 16h23
+
+date d'exploit d_ALIM_FACTU : 03-05-2012
+
+date d'exploit d_SI_FACTU : 03-05-2012
+
+ENV APP JOB EXPDATE CODE_RETOUR MESSAGE BEGIN END
+ALIM_FACTU COLL_REF collecte 2012-05-02 5 **en erreur (5) 2012-05-03 04:30:01 2012-05-03 04:30:07
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+req ()
+{
+./psql -A -F \; -t -c "SELECT vtenvname, vtapplname, vtjobname,vtend - vtbegin, vtexpdatevalue, vtretcode, vterrmess,vtbegin, vtend FROM vt_stats_job WHERE $CLAUSE AND vtretcode !=0 AND vtjobname IS NOT NULL AND vtjobname NOT LIKE '%CTRL_MOTEUR%' AND vtenvname NOT LIKE '%PRA%' ORDER BY vtbegin " -d vtom -h localhost -p 30109 -U vtom
+}
+ 
+#echo `TZ=MET+24 date +"%D"`
+#date --date '2 days ago'
+
+print "\n $(date "+%d-%m-%Y %Hh%M") \n"
+[ "$(date "+%d-%m-%Y")" != "$(tgetdate -name=d_ALIM_FACTU)" ] && echo " Attention date d'exploit d_ALIM_FACTU desynchronisee"
+[ "$(date "+%d-%m-%Y")" != "$(tgetdate -name=d_SI_FACTU)" ] && echo " Attention date d'exploit d_SI_FACTU desynchronisee"
+print "\t date d'exploit d_ALIM_FACTU : `tgetdate -name=d_ALIM_FACTU` \n"
+print "\t date d'exploit d_SI_FACTU   : `tgetdate -name=d_SI_FACTU` \n"
+ 
+printf "%-15s %-15s %-10s %-10s %-11s %-15s %-15s %-15s \n" ENV APP JOB EXPDATE CODE_RETOUR MESSAGE BEGIN END
+DATE_D=`TZ=MET+24 date +"%D"`; DATE_F=$DATE_D; CLAUSE="vtexpdatevalue = cast ('$DATE_D' as date)"
+req | awk -F ";" '{printf "%-15s %-15s %-10s %-10s %-11s %-15s %-17s %-15s \n" ,$1 , $2 , $3 , $5 , $6 , $7 , $8 , $9 }'
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+oui c'est bien ça mais j'ai trouvé plus simple. 
+
+c'est moins galère le timestamp 
+
+#echo `TZ=MET+24 date +"%D"` 
+#date --date '2 days ago' 
+
+
+J'ai modifié le scrip pour exclure les environnements *PRA* 
+
+script de lancement 
+req () 
+{ 
+ssh lpn1e94 <<EOF 
+su - vtom 
+cd /opt/vtom/sgbd/bin 
+./req 
+EOF 
+} 
+
+
+req > req.csv 
+user="telintrans-bt@steria.com" 
+echo " Suivi d'expoitation  VTOM :lpn1e94 hier et aujourd'hui" | mutt -s "VTOM COLIPOSTE" -a /root/DOMI/req.csv $user 
+
+
+script lancé sur le serveur vtom 
+
+req () 
+{ 
+./psql -A -F \; -t -c "SELECT vtenvname, vtapplname, vtjobname, vtbegin, vtend, vtend - vtbegin, vtexpdatevalue, vtnbretry, vtretcode, vterrmess FROM vt_stats_job WHERE $CLAUSE AND vtjobname IS NOT NULL AND vtjobname NOT LIKE '%CTRL_MOTEUR%' AND vtenvname NOT LIKE '%PRA%' ORDER BY vtbegin " -d vtom -h localhost -p 30109 -U vtom 
+
+} 
+
+
+
+#echo `TZ=MET+24 date +"%D"` 
+#date --date '2 days ago' 
+
+printf "%-15s;%-15s;%-15s;%-18s;%-18s;%-15s;%-15s;%-15s;%-15s;%-15s;%-15s \n" ENV APP JOB BEGIN END ELAPSE EXPDATE RETRY STATUS RETCODE MESSAGE 
+
+DATE_D=`TZ=MET+24 date +"%D"`; DATE_F=$DATE_D; CLAUSE="vtexpdatevalue = cast ('$DATE_D' as date)" 
+req 
+
+echo "" 
+DATE_D=$(date +"%Y-%m-%d"); DATE_F=$DATE_D; CLAUSE="vtexpdatevalue = CURRENT_DATE" 
+req 
+
+
+
+
+Dominique JULIEN
+Ingenieur de Production
+Steria / département IGA / TLT BT / 2A-121C
+11 avenue du Maréchal Juin
+92366 Meudon-la-Forêt Cedex
++33 1 34 88 62 65 
+
+
+
+De :        "LOZAHIC Arnaud" <arnaud.lozahic@absyss.com> 
+A :        <dominique.julien.externe@steria.com> 
+Date :        05/03/2012 08:31 
+Objet :        RE: Tr : VTOM SURFNG 
+________________________________________
+
+
+
+salut, 
+Comment ça va ??   Tu aurais le script ?? 
+  
+Date à J-1 : 
+perl -e 'use POSIX qw/strftime/; printf strftime("%d_%m_%y", localtime(time-86400));' > titi 
+  
+C’est ça me timestamp dont tu me parlais ? 
+24x3600 = 86400 
+  
+bizzzzzzzzzzzzzzzzzzzzzz 
+  
+Cordialement, 
+Arnaud Lozahic 
+Support Produit 	 
+
+  
++33 (0)1 40 84 89 01 	www.absyss.com 
+Club utilisateurs : http://vito.absyss.com
+
+
+  
+  
+De : dominique.julien.externe@steria.com [mailto:dominique.julien.externe@steria.com] 
+Envoyé : vendredi 2 mars 2012 10:29
+À : LOZAHIC Arnaud
+Objet : Tr : VTOM SURFNG 
+  
+un peu de lecture 
+bizzzzzzzzzzzzzzz 
+
+
+Dominique JULIEN
+Ingenieur de Production
+Steria / département IGA / TLT BT / 2A-121C
+11 avenue du Maréchal Juin
+92366 Meudon-la-Forêt Cedex
++33 1 34 88 62 65 
+----- Transféré par Dominique Julien/EXT/FR/Steria le 02/03/2012 10:27 ----- 
+
+De :        root <root@lyisy22.tlt> 
+A :        dominique.julien.externe@steria.com 
+Date :        02/03/2012 09:59 
+Objet :        VTOM SURFNG 
+
+________________________________________
+
+
+
+
+Suivi d'expoitation VTOM :lpn1e94
+
+

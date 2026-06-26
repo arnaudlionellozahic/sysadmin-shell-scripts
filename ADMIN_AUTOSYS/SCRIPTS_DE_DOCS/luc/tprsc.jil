@@ -1,0 +1,28 @@
+insert_resource: LucR
+res_type: R
+amount: 4
+
+insert_resource: LucD
+res_type: D
+amount: 48
+
+insert_resource: LucT
+res_type: T
+amount: 4
+
+update_job: GR6_lucj21
+resources: (LucR,QUANTITY=1,FREE=A) and (LucD,QUANTITY=1) and (LucT,QUANTITY=1)
+update_job: GR6_lucj22
+resources: (LucR,QUANTITY=1,FREE=A) and (LucD,QUANTITY=1) and (LucT,QUANTITY=1)
+update_job: GR6_lucj23
+resources: (LucR,QUANTITY=1,FREE=A) and (LucD,QUANTITY=1) and (LucT,QUANTITY=2)
+update_job: GR6_lucj24
+resources: (LucR,QUANTITY=1,FREE=A) and (LucD,QUANTITY=1) and (LucT,QUANTITY=1)
+update_job: GR6_lucj25
+resources: (LucR,QUANTITY=1,FREE=A) and (LucD,QUANTITY=1) and (LucT,QUANTITY=1)
+update_job: GR6_lucj26
+resources: (LucR,QUANTITY=1,FREE=A) and (LucD,QUANTITY=1) and (LucT,QUANTITY=3)
+update_job: GR6_lucj27
+resources: (LucR,QUANTITY=1,FREE=A) and (LucD,QUANTITY=1) and (LucT,QUANTITY=1)
+update_job: GR6_lucj28
+resources: (LucR,QUANTITY=1,FREE=A) and (LucD,QUANTITY=1) and (LucT,QUANTITY=2)

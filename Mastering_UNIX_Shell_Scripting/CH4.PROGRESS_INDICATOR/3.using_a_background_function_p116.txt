@@ -1,0 +1,21 @@
+function dots
+{
+    while true 
+    do
+        echo -e ".\c"
+        sleep 10
+    done
+}
+
+##################################
+######## Begin of Main ###########
+##################################
+
+dots &
+
+BG_PID=$!
+
+#/usr/local/bin/my_backup.ksh
+echo $BG_PID
+
+kill $BG_PID

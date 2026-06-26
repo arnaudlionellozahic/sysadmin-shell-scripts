@@ -1,0 +1,122 @@
+HP-UX itanium B.11.23 U ia64 1220372574 unlimited-user license
+
+Lise des processus (ps -ef)
+------------------
+
+     UID   PID  PPID  C    STIME TTY       TIME COMMAND
+    root     0     0  0  Apr 14  ?         0:46 swapper
+    root     1     0  0  Apr 14  ?         3:50 init
+    root     8     0  0  Apr 14  ?         0:00 ioconfigd
+    root     9     0  0  Apr 14  ?         0:17 nfsktcpd
+    root    10     0  0  Apr 14  ?         0:02 autofskd
+    root    11     0  0  Apr 14  ?         0:00 lvmkd
+    root    12     0  0  Apr 14  ?         0:00 lvmkd
+    root    13     0  0  Apr 14  ?         0:00 lvmkd
+    root    14     0  0  Apr 14  ?         0:00 lvmkd
+    root    15     0  0  Apr 14  ?         0:00 lvmkd
+    root    16     0  0  Apr 14  ?         0:00 lvmkd
+    root    17     0  0  Apr 14  ?         0:00 lvmschedd
+    root    18     0  0  Apr 14  ?         0:00 lvmdevd
+    root    19     0  0  Apr 14  ?         0:00 pagetable_init_daemon
+    root    20     0  0  Apr 14  ?         3:34 supsched
+    root    21     0  0  Apr 14  ?         0:00 strmem
+    root    22     0  0  Apr 14  ?         0:00 strweld
+    root    23     0  0  Apr 14  ?         0:00 strfreebd
+    root     2     0  0  Apr 14  ?         3:07 vhand
+    root     3     0  0  Apr 14  ?         5:44 statdaemon
+    root     4     0  0  Apr 14  ?         0:11 unhashdaemon
+    root    24     0  0  Apr 14  ?         0:00 kmemdaemon
+    root    25     0  0  Apr 14  ?         0:00 ttisr
+    root    26     0  0  Apr 14  ?         1:11 ipmid
+    root    33     0  0  Apr 14  ?         0:00 eventdaemon
+    root    34     0  0  Apr 14  ?         5:42 schedcpu
+    root    35     0  0  Apr 14  ?         0:00 kend
+    root  2108     1  0  Apr 14  ?         0:00 /sbin/krsd -i
+    root  1555     1  0  Apr 14  ?         0:11 /opt/dce/sbin/rpcd
+   plair  1115  1104  0 15:55:13 ?         0:00 postgres: vtom vtom ::1(62266) idle
+    root    41     0  0  Apr 14  ?         6:38 vxfsd
+    root    66     0  0  Apr 14  console   0:00 rng
+    root   710     1  0  Apr 14  ?         0:00 /usr/lbin/nktl_daemon 0 0 0 0 0 1 -2
+    root  1011     1  0  Apr 14  ?         0:07 /usr/sbin/biod 16
+    root  1010     1  0  Apr 14  ?         0:06 /usr/sbin/biod 16
+    root   949     1  0  Apr 14  ?         0:00 /usr/sbin/rpcbind
+    root  1833     1  0  Apr 14  ?         0:00 /usr/sbin/envd
+    root   922     1  0  Apr 14  ?         0:00 /opt/ssh/sbin/sshd
+    root   676     1  0  Apr 14  ?         0:00 /usr/sbin/ptydaemon
+    root  1441     1  0  Apr 14  ?         1:35 /usr/sbin/ipv6agt
+   plair 13217 13180  0 15:12:15 pts/0     0:00 /bin/ksh /home4/plair/itanium/Ver521/vtom/vtom/bin/sssimu_vtsgb
+    root   667     1  0  Apr 14  ?         0:00 /usr/sbin/syslogd -D
+    root  2298     1  0  Apr 14  ?         0:02 /usr/sbin/stm/uut/bin/tools/monitor/disk_em
+    root  2107     1  0  Apr 14  console   0:00 /usr/sbin/getty console console
+    root   437     1  0  Apr 14  ?         0:41 /usr/sbin/syncer
+   plair  1104  1102  0 15:54:59 ?         0:01 /home4/plair/itanium/Ver521/vtom/sgbd/bin/postgres -D /home4/pl
+    root   446     1  0  Apr 14  ?         1:31 /usr/sbin/utmpd
+    root  1535     1  0  Apr 14  ?         0:00 /usr/sbin/fddi4subagt
+    root   608     1  0  Apr 14  ?         1:09 ipmon -sD
+    root  1564     1  0  Apr 14  ?        16:21 /opt/wbem/sbin/cimserver
+    root   720     1  0  Apr 14  ?         0:00 /usr/lbin/ntl_reader 0 1 1 1 1000 2 /var/adm/nettl /var/adm/con
+    root  1498     1  0  Apr 14  ?         0:00 /usr/sbin/trapdestagt
+    root   721   720  0  Apr 14  ?         1:52 /usr/sbin/netfmt -C -F -f /var/adm/nettl.LOG000 -c /var/adm/con
+    root  1012     1  0  Apr 14  ?         0:06 /usr/sbin/biod 16
+    root  1009     1  0  Apr 14  ?         0:06 /usr/sbin/biod 16
+    root  1013     1  0  Apr 14  ?         0:06 /usr/sbin/biod 16
+    root  1014     1  0  Apr 14  ?         0:06 /usr/sbin/biod 16
+    root  1015     1  0  Apr 14  ?         0:06 /usr/sbin/biod 16
+    root  1016     1  0  Apr 14  ?         0:06 /usr/sbin/biod 16
+    root  1017     1  0  Apr 14  ?         0:06 /usr/sbin/biod 16
+    root  1018     1  0  Apr 14  ?         0:06 /usr/sbin/biod 16
+    root  1019     1  0  Apr 14  ?         0:06 /usr/sbin/biod 16
+    root  1020     1  0  Apr 14  ?         0:06 /usr/sbin/biod 16
+    root  1021     1  0  Apr 14  ?         0:06 /usr/sbin/biod 16
+    root  1022     1  0  Apr 14  ?         0:06 /usr/sbin/biod 16
+    root  1023     1  0  Apr 14  ?         0:06 /usr/sbin/biod 16
+    root  1024     1  0  Apr 14  ?         0:06 /usr/sbin/biod 16
+    root  1036     1  0  Apr 14  ?         0:00 /usr/sbin/rpc.lockd
+    root  1030     1  0  Apr 14  ?         0:00 /usr/sbin/rpc.statd
+    root  1042     1  0  Apr 14  ?         0:32 /usr/sbin/automountd
+    root  2085     1  0  Apr 14  ?         0:00 /sbin/sh /usr/dt/bin/dtrc
+    root  1470     1  0  Apr 14  ?         1:48 /usr/sbin/mib2agt
+    root  1075     1  0  Apr 14  ?         0:22 /usr/sbin/inetd
+    root  1750     1  0  Apr 14  ?         3:47 /usr/sbin/pwgrd
+    root  1426     1  0  Apr 14  ?         0:00 /usr/sbin/hp_unixagt
+    root  2114     1  0  Apr 14  ?         0:17 /opt/wbem/sbin/cimserverd
+    root  2106  2085  0  Apr 14  ?         0:00 /usr/dt/bin/dtlogin
+   plair 10358 10356  0 09:46:53 pts/0     0:00 -ksh
+    root  1799     1  0  Apr 14  ?         0:00 /usr/sbin/cron
+    root  1380     1  0  Apr 14  ?         8:40 sendmail: accepting connections
+    root  2271     1  0  Apr 14  ?         0:00 /usr/sbin/stm/uut/bin/tools/monitor/cpe_em
+    root  2578     1  0  Apr 14  ?         0:03 /usr/sbin/stm/uut/bin/tools/monitor/sysstat_em
+    root  1400     1  0  Apr 14  ?         0:00 /usr/sbin/snmpdm
+    root  1824     1  0  Apr 14  ?         1:06 /usr/sbin/stm/uut/bin/sys/diagmond
+    root  1858     1  0  Apr 14  ?         0:00 /usr/sbin/hubd
+    root  2497     1  0  Apr 14  ?        22:21 /usr/sbin/stm/uut/bin/tools/monitor/ia64_corehw
+    root  2113     1  0  Apr 14  ?         1:07 /etc/opt/resmon/lbin/p_client
+    root  2109     1  0  Apr 14  ?         0:00 /sbin/sfd
+    root  1878     1  0  Apr 14  ?         0:38 /usr/sbin/swagentd -r
+    root  2193  1824  0  Apr 14  ?         0:20 diaglogd
+    root  2200  1075  0  Apr 14  ?         0:00 /etc/opt/resmon/lbin/registrar
+    root  1943     1  0  Apr 14  ?         0:00 /etc/opt/resmon/lbin/emsagent
+    root  2194  1824  0  Apr 14  ?        15:04 psmctd
+    root  2018     1  0  Apr 14  ?         2:26 /opt/VRTSob/bin/vxsvc -r /opt/VRTSob/config/Registry
+    root  2235     1  0  Apr 14  ?         0:00 /usr/sbin/stm/uut/bin/tools/monitor/cmc_em
+    root  2551     1  0  Apr 14  ?         0:00 /usr/sbin/stm/uut/bin/tools/monitor/memory_ia64
+    root 19612     1  0  Apr 23  ?         0:00 /home4/jmletel/HP-UX/Ver4610/abm/bin/bdaemon
+   plair 13425 13354  0 15:13:24 pts/1     0:00 -ksh
+   plair  1111  1104  0 15:55:08 ?         0:02 postgres: wal writer process   
+   plair 13582 13180  1 15:14:05 pts/0     0:00 ps -ef
+   plair 13180 10358  1 15:12:15 pts/0     0:00 ksh ./sssecure_simu
+    root  2461     1  0  Apr 14  ?         0:22 /usr/sbin/stm/uut/bin/tools/monitor/fpl_em
+   plair  1117  1104  0 15:55:16 ?         0:00 postgres: vtom vtom ::1(62270) idle
+   plair  1093     1  0 15:54:53 ?         0:00 /home4/plair/itanium/Ver521/vtom/vtom/bin/vtsgbd
+   plair  1102  1093  0 15:54:59 ?         0:00 sh -c /home4/plair/itanium/Ver521/vtom/sgbd/bin/postgres -D "/h
+   plair  1118  1104  0 15:55:16 ?         0:00 postgres: vtom vtom ::1(62271) idle
+   plair  1113  1104  0 15:55:08 ?         0:01 postgres: stats collector process   
+   plair  1110  1104  0 15:55:08 ?         0:07 postgres: writer process   
+    root 10356   922  0 09:46:46 ?         0:00 sshd: plair@0
+   plair  1094     1  0 15:54:53 ?         0:02 /home4/plair/itanium/Ver521/vtom/vtom/bin/vtserver
+   plair  1119  1104  0 15:55:16 ?         0:00 postgres: vtom vtom ::1(62272) idle
+    root 13354   922  0 15:13:00 ?         0:00 sshd: plair@1
+   plair  1112  1104  0 15:55:08 ?         0:01 postgres: autovacuum launcher process   
+   plair  1116  1104  0 15:55:16 ?         0:00 postgres: vtom vtom ::1(62269) idle
+    root 13564  2497  0 15:13:52 ?         0:00 <defunct>
+   plair 13579 13217  0 15:14:05 pts/0     0:00 sleep 1

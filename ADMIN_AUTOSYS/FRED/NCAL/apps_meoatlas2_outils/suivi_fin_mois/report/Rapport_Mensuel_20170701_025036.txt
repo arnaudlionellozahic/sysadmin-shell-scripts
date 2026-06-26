@@ -1,0 +1,12 @@
+ ************************* 
+ *** JOBS EN ABORT ******* 
+
+Il n'y a aucun job en abort pour le moment pour le qualifier 
+
+
+ ************************* 
+ *** JOBS EN HOLD ******* 
+
+arz1Guin_dasa9c_01
+
+

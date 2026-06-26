@@ -1,0 +1,121 @@
+***** Debut du job : 2014/02/09 02:14:56 *****
+
+Check gigaspaces on msampdgs01 :
+
+[INFO] : check des process ... 
+
+[ERROR] : Pas de GSA, Check KO
+[ERROR] : Nombre de GSM        0 different de 1 attendu, Check KO
+[ERROR] : Nombre de GSC        0 different de 6 attendus, Check KO
+[ERROR] : Nombre de LUS        0 different de 1 attendu, Check KO
+
+Check gigaspaces on msampdgs02 :
+
+[INFO] : check des process ... 
+
+[ERROR] : Pas de GSA, Check KO
+[ERROR] : Nombre de GSC        0 different de 6 attendus, Check KO
+
+Check gigaspaces on msampdgs03 :
+
+[INFO] : check des process ... 
+
+[ERROR] : Pas de GSA, Check KO
+[ERROR] : Nombre de GSC        0 different de 6 attendus, Check KO
+
+Check gigaspaces on msampdgs04 :
+
+[INFO] : check des process ... 
+
+[ERROR] : Pas de GSA, Check KO
+[ERROR] : Nombre de GSC        0 different de 6 attendus, Check KO
+
+Check gigaspaces on msampdgs05 :
+
+[INFO] : check des process ... 
+
+[ERROR] : Pas de GSA, Check KO
+[ERROR] : Nombre de GSC        0 different de 6 attendus, Check KO
+
+Check gigaspaces on msampdgs06 :
+
+[INFO] : check des process ... 
+
+[ERROR] : Pas de GSA, Check KO
+[ERROR] : Nombre de GSC        0 different de 6 attendus, Check KO
+
+Check gigaspaces on msampdgs07 :
+
+[INFO] : check des process ... 
+
+[ERROR] : Pas de GSA, Check KO
+[ERROR] : Nombre de GSC        0 different de 6 attendus, Check KO
+
+Check gigaspaces on msampdgs08 :
+
+[INFO] : check des process ... 
+
+[ERROR] : Pas de GSA, Check KO
+[ERROR] : Nombre de GSC        0 different de 6 attendus, Check KO
+
+Check gigaspaces on msampdgs09 :
+
+[INFO] : check des process ... 
+
+[ERROR] : Pas de GSA, Check KO
+[ERROR] : Nombre de GSM        0 different de 1 attendu, Check KO
+[ERROR] : Nombre de GSC        0 different de 6 attendus, Check KO
+[ERROR] : Nombre de LUS        0 different de 1 attendu, Check KO
+
+Check gigaspaces on msampdgs10 :
+
+[INFO] : check des process ... 
+
+[ERROR] : Pas de GSA, Check KO
+[ERROR] : Nombre de GSC        0 different de 6 attendus, Check KO
+
+Check gigaspaces on msampdgs11 :
+
+[INFO] : check des process ... 
+
+[ERROR] : Pas de GSA, Check KO
+[ERROR] : Nombre de GSC        0 different de 6 attendus, Check KO
+
+Check gigaspaces on msampdgs12 :
+
+[INFO] : check des process ... 
+
+[ERROR] : Pas de GSA, Check KO
+[ERROR] : Nombre de GSC        0 different de 6 attendus, Check KO
+
+Check gigaspaces on msampdgs13 :
+
+[INFO] : check des process ... 
+
+[ERROR] : Pas de GSA, Check KO
+[ERROR] : Nombre de GSC        0 different de 6 attendus, Check KO
+
+Check gigaspaces on msampdgs14 :
+
+[INFO] : check des process ... 
+
+[ERROR] : Pas de GSA, Check KO
+[ERROR] : Nombre de GSC        0 different de 6 attendus, Check KO
+
+Check gigaspaces on msampdgs15 :
+
+[INFO] : check des process ... 
+
+[ERROR] : Pas de GSA, Check KO
+[ERROR] : Nombre de GSC        0 different de 6 attendus, Check KO
+
+Check gigaspaces on msampdgs16 :
+
+[INFO] : check des process ... 
+
+[ERROR] : Pas de GSA, Check KO
+[ERROR] : Nombre de GSC        0 different de 6 attendus, Check KO
+
+[INFO] : Check stop gigaspaces OK
+
+***** Fin du job : 2014/02/09 02:15:34 *****

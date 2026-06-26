@@ -1,0 +1,205 @@
+#!/bin/ksh
+# ----------------------------------------------------------------------------
+# CFTSEND : Envoi flux cft
+# ----------------------------------------------------------------------------
+# Parametres     :
+# Entrees        :
+# Sorties        :
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+
+######################################################
+# Diverses initialisations de variables obligatoires #
+######################################################
+
+# Parametres passes en arguments par CONTROL-M
+ODATE=${1}
+[ "X${ODATE}" = "X" ] && echo "Parm ODATE non specifie" && exit 1
+
+IDF=${2}
+[ "X${IDF}" = "X" ] && echo "Parm IDF non specifie" && exit 1
+
+FIC=${3}
+[ "X${FIC}" = "X" ] && echo "Parm FIC non specifie" && exit 1
+
+ARCHIVE=${4}
+[ "X${ARCHIVE}" = "X" ] && echo "Parm ARCHIVE non specifie" && exit 1
+
+REP_PARAM=${5}
+[ "X${REP_PARAM}" = "X" ] && echo "Parm REP_PARAM non specifie" && exit 1
+
+REP=${6}
+[ "X${REP}" = "X" ] && echo "Parm REP non specifie" && exit 1
+
+# exporte les variables CTM0, GEHLOG, GEDAA, GEDAACC et GEDSOFT
+ctrlmExports ${0}
+
+# source l'environnement de la machine logique
+switch ${GEHLOG} > /dev/null
+
+
+############################################
+# Chargement des variables d'environnement #
+############################################
+
+GENERAL_ENV="${GEDAA}/etc/`echo ${GEIENV} | tr "UQPU" "uqpu"`v/env_q04.ksh"
+LOCAL_ENV="${REP}/`echo ${GEIENV} | tr "UQPU" "uqpu"`v/etc/env.ksh"
+
+if [ -f ${GENERAL_ENV} ]; then
+  . ${GENERAL_ENV}
+  [ $? -ne 0 ] && MsgError "impossible de charger l'environnement" && exit 1
+fi
+
+if [ -f ${LOCAL_ENV} ]; then
+  . ${LOCAL_ENV}
+  [ $? -ne 0 ] && MsgError "impossible de charger l'environnement" && exit 1
+fi
+
+#############################################################
+# Initialisation des variables n'ayant pas a etre modifiees #
+#############################################################
+
+DATE=`date +"%Y%m%d_%H%M%S"`
+#code retour pour cft
+_CODE=0
+#code retour pour fichier non present
+_CODE1=0
+#code retour pour cp en erreur
+_CODE2=0
+
+###################################################
+# Initialisation des variables specifiques au job #
+###################################################
+
+_REP_WAIT=${REP}/cft/${IDF}.wait
+_REP_DONE=${REP}/cft/${IDF}.done
+
+CODEAPP=Q04
+
+if [ "X${GEIENV}" == "XU" ]
+then
+   _CFTDIR="scp:cftprex@xfprexun:/home/cftprex/Appli/${CODEAPP}"
+elif [ "X${GEIENV}" == "XP" ]
+then
+   _CFTDIR="scp:cftprod@xfprodun:/users/cftprod/Appli/${CODEAPP}"
+fi
+
+_EXE_NAME=cftexchange.pl
+_EXE_PARM="-IDF=${IDF} -Mode=send -Appli_File=${_REP_WAIT}/${i} -CFT_Dir=${_CFTDIR} -Archive_Dir=${_REP_DONE} -Archive=${ARCHIVE} -PURGE"
+
+#######################
+##LANCEMENT DU SCRIPT##
+#######################
+#-------------------------------------------------------------------
+# Debut du job 
+#-------------------------------------------------------------------
+echo "----------------------------------------------------------------------------------------------------------"
+echo "----------------------------------------------------------------------------------------------------------"
+echo ""
+echo "#### DEBUT JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+echo ""
+
+echo "VARIABLES CTLM"
+echo "IDF=${IDF}"
+echo FIC=`echo $FIC | awk -F '{print $1}'`
+echo "ARCHIVE=${ARCHIVE}"
+echo "REP_PARAM=${REP_PARAM}"
+echo "REP=${REP}"
+echo ""
+echo "VARIABLES VALORISEES DANS LE SCRIPT"
+echo "GENERAL_ENV=${GENERAL_ENV}"
+echo "LOCAL_ENV=${LOCAL_ENV}"
+echo "_REP_WAIT=${_REP_WAIT}"
+echo "_REP_DONE=${_REP_DONE}"
+echo "_EXE_NAME=${_EXE_NAME}"
+echo "_EXE_PARM=${_EXE_PARM}"
+
+# ---------------------------------------------------------------------------- #
+# Envoi CFT
+# ---------------------------------------------------------------------------- #
+
+echo ""
+echo "**********************************************************************************************************"
+echo ""
+echo "CFT : Envoi de fichier `echo $FIC | awk -F '{print $1}'` via flux ${IDF}"
+
+for i in `echo $FIC | awk -F '{print $1}'`
+do
+cd ${REP_PARAM}
+        if [ -s ${i} ]; then
+                echo ""
+                echo "**********************************************************************************************************"
+                echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Avant copie : Information sur le fichier a envoyer : $REP_PARAM"
+                echo "`ls -ltr ${i}`"
+                echo ""
+                echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Copie du fichier ${REP_PARAM}/${i} dans ${_REP_WAIT}"
+                # Copie du fichier dans le puit wait et envoi cft car fichier non vide
+		#BESOIN DE COMPRESSER AVANT ENVOI ???????????????????????????????????? 
+                echo ""
+                cp -p ${i} ${_REP_WAIT}/${i}
+		echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Avant traitement : Information sur le contenu de ${_REP_WAIT}"
+		echo "`ls -ltr ${_REP_WAIT} | grep -v total`"
+		echo ""
+                _CODE2=$?
+                if [ ${_CODE2} -ne 0 ]; then
+                        echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : La copie du fichier ${REP_PARAM}/${i} dans ${_REP_WAIT} a echoue"
+                        let "_CODE2+=2"
+                        echo "code retour du cp en echec : ${_CODE2}"
+			echo ""
+			echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+			echo "exit ${_CODE2}"
+        		exit ${_CODE2}
+				else 
+				echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Le fichier ${REP_PARAM}/${i} a ete copie avec succes dans ${_REP_WAIT}"
+                fi
+		echo ""
+		echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : ENVOI CFT"
+		${_EXE_NAME} -IDF=${IDF} -Mode=send -Appli_File=${_REP_WAIT}/${i} -CFT_Dir=${_CFTDIR} -Archive_Dir=${_REP_DONE} -Archive=${ARCHIVE} -PURGE
+                _CODE=$?
+                #_CODE=7
+                if [ ${_CODE} -ne 0 ]; then
+                        echo ""
+                        echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Echec de l'envoi du fichier ${i} IDF : ${IDF}"
+                        echo ""
+                        echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Apres traitement : Information sur le contenu de ${_REP_WAIT}"
+                        echo "`ls -ltr ${_REP_WAIT} | grep -v total`"
+			echo ""
+			echo "**********************************************************************************************************"
+                        let "_CODE+=1"
+                        echo "code retour de l'envoi cft : ${_CODE}"
+				else
+				echo ""
+				echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Reussite de l'envoi du fichier ${i} IDF : ${IDF}" 
+				echo ""
+				echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Apres traitement : Information sur le contenu de ${_REP_WAIT}"
+				echo "`ls -ltr ${_REP_WAIT} | grep -v total`"
+				echo ""
+				echo "**********************************************************************************************************"
+                fi
+                        else
+                                echo ""
+                                echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Fichier ${i} vide ou non present : pas d'envoi"
+                                let "_CODE1+=2"
+                                echo "code retour du fichier vide ou non present : ${_CODE1}"
+				echo "**********************************************************************************************************"
+        fi
+done
+
+echo ""
+echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+#-------------------------------------------------------------------
+# Fin du job proprement dit
+#-------------------------------------------------------------------
+if [ ${_CODE2} -ne 0 ]; then
+        #echo "code retour du cp en echec : ${_CODE2}"
+        echo "exit ${_CODE2}"
+        exit ${_CODE2}
+                elif [ ${_CODE1} -ne 0 ]; then
+		#echo "code retour du fichier vide ou non present : ${_CODE1}"
+                echo "exit ${_CODE1}"
+                exit ${_CODE1}
+			else
+			#echo "code retour de l'envoi cft : ${_CODE}"
+                	echo "exit ${_CODE}"
+                	exit ${_CODE}
+fi

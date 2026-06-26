@@ -1,0 +1,36 @@
+#!/usr/bin/ksh
+DATE=$(date +'%Y%m%d')
+HEURE=$(date +'%H:%M')
+MAIL=/usr/sbin/sendmail
+HOST=$(hostname)
+ARGUMENT="$*"
+
+from="PARIS_IPS_MEO_IRB@bnpparibas.com"
+to="youness.faouzi@bnpparibas.com  fathi.beddiar@bnpparibas.com Frederic.GASNIER@externe.bnpparibas.com Anis.TARKHANI@externe.bnpparibas.com mohammedabdellah.elkabir@bnpparibas.com elhafid.bouyahya@bnpparibas.com yan.caillaud@bnpparibas.com jean-noel.hontarrede@bnpparibas.com"
+cc="benjamin.kalfon@bnpparibas.com"
+subject="A2 N-CAL $ARGUMENT"
+
+# Build headers
+{
+
+printf '%s\n' "From: $from
+To: $to
+Cc: $cc
+Subject: $subject
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary=\"$boundary\"
+
+--${boundary}
+Content-Type: text/plain; charset=\"US-ASCII\"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+Suivi sous Autosys JOBFAILURE $HOST: A2 N-CAL
+
+Merci de contacter l'equipe projet au 06 64 01 76 87
+
+$ARGUMENT
+
+"
+
+}|$MAIL -t -oi

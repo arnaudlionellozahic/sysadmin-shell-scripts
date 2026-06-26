@@ -1,0 +1,82 @@
+#!/bin/ksh
+##########################################################################################
+# Fichier   : exportenvVTom.ksh                                                          #
+# Objet     : genere les export de tous les environnements vtom                          #
+#                                                                                        #
+# Entree    :                                                                            #
+#         parametres    :                                                                #
+#         fichiers      :                                                                #
+#                                                                                        #
+# Sortie    :                                                                            #
+#         code retour   : 1 --> echec de la generation du fichier export                 #
+#         fichiers      : les fichiers exports exp.<nom environnement>                   #
+#                                                                                        #
+# Executeur       : $usevtom                                                                #
+# Commentaire     :                                                                      #
+# Fichiers inclus : ToolBox.in                                                           #
+# Historique      :                                                                      #
+#    11/10/2004 - Creation JMF/EM                                                        #
+##########################################################################################
+
+#========================================================================================#
+# INITIALISATIONS                                                                        #
+#========================================================================================#
+
+usevtom=$1
+
+# inclusion de ToolBox.in
+# le chemin de la ToolBox determine la variable PATH_SCRIPT
+ENV=/usr/$usevtom/.profile
+. $ENV
+. /$VTMSHELL/ToolBox.in stdout 
+
+# repertoire de destination des exports
+echo "repertoire export vtom : " $VTMEXPORT/$usevtom
+EXPORT=$VTMEXPORT/$usevtom
+
+#========================================================================================#
+# FONCTION PRINCIPALE                                                                    #
+#========================================================================================#
+if [ $# -ne 1 ]
+   then
+   echo "parametre obligatoire.\nUsage : user vtom d'administration \n"
+   Exit_Job 1
+fi
+	echo "SAUVEGARDE DES ENVIRONNEMENTS VTOM DE LA MACHINE "$HOST "USER $usevtom "
+
+
+# test si le rep export existe 
+if  [ ! -d $EXPORT ]
+then
+   echo "Le repertoire $EXPORT n'existe pas \n"
+   Exit_Job 1
+fi
+
+# creation du fichier de la liste des environnements vtom
+echo " creation de la liste des environnements vtom"
+sudo su - $usevtom -c "tlist env > /usr/$usevtom/list_env" 
+        RET=$?
+        if [ $RET -ne 0 ]
+        then
+                echo "ECHEC de la commande tlist sur $usevtom "
+                Fin_Job 1
+        fi
+
+ENVIRON=$(cat /usr/$usevtom/list_env)
+
+# sauvegarde des environnement vtom
+for i in $ENVIRON
+do
+	echo "export de l environnement $i sur $EXPORT/$i "
+	sudo su - $usevtom -c "vtexport -f $i > $EXPORT/$i  2>$EXPORT/Mess_ENV_$usevtom.log" 
+	RET=$?
+	if [ $RET -ne 0 ]
+	then
+		echo "ECHEC de la generation du fichier export de $i "
+		Fin_Job 1
+	fi
+done
+
+Fin_Job 0
+
+#--------------------------------------- Fin du fichier ---------------------------------------#

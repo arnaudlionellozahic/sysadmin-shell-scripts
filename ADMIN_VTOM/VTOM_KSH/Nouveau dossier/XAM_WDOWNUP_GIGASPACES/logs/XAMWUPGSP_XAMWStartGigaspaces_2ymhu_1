@@ -1,0 +1,131 @@
+***** Debut du job : 2013/07/20 16:29:23 *****
+
+Start gigaspaces on msampdgs01 :
+
+[INFO] : start in progress ... 
+
+[INFO] : gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.gsm 1 gsa.global.lus 0 gsa.lus 1
+
+[INFO] : start done
+
+Start gigaspaces on msampdgs02 :
+
+[INFO] : start in progress ... 
+
+[INFO] : gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 0
+
+[INFO] : start done
+
+Start gigaspaces on msampdgs03 :
+
+[INFO] : start in progress ... 
+
+[INFO] : gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 0
+
+[INFO] : start done
+
+Start gigaspaces on msampdgs04 :
+
+[INFO] : start in progress ... 
+
+[INFO] : gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 0
+
+[INFO] : start done
+
+Start gigaspaces on msampdgs05 :
+
+[INFO] : start in progress ... 
+
+[INFO] : gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 0
+
+[INFO] : start done
+
+Start gigaspaces on msampdgs06 :
+
+[INFO] : start in progress ... 
+
+[INFO] : gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 0
+
+[INFO] : start done
+
+Start gigaspaces on msampdgs07 :
+
+[INFO] : start in progress ... 
+
+[INFO] : gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 0
+
+[INFO] : start done
+
+Start gigaspaces on msampdgs08 :
+
+[INFO] : start in progress ... 
+
+[INFO] : gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 0
+
+[INFO] : start done
+
+Start gigaspaces on msampdgs09 :
+
+[INFO] : start in progress ... 
+
+[INFO] : gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.gsm 1 gsa.global.lus 0 gsa.lus 1
+
+[INFO] : start done
+
+Start gigaspaces on msampdgs10 :
+
+[INFO] : start in progress ... 
+
+[INFO] : gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 0
+
+[INFO] : start done
+
+Start gigaspaces on msampdgs11 :
+
+[INFO] : start in progress ... 
+
+[INFO] : gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 0
+
+[INFO] : start done
+
+Start gigaspaces on msampdgs12 :
+
+[INFO] : start in progress ... 
+
+[INFO] : gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 0
+
+[INFO] : start done
+
+Start gigaspaces on msampdgs13 :
+
+[INFO] : start in progress ... 
+
+[INFO] : gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 0
+
+[INFO] : start done
+
+Start gigaspaces on msampdgs14 :
+
+[INFO] : start in progress ... 
+
+[INFO] : gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 0
+
+[INFO] : start done
+
+Start gigaspaces on msampdgs15 :
+
+[INFO] : start in progress ... 
+
+[INFO] : gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 0
+
+[INFO] : start done
+
+Start gigaspaces on msampdgs16 :
+
+[INFO] : start in progress ... 
+
+[INFO] : gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 0
+
+[INFO] : start done
+
+***** Fin du job : 2013/07/20 16:29:49 *****

@@ -1,0 +1,399 @@
+#!/usr/bin/perl
+
+#use strict;
+#use warnings;
+use Data::Dumper;
+use Term::ANSIColor;
+use Getopt::Long;
+use Pod::Usage;
+
+#--------------------------------------------------#
+#
+#Affichage des arguments
+#
+#--------------------------------------------------#
+my $man = 0;
+my $help = 0;
+my $job_name=();
+my $DATEF=();
+my $DATET=();
+my $display=0;
+my $event=0;
+my $info=0;
+my $ORDER_SQL="order by UJO_JOB.JOB_NAME,UJO_JOB_RUNS.STARTIME,UJO_JOB_RUNS.RUN_NUM,UJO_JOB_RUNS.NTRY,UJO_PROC_EVENTVU.EVT_NUM,UJO_JOB.UPDATE_STAMP";
+
+GetOptions('help|?|h' => \$help, man => \$man,'j|J=s' => \$job_name, 'd|D=s' => \$display,'f|F=s' => \$DATEF ,'t|T=s' => \$DATET,'e|E' => \$event,'i|I' => \$info) or pod2usage(-verbose => 0,-exit  => 1);
+pod2usage(-verbose => 1,-exit  => 0) if $help; #affiche help
+pod2usage(-verbose => 99,-exit  => 0 ) if $man; #affiche man
+if ( not defined $job_name ) {
+  pod2usage(-message => "\n[ERROR}: Pas de parametre job_name.\n",-verbose => 0,-exit  => 1); # si pas d'agurment lecture de l'entree standard
+}
+if ( not defined $DATEF ) {
+  pod2usage(-message => "\n[ERROR}: Pas de parametre date from.\n",-verbose => 0,-exit  => 1); # si pas d'agurment lecture de l'entree standard
+}
+if ( not defined $DATET ) {
+  pod2usage(-message => "\n[ERROR}: Pas de parametre date to.\n",-verbose => 0,-exit  => 1); # si pas d'agurment lecture de l'entree standard
+}
+if ( not defined $display ) {
+  pod2usage(-message => "\n[ERROR}: Pas de parametre display.\n",-verbose => 0,-exit  => 1); # si pas d'agurment lecture de l'entree standard
+}
+if ( $display !~ /[0|1|2]/) {
+  pod2usage(-message => "\n[ERROR}: Pas de parametre display.\n",-verbose => 0,-exit  => 1); # si pas d'agurment lecture de l'entree standard
+}
+if ($display==0)
+{
+        $ORDER_SQL="order by UJO_JOB_RUNS.STARTIME,UJO_JOB.JOB_NAME,UJO_JOB_RUNS.RUN_NUM,UJO_JOB_RUNS.NTRY,UJO_PROC_EVENTVU.EVT_NUM";
+}
+#--------------------------------------------------#
+#
+#Véfication date
+#
+#--------------------------------------------------#
+my ($FYEAR,$FMONTH,$FDAY,$FHOUR,$FMINUTE,$FSECOND)=$DATEF =~ /(\d{4})\/(\d{2})\/(\d{2})\s(\d{2}):(\d{2}):(\d{2})/;
+my ($TYEAR,$TMONTH,$TDAY,$THOUR,$TMINUTE,$TSECOND)=$DATET =~ /(\d{4})\/(\d{2})\/(\d{2})\s(\d{2}):(\d{2}):(\d{2})/;
+
+my $DATE_F="$FDAY$FMONTH$FYEAR $FHOUR:$FMINUTE:$FSECOND";
+my $DATE_T="$TDAY$TMONTH$TYEAR $THOUR:$TMINUTE:$TSECOND";
+
+if ($FMONTH > 12 )
+{
+        pod2usage(-message => "\n[ERROR}: format date from.\n",-verbose => 0,-exit  => 1); # si pas d'agurment lecture de l'entree standard
+}
+if ($FDAY > 31 )
+{
+        pod2usage(-message => "\n[ERROR}: format date from.\n",-verbose => 0,-exit  => 1); # si pas d'agurment lecture de l'entree standard
+}
+if ($FHOUR > 23 )
+{
+        pod2usage(-message => "\n[ERROR}: format date from.\n",-verbose => 0,-exit  => 1); # si pas d'agurment lecture de l'entree standard
+}
+if ($FMINUTE > 59 )
+{
+        pod2usage(-message => "\n[ERROR}: format date from.\n",-verbose => 0,-exit  => 1); # si pas d'agurment lecture de l'entree standard
+}
+if ($FSECOND > 59 )
+{
+        pod2usage(-message => "\n[ERROR}: format date from.\n",-verbose => 0,-exit  => 1); # si pas d'agurment lecture de l'entree standard
+}
+if ($FYEAR !~ /\d{4}/ )
+{
+        pod2usage(-message => "\n[ERROR}: format date from.\n",-verbose => 0,-exit  => 1); # si pas d'agurment lecture de l'entree standard
+}
+if ($TMONTH > 12 )
+{
+        pod2usage(-message => "\n[ERROR}: format date to.\n",-verbose => 0,-exit  => 1); # si pas d'agurment lecture de l'entree standard
+}
+if ($TDAY > 31 )
+{
+        pod2usage(-message => "\n[ERROR}: format date to.\n",-verbose => 0,-exit  => 1); # si pas d'agurment lecture de l'entree standard
+}
+if ($THOUR > 23 )
+{
+        pod2usage(-message => "\n[ERROR}: format date to.\n",-verbose => 0,-exit  => 1); # si pas d'agurment lecture de l'entree standard
+}
+if ($TMINUTE > 59 )
+{
+        pod2usage(-message => "\n[ERROR}: format date to.\n",-verbose => 0,-exit  => 1); # si pas d'agurment lecture de l'entree standard
+}
+if ($TSECOND > 59 )
+{
+        pod2usage(-message => "\n[ERROR}: format date to.\n",-verbose => 0,-exit  => 1); # si pas d'agurment lecture de l'entree standard
+}
+if ($TYEAR !~ /\d{4}/ )
+{
+        pod2usage(-message => "\n[ERROR}: format date to.\n",-verbose => 0,-exit  => 1); # si pas d'agurment lecture de l'entree standard
+}
+#--------------------------------------------------#
+#
+# Def color
+#
+#--------------------------------------------------#
+
+#surligne
+my $TS_RED="\033[7;31m";
+my $TS_GREEN="\033[7;32m";
+my $TS_YELLOW="\033[7;33m";
+my $TS_BLUE="\033[7;34m";
+my $TS_PURPLE="\033[7;35m";
+my $TS_CYAN="\033[7;36m";
+my $TS_WHITE="\033[7;37m";
+#normal
+my $T_BLACK="\033[1;30m";
+my $T_RED="\033[1;31m";
+my $T_GREEN="\033[1;32m";
+my $T_YELLOW="\033[1;33m";
+my $T_BLUE="\033[1;34m";
+my $T_PURPLE="\033[1;35m";
+my $T_CYAN="\033[1;36m";
+my $T_WHITE="\033[1;37m";
+#Surligne texte
+my $TSW_PURPLE="\033[7;35;47m";
+#fin
+my $T_FIN="\033[0m";
+
+#--------------------------------------------------#
+#
+# SQL base autosys
+#
+#--------------------------------------------------#
+
+my $USER="atsreader";
+my $PASS="atsreader";
+#my $INSTANCE=`chk_auto_up | grep -i "Have Connected successfully" | head -1 | cut -d":" -f2 | cut -d"." -f1 |sed 's/ //g'`;
+chomp $USER;
+chomp $PASS;
+#chomp $INSTANCE;
+#my $connect="$USER/$PASS\@$INSTANCE";
+
+#my @SQL =`sqlplus -s $connect <<-FINSQL
+#my @SQL =`sqlplus -s atsreader/atsreader\@P10973AP10 <<-FINSQL
+my @SQL =`sqlplus -s '/as sysdba' <<-FINSQL
+        whenever sqlerror exit 20;
+        whenever oserror exit 21;
+SPOOL "/tmp/fred.log.2"
+    set colsep '§'
+        set VERIFY OFF
+        SET ECHO OFF
+        SET NEWPAGE 0
+        SET PAGESIZE 0
+        SET FEEDBACK OFF
+        SET HEADING OFF
+        SET TRIMSPOOL ON
+        SET TAB OFF
+    SET LINESIZE 10000
+    set long  2048
+    set longc 2048
+        SELECT UJO_JOB.JOB_NAME as JOB_NAME,
+    UJO_INTCODES.TEXT as TEXT,
+    TO_CHAR(to_date('01011970','DDMMYYYY')+(AEDBADMIN.UJO_JOB_RUNS.STARTIME-(select int_val from AEDBADMIN.UJO_ALAMODE where type='gmt_offset'))/86400,'DD/MM/YYYY HH24:MI:SS') as STARTIME,
+    TO_CHAR(to_date('01011970','DDMMYYYY')+(AEDBADMIN.UJO_JOB_RUNS.ENDTIME-(select int_val from AEDBADMIN.UJO_ALAMODE where type='gmt_offset'))/86400,'DD/MM/YYYY HH24:MI:SS') as ENDTIME,
+    UJO_JOB_RUNS.RUN_MACHINE as MACHINE,
+	UJO_PROC_EVENTVU.TEXT as TEXT2,
+		UJO_PROC_EVENTVU.STATUSTXT as STATUSTXT,
+		TO_CHAR(UJO_PROC_EVENTVU.STAMP,'YYYY/MM/DD HH24:MI:SS') as STAMP,
+		UJO_PROC_EVENTVU.EVENTTXT as EVENTTXT,
+    UJO_JOB_RUNS.EXIT_CODE as EXIT_CODE
+        FROM AEDBADMIN.UJO_JOB,
+                AEDBADMIN.UJO_INTCODES,
+                AEDBADMIN.UJO_COMMAND_JOB,
+                AEDBADMIN.UJO_JOB_RUNS,
+aedbadmin.ujo_jobst j,
+                AEDBADMIN.UJO_PROC_EVENTVU
+        WHERE (UJO_JOB_RUNS.STATUS = UJO_INTCODES.CODE)
+                AND (UJO_JOB.JOB_VER = UJO_JOB_RUNS.JOB_VER)
+                AND (UJO_JOB.JOID = UJO_JOB_RUNS.JOID)
+                AND (UJO_JOB.OVER_NUM = UJO_JOB_RUNS.OVER_NUM)
+                AND (UJO_JOB.WF_JOID = UJO_JOB_RUNS.WF_JOID)
+                AND (UJO_JOB_RUNS.JOB_VER = UJO_PROC_EVENTVU.JOB_VER)
+                AND (UJO_JOB_RUNS.JOID = UJO_PROC_EVENTVU.JOID)
+                AND (UJO_JOB_RUNS.OVER_NUM = UJO_PROC_EVENTVU.OVER_NUM)
+                AND (UJO_JOB_RUNS.RUN_NUM = UJO_PROC_EVENTVU.RUN_NUM)
+                AND (UJO_JOB_RUNS.NTRY = UJO_PROC_EVENTVU.NTRY)
+                AND (UJO_JOB.JOB_VER = UJO_COMMAND_JOB.JOB_VER(+))
+                AND (UJO_JOB.JOID = UJO_COMMAND_JOB.JOID(+))
+                AND (UJO_JOB.OVER_NUM = UJO_COMMAND_JOB.OVER_NUM(+))
+                AND UJO_JOB.JOB_NAME like '$job_name'
+                AND to_date('01011970','DDMMYYYY')+(UJO_JOB_RUNS.STARTIME-(select int_val from AEDBADMIN.UJO_ALAMODE where type='gmt_offset'))/86400 BETWEEN to_date('$DATE_F','DDMMYYYY HH24:MI:SS')
+                AND to_date('$DATE_T','DDMMYYYY HH24:MI:SS')
+AND MACHINE IS NOT NULL
+                $ORDER_SQL;
+SPOOL OFF
+    exit
+FINSQL`;
+
+#--------------------------------------------------#
+#
+#Definition des parametres
+#
+#--------------------------------------------------#
+#my @autorep_j=`autorep -J $job_name -w|tail -n +4`;
+my %hash_sql=();
+my $cpt=0;
+my $cpt_event=0;
+my $cpt_max=0;
+
+if (( $event ) || ( $info ))
+{
+        #
+}
+else
+{
+        print "\n";
+        printf("%-01s;%-01s;%-1s;%-1s;%-01s;%-01s;\n","Jobname","RC","Start time","End time","Machine","Status");
+        #printf("%-01s;%-01s;%-1s;%-1s;%-01s;%-01s;%-01s;%-1s;%-1s;%-1s;%-1s;\n","Jobname","Satus","O","RC","Start time","End time","Duration","Run/Ntry","Machine","Insert","Modif");
+        #printf("%-68s %-11s %-1s %-3s %-19s %-19s %-10s %-9s %-13s %-9s %-9s\n","Jobname","Satus","O","RC","Start time","End time","Duration","Run/Ntry","Machine","Modif","Insert");
+        #printf("%-68s %-11s %-1s %-3s %-19s %-19s %-10s %-9s %-13s %-9s %-9s\n","--------------------------------------------------------------------","-----------","-","---","-------------------","-------------------","----------","---------","-------------","---------","---------");
+}
+if ($display==0)
+{
+        #--------------------------------------------------#
+        #
+        #affiche les jobs par horaire d'exétion
+        #
+        #--------------------------------------------------#
+        my $DOUBLON_JOB=" ";
+        my $DOUBLON_STATUS=" ";
+        my $DOUBLON_STARTIME=" ";
+        my $DOUBLON_ENDTIME=" ";
+        foreach my $i (0..$#SQL)
+        {
+                my $var=$SQL[$i];
+                chomp $var;
+                my ($JOB,$STATUS,$STARTIME,$ENDTIME,$RUN_MACHINE,$EXIT_CODE)=$var =~ /^(.*)§(.*)§(.*)§(.*)§(.*)§(.*)§(.*)§(.*)§(.*)§(.*)$/;
+                $JOB=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $STATUS=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $STARTIME=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $ENDTIME=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $RUN_MACHINE=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $EXIT_CODE=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $EVENTSTATUS=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $EVENTTXT=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $EVENTTEXT=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $EVENTSTAMP=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                my ($SDAY,$SMONTH,$SYEAR,$SHOUR,$SMINUTE,$SSECOND)=$STARTIME =~ /(\d{2})\/(\d{2})\/(\d{4})\s(\d{2}):(\d{2}):(\d{2})/;
+                my ($EDAY,$EMONTH,$EYEAR,$EHOUR,$EMINUTE,$ESECOND)=$ENDTIME =~ /(\d{2})\/(\d{2})\/(\d{4})\s(\d{2}):(\d{2}):(\d{2})/;
+                my $SDATE="$SYEAR/$SMONTH/$SDAY $SHOUR:$SMINUTE:$SSECOND";
+                my $EDATE="$EYEAR/$EMONTH/$EDAY $EHOUR:$EMINUTE:$ESECOND";
+                if ( $SDATE =~/01\/01\/1970 02:00:00/)
+                {
+                        $SDATE ="";
+                }
+                if ( $EDATE =~/1970\/01\/01 02:00:00/)
+                {
+                        $EDATE ="";
+                }
+                if (($JOB =~ /^$DOUBLON_JOB$/) && ($STATUS =~ /^$DOUBLON_STATUS$/) && ($STARTIME =~ /^$DOUBLON_STARTIME$/)&& ($ENDTIME =~ /^$DOUBLON_ENDTIME$/))
+                {
+                        if ( $event )
+                        {
+                                printf ("%-19s %-20s %-15s %-s\n",$EVENTSTAMP,$EVENTTXT,$EVENTSTATUS,$EVENTTEXT);
+                        }
+                }
+                else
+                {
+                        my $CSTATUS=$T_FIN;
+                        if ($STATUS =~/TERMINATED/)
+                        {
+                                $CSTATUS=$TS_PURPLE;
+                        }
+                        elsif ($STATUS =~/FAILURE/)
+                        {
+                                $CSTATUS=$TS_RED;
+                        }
+                        elsif ($STATUS =~/SUCCESS/)
+                        {
+                                $CSTATUS=$TS_GREEN;
+                        }
+                        elsif ($STATUS =~/RUNNING/)
+                        {
+                                $CSTATUS=$TS_YELLOW;
+                        }
+                        else
+                        {
+                                $CSTATUS=$TS_WHITE;
+                        }
+                    
+                        if (( $event ) || ( $info ))
+                        {
+                                print "\n";
+                                printf("%-01s;%-01s;%-1s;%-1s;%-01s;%-01s;\n","Jobname","RC","Start time","End time","Machine","Status");
+                                #printf("%-01s;%-01s;%-1s;%-1s;%-01s;%-01s;%-01s;%-1s;%-1s;%-1s;%-1s;\n","Jobname","RC","Start time","End time","Machine","Status","O","Duration","Run/Ntry","Insert","Modif");
+                                #printf("%-01s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %-1s %+1s\n","Jobname","Satus","O","RC","Start time","End time","Duration","Run/Ntry","Machine","Insert","Modif");
+                                #printf("%-68s %-11s %-1s %-3s %-19s %-19s %-10s %-9s %-13s %-9s %+9s\n","Jobname","Satus","O","RC","Start time","End time","Duration","Run/Ntry","Machine","Modif","Insert");
+                                #printf("%-68s %-11s %-1s %-3s %-19s %-19s %-10s %-9s %-13s %-9s %+9s\n","--------------------------------------------------------------------","-----------","-","---","-------------------","-------------------","----------","---------","-------------","---------","----------");
+                        }
+#                       printf("%-1s;%-1s;%-1s;%1s;%-1s;%-1s;%1s;%1s;%-1s;%-1s;%+1s;\n",$JOB,$STATUS,$OVERRIDE,$EXIT_CODE,$SDATE,$EDATE,$RUNTIME,$ntry,$RUN_MACHINE,$INS,$MODIF);
+                        printf("%-1s;%-1s;%-1s;%1s;%-1s;%-1s;\n",$JOB,$EXIT_CODE,$SDATE,$EDATE,$RUN_MACHINE,$STATUS);
+                        #printf("%-68s %-11s %-1s %3s %-19s %-19s %10s %9s %-13s %-9s %+9s\n",$JOB,$STATUS,$OVERRIDE,$EXIT_CODE,$SDATE,$EDATE,$RUNTIME,$ntry,$RUN_MACHINE,$MODIF,$INS);
+  
+                $DOUBLON_JOB=$JOB;
+                $DOUBLON_STATUS=$STATUS;
+                $DOUBLON_STARTIME=$STARTIME;
+                $DOUBLON_ENDTIME=$ENDTIME;
+                }
+        }
+}
+else
+{
+
+        #--------------------------------------------------#
+        #
+        # hash_sql
+        #
+        #--------------------------------------------------#
+        my $DOUBLON_JOB="";
+        my $DOUBLON_STATUS="";
+        my $DOUBLON_STARTIME="";
+        my $DOUBLON_ENDTIME="";
+        foreach my $i (0..$#SQL)
+        #foreach my $i (0<=$#SQL)
+        {
+                my $var=$SQL[$i];
+                chomp $var;
+                my ($JOB,$STATUS,$STARTIME,$ENDTIME,$RUN_MACHINE,$EXIT_CODE)=$var =~ /^(.*)§(.*)§(.*)§(.*)§(.*)§(.*)§(.*)§(.*)§(.*)§(.*)$/;
+                $JOB=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $STATUS=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $STARTIME=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $ENDTIME=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $RUN_MACHINE=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $EXIT_CODE=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $EVENTSTATUS=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $EVENTTXT=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $EVENTTEXT=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $EVENTSTAMP=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                my ($SDAY,$SMONTH,$SYEAR,$SHOUR,$SMINUTE,$SSECOND)=$STARTIME =~ /(\d{2})\/(\d{2})\/(\d{4})\s(\d{2}):(\d{2}):(\d{2})/;
+                my ($EDAY,$EMONTH,$EYEAR,$EHOUR,$EMINUTE,$ESECOND)=$ENDTIME =~ /(\d{2})\/(\d{2})\/(\d{4})\s(\d{2}):(\d{2}):(\d{2})/;
+                my $SDATE="$SYEAR/$SMONTH/$SDAY $SHOUR:$SMINUTE:$SSECOND";
+                my $EDATE="$EYEAR/$EMONTH/$EDAY $EHOUR:$EMINUTE:$ESECOND";
+
+                if ( $SDATE =~/01\/01\/1970 02:00:00/)
+                {
+                        $SDATE ="";
+                }
+
+                if ( $EDATE =~/1970\/01\/01 02:00:00/)
+                {
+                        $EDATE ="";
+                }
+                if (($JOB =~ /^$DOUBLON_JOB$/) && ($STATUS =~ /^$DOUBLON_STATUS$/) && ($STARTIME =~ /^$DOUBLON_STARTIME$/)&& ($ENDTIME =~ /^$DOUBLON_ENDTIME$/))
+                {
+                        $hash_sql{$JOB}{$cpt-1}{$cpt_event}{stamp}=$EVENTSTAMP;
+                        $hash_sql{$JOB}{$cpt-1}{$cpt_event}{txt}=$EVENTTXT;
+                        $hash_sql{$JOB}{$cpt-1}{$cpt_event}{status}=$EVENTSTATUS;
+                        $hash_sql{$JOB}{$cpt-1}{$cpt_event}{text}=$EVENTTEXT;
+                        $cpt_event++;
+                }
+                else
+                {
+                        if (not exists $hash_sql{$JOB})
+                        {
+                                $cpt=0;
+                                $cpt_event=0;
+                        }
+                        if (not exists $hash_sql{$JOB}{$cpt})
+                        {
+                                $cpt_event=0;
+                        }
+                        $hash_sql{$JOB}{$cpt}{status}=$STATUS;
+                        $hash_sql{$JOB}{$cpt}{start_time}=$SDATE;
+                        $hash_sql{$JOB}{$cpt}{end_time}=$EDATE;
+                        $hash_sql{$JOB}{$cpt}{duration}=$RUNTIME;
+                        $hash_sql{$JOB}{$cpt}{machine}=$RUN_MACHINE;
+                        $hash_sql{$JOB}{$cpt}{exit_code}=$EXIT_CODE;
+                        $hash_sql{$JOB}{$cpt}{$cpt_event}{stamp}=$EVENTSTAMP;
+                        $hash_sql{$JOB}{$cpt}{$cpt_event}{txt}=$EVENTTXT;
+                        $hash_sql{$JOB}{$cpt}{$cpt_event}{status}=$EVENTSTATUS;
+                        $hash_sql{$JOB}{$cpt}{$cpt_event}{text}=$EVENTTEXT;
+                        $cpt++;
+                        $cpt_event++;
+                        $DOUBLON_JOB=$JOB;
+                        $DOUBLON_STATUS=$STATUS;
+                        $DOUBLON_STARTIME=$STARTIME;
+                        $DOUBLON_ENDTIME=$ENDTIME;
+                        if ( $cpt > $cpt_max)
+                        {
+                                $cpt_max=$cpt;
+                        }
+                }
+        }
+}

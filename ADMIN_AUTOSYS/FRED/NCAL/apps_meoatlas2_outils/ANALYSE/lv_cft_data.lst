@@ -1,0 +1,14 @@
+LOGICAL VOLUME:     lv_cft_data            VOLUME GROUP:   extvga1
+LV IDENTIFIER:      003783bf00004c00000000ff49f4cfa5.13 PERMISSION:     read/write
+VG STATE:           active/complete        LV STATE:       opened/syncd
+TYPE:               jfs                    WRITE VERIFY:   off
+MAX LPs:            512                    PP SIZE:        64 megabyte(s)
+COPIES:             1                      SCHED POLICY:   parallel
+LPs:                357                    PPs:            357
+STALE PPs:          0                      BB POLICY:      relocatable
+INTER-POLICY:       minimum                RELOCATABLE:    yes
+INTRA-POLICY:       middle                 UPPER BOUND:    32
+MOUNT POINT:        /apps/cft_data         LABEL:          /apps/cft_data
+MIRROR WRITE CONSISTENCY: on/ACTIVE                              
+EACH LP COPY ON A SEPARATE PV ?: yes                                    
+Serialize IO ?:     NO                                     

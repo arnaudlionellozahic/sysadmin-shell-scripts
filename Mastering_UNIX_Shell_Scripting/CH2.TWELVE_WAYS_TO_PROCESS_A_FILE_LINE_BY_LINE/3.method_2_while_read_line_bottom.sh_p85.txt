@@ -1,0 +1,16 @@
+#!/bin/ksh
+
+while_read_LINE_bottom ()
+{
+while read LINE
+do
+        echo "$LINE"
+        :
+done < $FILENAME
+}
+
+# MAIN
+
+FILENAME=/Users/crashandro/INGE_PROD_reduit/8-LANGAGES/SHELL_2024/Mastering_UNIX_Shell_Scripting/CH2.TWELVE_WAYS_TO_PROCESS_A_FILE_LINE_BY_LINE/bigfile
+
+while_read_LINE_bottom

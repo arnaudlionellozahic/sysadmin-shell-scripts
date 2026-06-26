@@ -1,0 +1,1503 @@
+ksh -x profileA2.s00va9930435
++ . /apps/init_vars
++ . /etc/environment
++ PATH=/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin
++ TZ=GMT0
++ LANG=C
++ LOCPATH=/usr/lib/nls/loc
++ NLSPATH=/usr/lib/nls/msg/%L/%N:/usr/lib/nls/msg/%L/%N.cat
++ LC__FASTMSG=true
++ ODMDIR=/etc/objrepos
++ DEFAULT_BROWSER=netscape
++ AIXTHREAD_SCOPE=S
++ AIXTHREAD_MNRATIO=1:1
++ SPINLOOPTIME=500
++ AIXTHREAD_COND_DEBUG=OFF
++ AIXTHREAD_MUTEX_DEBUG=OFF
++ AIXTHREAD_RWLOCK_DEBUG=OFF
++ A2_BNP=/apps
++ A2_UNIX=/apps/exploit
++ A2_PRODUITS=/apps
++ RES_TIMEOUT=1
++ RES_RETRY=1
++ GZIP=-1
++ awk -F= NF==2&&$1!~/#/{print $1} /etc/environment
++ export PATH
++ export TZ
++ export LANG
++ export LOCPATH
++ export NLSPATH
++ export LC__FASTMSG
++ export ODMDIR
++ export DEFAULT_BROWSER
++ export AIXTHREAD_SCOPE
++ export AIXTHREAD_MNRATIO
++ export SPINLOOPTIME
++ export AIXTHREAD_COND_DEBUG
++ export AIXTHREAD_MUTEX_DEBUG
++ export AIXTHREAD_RWLOCK_DEBUG
++ export A2_BNP
++ export A2_UNIX
++ export A2_PRODUITS
++ export RES_TIMEOUT
++ export RES_RETRY
++ export GZIP
++ [[  =  ]]
++ export LC_MESSAGES=fr_FR
++ . /usr/bin/EnvironnementEM
++ set +u
++ [  =  ]
++ CAIGLBL0000=/apps/unicenter/EM/3.1
++ export CAIGLBL0000
++ [ -f /apps/unicenter/EM/3.1/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/scripts/envusr
++ grep u
++ echo xh
++ 1> /dev/null
++ [ 1 = 0 ]
++ setu=0
++ [  = /apps/unicenter/EM/3.1 ]
++ + /apps/unicenter/EM/3.1/bin/casystyp
+SYSTYPE=AIX
++ . /apps/unicenter/EM/3.1/scripts/envset
++ CAIGLBL0000=/apps/unicenter/EM/3.1
++ export CAIGLBL0000
++ CA_DB=/apps/unicenter/EM/3.1/cadb
++ export CA_DB
++ CA_CAIMESSAGE=/apps/unicenter/EM/3.1/messages/american
++ export CA_CAIMESSAGE
++ CA_CAILANGUAGE=enu
++ export CA_CAILANGUAGE
++ CA_CAISERV_DIR=/apps/unicenter/EM/3.1/bin
++ export CA_CAISERV_DIR
++ . /apps/unicenter/EM/3.1/scripts/global_vars
++ [ /apps/unicenter/EM/3.1 =  ]
++ + /apps/unicenter/EM/3.1/bin/casystyp
+SYSTYPE=AIX
++ CA_CAILANGUAGE=enu
++ cut -c1-5
++ echo C
++ [ ! ( C = AMENG -o C = en_US -o C = enu -o C = C -o C =  ) ]
++ cut -c1-2
++ echo C
++ cut -c1-2
++ echo C
++ [ C = De -o C = de ]
++ cut -c1-2
++ echo C
++ [ C = fr ]
++ cut -c1-2
++ echo C
++ [ C = es ]
++ [ ! -d /apps/unicenter/EM/3.1/messages/american ]
++ export CA_CAIMESSAGE CA_CAILANGUAGE CA_LOCALE
++ + /apps/unicenter/EM/3.1/bin/ca_uname
+this_node=s00va9930435
++ CAIUNIDB=caiunidb
++ export CAIUNIDB
++ CA_REPORT=/apps/unicenter/EM/3.1/report/
++ export CA_REPORT
++ + awk /nolog/ { print $2 }
++ 2>& 1
+reset_logging=inactif
++ [ inactif = off ]
++ . /apps/unicenter/EM/3.1/scripts/addpath
++ [ AIX = NCR -a -d /usr/ucb ]
++ [ -d /apps/unicenter/EM/3.1/bin ]
++ ca_add_path /apps/unicenter/EM/3.1/bin
++ [ -d /apps/unicenter/EM/3.1/cadb/system ]
++ ca_add_path /apps/unicenter/EM/3.1/cadb/system
++ [ -d /apps/unicenter/EM/3.1/gui/bin ]
++ ca_add_path /apps/unicenter/EM/3.1/gui/bin
++ export PATH
++ [ inactif = off ]
++ CAIGLBL0002=CACRITMON
++ export CAIGLBL0002
++ CAIGLBL0006=CASNMPMGR
++ export CAIGLBL0006
++ tfn=/apps/unicenter/EM/3.1/opr/config/s00va9930435/cai_wtor_node
++ [ -f /apps/unicenter/EM/3.1/opr/config/s00va9930435/cai_wtor_node ]
++ [ -f /apps/unicenter/EM/3.1/secu/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/secu/scripts/envusr
++ sh -c echo $CAI_DATEFMT
++ [  =  ]
++ + /apps/unicenter/EM/3.1/secu/bin/cadatefmt
+DATEFMT=system
++ [ 0 -ne 0 -o system =  -o system = system ]
++ CAI_DATEFMT=mm/dd/yyyy
++ export CAI_DATEFMT
++ [ -f /apps/unicenter/EM/3.1/secu/scripts/envusrlocal ]
++ CAPB_PATH=/apps/unicenter/EM/3.1/prb/config/
++ export CAPB_PATH
++ [ -f /apps/unicenter/EM/3.1/opr/config/s00va9930435/camsgf_oprdirect ]
++ CAI_CAMSGF_OPRDIRECT=
++ export CAI_CAMSGF_OPRDIRECT
++ [ -d /apps/unicenter/EM/3.1/doc/man ]
++ + awk /nolog/ { print $2 }
++ 2>& 1
+reset_logging=inactif
++ [ inactif = off ]
++ . /apps/unicenter/EM/3.1/scripts/addpath
++ ca_add_path /apps/unicenter/EM/3.1/scripts
++ [ -d /apps/unicenter/EM/3.1/TNGagent.sta/scripts ]
++ [ -d /apps/unicenter/EM/3.1/bases/scripts ]
++ [ -d /apps/unicenter/EM/3.1/bin/scripts ]
++ [ -d /apps/unicenter/EM/3.1/cadb/scripts ]
++ [ -f /apps/unicenter/EM/3.1/cadb/scripts/envusr ]
++ [ -f /apps/unicenter/EM/3.1/cadb/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/cal/scripts ]
++ [ -f /apps/unicenter/EM/3.1/cal/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/cal/scripts/envusr
++ . /apps/unicenter/EM/3.1/cal/scripts/envset
++ CA_UNAME=/apps/unicenter/EM/3.1/bin/ca_uname
++ + /apps/unicenter/EM/3.1/bin/ca_uname
+CAICAL0003=/apps/unicenter/EM/3.1/cal/config/s00va9930435
++ export CAICAL0003
++ CAICAL0004=1
++ export CAICAL0004
++ [ ! -f /apps/unicenter/EM/3.1/prb/scripts/envset ]
++ CAI_CALFILE=/apps/unicenter/EM/3.1/cal
++ export CAI_CALFILE
++ CA_CAL_WORKDAY=1-5
++ export CA_CAL_WORKDAY
++ [ -f /apps/unicenter/EM/3.1/cal/scripts/envsetlocal ]
++ [ -f /apps/unicenter/EM/3.1/cal/scripts/envusrlocal ]
++ [ -f /apps/unicenter/EM/3.1/cal/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/cal.sauve.dec2014/scripts ]
++ [ -f /apps/unicenter/EM/3.1/cal.sauve.dec2014/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/cal.sauve.dec2014/scripts/envusr
++ . /apps/unicenter/EM/3.1/cal/scripts/envset
++ CA_UNAME=/apps/unicenter/EM/3.1/bin/ca_uname
++ + /apps/unicenter/EM/3.1/bin/ca_uname
+CAICAL0003=/apps/unicenter/EM/3.1/cal/config/s00va9930435
++ export CAICAL0003
++ CAICAL0004=1
++ export CAICAL0004
++ [ ! -f /apps/unicenter/EM/3.1/prb/scripts/envset ]
++ CAI_CALFILE=/apps/unicenter/EM/3.1/cal
++ export CAI_CALFILE
++ CA_CAL_WORKDAY=1-5
++ export CA_CAL_WORKDAY
++ [ -f /apps/unicenter/EM/3.1/cal/scripts/envsetlocal ]
++ [ -f /apps/unicenter/EM/3.1/cal/scripts/envusrlocal ]
++ [ -f /apps/unicenter/EM/3.1/cal.sauve.dec2014/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/cal.save/scripts ]
++ [ -f /apps/unicenter/EM/3.1/cal.save/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/cal.save/scripts/envusr
++ . /apps/unicenter/EM/3.1/cal/scripts/envset
++ CA_UNAME=/apps/unicenter/EM/3.1/bin/ca_uname
++ + /apps/unicenter/EM/3.1/bin/ca_uname
+CAICAL0003=/apps/unicenter/EM/3.1/cal/config/s00va9930435
++ export CAICAL0003
++ CAICAL0004=1
++ export CAICAL0004
++ [ ! -f /apps/unicenter/EM/3.1/prb/scripts/envset ]
++ CAI_CALFILE=/apps/unicenter/EM/3.1/cal
++ export CAI_CALFILE
++ CA_CAL_WORKDAY=1-5
++ export CA_CAL_WORKDAY
++ [ -f /apps/unicenter/EM/3.1/cal/scripts/envsetlocal ]
++ [ -f /apps/unicenter/EM/3.1/cal/scripts/envusrlocal ]
++ [ -f /apps/unicenter/EM/3.1/cal.save/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/cal.save.20140423/scripts ]
++ [ -f /apps/unicenter/EM/3.1/cal.save.20140423/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/cal.save.20140423/scripts/envusr
++ . /apps/unicenter/EM/3.1/cal/scripts/envset
++ CA_UNAME=/apps/unicenter/EM/3.1/bin/ca_uname
++ + /apps/unicenter/EM/3.1/bin/ca_uname
+CAICAL0003=/apps/unicenter/EM/3.1/cal/config/s00va9930435
++ export CAICAL0003
++ CAICAL0004=1
++ export CAICAL0004
++ [ ! -f /apps/unicenter/EM/3.1/prb/scripts/envset ]
++ CAI_CALFILE=/apps/unicenter/EM/3.1/cal
++ export CAI_CALFILE
++ CA_CAL_WORKDAY=1-5
++ export CA_CAL_WORKDAY
++ [ -f /apps/unicenter/EM/3.1/cal/scripts/envsetlocal ]
++ [ -f /apps/unicenter/EM/3.1/cal/scripts/envusrlocal ]
++ [ -f /apps/unicenter/EM/3.1/cal.save.20140423/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/cci/scripts ]
++ [ -f /apps/unicenter/EM/3.1/cci/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/cci/scripts/envusr
++ [ -f /apps/unicenter/EM/3.1/cci/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/common/scripts ]
++ [ -f /apps/unicenter/EM/3.1/common/scripts/envusr ]
++ [ -f /apps/unicenter/EM/3.1/common/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/crit/scripts ]
++ [ -f /apps/unicenter/EM/3.1/crit/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/crit/scripts/envusr
++ CAICRIT0001=/apps/unicenter/EM/3.1/crit/cacmgrtrc
++ export CAICRIT0001
++ CAICRIT0003=caiunidb
++ export CAICRIT0003
++ CAICRIT0004=CADB.CRIT
++ export CAICRIT0004
++ [ -f /apps/unicenter/EM/3.1/crit/scripts/envsetlocal ]
++ [ -f /apps/unicenter/EM/3.1/crit/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/db/scripts ]
++ [ -f /apps/unicenter/EM/3.1/db/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/db/scripts/envusr
++ [ -f /apps/unicenter/EM/3.1/db/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/defans/scripts ]
++ [ -d /apps/unicenter/EM/3.1/defans_bases/scripts ]
++ [ -d /apps/unicenter/EM/3.1/drive/scripts ]
++ [ -d /apps/unicenter/EM/3.1/em/scripts ]
++ [ -f /apps/unicenter/EM/3.1/em/scripts/envusr ]
++ [ -f /apps/unicenter/EM/3.1/em/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/emsrvc/scripts ]
++ [ -f /apps/unicenter/EM/3.1/emsrvc/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/emsrvc/scripts/envusr
++ . /apps/unicenter/EM/3.1/emsrvc/scripts/envset
++ CAEM_DATA_DIR=/apps/unicenter/EM/3.1/emsrvc/data
++ export CAEM_DATA_DIR
++ CA_AGENT_TIMEOUT=120
++ export CA_AGENT_TIMEOUT
++ CA_ROUTER_TIMEOUT=120
++ export CA_ROUTER_TIMEOUT
++ [ -f /apps/unicenter/EM/3.1/emsrvc/scripts/envsetlocal ]
++ [ -f /apps/unicenter/EM/3.1/emsrvc/scripts/envusrlocal ]
++ [ -f /apps/unicenter/EM/3.1/emsrvc/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/enf/scripts ]
++ [ -f /apps/unicenter/EM/3.1/enf/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/enf/scripts/envusr
++ . /apps/unicenter/EM/3.1/enf/scripts/envset
++ [ /apps/unicenter/EM/3.1 =  ]
++ CAI_ENF_BIN=/apps/unicenter/EM/3.1/enf/bin
++ CAI_ENF_CONFIG=/apps/unicenter/EM/3.1/enf/config
++ CAI_ENF_DEBUG=0
++ CAI_ENF_LOG=/apps/unicenter/EM/3.1/enf
++ CAI_ENF_OBJECT=/apps/unicenter/EM/3.1/enf/obj
++ CAI_ENF_PROGRAM=/etc/drivers/enf
++ CAI_ENF_SCRIPTS=/apps/unicenter/EM/3.1/enf/scripts
++ export CAI_ENF_BIN CAI_ENF_OBJECT CAI_ENF_CONFIG CAI_ENF_LOG CAI_ENF_DEBUG
++ export CAI_ENF_SCRIPTS CAI_ENF_PROGRAM
++ [ -f /apps/unicenter/EM/3.1/enf/scripts/envsetlocal ]
++ [ -f /apps/unicenter/EM/3.1/enf/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/gui/scripts ]
++ [ -d /apps/unicenter/EM/3.1/help/scripts ]
++ [ -f /apps/unicenter/EM/3.1/help/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/help/scripts/envusr
++ [  = /apps/unicenter/EM/3.1 ]
++ [ -f /apps/unicenter/EM/3.1/help/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/include/scripts ]
++ [ -d /apps/unicenter/EM/3.1/kernparmchk.list/scripts ]
++ [ -d /apps/unicenter/EM/3.1/lib/scripts ]
++ [ -d /apps/unicenter/EM/3.1/license/scripts ]
++ [ -f /apps/unicenter/EM/3.1/license/scripts/envusr ]
++ [ -f /apps/unicenter/EM/3.1/license/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/messages/scripts ]
++ [ -f /apps/unicenter/EM/3.1/messages/scripts/envusr ]
++ [ -f /apps/unicenter/EM/3.1/messages/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/opr/scripts ]
++ [ -f /apps/unicenter/EM/3.1/opr/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/opr/scripts/envusr
++ CA_OPR_RETAIN_LOGS=0
++ export CA_OPR_RETAIN_LOGS
++ CAI_OPR_RETRY_REMOTE=180
++ export CAI_OPR_RETRY_REMOTE
++ CA_OPRPING_TIMEOUT=30
++ export CA_OPRPING_TIMEOUT
++ CAI_CONLOG=/apps/unicenter/EM/3.1/opr/logs
++ export CAI_CONLOG
++ CA_OPR_WRITE_MSGACK=Yes
++ export CA_OPR_WRITE_MSGACK
++ CA_SIMULATESLEEPTIME=0
++ export CA_SIMULATESLEEPTIME
++ + ca_uname
+this_node=s00va9930435
++ [ -f /apps/unicenter/EM/3.1/opr/config/s00va9930435/oprsaf ]
++ [ -f /apps/unicenter/EM/3.1/opr/scripts/envusrlocal ]
++ . /apps/unicenter/EM/3.1/opr/scripts/envusrlocal
++ CA_OPR_RETAIN_LOGS=15
++ export CA_OPR_RETAIN_LOGS
++ CA_OPR_SAF_ROOT=/apps/unicenter/EM/3.1/opr/logs/saf
++ export CA_OPR_SAF_ROOT
++ [ -f /apps/unicenter/EM/3.1/opr/scripts/envusrlocal ]
++ . /apps/unicenter/EM/3.1/opr/scripts/envusrlocal
++ CA_OPR_RETAIN_LOGS=15
++ export CA_OPR_RETAIN_LOGS
++ CA_OPR_SAF_ROOT=/apps/unicenter/EM/3.1/opr/logs/saf
++ export CA_OPR_SAF_ROOT
++ [ -d /apps/unicenter/EM/3.1/prb/scripts ]
++ [ -f /apps/unicenter/EM/3.1/prb/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/prb/scripts/envusr
++ CAPB_PATH=/apps/unicenter/EM/3.1/prb/config/
++ export CAPB_PATH
++ CAPB_DEBUG=OFF
++ export CAPB_DEBUG
++ CAPBMGNT_NAME=caiunidb
++ export CAPBMGNT_NAME
++ CAIPRB0200=/apps/unicenter/EM/3.1/tmp/
++ export CAIPRB0200
++ CA_UNICENTER_DB_ROOT=/apps/unicenter/EM/3.1/db/
++ export CA_UNICENTER_DB_ROOT
++ [ -f /apps/unicenter/EM/3.1/prb/scripts/envusrlocal ]
++ [ -f /apps/unicenter/EM/3.1/prb/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/prnt/scripts ]
++ [ -f /apps/unicenter/EM/3.1/prnt/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/prnt/scripts/envusr
++ [ -f /apps/unicenter/EM/3.1/prnt/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/prsr/scripts ]
++ [ -d /apps/unicenter/EM/3.1/release/scripts ]
++ [ -f /apps/unicenter/EM/3.1/release/scripts/envusr ]
++ [ -f /apps/unicenter/EM/3.1/release/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/replaced/scripts ]
++ [ -d /apps/unicenter/EM/3.1/report/scripts ]
++ [ -d /apps/unicenter/EM/3.1/rept/scripts ]
++ [ -f /apps/unicenter/EM/3.1/rept/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/rept/scripts/envusr
++ [ -f /apps/unicenter/EM/3.1/rept/scripts/envusrlocal ]
++ [ -f /apps/unicenter/EM/3.1/rept/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/s00va9930435.his/scripts ]
++ [ -d /apps/unicenter/EM/3.1/sche/scripts ]
++ [ -f /apps/unicenter/EM/3.1/sche/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/sche/scripts/envusr
++ . /apps/unicenter/EM/3.1/sche/scripts/envset
++ + /apps/unicenter/EM/3.1/bin/ca_uname
+HOST=s00va9930435
++ export HOST
++ CAISCHD0001=/apps/unicenter/EM/3.1/sche/bin
++ export CAISCHD0001
++ CAISCHD0002=S
++ export CAISCHD0002
++ CAISCHD0003=N
++ export CAISCHD0003
++ CAISCHD0004=/apps/unicenter/EM/3.1/sche/prod
++ export CAISCHD0004
++ CAISCHD0005=ca70435
++ export CAISCHD0005
++ CAISCHD0006=/apps/unicenter/EM/3.1/sche/log/s00va9930435
++ export CAISCHD0006
++ CAISCHD0007=2
++ export CAISCHD0007
++ CAISCHD0008=/apps/unicenter/EM/3.1/tmp/s00va9930435
++ export CAISCHD0008
++ CAISCHD0009=base
++ export CAISCHD0009
++ CAISCHD0010=10000
++ export CAISCHD0010
++ CAISCHD0011=1
++ export CAISCHD0011
++ CAISCHD0012=3
++ export CAISCHD0012
++ CAISCHD0014=Yes
++ export CAISCHD0014
++ CAISCHD0016=0
++ export CAISCHD0016
++ CAISCHD0017=Yes
++ export CAISCHD0017
++ CAISCHD0018=10
++ export CAISCHD0018
++ CAISCHD0019=Yes
++ export CAISCHD0019
++ CAISCHD0020=anything
++ export CAISCHD0020
++ CAISCHD0021=NORMAL
++ export CAISCHD0021
++ CAISCHD0022=REMOTE
++ export CAISCHD0022
++ CAISCHD0023=30
++ export CAISCHD0023
++ CAISCHD0024=3
++ export CAISCHD0024
++ CAISCHD0025=500
++ export CAISCHD0025
++ CAISCHD0026=500
++ export CAISCHD0026
++ CAISCHD0027=500
++ export CAISCHD0027
++ CAISCHD0028=500
++ export CAISCHD0028
++ CAISCHD0029=5
++ export CAISCHD0029
++ CAISCHD0030=20
++ export CAISCHD0030
++ CAISCHD0032=5
++ export CAISCHD0032
++ CAISCHD0035=Yes
++ export CAISCHD0035
++ CAISCHD0037=0
++ export CAISCHD0037
++ CAISCHD0040=No
++ export CAISCHD0040
++ CAISCHD0042=0
++ export CAISCHD0042
++ CAISCHD0044=0
++ export CAISCHD0044
++ CAISCHD0045=1
++ export CAISCHD0045
++ CAISCHD0082=10
++ export CAISCHD0082
++ CAISCHD0200=/apps/unicenter/EM/3.1/tmp
++ export CAISCHD0200
++ CAISCHD0210=Normal
++ export CAISCHD0210
++ CAISCHD0216=0
++ export CAISCHD0216
++ CAISCHD0218=Y
++ export CAISCHD0218
++ CAISCHD0220=Y
++ export CAISCHD0220
++ CAISCHD0500=02
++ export CAISCHD0500
++ CAISCHD0501=4
++ export CAISCHD0501
++ CAISCHD0503=0
++ export CAISCHD0503
++ CAISCHD0511=N
++ export CAISCHD0511
++ CAISCHD0520=Y
++ export CAISCHD0520
++ CAISCHD0523=0
++ export CAISCHD0523
++ CAISCHD0524=/apps/unicenter/EM/3.1/sche/log/s00va9930435
++ export CAISCHD0524
++ [ -f /apps/unicenter/EM/3.1/sche/scripts/envsetlocal ]
++ . /apps/unicenter/EM/3.1/sche/scripts/envsetlocal
++ CAISCHD0004=/apps/exploit/tng
++ export CAISCHD0004
++ CAISCHD0005=9930435
++ export CAISCHD0005
++ CAISCHD0007=2
++ export CAISCHD0007
++ CAISCHD0010=3000
++ export CAISCHD0010
++ CAISCHD0012=0
++ export CAISCHD0012
++ CAISCHD0014=No
++ export CAISCHD0014
++ CAISCHD0024=10
++ export CAISCHD0024
++ CAISCHD0025=40000
++ export CAISCHD0025
++ CAISCHD0026=10000
++ export CAISCHD0026
++ CAISCHD0027=10000
++ export CAISCHD0027
++ CAISCHD0031=Y
++ export CAISCHD0031
++ CAISCHD0044=30
++ export CAISCHD0044
++ CAISCHD0081=Y
++ export CAISCHD0081
++ CAISCHD0082=10
++ export CAISCHD0082
++ CAISCHD0084=Yes
++ export CAISCHD0084
++ CAISCHD0511=Yes
++ export CAISCHD0511
++ CAISCHD0513=60
++ export CAISCHD0513
++ CAISCHD0515=No
++ export CAISCHD0515
++ CAISCHD0503=1
++ export CAISCHD0503
++ CAISCHD0215=60
++ export CAISCHD0215
++ CAISCHD0216=0
++ export CAISCHD0216
++ CAISCHD0218=Y
++ export CAISCHD0218
++ CAISCHD0220=N
++ export CAISCHD0220
++ CAISCHD0037=1
++ export CAISCHD0037
++ CAISCHD0216=1
++ export CAISCHD0216
++ CAISCHD0045=5
++ export CAISCHD0045
++ CAI_DATEFMT=dd-mm-yyyy
++ export CAI_DATEFMT
++ CAISCHD0040=Yes
++ export CAISCHD0040
++ CAISCHD0531=No
++ export CAISCHD0531
++ CAISCHD0534=N
++ export CAISCHD0534
++ CAISCHD0210=Off
++ export CAISCHD0210
++ CAISCHD0018=30
++ export CAISCHD0018
++ CAISCHD0028=1000
++ [ -f /apps/unicenter/EM/3.1/sche/scripts/envusrlocal ]
++ [ -f /apps/unicenter/EM/3.1/sche/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/scripts/scripts ]
++ [ -d /apps/unicenter/EM/3.1/sdk/scripts ]
++ [ -d /apps/unicenter/EM/3.1/secopts/scripts ]
++ [ -d /apps/unicenter/EM/3.1/secu/scripts ]
++ [ -f /apps/unicenter/EM/3.1/secu/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/secu/scripts/envusr
++ sh -c echo $CAI_DATEFMT
++ [ dd-mm-yyyy =  ]
++ [ -f /apps/unicenter/EM/3.1/secu/scripts/envusrlocal ]
++ [ -f /apps/unicenter/EM/3.1/secu/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/snmp/scripts ]
++ [ -f /apps/unicenter/EM/3.1/snmp/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/snmp/scripts/envusr
++ . /apps/unicenter/EM/3.1/snmp/scripts/envset
++ CAICATD0000=1.3.6.1.4.1.791
++ export CAICATD0000
++ CAICATD0002=1
++ export CAICATD0002
++ CAICATD0003=1
++ export CAICATD0003
++ CAICATD0004=60
++ export CAICATD0004
++ CAICATD0005=/apps/unicenter/EM/3.1/snmp/dat/mib.txt
++ export CAICATD0005
++ + /apps/unicenter/EM/3.1/bin/ca_uname
+snmp_cfg_dir=/apps/unicenter/EM/3.1/snmp/config/s00va9930435
++ + /apps/unicenter/EM/3.1/bin/casystyp
+SYSTYPE=AIX
++ [ -n AIX -a -f /apps/unicenter/EM/3.1/snmp/config/s00va9930435/netmgttool ]
++ + cat /apps/unicenter/EM/3.1/snmp/config/s00va9930435/netmgttool
+CAICATD0006=s00va9930435
++ export CAICATD0006
++ [ AIX = SunOS -a -f /apps/unicenter/EM/3.1/snmp/config/s00va9930435/netmgttool ]
++ [ AIX = SunOS -a -f /apps/unicenter/EM/3.1/snmp/config/s00va9930435/sunnetmngr ]
++ [ AIX = SunOS -a -f /apps/unicenter/EM/3.1/snmp/config/s00va9930435/netmgr ]
++ [ AIX = SunOS_i386 -a -f /apps/unicenter/EM/3.1/snmp/config/s00va9930435/sunnetmngr ]
++ [ AIX = HP-UX -a -f /apps/unicenter/EM/3.1/snmp/config/s00va9930435/netmgttool ]
++ [ AIX = HP-UX -a -f /apps/unicenter/EM/3.1/snmp/config/s00va9930435/hpnetmgr ]
++ [ AIX = AIX -a -f /apps/unicenter/EM/3.1/snmp/config/s00va9930435/netmgttool ]
++ + cat /apps/unicenter/EM/3.1/snmp/config/s00va9930435/netmgttool
+CAICATD0006=s00va9930435
++ export CAICATD0006
++ [ AIX = alpha -a -f /apps/unicenter/EM/3.1/snmp/config/s00va9930435/netmgttool ]
++ [ -f /apps/unicenter/EM/3.1/snmp/config/s00va9930435/netmgtdisp ]
++ + cat /apps/unicenter/EM/3.1/snmp/config/s00va9930435/netmgtdisp
+CAICATD0007=s00va9930435:0.0
++ export CAICATD0007
++ . /apps/unicenter/EM/3.1/scripts/addpath
++ ca_add_path /apps/unicenter/EM/3.1/snmp/bin
++ export PATH
++ [ -x /apps/unicenter/EM/3.1/snmp/scripts/envsetlocal ]
++ CAICATD0009=V1
++ export CAICATD0009
++ CA_TRAPD_MASK_COM=YES
++ export CA_TRAPD_MASK_COM
++ CA_EOID2STR=NUMBER
++ export CA_EOID2STR
++ CAICATD0008=/etc/snmp//snmpd.conf
++ export CAICATD0008
++ CAICATD0008=/etc/snmpd.conf
++ export CAICATD0008
++ [ -f /apps/unicenter/EM/3.1/snmp/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/star/scripts ]
++ [ -f /apps/unicenter/EM/3.1/star/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/star/scripts/envusr
++ [ -f /apps/unicenter/EM/3.1/star/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/stat/scripts ]
++ [ -f /apps/unicenter/EM/3.1/stat/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/stat/scripts/envusr
++ [  = /apps/unicenter/EM/3.1 ]
++ [ -f /apps/unicenter/EM/3.1/stat/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/tape/scripts ]
++ [ -f /apps/unicenter/EM/3.1/tape/scripts/envusr ]
++ . /apps/unicenter/EM/3.1/tape/scripts/envusr
++ . /apps/unicenter/EM/3.1/tape/scripts/envset
++ CA_TMS_ROOT=/apps/unicenter/EM/3.1/tape
++ export CA_TMS_ROOT
++ [ -f /apps/unicenter/EM/3.1/tape/data/server.nam ]
++ + cat /apps/unicenter/EM/3.1/tape/data/server.nam
+CAIGLBL0004=s00va9930435
++ export CAIGLBL0004
++ CA_TMS_DATA=/apps/unicenter/EM/3.1/tape/data
++ export CA_TMS_DATA
++ CA_TMS_EXE=/apps/unicenter/EM/3.1/tape/bin/
++ CA_TMS_HELP=/apps/unicenter/EM/3.1/tape/help
++ CA_TMS_LIBRARY=/apps/unicenter/EM/3.1/tape/lib
++ CA_TMS_MANAGER=/apps/unicenter/EM/3.1/tape/scripts
++ CA_TMSPROFILE=/apps/unicenter/EM/3.1/tape/secur/
++ CA_TMS_SYSTEM=/apps/unicenter/EM/3.1/tape/bin/
++ CAI_TMS_CONFIG=/apps/unicenter/EM/3.1/tape/config/
++ CA_TMS_DB=/apps/unicenter/EM/3.1/db/TMSDB.ROOT:/apps/unicenter/EM/3.1/db/TMSDB.JOURNAL1
++ CA_TMS_LDEVICE=/apps/unicenter/EM/3.1/tape/data/labels.dat
++ + /apps/unicenter/EM/3.1/bin/ca_uname
+CA_TMS_LWTR=s00va9930435
++ CA_TMS_SERVER=s00va9930435
++ export CA_TMS_DB
++ export CA_TMS_EXE
++ export CA_TMS_HELP
++ export CA_TMS_LDEVICE
++ export CA_TMS_LIBRARY
++ export CA_TMS_LWTR
++ export CA_TMS_MANAGER
++ export CA_TMSPROFILE
++ export CA_TMS_SERVER
++ export CA_TMS_SYSTEM
++ export CAI_TMS_CONFIG
++ [ -f /apps/unicenter/EM/3.1/tape/bin/arcserve_exit ]
++ TMS_EXTERNLABEL_EXIT0=/apps/unicenter/EM/3.1/tape/bin/arcserve_exit
++ export TMS_EXTERNLABEL_EXIT0
++ . /apps/unicenter/EM/3.1/scripts/addpath
++ ca_add_path /apps/unicenter/EM/3.1/tape/scripts
++ ca_add_path /apps/unicenter/EM/3.1/tape/bin/
++ export PATH
++ [ -f /apps/unicenter/EM/3.1/tape/scripts/envsetlocal ]
++ . /apps/unicenter/EM/3.1/tape/scripts/report.vars
++ CA_TMS_VLMSTRPT=/apps/unicenter/EM/3.1/tape/repts/volume.lis
++ CA_TMS_FLMSTRPT=/apps/unicenter/EM/3.1/tape/repts/file.lis
++ CA_TMS_VSMSTRPT=/apps/unicenter/EM/3.1/tape/repts/volset.lis
++ export CA_TMS_VLMSTRPT
++ export CA_TMS_FLMSTRPT
++ export CA_TMS_VSMSTRPT
++ CA_TMS_SCRTRPT=/apps/unicenter/EM/3.1/tape/repts/scrtlist.lis
++ export CA_TMS_SCRTRPT
++ CA_TMS_PULLRPT=/apps/unicenter/EM/3.1/tape/repts/pulllist.lis
++ CA_TMS_CLENRPT=/apps/unicenter/EM/3.1/tape/repts/clenlist.lis
++ CA_TMS_ERASRPT=/apps/unicenter/EM/3.1/tape/repts/eraslist.lis
++ CA_TMS_REPLRPT=/apps/unicenter/EM/3.1/tape/repts/repllist.lis
++ export CA_TMS_PULLRPT
++ export CA_TMS_CLENRPT
++ export CA_TMS_ERASRPT
++ export CA_TMS_REPLRPT
++ CA_TMS_WSPULL=/apps/unicenter/EM/3.1/tape/repts/wspull.lis
++ CA_TMS_WSCLEN=/apps/unicenter/EM/3.1/tape/repts/wsclen.lis
++ CA_TMS_WSERAS=/apps/unicenter/EM/3.1/tape/repts/wseras.lis
++ CA_TMS_WSREPL=/apps/unicenter/EM/3.1/tape/repts/wsrepl.lis
++ export CA_TMS_WSPULL
++ export CA_TMS_WSCLEN
++ export CA_TMS_WSERAS
++ export CA_TMS_WSREPL
++ [ -f /apps/unicenter/EM/3.1/tape/data/server.nam ]
++ + cat /apps/unicenter/EM/3.1/tape/data/server.nam
+CAIGLBL0004=s00va9930435
++ export CAIGLBL0004
++ [ -f /apps/unicenter/EM/3.1/tape/data/server.type ]
++ CA1_DATA=/apps/unicenter/EM/3.1/tape/data
++ export CA1_DATA
++ + /apps/unicenter/EM/3.1/bin/ca_uname
+CA_TMS_LWTR=s00va9930435
++ CA_TMS_SERVER=s00va9930435
++ export CA_TMS_LWTR
++ export CA_TMS_SERVER
++ [ -f /apps/unicenter/EM/3.1/tape/scripts/envusrlocal ]
++ [ -f /apps/unicenter/EM/3.1/tape/scripts/envusrlocal ]
++ [ -d /apps/unicenter/EM/3.1/tmp/scripts ]
++ [ -d /apps/unicenter/EM/3.1/version.ver/scripts ]
++ [ -d /apps/unicenter/EM/3.1/wwrp/scripts ]
++ [ ! -f /apps/unicenter/EM/3.1/secu/bin/cadatefmt ]
++ [ null = csh ]
++ [ inactif = off ]
++ [ 0 = 1 ]
++ set +u
++ TNG_EXPLOIT=/apps/sys/unicenter/exploitation
++ TNG_SYS=/apps/sys
++ export TNG_EXPLOIT
++ export TNG_SYS
++ export A2_CONV=/apps/exploit
++ export A2_OUTILS=/apps/exploit/outils
++ export A2_LIV=/apps/exploit/outils/livraisons
++ export A2_EXPLOIT=/apps/exploit/exploitv3
++ export A2_NOTES=/apps/exploit/notes
++ export A2_MSG=/apps/exploit/msg
++ export A2_UNICENTER=/apps/exploit/unicenter
++ export A2_OUTILSORA=/apps/exploit/outilsora
++ export A2_WEBKIX=/apps/exploit/outils/webkix
++ export A2_MAJBASE=/apps/exploit/outilsora/majbase
++ export PATH=/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin:/apps/unicenter/EM/3.1/bin:/                                                                apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1/scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/                                                                scripts:/apps/unicenter/EM/3.1/tape/bin/
++ export PATH=/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin:/apps/u                                                                nicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1/scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/u                                                                nicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/
++ export PATH=/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:                                                                /usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1/scripts:/apps/unicenter                                                                /EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/
++ export PATH=/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:                                                                /usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1/scripts:/apps/unicenter                                                                /EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/:/apps/exploit/outils/webkix
++ export PATH=/apps/exploit/exploitv3:/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sb                                                                in:/usr/java131/jre/bin:/usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1                                                                /scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/:/apps/exploit/outils/webkix
++ export PATH=/usr/local/bin:/apps/exploit/exploitv3:/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/                                                                usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/u                                                                nicenter/EM/3.1/scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/:/apps/exploit/outils/webkix
++ export NLSPATH=/apps/exploit/msg/%L/%N:/apps/exploit/msg/%L/%N.cat:/usr/lib/nls/msg/%L/%N:/usr/lib/nls/msg/%L/%N.cat
++ export A2I_REP=/apps/amelia
++ export A2I_LOG=/apps/amelia/log
++ export PATH=/usr/local/bin:/apps/exploit/exploitv3:/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/                                                                usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/u                                                                nicenter/EM/3.1/scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/:/apps/exploit/outils/webkix:/ap                                                                ps/amelia/outils
++ export A2I_REP_SESSIONS=/apps/amelia/sessions
++ export A2_CARTO=/apps/carto_data
++ export A2_PACKAGES=/apps/amelia/packages
++ export A2_WEBKIX=/apps/exploit/outils/webkix
++ export LANG=C
++ + id -un
+usr=l480076
++ clear
++ export A2_VERSION=apps/atlas/atlas2v0
++ export A2_ENV=uf1
++ export A2_DATA=data1
++ export A2_PORTAIL=v0_0
++ export A2_LIBENV=MAROC-Prod
++ export A2_BASE=atpr01
++ export A2_BASE_DR=atdr01
++ export A2_BASE_OWN=atlas
++ export A2_BASE_DR_OWN=atlas
++ export A2_TYPE_ENV=R40050
++ export A2_SECORA=0
++ export ORACLE_SID=atpr01
++ export A2_ORAVER=O920
++ export ORACLE_SID_DR=atdr01
++ export A2_TYPE_BASE=P
++ export A2_DATABASE_JOURNALING=O
++ export A2_KIX_PORT=20050
++ export A2_KIX_TRANS=CPLT
++ export A2_KIX_PORTCLI=50001
++ export A2_KIX_PORTTCP=8001
++ export A2_KIX_PORTTCP_REFL=8010
++ export A2_COBVER=sx4.0
++ export A2_KIXVER=t8.1.0p11D2
++ export A2_FICSAV=/apps/atlas/atlas2v0/uf1/ficsav
++ export A2_ORACLE_SID_REFL=atrefl01
++ export A2_BASE_REFL=atrefl01
++ export A2_BASE_OWN_REFL=atlas
++ export A2_CKPBASE_REFL=/apps/oradbf/backup_refl
++ export A2_LIMIT_PARAL=3
++ export A2_FIC01=/apps/atlas/atlas2v0/uf1/data1/fic
++ export A2_FIC02=/apps/atlas/atlas2v0/uf1/data1/fic02
++ export A2_FIC03=/apps/atlas/atlas2v0/uf1/data1/fic03
++ export A2_MULTI_KIX=2
++ export A2_NOM_REG=vsam:tcp
++ export A2_KIXMAXIST=10:1
++ export A2_TCPSTERM=2:10
++ export A2_TCPRTERM=10:2
++ export A2_PORT3270_REG=20050:20051
++ export A2_PORTTCP_REG=0:8001
++ export A2_PORTCLI_REG=50001:50002
++ [[ -d /apps/atlas/atlas2v0/uf1/data1 ]]
++ . /apps/exploit/exploitv3/calcpathead tp
++ tty -s
++ clear
++ PS4=calcpathead +
+calcpathead + [[ -n  ]]
+calcpathead + export A2_VERSION_ND=apps/atlas/atlas2v0
+calcpathead + export A2_VERSION=apps/atlas/atlas2v0
+calcpathead + export A2_PATHEAD=
+calcpathead + [[ -d /apps/outilsparis ]]
+calcpathead + export A2_CONVERT=/apps/convert
+calcpathead + FICENVEAD=/apps/atlas/atlas2v0/uf1/data1/fic/EAD_PTECHNIC
+calcpathead + [[ ! -a /apps/atlas/atlas2v0/uf1/data1/fic/EAD_PTECHNIC ]]
+calcpathead + export A2_ENV_ND=uf1
+calcpathead + [[ -z  ]]
+calcpathead + export A2_DIREAD=/apps
+calcpathead + [[ -z  ]]
+calcpathead + export A2_DIRPEAD=/apps
+calcpathead + [[ tp = tp ]]
+calcpathead + awk END {print NR} /apps/atlas/atlas2v0/uf1/data1/fic/EAD_PTECHNIC
+calcpathead + typeset -i Numlines=8
+calcpathead + affmsg 867
+Veuillez choisir l'environnement de programmes pour l'EAD
+calcpathead + PS3=Votre choix ...
+calcpathead + 0< /apps/atlas/atlas2v0/uf1/data1/fic/EAD_PTECHNIC
+1) sortie
+2) adoat|400|51
+3) orion|031|01
+4) ptcom|041|00
+5) rfper|030|01
+6) argos|020|00
+7) inter|010|00
+8) sonar|020|00
+9) evatl|001|01
+Votre choix ...2
+calcpathead + ((  2 == 1  ))
+calcpathead + ((  2 < 1 || 2 > 8 + 1  ))
+calcpathead + break
+calcpathead + 0< /apps/atlas/atlas2v0/uf1/data1/fic/EAD_PTECHNIC
+calcpathead + [[ adoat|400|51 = *adoat* ]]
+calcpathead + Env_Prog=/apps/atlas/atlas2v0
+calcpathead + EnvCtx=/apps/atlas/atlas2v0/ENV_CTX
+calcpathead + CtxName=
+calcpathead + [[ -s /apps/atlas/atlas2v0/ENV_CTX ]]
+calcpathead + [[ adoat|400|51 = *adoat* ]]
+calcpathead + [[ adoat|400|51 != *adoat* ]]
+calcpathead + [[ adoat|400|51 = adoat|400|51 ]]
+calcpathead + export A2_VERSION=apps/atlas/atlas2v0
+calcpathead + [[ adoat|400|51 = *adoat* ]]
+calcpathead + A2_VERSION_ND=apps/atlas/atlas2v0
+calcpathead + [[ adoat|400|51 != *adoat* ]]
+calcpathead + unset Env_Prog EnvCtx Ctx
+calcpathead + [[ orion|031|01 = *adoat* ]]
+calcpathead + calcpathead + cut -d| -f1
+calcpathead + echo orion|031|01
+calcpathead + echo orion|031|01
+calcpathead + cut -d| -f2
+Env_Prog=/apps/orion/031
+calcpathead + EnvCtx=/apps/orion/031/ENV_CTX
+calcpathead + CtxName=
+calcpathead + [[ -s /apps/orion/031/ENV_CTX ]]
+calcpathead + [[ orion|031|01 = *adoat* ]]
+calcpathead + [[ orion|031|01 = adoat|400|51 ]]
+calcpathead + [[ adoat|400|51 = *adoat* ]]
+calcpathead + A2_VERSION_ND=apps/atlas/atlas2v0
+calcpathead + [[ orion|031|01 != *adoat* ]]
+calcpathead + [[ -n  ]]
+calcpathead + export A2_PATHEAD=/apps/orion/031/uf1
+calcpathead + unset Env_Prog EnvCtx Ctx
+calcpathead + [[ ptcom|041|00 = *adoat* ]]
+calcpathead + calcpathead + echo ptcom|041|00
+calcpathead + cut -d| -f1
+calcpathead + cut -d| -f2
+calcpathead + echo ptcom|041|00
+Env_Prog=/apps/ptcom/041
+calcpathead + EnvCtx=/apps/ptcom/041/ENV_CTX
+calcpathead + CtxName=
+calcpathead + [[ -s /apps/ptcom/041/ENV_CTX ]]
+calcpathead + [[ ptcom|041|00 = *adoat* ]]
+calcpathead + [[ ptcom|041|00 = adoat|400|51 ]]
+calcpathead + [[ adoat|400|51 = *adoat* ]]
+calcpathead + A2_VERSION_ND=apps/atlas/atlas2v0
+calcpathead + [[ ptcom|041|00 != *adoat* ]]
+calcpathead + [[ -n /apps/orion/031/uf1 ]]
+calcpathead + export A2_PATHEAD=/apps/orion/031/uf1:/apps/ptcom/041/uf1
+calcpathead + unset Env_Prog EnvCtx Ctx
+calcpathead + [[ rfper|030|01 = *adoat* ]]
+calcpathead + calcpathead + cut -d| -f1
+calcpathead + echo rfper|030|01
+calcpathead + cut -d| -f2
+calcpathead + echo rfper|030|01
+Env_Prog=/apps/rfper/030
+calcpathead + EnvCtx=/apps/rfper/030/ENV_CTX
+calcpathead + CtxName=
+calcpathead + [[ -s /apps/rfper/030/ENV_CTX ]]
+calcpathead + [[ rfper|030|01 = *adoat* ]]
+calcpathead + [[ rfper|030|01 = adoat|400|51 ]]
+calcpathead + [[ adoat|400|51 = *adoat* ]]
+calcpathead + A2_VERSION_ND=apps/atlas/atlas2v0
+calcpathead + [[ rfper|030|01 != *adoat* ]]
+calcpathead + [[ -n /apps/orion/031/uf1:/apps/ptcom/041/uf1 ]]
+calcpathead + export A2_PATHEAD=/apps/orion/031/uf1:/apps/ptcom/041/uf1:/apps/rfper/030/uf1
+calcpathead + unset Env_Prog EnvCtx Ctx
+calcpathead + [[ argos|020|00 = *adoat* ]]
+calcpathead + calcpathead + cut -d| -f1
+calcpathead + echo argos|020|00
+calcpathead + cut -d| -f2
+calcpathead + echo argos|020|00
+Env_Prog=/apps/argos/020
+calcpathead + EnvCtx=/apps/argos/020/ENV_CTX
+calcpathead + CtxName=
+calcpathead + [[ -s /apps/argos/020/ENV_CTX ]]
+calcpathead + [[ argos|020|00 = *adoat* ]]
+calcpathead + [[ argos|020|00 = adoat|400|51 ]]
+calcpathead + [[ adoat|400|51 = *adoat* ]]
+calcpathead + A2_VERSION_ND=apps/atlas/atlas2v0
+calcpathead + [[ argos|020|00 != *adoat* ]]
+calcpathead + [[ -n /apps/orion/031/uf1:/apps/ptcom/041/uf1:/apps/rfper/030/uf1 ]]
+calcpathead + export A2_PATHEAD=/apps/orion/031/uf1:/apps/ptcom/041/uf1:/apps/rfper/030/uf1:/apps/argos/020/uf1
+calcpathead + unset Env_Prog EnvCtx Ctx
+calcpathead + [[ inter|010|00 = *adoat* ]]
+calcpathead + calcpathead + cut -d| -f1
+calcpathead + echo inter|010|00
+calcpathead + cut -d| -f2
+calcpathead + echo inter|010|00
+Env_Prog=/apps/inter/010
+calcpathead + EnvCtx=/apps/inter/010/ENV_CTX
+calcpathead + CtxName=
+calcpathead + [[ -s /apps/inter/010/ENV_CTX ]]
+calcpathead + [[ inter|010|00 = *adoat* ]]
+calcpathead + [[ inter|010|00 = adoat|400|51 ]]
+calcpathead + [[ adoat|400|51 = *adoat* ]]
+calcpathead + A2_VERSION_ND=apps/atlas/atlas2v0
+calcpathead + [[ inter|010|00 != *adoat* ]]
+calcpathead + [[ -n /apps/orion/031/uf1:/apps/ptcom/041/uf1:/apps/rfper/030/uf1:/apps/argos/020/uf1 ]]
+calcpathead + export A2_PATHEAD=/apps/orion/031/uf1:/apps/ptcom/041/uf1:/apps/rfper/030/uf1:/apps/argos/020/uf1:/apps/inter/010/uf1
+calcpathead + unset Env_Prog EnvCtx Ctx
+calcpathead + [[ sonar|020|00 = *adoat* ]]
+calcpathead + calcpathead + cut -d| -f1
+calcpathead + echo sonar|020|00
+calcpathead + cut -d| -f2
+calcpathead + echo sonar|020|00
+Env_Prog=/apps/sonar/020
+calcpathead + EnvCtx=/apps/sonar/020/ENV_CTX
+calcpathead + CtxName=
+calcpathead + [[ -s /apps/sonar/020/ENV_CTX ]]
+calcpathead + [[ sonar|020|00 = *adoat* ]]
+calcpathead + [[ sonar|020|00 = adoat|400|51 ]]
+calcpathead + [[ adoat|400|51 = *adoat* ]]
+calcpathead + A2_VERSION_ND=apps/atlas/atlas2v0
+calcpathead + [[ sonar|020|00 != *adoat* ]]
+calcpathead + [[ -n /apps/orion/031/uf1:/apps/ptcom/041/uf1:/apps/rfper/030/uf1:/apps/argos/020/uf1:/apps/inter/010/uf1 ]]
+calcpathead + export A2_PATHEAD=/apps/orion/031/uf1:/apps/ptcom/041/uf1:/apps/rfper/030/uf1:/apps/argos/020/uf1:/apps/inter/010/uf1:/apps/sonar/020/uf1
+calcpathead + unset Env_Prog EnvCtx Ctx
+calcpathead + [[ evatl|001|01 = *adoat* ]]
+calcpathead + calcpathead + cut -d| -f1
+calcpathead + echo evatl|001|01
+calcpathead + cut -d| -f2
+calcpathead + echo evatl|001|01
+Env_Prog=/apps/evatl/001
+calcpathead + EnvCtx=/apps/evatl/001/ENV_CTX
+calcpathead + CtxName=
+calcpathead + [[ -s /apps/evatl/001/ENV_CTX ]]
+calcpathead + [[ evatl|001|01 = *adoat* ]]
+calcpathead + [[ evatl|001|01 = adoat|400|51 ]]
+calcpathead + [[ adoat|400|51 = *adoat* ]]
+calcpathead + A2_VERSION_ND=apps/atlas/atlas2v0
+calcpathead + [[ evatl|001|01 != *adoat* ]]
+calcpathead + [[ -n /apps/orion/031/uf1:/apps/ptcom/041/uf1:/apps/rfper/030/uf1:/apps/argos/020/uf1:/apps/inter/010/uf1:/apps/sonar/020/uf1 ]]
+calcpathead + export A2_PATHEAD=/apps/orion/031/uf1:/apps/ptcom/041/uf1:/apps/rfper/030/uf1:/apps/argos/020/uf1:/apps/inter/010/uf1:/apps/sonar/020/uf1:/apps/evatl/001/uf1
+calcpathead + unset Env_Prog EnvCtx Ctx
+calcpathead + [[ apps/atlas/atlas2v0 != apps/atlas/atlas2v0 ]]
+calcpathead + awk -F| $1 !="adoat" { print "export A2_DESYNC_"toupper($1)"=DS;"} /apps/atlas/atlas2v0/uf1/data1/fic/EAD_PTECHNIC
+calcpathead + eval export A2_DESYNC_ORION=DS; export A2_DESYNC_PTCOM=DS; export A2_DESYNC_RFPER=DS; export A2_DESYNC_ARGOS=DS; export A2_DESYNC_INTER=DS; export A2_DESYNC_SONAR=DS; export A2_DESYNC_EVATL=DS;
+calcpathead + export A2_DESYNC_ORION=DS
+calcpathead + export A2_DESYNC_PTCOM=DS
+calcpathead + export A2_DESYNC_RFPER=DS
+calcpathead + export A2_DESYNC_ARGOS=DS
+calcpathead + export A2_DESYNC_INTER=DS
+calcpathead + export A2_DESYNC_SONAR=DS
+calcpathead + export A2_DESYNC_EVATL=DS
+calcpathead + . calcrefead
+calcpathead + PS4iniCalcrefead=calcpathead +
+calcpathead + PS4=calcrefead +
+calcrefead + [[ -n  ]]
+calcrefead + tty -s
+calcrefead + calcrefead + tput smso
+bold=
+calcrefead + calcrefead + tput rmso
+offbold=
+calcrefead + [[ -z /apps/atlas/atlas2v0/uf1/data1/fic/EAD_PTECHNIC ]]
+calcrefead + [[ ! -a /apps/atlas/atlas2v0/uf1/data1/fic/EAD_PTECHNIC ]]
+calcrefead + ((  6 == 4  ))
+calcrefead + sort /apps/atlas/atlas2v0/uf1/data1/fic/EAD_PTECHNIC
+calcrefead + sed -e s/ //g -e /^ *$/d
+calcrefead + awk {print $1}
+calcrefead + cksum
+calcrefead + export A2_EAD=R463311968
+calcrefead + tty -s
+calcrefead + echo Schema de reference (A2_EAD)=R463311968
+Schema de reference (A2_EAD)=R463311968
+calcrefead + PS4=calcpathead +
+calcpathead + PS4=calcpathead +
+calcpathead + export A2_PATHEAD
+calcpathead + . /apps/exploit/exploitv3/termkix
+calcpathead + PS4=termkix +
+termkix + [[ -n  ]]
+termkix + termkix + /apps/exploit/outils/affmsg 1
+numterm=Entrer votre identifiant terminal Unikix ? :
+termkix + read A2_TERMKIX?Entrer votre identifiant terminal Unikix ? :
+Entrer votre identifiant terminal Unikix ? :
+termkix + export A2_TERMKIX
+termkix + . /apps/exploit/exploitv3/askenvgraph
+termkix + PS4=askenvgraph +
+askenvgraph + [[ -n  ]]
+askenvgraph + [[  =  ]]
+askenvgraph + [[  =  ]]
+askenvgraph + askenvgraph + /apps/exploit/outils/affmsg 318
+numterm=Voulez vous utiliser l interface graphique (n = default) ?
+askenvgraph + read A2_ENV_GRAPH?Voulez vous utiliser l interface graphique (n = default) ?
+Voulez vous utiliser l interface graphique (n = default) ?
+askenvgraph + . /apps/exploit/exploitv3/valdef
+askenvgraph + PS4iniValdef=askenvgraph +
+askenvgraph + PS4=valdef +
+valdef + [[ -n  ]]
+valdef + est_autosys -s
+valdef + est_tng -s
+valdef + [[ -n /apps/exploit/tng ]]
+valdef + export REP_LANCE=/apps/exploit/tng
+valdef + [[ -n R463311968 ]]
+valdef + . valdef.ead
+valdef + PS4iniValdef=valdef +
+valdef + PS4=valdef.ead +
+valdef.ead + [[ -n  ]]
+valdef.ead + est_autosys -s
+valdef.ead + est_tng -s
+valdef.ead + [[ -n /apps/exploit/tng ]]
+valdef.ead + export REP_LANCE=/apps/exploit/tng
+valdef.ead + export A2_RC=0
+valdef.ead + export A2_RCP=0
+valdef.ead + export A2_RCU=0
+valdef.ead + export A2_JUMP=0
+valdef.ead + [[ apps/atlas/atlas2v0 = apps* ]]
+valdef.ead + [[ -d apps/atlas/atlas2v0 ]]
+valdef.ead + export A2_FIC=/apps/atlas/atlas2v0/uf1/data1/fic
+valdef.ead + [[ -d /apps/atlas/atlas2v0/uf1/data1/arch ]]
+valdef.ead + export A2_FIC_ARCH=/apps/atlas/atlas2v0/uf1/data1/arch
+valdef.ead + export A2_EXEC=/apps/atlas/atlas2v0/uf1/anim:/apps/atlas/atlas2v0/uf1/binbtch
+valdef.ead + [[ -d /apps/atlas/atlas2v0/uf1/xrdj_exit ]]
+valdef.ead + [[ -d /apps/atlas/atlas2v0/uf1/xrdj_exitsite ]]
+valdef.ead + export A2_PRT=poubelle
+valdef.ead + export A2_IMP=/apps/atlas/atlas2v0/uf1/data1/imp
+valdef.ead + export A2_WORK=/apps/work
+valdef.ead + export A2_SAUVEBASE=/apps/atlas/atlas2v0/uf1/data1/base/sauv
+valdef.ead + export A2_SAUVEBASE_DR=/apps/atlas/atlas2v0/uf1/data1/base/sauv
+valdef.ead + export A2_TIPSBIN=/apps/atlas/atlas2v0/uf1/tipsbin
+valdef.ead + export KIXLIB=/apps/atlas/atlas2v0/uf1/tipsbin
+valdef.ead + export BATCH_CACHE=0
+valdef.ead + export A2_JOB=nomjob
+valdef.ead + export A2_LOG=/apps/atlas/atlas2v0/uf1/data1/imp/nomjob.log
+valdef.ead + export A2_IMPLOG=N
+valdef.ead + export A2_IMPCR=N
+valdef.ead + export A2_IMPETAT=N
+valdef.ead + export A2_SUFOPT=N
+valdef.ead + export A2_DATEOPT=
+valdef.ead + export A2_IDEN_JOBSET=N
+valdef.ead + export A2_LIQUIDPCESUPP=O
+valdef.ead + export A2_LIQUIDPCEMENS=O
+valdef.ead + export A2_REEVALMENS=O
+valdef.ead + export A2_TACMIRO=N
+valdef.ead + [[ -z 3 ]]
+valdef.ead + export A2_INFOC_IDC1N205=N
+valdef.ead + export A2_INFOC_IJCJN205=N
+valdef.ead + export A2_INFOC_IJF88552=N
+valdef.ead + export A2_INFOC_IJF88802=N
+valdef.ead + export A2_INFOC_PMK34A51=O
+valdef.ead + export A2_SAVE_FIC_EXTRAIT=N
+valdef.ead + export A2_MESS_APP=ACTIVE
+valdef.ead + export A2_CYCLEJ=2
+valdef.ead + export A2_CYCLEM=2
+valdef.ead + export A2_BASE_LOC=base_atpr01
+valdef.ead + export A2_BASE_DRLOC=base_atdr01
+valdef.ead + export A2_PREF=AAA
+valdef.ead + export A2_FCR=AAA_nomjob
+valdef.ead + /apps/exploit/outils/affjcl 20
+valdef.ead + export A2_TITRE=intitule du job
+valdef.ead + export PATH=/usr/local/bin:/apps/exploit/exploitv3:/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1/scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/:/apps/exploit/outils/webkix:/apps/amelia/outils:/apps/exploit/outils/livraisons
+valdef.ead + est_autosys -s
+valdef.ead + est_tng -s
+valdef.ead + export PATH=/usr/local/bin:/apps/exploit/exploitv3:/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1/scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/:/apps/exploit/outils/webkix:/apps/amelia/outils:/apps/exploit/outils/livraisons:/apps/exploit/exploitv3
+valdef.ead + export PATH=/usr/local/bin:/apps/exploit/exploitv3:/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1/scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/:/apps/exploit/outils/webkix:/apps/amelia/outils:/apps/exploit/outils/livraisons:/apps/exploit/exploitv3:/apps/exploit/outils
+valdef.ead + export PATH=/usr/local/bin:/apps/exploit/exploitv3:/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1/scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/:/apps/exploit/outils/webkix:/apps/amelia/outils:/apps/exploit/outils/livraisons:/apps/exploit/exploitv3:/apps/exploit/outils:/apps/exploit/outils/webkix
+valdef.ead + export PATH=/usr/local/bin:/apps/exploit/exploitv3:/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1/scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/:/apps/exploit/outils/webkix:/apps/amelia/outils:/apps/exploit/outils/livraisons:/apps/exploit/exploitv3:/apps/exploit/outils:/apps/exploit/outils/webkix:/apps/atlas/atlas2v0/uf1/tipsbin
+valdef.ead + [[ R40050 =  ]]
+valdef.ead + [[ R40050 =  ]]
+valdef.ead + [[ -d /apps/atlas/atlas2v0/uf1/jobset ]]
+valdef.ead + export A2_SCHE=/apps/atlas/atlas2v0/uf1/jobset
+valdef.ead + export A2_UNICENTER=/apps/atlas/atlas2v0/uf1/jobset
+valdef.ead + est_autosys -s
+valdef.ead + [[ -d /apps/atlas/atlas2v0/uf1/site/jobset ]]
+valdef.ead + export A2_SCHE_SITE=/apps/atlas/atlas2v0/uf1/site/jobset
+valdef.ead + export A2_UNICENTER_SITE=/apps/atlas/atlas2v0/uf1/site/jobset
+valdef.ead + [[ -d /apps/atlas/atlas2v0/uf1/jobsetsite/ ]]
+valdef.ead + export PATH=/apps/atlas/atlas2v0/uf1/jclsite:/apps/atlas/atlas2v0/uf1/jcl:/apps/atlas/atlas2v0/uf1/jobset:/usr/local/bin:/apps/exploit/exploitv3:/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1/scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/:/apps/exploit/outils/webkix:/apps/amelia/outils:/apps/exploit/outils/livraisons:/apps/exploit/exploitv3:/apps/exploit/outils:/apps/exploit/outils/webkix:/apps/atlas/atlas2v0/uf1/tipsbin
+valdef.ead + export PATH=/apps/atlas/atlas2v0/uf1/jobset:/apps/atlas/atlas2v0/uf1/jclsite:/apps/atlas/atlas2v0/uf1/jcl:/apps/atlas/atlas2v0/uf1/jobset:/usr/local/bin:/apps/exploit/exploitv3:/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1/scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/:/apps/exploit/outils/webkix:/apps/amelia/outils:/apps/exploit/outils/livraisons:/apps/exploit/exploitv3:/apps/exploit/outils:/apps/exploit/outils/webkix:/apps/atlas/atlas2v0/uf1/tipsbin
+valdef.ead + export PATH=/apps/atlas/atlas2v0/uf1/site/jobset:/apps/atlas/atlas2v0/uf1/jobset:/apps/atlas/atlas2v0/uf1/jclsite:/apps/atlas/atlas2v0/uf1/jcl:/apps/atlas/atlas2v0/uf1/jobset:/usr/local/bin:/apps/exploit/exploitv3:/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1/scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/:/apps/exploit/outils/webkix:/apps/amelia/outils:/apps/exploit/outils/livraisons:/apps/exploit/exploitv3:/apps/exploit/outils:/apps/exploit/outils/webkix:/apps/atlas/atlas2v0/uf1/tipsbin
+valdef.ead + typeset -L8 A2_GESTAB_LANG
+valdef.ead + export A2_GESTAB_LANG=FRANCAIS
+valdef.ead + typeset -L2 A2_GESTAB_BANQ
+valdef.ead + export A2_GESTAB_BANQ=
+valdef.ead + typeset -L3 A2_GESTAB_MAT
+valdef.ead + export A2_GESTAB_MAT=UNI
+valdef.ead + typeset -L2 A2_GESTAB_DELM
+valdef.ead + export A2_GESTAB_DELM=21
+valdef.ead + typeset -L3 A2_GESTAB_FDAT
+valdef.ead + export A2_GESTAB_FDAT=JMA
+valdef.ead + typeset -L1 A2_GESTAB_SEPD
+valdef.ead + export A2_GESTAB_SEPD=,
+valdef.ead + [[ -d /apps/exploit/liba2 ]]
+valdef.ead + export LIBPATH=:/apps/exploit/liba2
+valdef.ead + [[ -n atpr01 ]]
+valdef.ead + export ORACLE_HOME=/apps/oracle/product/920
+valdef.ead + export LIBPATH=:/apps/exploit/liba2:/apps/oracle/product/920/lib32
+valdef.ead + export ORA_NLS33=/apps/oracle/product/920/ocommon/nls/admin/data
+valdef.ead + export ORA_CLIENT_LIB=shared
+valdef.ead + export PATH=/apps/oracle/product/920/bin:/usr/bin:/etc:/usr/ccs/bin:/usr/ucb:/usr/lbin:/usr/local/bin:/apps/atlas/atlas2v0/uf1/site/jobset:/apps/atlas/atlas2v0/uf1/jobset:/apps/atlas/atlas2v0/uf1/jclsite:/apps/atlas/atlas2v0/uf1/jcl:/apps/atlas/atlas2v0/uf1/jobset:/usr/local/bin:/apps/exploit/exploitv3:/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1/scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/:/apps/exploit/outils/webkix:/apps/amelia/outils:/apps/exploit/outils/livraisons:/apps/exploit/exploitv3:/apps/exploit/outils:/apps/exploit/outils/webkix:/apps/atlas/atlas2v0/uf1/tipsbin
+valdef.ead + export ORACLE_DOC=/apps/oracle/product/920/doc
+valdef.ead + export ORACLE_BASE=/apps/oracle
+valdef.ead + export LD_LIBRARY_PATH=/apps/oracle/product/920/lib:/apps/oracle/product/920/precomp/public
+valdef.ead + export NLS_LANG=FRENCH_FRANCE.WE8ISO8859P1
+valdef.ead + export NLS_SORT=BINARY
+valdef.ead + export TNS_ADMIN=/apps/oracle/network/admin
+valdef.ead + export PATH=/apps/exploit/outilsora:/apps/oracle/product/920/bin:/usr/bin:/etc:/usr/ccs/bin:/usr/ucb:/usr/lbin:/usr/local/bin:/apps/atlas/atlas2v0/uf1/site/jobset:/apps/atlas/atlas2v0/uf1/jobset:/apps/atlas/atlas2v0/uf1/jclsite:/apps/atlas/atlas2v0/uf1/jcl:/apps/atlas/atlas2v0/uf1/jobset:/usr/local/bin:/apps/exploit/exploitv3:/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1/scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/:/apps/exploit/outils/webkix:/apps/amelia/outils:/apps/exploit/outils/livraisons:/apps/exploit/exploitv3:/apps/exploit/outils:/apps/exploit/outils/webkix:/apps/atlas/atlas2v0/uf1/tipsbin
+valdef.ead + alias -x ingrun=/bin/rtsora
+valdef.ead + [[ -z P ]]
+valdef.ead + [[ P != P ]]
+valdef.ead + export A2_BASE_LOC=ATLAS_D01
+valdef.ead + export A2_BASE_LOC_IDX=ATLAS_I01
+valdef.ead + export A2_CKPBASE=/apps/oradbf/backup
+valdef.ead + export A2_CKPBASE_DR=/apps/oradbf/backup
+valdef.ead + export A2_CKPBASE_REFL=/apps/oradbf/backup_refl
+valdef.ead + export A2_BASE_DRLOC=ATLAS_D01
+valdef.ead + export A2_SECORA=0
+valdef.ead + export A2_BASE_DRLOC_IDX=ATLAS_I01
+valdef.ead + [[ -s /apps/exploit/exploitv3/extfh_file.cfg ]]
+valdef.ead + export EXTFH=/apps/exploit/exploitv3/extfh_file.cfg
+valdef.ead + est_autosys -s
+valdef.ead + [ /apps/unicenter/EM/3.1 =  ]
+valdef.ead + export SC_INTERFACE=0000000
+valdef.ead + export SC_INTERFACE_TDC=10000000002021
+valdef.ead + export SC_TEST_SAVE_AREA=y
+valdef.ead + [[ -d /apps/exploit/schemabase ]]
+valdef.ead + export A2_SCHEMABASE=/apps/exploit/schemabase
+valdef.ead + [[ -s /apps/exploit/exploitv3/valdef.xrdj ]]
+valdef.ead + [[  = XRDJ ]]
+valdef.ead + [[ -e /apps/exploit/exploitv3/valdef.basfi ]]
+valdef.ead + [[  = BASFI ]]
+valdef.ead + [[ -s /apps/outilsparis/valdef.paris ]]
+valdef.ead + [[ -d /apps/JAVA_15 ]]
+valdef.ead + [[ -d /usr/java5 ]]
+valdef.ead + export JAVA_HOME_15=/usr/java5
+valdef.ead + [[ -s /apps/exploit/exploitv3/valdef.site ]]
+valdef.ead + . /apps/exploit/exploitv3/valdef.site
+valdef.ead + export EXTFH=/apps/exploit/exploitv3/extfh_file.cfg
+valdef.ead + A2_IDEN_JOBSET=O
+valdef.ead + export A2_CARTO=/apps/carto
+valdef.ead + export A2_CARTO_NICE=-15
+valdef.ead + export A2_PAYS=MA
+valdef.ead + export A2_PURGE_TICP=99
+valdef.ead + export A2_TRV=/apps/atlas/atlas2v0/uf1/data1/fic/trv
+valdef.ead + export A2_WORK=/apps/exploit/work
+valdef.ead + export A2_SUFOPT=O
+valdef.ead + export A2_LIQUIDPCEMENS=N
+valdef.ead + export A2_REEVALMENS=N
+valdef.ead + export A2_DMDTP=0
+valdef.ead + export A2_MTP_DIAG=NO
+valdef.ead + PS4=valdef.ead +
+valdef.ead + export A2_VERENTRUST=entrust60
+valdef.ead + [[ -d /apps/entrust/entrust60 ]]
+valdef.ead + export TMPDIR=/apps/exploit/work
+valdef.ead + [[  == ATLAS ]]
+valdef.ead + [[  == ADOAT ]]
+valdef.ead + [[ -n  ]]
+valdef.ead + nomDom=ATLAS2
+valdef.ead + NIVDIR=/apps/atlas/atlas2v0/uf1
+valdef.ead + [[ ! -f /apps/atlas/atlas2v0/uf1/ATLAS2.niv ]]
+valdef.ead + valdef.ead + awk             {memfile [NR] = $0 }
+      END   { for ( i = NR ; i >= 1 ; i-- ) {
+      if  (memfile[i]~/PATCH/ || memfile[i]~/PTF/ ) {
+      print memfile[i]
+      break
+      }
+                    }
+                 }  /apps/atlas/atlas2v0/uf1/ATLAS2.niv
+LAST_PATCH=Version ATLAS2 : 400 PATCH400.51 Creat: 21/10/08 09:36:08 Appl: 15/07/09 11:51:03
+valdef.ead + [[ ! -z Version ATLAS2 : 400 PATCH400.51 Creat: 21/10/08 09:36:08 Appl: 15/07/09 11:51:03 ]]
+valdef.ead + grep PATCH
+valdef.ead + valdef.ead + echo Version ATLAS2 : 400 PATCH400.51 Creat: 21/10/08 09:36:08 Appl: 15/07/09 11:51:03
+1> /dev/null
+valdef.ead + echo Version ATLAS2 : 400 PATCH400.51 Creat: 21/10/08 09:36:08 Appl: 15/07/09 11:51:03
+valdef.ead + awk -FPATCH {print $2}
+valdef.ead + awk {print $1}
+valdef.ead + export A2_NIVPATCH=400.51
+valdef.ead + 1> /dev/null
+valdef.ead + [[ -z 400.51 ]]
+valdef.ead + export EVNBdesign=/apps/evolan/loandesign_
+valdef.ead + [[ ! -z /apps/evolan/loandesign_ ]]
+valdef.ead + export PATH=/apps/exploit/outilsora:/apps/oracle/product/920/bin:/usr/bin:/etc:/usr/ccs/bin:/usr/ucb:/usr/lbin:/usr/local/bin:/apps/atlas/atlas2v0/uf1/site/jobset:/apps/atlas/atlas2v0/uf1/jobset:/apps/atlas/atlas2v0/uf1/jclsite:/apps/atlas/atlas2v0/uf1/jcl:/apps/atlas/atlas2v0/uf1/jobset:/usr/local/bin:/apps/exploit/exploitv3:/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1/scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/:/apps/exploit/outils/webkix:/apps/amelia/outils:/apps/exploit/outils/livraisons:/apps/exploit/exploitv3:/apps/exploit/outils:/apps/exploit/outils/webkix:/apps/atlas/atlas2v0/uf1/tipsbin:/usr/include:/usr/include/sys
+valdef.ead + export A2_REPCOR=/apps/correctifs
+valdef.ead + export A2_MULTISITE=N
+valdef.ead + typeset -Z2 repfic
+valdef.ead + repfic=01
+valdef.ead + [[ 01 -le 3 ]]
+valdef.ead + eval nomrepfic=$A2_FIC01
+valdef.ead + nomrepfic=/apps/atlas/atlas2v0/uf1/data1/fic
+valdef.ead + [[ -z /apps/atlas/atlas2v0/uf1/data1/fic ]]
+valdef.ead + [[ ! -z /apps/atlas/atlas2v0/uf1/data1/fic ]]
+valdef.ead + [[ ! -d /apps/atlas/atlas2v0/uf1/data1/fic ]]
+valdef.ead + let repfic=repfic+1
+valdef.ead + [[ 02 -le 3 ]]
+valdef.ead + eval nomrepfic=$A2_FIC02
+valdef.ead + nomrepfic=/apps/atlas/atlas2v0/uf1/data1/fic02
+valdef.ead + [[ -z /apps/atlas/atlas2v0/uf1/data1/fic02 ]]
+valdef.ead + [[ ! -z /apps/atlas/atlas2v0/uf1/data1/fic02 ]]
+valdef.ead + [[ ! -d /apps/atlas/atlas2v0/uf1/data1/fic02 ]]
+valdef.ead + let repfic=repfic+1
+valdef.ead + [[ 03 -le 3 ]]
+valdef.ead + eval nomrepfic=$A2_FIC03
+valdef.ead + nomrepfic=/apps/atlas/atlas2v0/uf1/data1/fic03
+valdef.ead + [[ -z /apps/atlas/atlas2v0/uf1/data1/fic03 ]]
+valdef.ead + [[ ! -z /apps/atlas/atlas2v0/uf1/data1/fic03 ]]
+valdef.ead + [[ ! -d /apps/atlas/atlas2v0/uf1/data1/fic03 ]]
+valdef.ead + let repfic=repfic+1
+valdef.ead + [[ 04 -le 3 ]]
+valdef.ead + unset repfic
+valdef.ead + unset nomrepfic
+valdef.ead + PS4=valdef +
+valdef + return
+valdef + . /apps/exploit/exploitv3/cobsyncenv
+valdef + PS4iniCobsyncenv=valdef +
+valdef + PS4=cobsyncenv +
+cobsyncenv + [[ -n  ]]
+cobsyncenv + [[ -f /apps/exploit/exploitv3/cobsyncenv.site ]]
+cobsyncenv + uname -v
+cobsyncenv + [[ 5 -eq 5 ]]
+cobsyncenv + vcob=sx4.0
+cobsyncenv + A2_SYNCVER=3.11
+cobsyncenv + export A2_SYNCVER
+cobsyncenv + [[ -d /apps/dmexpress/4.0 ]]
+cobsyncenv + [[ -d /apps/dmexpress/3.11 ]]
+cobsyncenv + [[ -d /apps/syncsort/3.11 ]]
+cobsyncenv + vsync=/apps/syncsort/3.11
+cobsyncenv + export PATH=/apps/exploit/outilsora:/apps/oracle/product/920/bin:/usr/bin:/etc:/usr/ccs/bin:/usr/ucb:/usr/lbin:/usr/local/bin:/apps/atlas/atlas2v0/uf1/site/jobset:/apps/atlas/atlas2v0/uf1/jobset:/apps/atlas/atlas2v0/uf1/jclsite:/apps/atlas/atlas2v0/uf1/jcl:/apps/atlas/atlas2v0/uf1/jobset:/usr/local/bin:/apps/exploit/exploitv3:/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1/scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/:/apps/exploit/outils/webkix:/apps/amelia/outils:/apps/exploit/outils/livraisons:/apps/exploit/exploitv3:/apps/exploit/outils:/apps/exploit/outils/webkix:/apps/atlas/atlas2v0/uf1/tipsbin:/usr/include:/usr/include/sys:/apps/syncsort/3.11/bin
+cobsyncenv + export LIBPATH=:/apps/exploit/liba2:/apps/oracle/product/920/lib32:/apps/syncsort/3.11/lib
+cobsyncenv + export MANPATH=/apps/syncsort/3.11/man:
+cobsyncenv + export COBDIR=/apps/cobol/sx4.0
+cobsyncenv + export PATH=/apps/exploit/outilsora:/apps/oracle/product/920/bin:/usr/bin:/etc:/usr/ccs/bin:/usr/ucb:/usr/lbin:/usr/local/bin:/apps/atlas/atlas2v0/uf1/site/jobset:/apps/atlas/atlas2v0/uf1/jobset:/apps/atlas/atlas2v0/uf1/jclsite:/apps/atlas/atlas2v0/uf1/jcl:/apps/atlas/atlas2v0/uf1/jobset:/usr/local/bin:/apps/exploit/exploitv3:/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1/scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/:/apps/exploit/outils/webkix:/apps/amelia/outils:/apps/exploit/outils/livraisons:/apps/exploit/exploitv3:/apps/exploit/outils:/apps/exploit/outils/webkix:/apps/atlas/atlas2v0/uf1/tipsbin:/usr/include:/usr/include/sys:/apps/syncsort/3.11/bin:/apps/cobol/sx4.0/bin
+cobsyncenv + version=40050
+cobsyncenv + export LIBPATH=/apps/cobol/sx4.0/lib:/usr/lib::/apps/exploit/liba2:/apps/oracle/product/920/lib32:/apps/syncsort/3.11/lib
+cobsyncenv + export COBPATH=/apps/atlas/atlas2v0/uf1/anim:/apps/atlas/atlas2v0/uf1/binbtch:
+cobsyncenv + export COBCONFIG=/apps/cobol/sx4.0/lib/ATKXCOBCONFIG
+cobsyncenv + alias -x ingrun=/apps/cobol/sx4.0/bin/rtsora
+cobsyncenv + PS4=valdef +
+valdef + . /apps/exploit/exploitv3/multikixenv
+valdef + PS4iniMultikixenv=valdef +
+valdef + PS4=multikixenv +
+multikixenv + [[ -n  ]]
+multikixenv + [[ 2 -le 0 ]]
+multikixenv + tr :
+multikixenv + echo vsam:tcp
+multikixenv + set -A TB_NOM_REG vsam tcp
+multikixenv + tr :
+multikixenv + echo 10:1
+multikixenv + set -A TB_KIXMAXIST 10 1
+multikixenv + tr :
+multikixenv + echo 2:10
+multikixenv + set -A TB_TCPSTERM 2 10
+multikixenv + tr :
+multikixenv + echo 10:2
+multikixenv + set -A TB_TCPRTERM 10 2
+multikixenv + tr :
+multikixenv + echo 50001:50002
+multikixenv + set -A TB_PORTCLI_REG 50001 50002
+multikixenv + tr :
+multikixenv + echo 0:8001
+multikixenv + set -A TB_PORTTCP_REG 0 8001
+multikixenv + tr :
+multikixenv + echo 20050:20051
+multikixenv + set -A TB_PORT3270_REG 20050 20051
+multikixenv + [[ 1 = 1 ]]
+multikixenv + A2_REGION=tp
+multikixenv + :
+multikixenv + [[ ! -n tp ]]
+multikixenv + indice=0
+multikixenv + [[ 0 -lt 2 ]]
+multikixenv + [[ tp = vsam ]]
+multikixenv + (( indice=indice+1 ))
+multikixenv + [[ 1 -lt 2 ]]
+multikixenv + [[ tp = tcp ]]
+multikixenv + (( indice=indice+1 ))
+multikixenv + [[ 2 -lt 2 ]]
+multikixenv + [[ 2 -lt 2 ]]
+multikixenv + unset A2_REGION
+multikixenv + :
+multikixenv + [[ ! -n  ]]
+multikixenv + read A2_REGION?Region dans laquelle vous souhaitez travailler (vsam tcp):
+Region dans laquelle vous souhaitez travailler (vsam tcp): tcp
+multikixenv + indice=0
+multikixenv + [[ 0 -lt 2 ]]
+multikixenv + [[ tcp = vsam ]]
+multikixenv + (( indice=indice+1 ))
+multikixenv + [[ 1 -lt 2 ]]
+multikixenv + [[ tcp = tcp ]]
+multikixenv + break
+multikixenv + [[ 1 -lt 2 ]]
+multikixenv + break
+multikixenv + export A2_REGION
+multikixenv + export KIXMAXIST=1
+multikixenv + export TCPSTERM=10
+multikixenv + export TCPRTERM=2
+multikixenv + [[ 20051 -eq 0 ]]
+multikixenv + export A2_KIX_PORT=20051
+multikixenv + [[ 50002 -eq 0 ]]
+multikixenv + export A2_KIX_PORTCLI=50002
+multikixenv + [[ 8001 -eq 0 ]]
+multikixenv + export A2_KIX_PORTTCP=8001
+multikixenv + [[ 1 -eq 0 ]]
+multikixenv + export A2_REGION_VSAM=0
+multikixenv + PS4=valdef +
+valdef + . /apps/exploit/exploitv3/kixenv
+valdef + PS4iniKixenv=valdef +
+valdef + PS4=kixenv +
+kixenv + [[ -n  ]]
+kixenv + kixenv + hostname
+machine=s00va9930435
+kixenv + A2_PRODUITS=/apps
+kixenv + [[ t8.1.0p11D2 !=  ]]
+kixenv + [[ -d /apps/unikix ]]
+kixenv + export UNIKIX=/apps/unikix/t8.1.0p11D2
+kixenv + [[ ! -n 2 ]]
+kixenv + [[ -f /apps/exploit/exploitv3/kixenv.paris ]]
+kixenv + PS4=kixenv.paris +
+kixenv.paris + . /apps/exploit/exploitv3/kixenv.paris
+kixenv.paris + kixenv.paris + hostname
+machine=s00va9930435
+kixenv.paris + [[ s00va9930435 = sxanepc810 ]]
+kixenv.paris + [[ s00va9930435 = escala ]]
+kixenv.paris + [[ -f /apps/exploit/exploitv3/kixenv.site ]]
+kixenv.paris + PS4=kixenv.site +
+kixenv.site + . /apps/exploit/exploitv3/kixenv.site
+kixenv.site + export KIXMAXIST=20
+kixenv.site + export A2_KIXTNEMUX=N
+kixenv.site + export A2_TNEMUX=50
+kixenv.site + export A2_KIX_MT=180M
+kixenv.site + export A2_KIX_MC=70M
+kixenv.site + export A2_KIX_S=256M
+kixenv.site + export A2_KIX_S_BKOF=256M
+kixenv.site + export A2_KIX_TM=M
+kixenv.site + PS4=kixenv +
+kixenv + export KIXSYS=/apps/atlas/atlas2v0/uf1/data1/kix
+kixenv + [[ -n 2 ]]
+kixenv + [[ 0 -ne 1 ]]
+kixenv + export KIXSYS=/apps/atlas/atlas2v0/uf1/data1/kixtcp
+kixenv + [[ -n  ]]
+kixenv + [[ -d /apps/atlas/atlas2v0/uf1/bincobsx4.0/anim ]]
+kixenv + [[ -d /apps/atlas/atlas2v0/uf1/anim ]]
+kixenv + [[ -d /apps/atlas/atlas2v0/uf1/xrdj_src ]]
+kixenv + [[ -d /apps/atlas/atlas2v0/uf1/mapt8.1.0p11D2 ]]
+kixenv + export KIXMAPS=/apps/atlas/atlas2v0/uf1/map
+kixenv + [[ -d /apps/atlas/atlas2v0/uf1/bincobsx4.0/binbtch ]]
+kixenv + BINBTCH=/apps/atlas/atlas2v0/uf1/binbtch
+kixenv + [[ -d /apps/atlas/atlas2v0/uf1/bincobsx4.0/binbtchO920 ]]
+kixenv + [[ -d /apps/atlas/atlas2v0/uf1/bincobsx4.0/bincicst8.1.0p11D2 ]]
+kixenv + BINCICS=/apps/atlas/atlas2v0/uf1/bincics
+kixenv + [[ -d /apps/atlas/atlas2v0/uf1/bincobsx4.0/bincicst8.1.0p11D2O920 ]]
+kixenv + [[ -d /apps/atlas/atlas2v0/uf1/xrdj_src ]]
+kixenv + export COBCPY=/apps/atlas/atlas2v0/uf1/map::/apps/atlas/atlas2v0/uf1/src:/apps/atlas/atlas2v0/uf1/binbtch:/apps/atlas/atlas2v0/uf1/bincics:/usr/include
+kixenv + export KIXBTCH=/apps/atlas/atlas2v0/uf1/data1/kixtcp/kixbtch
+kixenv + export KIXDATA=/apps/atlas/atlas2v0/uf1/data1/fic
+kixenv + [[ /apps/unikix/t8.1.0p11D2 !=  ]]
+kixenv + export COBCPY=/apps/unikix/t8.1.0p11D2/copy:/apps/atlas/atlas2v0/uf1/map::/apps/atlas/atlas2v0/uf1/src:/apps/atlas/atlas2v0/uf1/binbtch:/apps/atlas/atlas2v0/uf1/bincics:/usr/include
+kixenv + export KIXLICDIR=/apps/unikix/t8.1.0p11D2/lib
+kixenv + export KIXSCANHELP=/apps/unikix/t8.1.0p11D2/help
+kixenv + export XAPPLRESDIR=/apps/unikix/t8.1.0p11D2/app-defaults/
+kixenv + export PATH=/apps/exploit/outilsora:/apps/oracle/product/920/bin:/usr/bin:/etc:/usr/ccs/bin:/usr/ucb:/usr/lbin:/usr/local/bin:/apps/atlas/atlas2v0/uf1/site/jobset:/apps/atlas/atlas2v0/uf1/jobset:/apps/atlas/atlas2v0/uf1/jclsite:/apps/atlas/atlas2v0/uf1/jcl:/apps/atlas/atlas2v0/uf1/jobset:/usr/local/bin:/apps/exploit/exploitv3:/apps/exploit/outilsora:/apps/exploit/outils:/apps/exploit/exploitv3:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java131/jre/bin:/usr/java131/bin:/apps/unicenter/EM/3.1/bin:/apps/unicenter/EM/3.1/cadb/system:/apps/unicenter/EM/3.1/gui/bin:/apps/unicenter/EM/3.1/scripts:/apps/unicenter/EM/3.1/snmp/bin:/apps/unicenter/EM/3.1/tape/scripts:/apps/unicenter/EM/3.1/tape/bin/:/apps/exploit/outils/webkix:/apps/amelia/outils:/apps/exploit/outils/livraisons:/apps/exploit/exploitv3:/apps/exploit/outils:/apps/exploit/outils/webkix:/apps/atlas/atlas2v0/uf1/tipsbin:/usr/include:/usr/include/sys:/apps/syncsort/3.11/bin:/apps/cobol/sx4.0/bin:/apps/unikix/t8.1.0p11D2:/apps/unikix/t8.1.0p11D2/bin:/apps/unikix/t8.1.0p11D2/kixcli/bin
+kixenv + export LIBPATH=/apps/cobol/sx4.0/lib:/usr/lib::/apps/exploit/liba2:/apps/oracle/product/920/lib32:/apps/syncsort/3.11/lib:/apps/unikix/t8.1.0p11D2/kixcli/lib:/apps/unikix/t8.1.0p11D2/lib
+kixenv + export _KIX_RESERVED_MAPS=/apps/atlas/atlas2v0/uf1/data1/kixtcp/_kix_reserved_maps
+kixenv + export LIBPATH=/apps/cobol/sx4.0/lib:/usr/lib::/apps/exploit/liba2:/apps/oracle/product/920/lib32:/apps/syncsort/3.11/lib:/apps/unikix/t8.1.0p11D2/kixcli/lib:/apps/unikix/t8.1.0p11D2/lib:/apps/atlas/atlas2v0/uf1/tipsbin
+kixenv + export KIXCLI=/apps/atlas/atlas2v0/uf1/data1/kixtcp
+kixenv + export KIXPROGS=:/apps/atlas/atlas2v0/uf1/bincics:/apps/atlas/atlas2v0/uf1/binbtch:/apps/atlas/atlas2v0/uf1/tipsbin:
+kixenv + PS4=kixenv.bkof +
+kixenv.bkof + . kixenv.bkof
+kixenv.bkof + PS4iniKixenvBkof=kixenv.bkof +
+kixenv.bkof + PS4=kixenv.bkof +
+kixenv.bkof + [[ -n  ]]
+kixenv.bkof + [[ -z  ]]
+kixenv.bkof + [[ -z  ]]
+kixenv.bkof + unset A2_BKOF
+kixenv.bkof + [[ -n  ]]
+kixenv.bkof + [[  = Y ]]
+kixenv.bkof + PS4=kixenv.bkof +
+kixenv.bkof + PS4=kixenv +
+kixenv + [[ t8.1.0p11D2 = t8.1.0* ]]
+kixenv + [[ -d /usr/java14/bin ]]
+kixenv + export LIBPATH=/usr/java14/bin:/usr/java14/jre/bin:/usr/java14/jre/bin/classic:/apps/cobol/sx4.0/lib:/usr/lib::/apps/exploit/liba2:/apps/oracle/product/920/lib32:/apps/syncsort/3.11/lib:/apps/unikix/t8.1.0p11D2/kixcli/lib:/apps/unikix/t8.1.0p11D2/lib:/apps/atlas/atlas2v0/uf1/tipsbin
+kixenv + [[ t8.1.0p11D2 = t11.0* ]]
+kixenv + [[ t8.1.0p11D2 = t11.3* ]]
+kixenv + PS4=valdef +
+valdef + . /apps/exploit/exploitv3/nivpatch
+valdef + PS4iniNivpatch=valdef +
+valdef + PS4=nivpatch +
+nivpatch + [[ -n  ]]
+nivpatch + nivpatch + uname -n
+MACHINE=s00va9930435
+nivpatch + VERSION=40050
+nivpatch + [[ -f /apps/atlas/atlas2v0/uf1/ATLAS2.niv ]]
+nivpatch + nivpatch + a2ver
+nivpatch + awk $6 ~ /PTF/{print substr($6,4)".00";exit}
+                             $6 ~ /PATCH/{print substr($6,6)}
+A2_NIVPATCH=400.51
+nivpatch + export A2_NIVPATCH
+nivpatch + PS4=valdef +
+valdef + . /apps/exploit/exploitv3/impbatch
+valdef + PS4=impbatch +
+impbatch + [[ -n  ]]
+impbatch + :
+impbatch + affmsg 2
+Entrez le nom de la file d attente d impression batch,
+impbatch + [[  !=  ]]
+impbatch + [[  !=  ]]
+impbatch + impbatch + affmsg 3 poubelle
+prtq=si different de poubelle ? :
+impbatch + read A2_PRT?si different de poubelle ? :
+si different de poubelle ? :
+impbatch + [[  !=  ]]
+impbatch + [[  !=  ]]
+impbatch + [[  !=  ]]
+impbatch + export A2_PRT=impr1
+impbatch + break
+impbatch + . /apps/exploit/exploitv3/aliasA2
+impbatch + PS4iniAliasA2=impbatch +
+impbatch + PS4=aliasA2 +
+aliasA2 + [[ -n  ]]
+aliasA2 + [[ -n R463311968 ]]
+aliasA2 + . aliasA2.ead tp
+aliasA2 + PS4=aliasA2.ead +
+aliasA2.ead + [[ -n  ]]
+aliasA2.ead + aliasA2.ead + echo t8.1.0p11D2
+aliasA2.ead + sed s/\.//g
+aliasA2.ead + cut -c 2-3
+verkix=81
+aliasA2.ead + alias -x cdtech=. /apps/exploit/exploitv3/calcaliasA2 cdtech
+aliasA2.ead + alias -x cdx5=. /apps/exploit/exploitv3/calcaliasA2 cdx5
+aliasA2.ead + alias -x cdx6=. /apps/exploit/exploitv3/calcaliasA2 cdx6
+aliasA2.ead + alias -x cdx7=. /apps/exploit/exploitv3/calcaliasA2 cdx7
+aliasA2.ead + alias -x cdxk=. /apps/exploit/exploitv3/calcaliasA2 cdxk
+aliasA2.ead + alias -x cdj=. /apps/exploit/exploitv3/calcaliasA2 cdj
+aliasA2.ead + alias -x cdb=. /apps/exploit/exploitv3/calcaliasA2 cdb
+aliasA2.ead + alias -x cdm=. /apps/exploit/exploitv3/calcaliasA2 cdm
+aliasA2.ead + alias -x cddj=. /apps/exploit/exploitv3/calcaliasA2 cddj
+aliasA2.ead + alias -x cdba=. /apps/exploit/exploitv3/calcaliasA2 cdba
+aliasA2.ead + alias -x cdbp=. /apps/exploit/exploitv3/calcaliasA2 cdbp
+aliasA2.ead + alias -x cdbs=. /apps/exploit/exploitv3/calcaliasA2 cdbs
+aliasA2.ead + alias -x cds=. /apps/exploit/exploitv3/calcaliasA2 cds
+aliasA2.ead + alias -x cdf=. /apps/exploit/exploitv3/calcaliasA2 cdf
+aliasA2.ead + alias -x cdi=. /apps/exploit/exploitv3/calcaliasA2 cdi
+aliasA2.ead + alias -x cdbt=. /apps/exploit/exploitv3/calcaliasA2 cdbt
+aliasA2.ead + alias -x cdbb=. /apps/exploit/exploitv3/calcaliasA2 cdbb
+aliasA2.ead + alias -x cdt=. /apps/exploit/exploitv3/calcaliasA2 cdt
+aliasA2.ead + alias -x cdta=. /apps/exploit/exploitv3/calcaliasA2 cdta
+aliasA2.ead + alias -x cdp=. /apps/exploit/exploitv3/calcaliasA2 cdp
+aliasA2.ead + alias -x cdh=. /apps/exploit/exploitv3/calcaliasA2 cdh
+aliasA2.ead + alias -x cdhs=. /apps/exploit/exploitv3/calcaliasA2 cdhs
+aliasA2.ead + alias -x cdsch=. /apps/exploit/exploitv3/calcaliasA2 cdsch
+aliasA2.ead + alias -x cdcre=. /apps/exploit/exploitv3/calcaliasA2 cdcre
+aliasA2.ead + alias -x cdan=. /apps/exploit/exploitv3/calcaliasA2 cdan
+aliasA2.ead + alias -x cdsan=. /apps/exploit/exploitv3/calcaliasA2 cdsan
+aliasA2.ead + alias -x cdfi=. /apps/exploit/exploitv3/calcaliasA2 cdfi
+aliasA2.ead + alias -x cdst=. /apps/exploit/exploitv3/calcaliasA2 cdst
+aliasA2.ead + alias -x cdsl=. /apps/exploit/exploitv3/calcaliasA2 cdsl
+aliasA2.ead + alias -x cdl=cd /apps/exploit/outils/livraisons
+aliasA2.ead + alias -x cde=cd /apps/exploit/exploitv3
+aliasA2.ead + alias -x cdtn=cd /apps/exploit/tng
+aliasA2.ead + alias -x cdsche=cd /apps/exploit/tng
+aliasA2.ead + alias -x cdn=cd /apps/exploit/notes
+aliasA2.ead + alias -x cdg=cd /apps/exploit/msg
+aliasA2.ead + alias -x cdfa=cd /apps/atlas/atlas2v0/uf1/data1/arch
+aliasA2.ead + alias -x cdx=cd /apps/exploit/outils
+aliasA2.ead + alias -x cdxn=cd
+aliasA2.ead + alias -x cdk=cd $KIXSYS
+aliasA2.ead + alias -x cdftg=. /apps/exploit/exploitv3/calcaliasA2 cdftg
+aliasA2.ead + alias -x cdu=. /apps/exploit/exploitv3/calcaliasA2 cdu
+aliasA2.ead + alias -x cdw=cd /apps/exploit/outils/webkix
+aliasA2.ead + alias -x cdxo=cd /apps/exploit/outilsora
+aliasA2.ead + alias -x cdtab=cd /apps/exploit/gestab
+aliasA2.ead + alias -x cdjsrc=cd /apps/atlas/atlas2v0/uf1/javasrc
+aliasA2.ead + alias -x cdmj=cd $(ls -td /apps/atlas/atlas2v0/uf1/data1/jcl/M*|head -1)
+aliasA2.ead + alias -x cdjs=. /apps/exploit/exploitv3/calcaliasA2 cdjs
+aliasA2.ead + alias -x cdsj=. /apps/exploit/exploitv3/calcaliasA2 cdsj
+aliasA2.ead + alias -x cdss=. /apps/exploit/exploitv3/calcaliasA2 cdss
+aliasA2.ead + alias -x cdsf=. /apps/exploit/exploitv3/calcaliasA2 cdsf
+aliasA2.ead + alias -x cdsr=. /apps/exploit/exploitv3/calcaliasA2 cdsr
+aliasA2.ead + alias -x cdst=. /apps/exploit/exploitv3/calcaliasA2 cdst
+aliasA2.ead + alias -x cdsl=. /apps/exploit/exploitv3/calcaliasA2 cdsl
+aliasA2.ead + alias -x cdsbt=. /apps/exploit/exploitv3/calcaliasA2 cdsbt
+aliasA2.ead + alias -x cdsbb=. /apps/exploit/exploitv3/calcaliasA2 cdsbb
+aliasA2.ead + alias -x cdus=. /apps/exploit/exploitv3/calcaliasA2 cdus
+aliasA2.ead + alias -x cdsu=. /apps/exploit/exploitv3/calcaliasA2 cdsu
+aliasA2.ead + alias -x cdxs=cd /apps/atlas/atlas2v0/uf1/srcxsl
+aliasA2.ead + alias -x cdsxs=cd /apps/atlas/atlas2v0/uf1/site/srcxsl
+aliasA2.ead + alias -x cdsx=cd
+aliasA2.ead + alias -x cdsb=. /apps/exploit/exploitv3/calcaliasA2 cdsb
+aliasA2.ead + alias -x cdsm=. /apps/exploit/exploitv3/calcaliasA2 cdsm
+aliasA2.ead + alias -x cdsc=cd /apps/atlas/atlas2v0//cpy
+aliasA2.ead + alias -x cdsav=cd /apps/sauvfj/apps/atlas/atlas2v0/uf1/data1
+aliasA2.ead + [[ -s /apps/outilsparis/aliasA2.paris ]]
+aliasA2.ead + [[ -s /apps/exploit/exploitv3/aliasA2.site ]]
+aliasA2.ead + PS4=PS4iniAliasA2Ead
+PS4iniAliasA2Eadreturn
+PS4iniAliasA2Ead. /apps/exploit/outils/java.env
+PS4iniAliasA2EadPS4=java.env +
+java.env + [[ -n  ]]
+java.env + . time_start
+java.env + PS4iniTimeStart=java.env +
+java.env + PS4=time_start +
+variables developpement site positionnées
+
+----------------------------------------------
+Attention vous etes connecte :
+
+ - machine              :  s00va9930435
+ - type terminal        :  xterm
+ - version              :  apps/atlas/atlas2v0
+ - environnement        :  uf1
+ - donnees              :  data1
+ - Niveau de patch      :  400.51
+ - base production      :  atpr01
+ - base date rem.       :  atdr01
+ - owner bases          :  atlas
+ - Term. UniKix         :
+ - Port Unikix TCP      :  8001
+ - Port TN3270          :  20051
+ - F.A impression       :  impr1
+----------------------------------------------
+
+Courrier :

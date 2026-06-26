@@ -1,0 +1,239 @@
+#!/bin/ksh
+
+###################################################################################
+#          LIVRAISON :  	VERSION 1.0                                           #
+#          CREATION:    	21/06/2006                                            #
+#          MODIFICATION:    	21/06/2006                                        #
+#          MODIFICATION pour automate VTOM 17/11/2006                             #
+#          MODIFICATION : exécution avec user EXPSUP1  (KBE)                      #
+#          MODIFICATION : BMA - FDE 2358 - Alimentation table                     #
+#                         d'historisation en meme temps que la table principale   #
+###################################################################################
+
+if [[ $# -eq 1 ]]
+then
+	TRACE=${1}
+else
+	TRACE=N
+fi
+	
+
+
+FIC_LOG=${REP_LOG_SUPERVISION_FLUX}/9T_LANCEMENT_SUPERVISION.log
+
+if [[ ${TRACE} == "trace" ]]
+then
+echo $FIC_LOG
+fi
+
+#while [ ! -f STOP_SUPERVISION.TRT ]
+#do
+
+echo "**********************************************************************" >>${FIC_LOG};
+echo "Debut traitement" `date '+%Y%m%d %H:%M:%S'`" ${SESSION_SVR}" "${LOGNAME}">> ${FIC_LOG};
+echo "**********************************************************************" >>${FIC_LOG};
+echo "ROW_ID PROCESS SOUS_PROCESS STATUT VOLUME" >> ${FIC_LOG};
+echo "-----------------------------------------" >> ${FIC_LOG};
+
+if [[ ${TRACE} == "trace" ]]
+then
+echo "Début de traitement"
+fi
+
+##################### requette pour initialiser le while #####################
+req_sql_ROWID=`${ORACLE_HOME}/bin/sqlplus -s  expsup1/expsup1@${SIEBEL_ORACLE} << _EOF_ | grep -v '^$'
+SET LONG 16383
+set longchunksize 16383
+set heading off
+set echo off
+SELECT ROW_ID
+FROM SIEBEL.CX_SUP_INTERFAC
+WHERE (DATE_MAJ + (FREQUENCE_MAJ/1440))<Sysdate and rownum = 1 and X_ATTRIB_FLAG='Y';
+exit;
+_EOF_`
+
+
+while [ "${req_sql_ROWID}" != "no rows selected" ]
+do
+
+    req_sql_ROWID=`${ORACLE_HOME}/bin/sqlplus -s  expsup1/expsup1@${SIEBEL_ORACLE} << _EOF_ | grep -v '^$'
+    SET LONG 16383
+    set longchunksize 16383
+    set heading off
+    set echo off
+    SELECT ROW_ID
+    FROM SIEBEL.CX_SUP_INTERFAC
+    WHERE (DATE_MAJ + (FREQUENCE_MAJ/1440))<Sysdate and rownum = 1 and X_ATTRIB_FLAG='Y';
+    exit;
+    _EOF_`
+
+    if [[ ${TRACE} == "trace" ]]
+    then
+        echo "requete debut 1"
+        echo $req_sql_ROWID
+        echo "requete fin"
+    fi
+
+    if [[ ${req_sql_ROWID} != "no rows selected" ]]
+    then 
+        req_sql_retourne=`${ORACLE_HOME}/bin/sqlplus -s  expsup1/expsup1@${SIEBEL_ORACLE} << _EOF_ | grep -v '^$'
+        SET LONG 16383
+        set longchunksize 16383
+        set linesize 16383
+        set heading off
+        set echo off
+        SELECT REQUETE_SQL
+        FROM SIEBEL.CX_SUP_INTERFAC
+        WHERE ROW_ID = '${req_sql_ROWID}';
+        exit;
+        _EOF_`
+
+        if [[ ${TRACE} == "trace" ]]
+        then
+            echo "requete debut 2"
+            echo $req_sql_retourne
+            echo "requete fin"
+        fi
+
+        # Recuperation de la date courante avant execution de la requete SQL (qui permettra de calculer le temps de traitement de la requete)
+        sDateDebutRequete=`${ORACLE_HOME}/bin/sqlplus -s  expsup1/expsup1@${SIEBEL_ORACLE} << _EOF_ | grep -v '^$'
+        SET LONG 16383
+        set longchunksize 16383
+        set heading off
+        set echo off
+        select to_char(sysdate,'DD/MM/YYYY HH24:MI:SS') from dual;
+        exit;
+        _EOF_`
+        
+        requette_sql=`${ORACLE_HOME}/bin/sqlplus -s  expsup1/expsup1@${SIEBEL_ORACLE} << _EOF_ | grep -v '^$'
+        SET LONG 16383
+        set longchunksize 16383
+        set heading off
+        set echo off
+        ${req_sql_retourne};
+        exit;
+        _EOF_`
+        Volume="Volume = "${requette_sql}";"
+
+        if [[ ${TRACE} == "trace" ]]
+        then
+            echo "Volume"
+            echo "$Volume"
+
+            echo "requete debut 3"
+            echo $requette_sql
+            echo "requete fin"
+        fi
+        
+        # Mise a jour de la table principale
+        req_sql_MAJ=`${ORACLE_HOME}/bin/sqlplus -s  expsup1/expsup1@${SIEBEL_ORACLE} << _EOF_ | grep -v '^$'
+        set heading off
+        set echo off
+        UPDATE SIEBEL.CX_SUP_INTERFAC
+        SET X_ATTRIB_DATE1=to_date('${sDateDebutRequete}','DD/MM/YYYY HH24:MI:SS'), DATE_MAJ = Sysdate, VOLUME = ${requette_sql}
+        WHERE ROW_ID = '${req_sql_ROWID}';
+        commit;
+        exit;
+        _EOF_`
+
+        if [[ ${TRACE} == "trace" ]]
+        then
+            echo "requete debut 4"
+            echo $req_sql_MAJ
+            echo "requete fin"
+        fi
+
+        # Mise a jour de la table d'historique
+        req_sql_INSERT=`${ORACLE_HOME}/bin/sqlplus -s  expsup1/expsup1@${SIEBEL_ORACLE} << _EOF_ | grep -v '^$'
+        SET LONG 16383
+        set longchunksize 16383
+        set heading off
+        set echo off
+        INSERT INTO SIEBEL.CX_SUP_HISTO
+        (
+        ROW_ID,
+        created,
+        last_upd,
+        created_by,
+        last_upd_by,
+        PROCESS,
+        SOUS_PROCESS,
+        DATE_MAJ,
+        STATUT,
+        VOLUME,
+        SEUIL_ALERTE,
+        FREQUENCE_MAJ,
+        COMMENTAIRE,
+        ALERTE,
+        TYPE,
+        X_ATTRIB_DATE1,
+        X_ATTRIB_DATE2,
+        X_ATTRIB_FLAG,
+        X_ATTRIB_TEXT1,
+        X_ATTRIB_TEXT2,
+        X_ATTRIB_NUMBER1,
+        X_ATTRIB_NUMBER2)
+        SELECT
+        SIEBEL.CX_SUP_HISTO_S.nextval,
+        sysdate,
+        sysdate,
+        created_by,
+        last_upd_by,
+        PROCESS,
+        SOUS_PROCESS,DATE_MAJ,
+        STATUT,
+        VOLUME,
+        SEUIL_ALERTE,
+        FREQUENCE_MAJ,
+        COMMENTAIRE,
+        ALERTE,
+        TYPE,
+        X_ATTRIB_DATE1,
+        X_ATTRIB_DATE2,
+        X_ATTRIB_FLAG,
+        X_ATTRIB_TEXT1,
+        X_ATTRIB_TEXT2,
+        X_ATTRIB_NUMBER1,
+        X_ATTRIB_NUMBER2
+        FROM
+        SIEBEL.CX_SUP_INTERFAC
+        where ROW_ID = '${req_sql_ROWID}';
+        commit;
+        exit;
+        _EOF_`
+
+        if [[ ${TRACE} == "trace" ]]
+        then
+            echo "requete debut 5"
+            echo $req_sql_INSERT
+            echo "requete fin"
+#        fi
+
+            traces_sql_log=`${ORACLE_HOME}/bin/sqlplus -s  expsup1/expsup1@${SIEBEL_ORACLE} << _EOF_ | grep -v '^$'
+            set heading off
+            set echo off
+            SELECT ROW_ID,PROCESS,SOUS_PROCESS,STATUT,VOLUME
+            FROM SIEBEL.CX_SUP_INTERFAC
+            WHERE ROW_ID = '${req_sql_ROWID}';
+            exit;
+            _EOF_`
+
+#        if [[ ${TRACE} == "trace" ]]
+#        then
+            echo "requete debut 6"
+            echo $traces_sql_log
+            echo "requete fin"
+            echo $traces_sql_log >> ${FIC_LOG}
+        fi
+
+    fi
+done
+
+echo "**********************************************************************" >>${FIC_LOG};
+echo "Fin traitement" `date '+%Y%m%d %H:%M:%S'` >> ${FIC_LOG};
+echo "**********************************************************************" >>${FIC_LOG};
+
+exit 0
+
+#sleep 1800
+#done

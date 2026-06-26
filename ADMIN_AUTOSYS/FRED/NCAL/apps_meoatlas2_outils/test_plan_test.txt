@@ -1,0 +1,48 @@
+autorep -J % -d |egrep "^( )*[a-zB]( )*|STARTJOB" >/ficsav/EQUIPE_MEO/arnaud/test.arnaud_verif
+
+#########################################################################################
+
+autorep -J BWAEP01-Q0BOX-MAINTENANCE -d
+
+Job Name                                                         Last Start           Last End             ST Run/Ntry Pri/Xit
+________________________________________________________________ ____________________ ____________________ __ ________ _______
+BWAEP01-Q0BOX-MAINTENANCE                                        2017/07/26 13:00:00  2017/07/26 17:32:12  SU 943343/1 0
+
+  Status/[Event]  Time                 Ntry ES  ProcessTime           Machine
+  --------------  --------------------- --  --  --------------------- ----------------------------------------
+  RUNNING         2017/07/26 13:00:00    1  PD  2017/07/26 13:00:02
+  SUCCESS         2017/07/26 17:32:12    1  PD  2017/07/26 17:32:13
+  [STARTJOB]      2017/07/27 13:00:00    0  UP
+    <Event was scheduled based on job definition.>
+
+ BWAEP01-Q1ANA01-DBMAINT                                         2017/07/26 13:00:04  2017/07/26 13:02:57  SU 943343/1 0
+
+   Status/[Event]  Time                 Ntry ES  ProcessTime           Machine
+   --------------  --------------------- --  --  --------------------- ----------------------------------------
+   STARTING        2017/07/26 13:00:03    1  PD  2017/07/26 13:00:03   parva4022576
+   RUNNING         2017/07/26 13:00:04    1  PD  2017/07/26 13:00:05   parva4022576
+     <Executing at parva4022576>
+   SUCCESS         2017/07/26 13:02:57    1  PD  2017/07/26 13:02:58   parva4022576
+
+
+#########################################################################################
+
+autorep -J BWAEP01-Q0BOX-MAINTENANCE -d |egrep "^( )*[a-zB]( )*|STARTJOB" | tee /ficsav/EQUIPE_MEO/arnaud/test.arnaud_verif
+
+autorep -J BWAEP01-Q0BOX-MAINTENANCE -d |egrep "^( )*[a-zB]( )*|STARTJOB" | tee /ficsav/EQUIPE_MEO/arnaud/test.arnaud_verif
+BWAEP01-Q0BOX-MAINTENANCE                                        2017/07/26 13:00:00  2017/07/26 17:32:12  SU 943343/1 0
+  [STARTJOB]      2017/07/27 13:00:00    0  UP
+ BWAEP01-Q1ANA01-DBMAINT                                         2017/07/26 13:00:04  2017/07/26 13:02:57  SU 943343/1 0
+ BWAEP01-Q1DEL01-PURGE_ARCHIVE                                   2017/07/26 13:00:02  2017/07/26 13:00:03  SU 943343/1 0
+ BWAEP01-Q1DEL01-PURGE_OUT                                       2017/07/26 13:02:12  2017/07/26 13:02:14  SU 943343/1 0
+ BWAEP01-Q1EXT01-BACKUPJOBS                                      2017/07/26 13:00:03  2017/07/26 17:32:11  SU 943343/1 0
+ BWAEP01-Q1EXT01-BACKUPVARS                                      2017/07/26 13:00:02  2017/07/26 13:02:12  SU 943343/1 0
+ BWAEP01-Q1EXT01-BACKUPCALE                                      2017/07/26 13:02:59  2017/07/26 13:03:20  SU 943343/1 0
+ BWAEP01-Q1EXT01-BACKUPCALS                                      2017/07/26 13:02:15  2017/07/26 13:02:34  SU 943343/1 0
+ BWAEP01-Q1EXT01-BACKUPCALC                                      2017/07/26 13:02:35  2017/07/26 13:02:36  SU 943343/1 0
+ BWAEP01-Q1EXT01-BACKUPMAC                                       2017/07/26 13:02:37  2017/07/26 13:02:39  SU 943343/1 0
+ BWAEP01-Q1EXT01-BACKUPRES                                       2017/07/26 13:02:40  2017/07/26 13:02:42  SU 943343/1 0
+ BWAEP01-Q1ANA01-AUTOAGGR                                        2017/07/26 13:02:44  2017/07/26 13:03:13  SU 943343/1 0
+
+
+

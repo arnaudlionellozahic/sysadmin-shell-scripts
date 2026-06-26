@@ -1,0 +1,6 @@
+#!/bin/ksh  
+
+
+cd $ABM_LOGS
+rm -rf *
+

@@ -1,0 +1,133 @@
+#!/bin/ksh
+# ----------------------------------------------------------------------------
+# SENDMAILGEC : Envoi de mails
+# ----------------------------------------------------------------------------
+# Parametres     :
+# Entrees        :
+# Sorties        :
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+
+######################################################
+# Diverses initialisations de variables obligatoires #
+######################################################
+
+# Parametres passes en arguments par CONTROL-M
+ODATE=${1}
+[ "X${ODATE}" = "X" ] && echo "Parm ODATE non specifie" && exit 1
+
+FIC1=${2}
+[ "X${FIC1}" = "X" ] && echo "Parm FIC1 non specifie" && exit 1
+
+FIC2=${3}
+[ "X${FIC2}" = "X" ] && echo "Parm FIC2 non specifie" && exit 1
+
+FIC3=${4}
+[ "X${FIC3}" = "X" ] && echo "Parm FIC3 non specifie" && exit 1
+
+MAILTO1=${5}
+[ "X${MAILTO1}" = "X" ] && echo "Parm MAILTO1 non specifie" && exit 1
+
+MAILTO2=${6}
+[ "X${MAILTO2}" = "X" ] && echo "Parm MAILTO2 non specifie" && exit 1
+
+SUBJECT=${7}
+[ "X${SUBJECT}" = "X" ] && echo "Parm SUBJECT non specifie" && exit 1
+
+REP=${8}
+[ "X${REP}" = "X" ] && echo "Parm REP non specifie" && exit 1
+
+
+# exporte les variables CTM0, GEHLOG, GEDAA, GEDAACC et GEDSOFT
+ctrlmExports ${0}
+
+# source l'environnement de la machine logique
+switch ${GEHLOG} > /dev/null
+
+
+############################################
+# Chargement des variables d'environnement #
+############################################
+
+GENERAL_ENV="${GEDAA}/etc/`echo ${GEIENV} | tr "UQP" "uqp"`v/env_q04.ksh"
+LOCAL_ENV="${REP}/`echo ${GEIENV} | tr "UQP" "uqp"`v/etc/env.ksh"
+
+if [ -f ${GENERAL_ENV} ]; then
+  . ${GENERAL_ENV}
+  [ $? -ne 0 ] && MsgError "impossible de charger l'environnement" && exit 1
+fi
+
+if [ -f ${LOCAL_ENV} ]; then
+  . ${LOCAL_ENV}
+  [ $? -ne 0 ] && MsgError "impossible de charger l'environnement" && exit 1
+fi
+
+#############################################################
+# Initialisation des variables n'ayant pas a etre modifiees #
+#############################################################
+
+DATE=`date +"%y%m%d_%H%M%S"`
+
+###################################################
+# Initialisation des variables specifiques au job #
+###################################################
+
+CODEAPP=Q04
+
+#_MAIL_SUBJECT="["`echo $GEIENV`"] [FERMAT] - FE/AM - Fichiers Prod.html"
+
+if [ "X${GEIENV}" == "XP" ]
+then
+	_MAIL_TO=${MAILTO1}
+fi
+
+if [ "X${GEIENV}" == "XX" ]
+then
+	_MAIL_TO=${MAILTO2}
+fi
+
+#######################
+##LANCEMENT DU SCRIPT##
+#######################
+#-------------------------------------------------------------------
+# Debut du job
+#-------------------------------------------------------------------
+echo "----------------------------------------------------------------------------------------------------------"
+echo ""
+echo "#### DEBUT JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+echo ""
+
+echo "VARIABLES CTLM"
+echo "FIC1=${FIC1}"
+echo "FIC2=${FIC2}"
+echo "FIC3=${FIC3}"
+echo "MAILTO1=${MAILTO1}"
+echo "MAILTO2=${MAILTO2}"
+echo "SUBJECT=${SUBJECT}"
+echo "REP=${REP}"
+echo ""
+
+# ---------------------------------------------------------------------------- #
+# Si le fichier Prod.html est genere, alors on envoit un mail
+# ---------------------------------------------------------------------------- #
+
+if [ -f ${FIC1} ]; then
+        GecMail -s "G(P1-MBX-RRI)" -o "${SUBJECT}" -d "$_MAIL_TO" -M ${FIC1} -H -j ${FIC1} 
+fi
+
+if [ -f ${FIC2} ]; then
+        GecMail -s "G(P1-MBX-RRI)" -o "${SUBJECT}" -d "$_MAIL_TO" -M ${FIC2} -H -j ${FIC2}
+fi
+
+if [ -f ${FIC3} ]; then
+        GecMail -s "G(P1-MBX-RRI)" -o "${SUBJECT}" -d "$_MAIL_TO" -M ${FIC3} -H -j ${FIC3}
+fi
+
+echo ""
+echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+#-------------------------------------------------------------------
+# Fin du job proprement dit
+#-------------------------------------------------------------------
+echo "exit ${?}"
+exit ${?}
+

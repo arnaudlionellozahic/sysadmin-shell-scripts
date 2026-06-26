@@ -1,0 +1,14 @@
+LOGICAL VOLUME:     lv_uf1ficsav           VOLUME GROUP:   extvgd0
+LV IDENTIFIER:      003783bf00004c00000000ff62bb76a5.1 PERMISSION:     read/write
+VG STATE:           active/complete        LV STATE:       opened/syncd
+TYPE:               jfs                    WRITE VERIFY:   off
+MAX LPs:            512                    PP SIZE:        128 megabyte(s)
+COPIES:             1                      SCHED POLICY:   parallel
+LPs:                512                    PPs:            512
+STALE PPs:          0                      BB POLICY:      relocatable
+INTER-POLICY:       minimum                RELOCATABLE:    yes
+INTRA-POLICY:       middle                 UPPER BOUND:    32
+MOUNT POINT:        /apps/atlas/atlas2v0/uf1/ficsav LABEL:          /apps/atlas/atlas2v0/uf1/ficsav
+MIRROR WRITE CONSISTENCY: on/ACTIVE                              
+EACH LP COPY ON A SEPARATE PV ?: yes                                    
+Serialize IO ?:     NO                                     

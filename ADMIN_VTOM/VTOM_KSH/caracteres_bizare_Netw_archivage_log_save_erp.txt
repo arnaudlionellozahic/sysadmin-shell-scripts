@@ -1,0 +1,31 @@
+#!/bin/ksh
+# --------------------------------------------------------------------------------------------
+# objet  : Archivage du fichier log_save_erp.out sur ERPSA1
+# --------------------------------------------------------------------------------------------
+
+#variables d'environnement TNG
+. /appl/omer/.omer
+ 
+. ${DIR_FONC}/vtom_log_traceur
+omer_mess_debut
+
+ssaa=`date +%Y`
+mm=`date +%m`
+jj=`date +%d`
+FIC_JOUR='netw_archivage_log_save_erp_'$ssaa'_'$mm'_'$jj.out
+
+if test -r /data/omer/oper/log/log_save_erp.out
+then
+	mv  /data/omer/oper/log/log_save_erp.out /data/omer/oper/log/$FIC_JOUR
+	if [ $? != 0 ]
+	then
+        omer_mess_erreur APPL NETW N "Probleme lors de la cde mv"
+	fi
+fi
+
+# Suppression des fichiers de + de 30 jours
+find /data/omer/oper/log -name 'netw_archivage_log_save_erp_*.out' -ctime +30 -exec rm {} \;
+if [ $? != 0 ]
+     then
+        omer_mess_erreur APPL NETW N "Probleme lors de la cde find"
+fi

@@ -1,0 +1,616 @@
+#! /bin/ksh 
+#__________________________________________________________
+#
+#     Demarrage des servers Visual TOM en mode securise
+#          (relance automatique en cas de disparition du
+#           processus vtsgbd ou bien vtserver)
+#__________________________________________________________
+
+
+ecrit_journal()
+{
+
+	msg=$1
+
+	instant=`date '+%d-%m-%Y %H:%M:%S'`
+	
+	echo
+	
+	if [ $simulation -gt 0 ] ; then
+		echo " -- SIMU --   "${msg}
+		echo ${instant}" - SIMU - "${msg} >> ${journal}
+		
+	else
+		echo " -- REEL --  "${msg}
+		echo ${instant}" - REEL - "${msg} >> ${journal}		
+	fi
+	
+}
+
+cle_ficini()
+{
+
+	cle=$1
+	valeur_defaut=$2
+	
+	valeur_cle=`grep "^${cle}:" ${fic_ini} | cut -d":" -f2-`
+	
+	if [ ! -z ${valeur_defaut} ] ; then
+		if [ -z ${valeur_cle} ] ; then	
+			valeur_cle=${valeur_defaut}
+		fi
+	fi
+	
+	echo ${valeur_cle}
+	
+}
+
+
+collecte()
+{
+
+# ----- Collecte infos netstat, memoire et processus en cours
+
+	ecrit_journal "Collecte netstat, vtping, top et ps"
+	
+	maintenant=`date '+%y%m%d_%H%M%S'`
+
+	fic_collecte=${rep_collecte}/${maintenant}_netstat.txt
+	uname -a > ${fic_collecte}
+	echo "" >> ${fic_collecte}
+	
+	echo "netstat -a" >> ${fic_collecte}
+	echo "----------" >> ${fic_collecte}
+	echo "" >> ${fic_collecte}
+	netstat -a >> ${fic_collecte}
+	
+	echo "" >> ${fic_collecte}
+	echo "netstat -an">> ${fic_collecte}
+	echo "-----------" >> ${fic_collecte}
+	echo "" >> ${fic_collecte}
+	netstat -an >> ${fic_collecte}
+
+	fic_collecte=${rep_collecte}/${maintenant}_vtping_top.txt
+	uname -a > ${fic_collecte}
+	echo "" >> ${fic_collecte}
+
+	echo "vtping" >> ${fic_collecte}
+	echo "------" >> ${fic_collecte}
+	echo "" >> ${fic_collecte}
+	vtping >> ${fic_collecte}
+	
+	echo "" >> ${fic_collecte}	
+	echo "top (${cde_top})" >> ${fic_collecte}
+	echo "---" >> ${fic_collecte}
+	echo "" >> ${fic_collecte}
+	eval ${cde_top} ${cde_top_out} ${fic_collecte}
+	
+	echo "" >> ${fic_collecte}
+	echo "ps avec vsz (${cde_ps_vsz})" >> ${fic_collecte}
+	echo "-----------" >> ${fic_collecte}
+	echo "" >> ${fic_collecte}
+	eval ${cde_ps_vsz} >> ${fic_collecte}	
+	
+	fic_collecte=${rep_collecte}/${maintenant}_ps.txt
+	uname -a > ${fic_collecte}
+	echo "" >> ${fic_collecte}
+	
+	echo "Lise des processus (ps -ef)" >> ${fic_collecte}
+	echo "------------------" >> ${fic_collecte}
+	echo "" >> ${fic_collecte}
+	ps -ef >> ${fic_collecte}
+}
+
+ensure()
+{
+	pid=$1
+	name=$2
+
+	if [ -n "`${cde_ps} | grep ${pid} | grep ${name}`" ] ; then
+	
+	
+		export pid
+		return $pid
+	fi
+	
+        if [ "${name}" = "${serveur_vtom}" ] ; then
+
+		ecrit_journal "Processus ${serveur_vtom} absent"
+
+        	# ----- si vtsgbd absent, inutile de redemarrer vtserver. On sort.
+        	#       La collecte netstat, top et ps sera faite dans ensure vtsgbd
+
+		if [ -z "`${cde_ps} | grep ${pid_srv_base} | grep ${serveur_base}`" ] ; then
+			ecrit_journal "Processus ${serveur_base} absent. On sort"
+			export pid
+			return $pid
+		fi
+		
+		# ----- Collecte netstat, top, ps
+		
+		if [ ${collecter} -gt 0 ] ; then
+			collecte
+		fi
+		
+		collecter=1
+		export collecter
+		
+		# ----- on stocke la liste des moteurs allumes        
+
+		find ${TOM_BASES} -name "*.pid" -exec basename {} \; | grep -v "postmaster" > ${rep_collecte}/lma.txt 2>/dev/null
+		
+		# ----- Archivage traces vtserver et vtsgbd
+
+		archive=${rep_collecte}/${maintenant}_traces_serveurs.tar
+		
+		ecrit_journal "Archivage traces serveurs dans $archive"
+		tar cf ${archive} ${rep_trc_serveurs}/vtserver.log ${rep_trc_serveurs}/vtserver.log.1 ${rep_trc_serveurs}/vtsgbd.log ${rep_trc_serveurs}/vtsgbd.log > /dev/null 2>&1
+		
+		ecrit_journal "Compression du fichier archive"
+		sleep 2 ; compress ${archive} > /dev/null 2>&1
+	
+		# ----- Archivage bases
+		#       vtserver etant potentiellement tombe, on ne peut pas utiliser vtbackup		
+		
+		archive=${rep_collecte}/${maintenant}_bases.tar
+	
+		ecrit_journal "Archivage base dans $archive"
+		tar cf ${archive} ${TOM_BASES} > /dev/null 2>&1
+		
+		ecrit_journal "Compression du fichier archive"
+		sleep 2 ; compress ${archive} > /dev/null 2>&1
+
+		# ----- Lancement service		
+
+		ecrit_journal "Redemarrage "${name}
+		
+		${TOM_BIN}/${name} > /dev/null &
+		
+		pid=$!
+		
+
+		# ----- Redemarrage des moteurs
+		
+		if [ -s ${rep_collecte}/lma.txt ] ; then
+		
+			# ----- on attend 2 min avant de démarrer les moteurs. En principe, il faudrait tester tlist env
+			
+			if [ $simulation -gt 0 ] ; then
+		
+				ecrit_journal "Attente 2 minutes avant redemarrage des moteurs"
+		
+				sleep 120
+			
+			else
+				ecrit_journal "Attente 2 minutes avant redemarrage des moteurs (FICTIF)"
+		
+				sleep 1
+			
+			fi
+		
+			maintenant=`date '+%y%m%d_%H%M%S'`
+
+			for item in `cat ${rep_collecte}/lma.txt`
+			do
+				if [ ! -z "${item}" ] ; then
+				
+					moteur=`echo ${item}|cut -d"." -f1`				
+					
+					# ----- Archivage traces moteur si chemin specifie dans fichier ini
+	
+					if [ ! -z "${rep_trc_moteurs}" ] ; then
+	
+						if [ -f "${rep_trc_moteurs}/${moteur}.log" ] ; then
+	
+							archive=${rep_collecte}/${maintenant}_${moteur}.tar
+							
+							ecrit_journal "Archivage traces moteur environnement ${moteur} dans $archive"
+							tar cf ${archive} ${rep_trc_moteurs}/${moteur}.log ${rep_trc_moteurs}/${moteur}.log.1 > /dev/null 2>&1
+							
+							ecrit_journal "Compression du fichier archive"
+							sleep 2 ; compress ${archive} > /dev/null 2>&1
+						fi
+					fi
+					
+					if [ $simulation -gt 0 ] ; then
+						ecrit_journal "Redemarrage moteur environnement ${moteur} (FICTIF)"
+					else
+						ecrit_journal "Redemarrage moteur environnement ${moteur}"		
+						estart ${moteur}
+						sleep 2
+					fi
+				fi
+		
+			done			
+		else
+			if [ $simulation -eq 0 ] ; then
+				sleep 30
+			fi
+			ecrit_journal "Aucun moteur a redemarrer"
+		fi
+		
+		# ----- Notification par mail
+		if [ ! -z ${mail_dest} ] ; then
+			if [ ! -z ${mail_serveur} ] ; then
+			
+				liste_destinataires="Notification par mail a $mail_dest"
+				
+				destinataires="-to ${mail_dest}"
+				
+				if [ ! -z ${mail_cc} ] ; then
+					destinataires="${destinataires} -cc ${mail_cc}"
+					liste_destinataires="${liste_destinataires} ; cc ${mail_cc}"
+					
+				fi
+				if [ ! -z ${mail_ccc} ] ; then
+					destinataires="${destinataires} -bcc ${mail_ccc}"
+					
+					liste_destinataires="${liste_destinataires} ; ccc ${mail_ccc}"
+				fi
+				
+				ecrit_journal "$liste_destinataires"
+				fic_extrait_journal=${rep_collecte}/extrait_${moi}_journal.txt
+				
+				echo "Extrait de $journal (100 dernieres lignes). Fichier complet en attachement." > $fic_extrait_journal
+				tail -100 $journal >> $fic_extrait_journal
+				
+				tmail -se $mail_exp $destinataires -smtp $mail_serveur -port $mail_port -sub "VTOM - relance automatique des serveurs" -msgf $fic_extrait_journal -att $journal > /dev/null 2>&1
+			fi
+		fi
+
+		# ----- Postage ftp
+		if [ ! -z ${ftp_serveur} ] ; then
+			if [ ! -z ${ftp_user} ] ; then
+				
+				ecrit_journal "Envoi par ftp sur serveur $ftp_serveur"
+ftp -nv <<__FINFTP__ > ${rep_collecte}/ftp.log 2>&1
+open ${ftp_serveur}
+user ${ftp_user} ${ftp_passwd}
+lcd ${rep_collecte}
+binary
+prompt
+cd incoming
+mput ${maintenant}_*
+bye
+__FINFTP__
+			fi
+		fi
+
+	else
+		
+		ecrit_journal "Processus ${serveur_base} absent"
+		
+		# ----- Collecte netstat, top, ps si pas déjà fait par ensure vtserver
+		
+		collecte
+		
+		# ----- inutile de collecter de nouveau des infos volatiles
+		collecter=0
+		export collecter
+
+		
+		# ----- si vtserver present, il faut l arreter
+
+		if [ ! -z "`${cde_ps} | grep ${pid_srv_vtom} | grep ${serveur_vtom}`" ] ; then
+		
+			if [ $simulation -gt 0 ] ; then
+				ecrit_journal "Processus ${serveur_base} absent. ${serveur_vtom} present - on arrete ${serveur_vtom} pat vtdcs (FICTIF)"
+			else
+				ecrit_journal "Processus ${serveur_base} absent. ${serveur_vtom} present - on arrete ${serveur_vtom} par vtdcs"
+	                        vtdcs -s
+	                        sleep 2
+                        fi
+                fi
+                
+		# ----- absence du process vtsgbd mais il faut l'arreter proprement (processus Postgres encore vivants)
+		
+		if [ $simulation -gt 0 ] ; then
+			ecrit_journal "Arret propre ${serveur_base} par vtdcs (FICTIF)"
+		else
+			ecrit_journal "Arret propre ${serveur_base} par vtdcs"
+			vtdcs -d
+			sleep 2
+			
+		fi
+                
+		# ----- Lancement service		                
+
+		ecrit_journal "Redemarrage "${name}
+	
+		${TOM_BIN}/${name} > /dev/null &
+		
+		pid=$!
+	fi
+
+	export pid
+	return $pid
+}
+
+
+################## MAIN
+
+# ----- Recup chemins traces
+
+moi=`basename $0`
+
+fic_ini=${TOM_ADMIN}/${moi}.ini
+
+if [ $# -gt 0 ] ; then
+
+	echo
+	echo "	$moi : lancement securise des serveurs VTOM."
+	echo
+	echo "	Ce script est derive de \${TOM_ADMIN}_start_servers.secure"
+	echo
+	echo "	Principe de fonctionnement :"
+	echo
+	echo "	En cas de disparition d'un ou des deux serveurs vtsgbd et vtserver,"
+	echo "	Il y a archivage des traces serveurs, traces moteurs, de la base et"
+	echo "	collecte du contexte par ps, top, netstat."
+	echo
+	echo "	Les chemins ou se trouvent les traces, les syntaxes des commandes UNIX"
+	echo "	a utiliser sont definis dans le fichier ${fic_ini} :"
+	echo 
+	echo "	SIMULATION         : indiquer \"NON\" pour un lancement des serveurs VTOM."
+	echo "	                     Toute autre valeur sera interpretee comme \"OUI\"."
+	echo "	                     Pour le mode simulation, les scripts sssimu_vtserver"
+	echo "	                     et sssimu_vtsgbd doivent etre presents dans \$TOM_BIN et"
+	echo "	                     etre executables"
+	echo
+	echo "	REP_TRC_SERVEURS   : repertoire traces serveurs"	
+	echo "	REP_TRC_MOTEURS    :                   moteurs"
+	echo
+	echo "	REP_COLLECTE       : repertoire pour l archivage des elements collectes"
+	echo
+	echo "	CYCLE_SECURE       : cycle en secondes pour la verification de la presence des serveurs (60 par defaut)"
+	echo
+	echo "	CMDE_PS_VSZ        : commande a utiliser pour obtenir ps -efo args,user,vsz"
+	echo
+	echo "	CMDE_PS		   : commande a utiliser pour obtenir une liste complete des processus"
+	echo "	                     avec la ligne de commande non tronquee."
+	echo "	              !!!    Cette commande est tres importante. Elle determine l efficience"
+	echo "	                     du test de la presence d une commande dans la liste des processus."
+	echo "	                     Si la commande est tronquee dans le \"ps\", le processus sera considere"
+	echo "	                     comme absent et il y aura collecte et redemarrage."
+	echo
+	echo "	CMDE_TOP           : commande pour top"
+	echo "	CMDE_TOP_OUT       : dans le cas de top -f fichier, indiquer \"-f\". \">>\" sera pris par defaut"
+	echo
+	echo "	NOTIF_MAIL_EXP     : adresse mail de l expediteur (pour eviter d etre anti-spamme)."
+	echo "	                     Par defaut ${moi}@vtom.fr"
+	echo "	NOTIF_MAIL_DEST    : adresses mail destinataires prenom.nom@societe.fr;prenom2.nom2@societe2.fr"
+	echo "	NOTIF_MAIL_SERVEUR : serveur SMTP"
+	echo "	NOTIF_MAIL_PORT    : port serveur SMTP (25 si non precise)"
+	echo "	NOTIF_MAIL_CC      : adresses mail copie carbone"
+	echo "	NOTIF_MAIL_CCC     : adresses mail copies cachees"
+	echo
+	echo "	FTP_SERVEUR        : serveur ftp ou doivent etre deposes les elements collectes"
+	echo "	FTP_USER           : user de connection au serveur ftp"
+	echo "	FTP_PASSWD         : mot de passe du user de connection a ftp"
+	echo
+	echo "	NB : il n y aura notification par mail que si la cle NOTIF_MAIL_SERVEUR est renseignee"
+	echo "	     idem pour ftp"
+	echo 
+	echo
+	echo "	Pour tester le bon fonctionnement du mode simulation, faites un \"kill -9\""
+	echo "	soit sur sssimu_vtserver seul, soit sur sssimu_vtserver et sssimu_vtsgbd en même temps."
+	echo "	Le script ne fait pas de kill, pour des raisons de securite."
+	echo "	En mode REEL, on demande un arret du serveur VTOM (vtserver) lorsque le serveur"
+	echo "	de base de données (vtsgbd) est absent."
+	echo "	C'est lors de la detection de la disparition de vtserver que les archivages de la base,"
+	echo "	des traces et les notification par mail et envoi par ftp sont realises."
+	echo "	Si vous killez sssimu_vtsgbd, procédez au kill de sssimu_vtserver quelques secondes"
+	echo "	apres celui de sssimu_vtsgbd."
+	echo
+	exit
+fi
+
+
+if [ ! -f "${fic_ini}" ] ; then
+	echo ""
+	echo "Fichier ${fic_ini} inexistant. Sortie."
+	echo ""
+	exit
+fi
+
+mode_simu=`cle_ficini "SIMULATION"`
+
+simulation=1
+
+[ "${mode_simu}" = "NON" ] && simulation=0
+
+
+# ----- mode simulation
+serveur_base=sssimu_vtsgbd
+serveur_vtom=sssimu_vtserver
+
+# ----- mode reel
+if [ $simulation -eq 0 ] ; then
+	serveur_base=vtsgbd
+	serveur_vtom=vtserver
+fi
+
+# ----- test presence et executabilite des serveurs
+if [ ! -f "${TOM_BIN}/${serveur_base}" ] ; then
+	echo ""
+	echo "Serveur ${serveur_base} inexistant dans ${TOM_BIN}. Sortie."
+	echo ""
+	exit
+else
+	if [ ! -x "${TOM_BIN}/${serveur_base}" ] ; then
+		echo ""
+		echo "Fichier ${TOM_BIN}/${serveur_base} non executable. Sortie."
+		exit
+	fi
+fi
+
+if [ ! -f "${TOM_BIN}/${serveur_vtom}" ] ; then
+	echo ""
+	echo "Serveur ${serveur_vtom} inexistant dans ${TOM_BIN}. Sortie."
+	echo ""
+	exit
+else
+	if [ ! -x "${TOM_BIN}/${serveur_vtom}" ] ; then
+		echo ""
+		echo "Fichier ${TOM_BIN}/${serveur_vtom} non executable. Sortie."
+		exit
+	fi
+fi
+
+rep_trc_serveurs=`cle_ficini "REP_TRC_SERVEURS"`
+
+if [ -z "${rep_trc_serveurs}" ] ; then
+	echo ""
+	echo "Repertoire des traces serveurs (cle REP_TRC_SERVEURS) non defini. Sortie."
+	echo ""
+	exit
+fi
+
+if [ ! -d "${rep_trc_serveurs}" ] ; then
+	echo ""
+	echo "Repertoire des traces serveurs ${rep_trc_serveurs} inexistant. Sortie."
+	echo ""
+	exit
+fi
+
+rep_collecte=`cle_ficini "REP_COLLECTE"`
+
+if [ ! -z "${rep_collecte}" ] ; then
+	if [ ! -d "${rep_collecte}" ] ; then
+		echo ""
+		echo "Repertoire de destination des elements collectes ${rep_collecte} inexistant. Sortie."	
+		echo ""
+		exit
+	fi
+else
+	
+	rep_collecte=${rep_trc_serveurs}
+fi 
+
+clear
+
+journal=${rep_collecte}/${moi}_journal.txt
+
+echo "" >> ${journal}
+echo "---------------------------------------" >> ${journal}
+uname -a >> ${journal}
+echo "" >> ${journal}
+
+ecrit_journal "Demarrage des serveurs en mode securise"
+
+echo ""
+echo "                        Historisation dans "${journal}
+
+ecrit_journal "Traces serveurs dans "${rep_trc_serveurs}
+
+rep_trc_moteurs=`cle_ficini "REP_TRC_MOTEURS"`
+
+if [ ! -z "${rep_trc_moteurs}" ] ; then
+	if [ ! -d "${rep_trc_moteurs}" ] ; then
+		echo ""
+		echo "Repertoire traces moteurs ${rep_trc_moteurs} inexistant. Sortie."	
+		echo ""
+		exit
+	fi
+	ecrit_journal "Traces moteurs dans "${rep_trc_moteurs}
+fi 
+
+ecrit_journal "Les elements collectes seront stockes dans "${rep_collecte}
+
+ecrit_journal "----- PARAMETRAGE :"
+
+cde_ps_vsz=`cle_ficini "CMDE_PS_VSZ"`
+ecrit_journal "Commande ps avec vsz : $cde_ps_vsz"
+
+cde_ps=`cle_ficini "CMDE_PS"`
+ecrit_journal "Commande ps : $cde_ps"
+
+cde_top=`cle_ficini "CMDE_TOP"`
+ecrit_journal "Commande top : $cde_top"
+
+cde_top_out=`cle_ficini "CMDE_TOP_OUT"`
+[ -z "${cde_top_out}" ] && cde_top_out=">>"
+
+cycle_secure=`cle_ficini "CYCLE_SECURE" 10`
+ecrit_journal "Cycle Secure : $cycle_secure"
+
+mail_exp=`cle_ficini "NOTIF_MAIL_EXP" "${moi}@vtom.fr"`
+ecrit_journal "Notification mail - expediteur : $mail_exp"
+
+mail_dest=`cle_ficini "NOTIF_MAIL_DEST"`
+ecrit_journal "Notification mail - destinataires : $mail_dest"
+
+mail_cc=`cle_ficini "NOTIF_MAIL_CC"`
+ecrit_journal "Notification mail - destinataires en cc : $mail_cc"
+
+mail_ccc=`cle_ficini "NOTIF_MAIL_CCC"`
+ecrit_journal "Notification mail - destinataires en ccc : $mail_ccc"
+
+mail_serveur=`cle_ficini "NOTIF_MAIL_SERVEUR"`
+ecrit_journal "Notification mail - serveur : $mail_serveur"
+
+mail_port=`cle_ficini "NOTIF_MAIL_PORT" 25`
+ecrit_journal "Notification mail - port : $mail_port"
+
+ftp_serveur=`cle_ficini "FTP_SERVEUR"`
+if [ ! -z ${ftp_serveur} ] ; then
+	ftp_user=`cle_ficini "FTP_USER"`
+	if [ ! -z ${ftp_user} ] ; then
+		ecrit_journal "Envoi par ftp sur le serveur $ftp_serveur par le user $ftp_user"
+	fi
+else
+	ftp_user=""
+fi
+
+ftp_passwd=`cle_ficini "FTP_PASSWD"`
+
+ecrit_journal "-------------------"
+
+
+pid_srv_vtom=0
+pid_srv_base=0
+pid=0
+
+ecrit_journal "Demarrage ${serveur_base}"
+
+${TOM_BIN}/${serveur_base} &
+
+pid_srv_base=$!
+
+if [ $simulation -eq 0 ] ; then
+	sleep 30
+fi
+
+ecrit_journal "Demarrage ${serveur_vtom}"
+
+${TOM_BIN}/${serveur_vtom} &
+
+pid_srv_vtom=$!
+
+if [ $simulation -eq 0 ] ; then
+	sleep 20
+fi
+
+collecter=1
+
+while  [ 0 ] ; do
+
+	sleep ${cycle_secure}
+
+        now=`date '+%d-%m-%Y %H:%M:%S'`
+	echo ""
+	echo ${now}" - Controle ${serveur_vtom}"
+	ensure ${pid_srv_vtom} "${serveur_vtom}"
+	pid_srv_vtom=${pid}
+	unset pid
+
+        now=`date '+%d-%m-%Y %H:%M:%S'`
+	echo ""
+	echo ${now}" - Controle ${serveur_base}"
+	ensure ${pid_srv_base} "${serveur_base}"
+	pid_srv_base=${pid}
+	unset pid
+
+done
+
+

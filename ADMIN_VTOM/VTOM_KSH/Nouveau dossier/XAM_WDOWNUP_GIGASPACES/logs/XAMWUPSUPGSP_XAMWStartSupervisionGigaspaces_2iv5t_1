@@ -1,0 +1,33 @@
+Use of uninitialized value in concatenation (.) or string at
+	/msampdgs01/appli/gs/XAM_WDOWNUP_GIGASPACES/xv/sbin/enableBB.pl line 43 (#1)
+    (W uninitialized) An undefined value was used as if it were already
+    defined.  It was interpreted as a "" or a 0, but maybe it was a mistake.
+    To suppress this warning assign a defined value to your variables.
+    
+    To help you figure out what was undefined, perl tells you what operation
+    you used the undefined value in.  Note, however, that perl optimizes your
+    program and the operation displayed in the warning may not necessarily
+    appear literally in your program.  For example, "that $foo" is
+    usually optimized into "that " . $foo, and the warning will refer to
+    the concatenation (.) operator, even though there is no . in your
+    program.
+    
+20130323-16:38:33  -f /msampdgs01/appli/gs/XAM_WDOWNUP_GIGASPACES/xv/etc/disableBB_amerisc.cfg - -t  - Desactivation des vues BB
+20130323-16:38:33  Desactivation des vues du serveur msampdgs01
+Use of uninitialized value in concatenation (.) or string at
+	/msampdgs01/appli/gs/XAM_WDOWNUP_GIGASPACES/xv/sbin/enableBB.pl line 71 (#1)
+20130323-16:38:33  Desactivation des vues du serveur msampdgs02
+20130323-16:38:33  Desactivation des vues du serveur msampdgs03
+20130323-16:38:33  Desactivation des vues du serveur msampdgs04
+20130323-16:38:33  Desactivation des vues du serveur msampdgs05
+20130323-16:38:33  Desactivation des vues du serveur msampdgs06
+20130323-16:38:33  Desactivation des vues du serveur msampdgs07
+20130323-16:38:33  Desactivation des vues du serveur msampdgs08
+20130323-16:38:33  Desactivation des vues du serveur msampdgs09
+20130323-16:38:33  Desactivation des vues du serveur msampdgs10
+20130323-16:38:33  Desactivation des vues du serveur msampdgs11
+20130323-16:38:33  Desactivation des vues du serveur msampdgs12
+20130323-16:38:34  Desactivation des vues du serveur msampdgs13
+20130323-16:38:34  Desactivation des vues du serveur msampdgs14
+20130323-16:38:34  Desactivation des vues du serveur msampdgs15
+20130323-16:38:34  Desactivation des vues du serveur msampdgs16

@@ -1,0 +1,4 @@
+$PARM
+MAIN_TABLE.DIRPROD "/exploit1fs1/prod/scripte/expl"
+MAIN_TABLE.JOBNAME "^UNISON_JOB^"
+MAIN_TABLE.NTPATH1 "d:\exploit1fs1\prod\scripts\expl\"

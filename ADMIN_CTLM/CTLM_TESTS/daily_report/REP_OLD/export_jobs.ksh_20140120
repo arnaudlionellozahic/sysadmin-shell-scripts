@@ -1,0 +1,129 @@
+#!/bin/ksh -x
+
+
+entete_error_J ()
+{
+echo "EXPORT_JOBS_DU_JOUR"
+echo ""
+echo "Vous trouverez ci-dessous la liste des traitements et groupes en erreur sur le plan du ${J_DAY} : "
+}
+
+entete_hold_J ()
+{
+echo ""
+echo "Vous trouverez ci-dessous la liste des traitements et groupes en hold sur le plan du ${J_DAY} : "
+}
+
+entete_wait_res_J ()
+{
+echo ""
+echo "Vous trouverez ci-dessous la liste des traitements et groupes en attente de ressources sur le plan du ${J_DAY} : "
+}
+
+
+entete_error_J1 ()
+{
+echo "EXPORT_JOBS_DE_LA_VEILLE"
+echo ""
+echo "Vous trouverez ci-dessous la liste des traitements et groupes en erreur sur le plan du ${J_DAY1} : "
+}
+
+entete_hold_J1 ()
+{
+echo ""
+echo "Vous trouverez ci-dessous la liste des traitements et groupes en hold sur le plan du ${J_DAY1} : "
+}
+
+entete_wait_res_J1 ()
+{
+echo ""
+echo "Vous trouverez ci-dessous la liste des traitements et groupes en attente de ressources sur le plan du ${J_DAY1} : "
+}
+
+
+entete_error_J2 ()
+{
+echo "EXPORT_JOBS_DE_L'AVANT_VEILLE"
+echo ""
+echo "Vous trouverez ci-dessous la liste des traitements et groupes en erreur sur le plan du ${J_DAY2} : "
+}
+
+entete_hold_J2 ()
+{
+echo ""
+echo "Vous trouverez ci-dessous la liste des traitements et groupes en hold sur le plan du ${J_DAY2} : "
+}
+
+entete_wait_res_J2 ()
+{
+echo ""
+echo "Vous trouverez ci-dessous la liste des traitements et groupes en attente de ressources sur le plan du ${J_DAY2} : "
+}
+
+
+req ()
+{
+for i in $list
+do
+ctmpsm -LISTALL | grep $i && echo $i
+done
+}
+
+mail ()
+{
+if [ `/bin/grep P $out | wc -l` -lt 1 ]
+        then
+                echo -e "\033[31mPas de traitements et groupes en erreur, holdes ou en attente de ressources\033[00m"
+                echo "Pas de traitements et groupes en erreur, holdes ou en attente de ressources" > $out
+                mailx -r mbx-tip-app-bfi-rri@natixis.com -s "[${ENVI}] : Liste des traitements et groupes en erreur ou en hold entre le ${J_DAY} et le ${J_DAY2}" arnaud.lozahic-ext@natixis.com < $out
+                exit 1
+        else
+mailx -r mbx-tip-app-bfi-rri@natixis.com -s "[${ENVI}] : Liste des traitements et groupes en erreur ou en hold entre le ${J_DAY2} et le ${J_DAY}" arnaud.lozahic-ext@natixis.com < $out
+fi
+}
+
+
+#Main
+list=`cat /slqdl7bdd01/appli/dl7/sp/tests_ctlm/daily_report/liste_AJF.txt`
+out=/slqdl7bdd01/appli/dl7/sp/tests_ctlm/daily_report/export_error.csv
+out2=/slqdl7bdd01/appli/dl7/sp/tests_ctlm/daily_report/export_temp.txt
+J_DAY=$(date "+%Y%m%d")
+J_DAY1=`TZ=MET+24 date "+%Y%m%d"`
+J_DAY2=`date --date '2 days ago' "+%Y%m%d"`
+ENVI=PREX
+
+req > $out2
+
+entete_error_J > $out
+cat $out2 | grep CMD | grep NOTOK | grep ${J_DAY} | awk -F "|" '{print $2}' >> $out
+entete_hold_J >> $out
+cat $out2 | grep CMD | grep Hold | grep ${J_DAY} | awk -F "|" '{print $2}' >> $out
+entete_wait_res_J >> $out
+cat $out2 | grep CMD | grep "Wait Res" | grep ${J_DAY} | awk -F "|" '{print $2}' >> $out
+
+echo "" >> $out
+echo "_________________________________________________________________" >> $out
+echo "" >> $out
+
+entete_error_J1 >> $out
+cat $out2 | grep CMD | grep NOTOK | grep ${J_DAY-1} | awk -F "|" '{print $2}' >> $out
+entete_hold_J1 >> $out
+cat $out2 | grep CMD | grep Hold | grep ${J_DAY-1} | awk -F "|" '{print $2}' >> $out
+entete_wait_res_J1 >> $out
+cat $out2 | grep CMD | grep "Wait Res" | grep ${J_DAY-1} | awk -F "|" '{print $2}' >> $out
+
+echo "" >> $out
+echo "_________________________________________________________________" >> $out
+echo "" >> $out
+
+entete_error_J2 >> $out
+cat $out2 | grep CMD | grep NOTOK | grep ${J_DAY-2} | awk -F "|" '{print $2}' >> $out
+entete_hold_J2 >> $out
+cat $out2 | grep CMD | grep Hold | grep ${J_DAY-2} | awk -F "|" '{print $2}' >> $out
+entete_wait_res_J2 >> $out
+cat $out2 | grep CMD | grep "Wait Res" | grep ${J_DAY-2} | awk -F "|" '{print $2}' >> $out
+
+mail
+
+rm -f $out2
+rm -f $out

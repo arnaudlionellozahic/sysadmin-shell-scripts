@@ -1,0 +1,9 @@
+SCRIPT DE COPIE DE FICHIERS SOUS SOLARIS
+
+#DATE AU FORMAT YYYYMMDD
+#date=$(date +'%Y%m%d')
+
+for i in `ls -A *toto*`
+do
+cp -p ${i} ${i}_$(date +'%Y%m%d')
+done

@@ -1,0 +1,282 @@
+#! /bin/ksh 
+#__________________________________________________________
+#
+#     Collecte informations sur le contexte VTOM
+#__________________________________________________________
+
+
+
+
+ecrit_journal()
+{
+
+	msg=$1
+
+	instant=`date '+%d-%m-%Y %H:%M:%S'`
+	echo ""
+	echo "o "${msg}
+	echo ${instant}" - "${msg} >> ${journal}
+
+}
+
+cle_ficini()
+{
+
+	cle=$1
+	valeur_cle=`grep "^${cle}:" ${fic_ini} | cut -d":" -f2`
+	
+	echo $valeur_cle
+	
+}
+
+
+
+collecte()
+{
+
+# ----- Collecte infos netstat, memoire et processus en cours
+
+ecrit_journal "Collecte netstat, vtping, top et ps"
+	
+maintenant=`date '+%y%m%d_%H%M%S'`
+
+fic_collecte=${rep_collecte}/${maintenant}_netstat.txt
+uname -a > ${fic_collecte}
+echo "" >> ${fic_collecte}
+	
+echo "netstat -a" >> ${fic_collecte}
+echo "----------" >> ${fic_collecte}
+echo "" >> ${fic_collecte}
+netstat -a >> ${fic_collecte}
+	
+echo "" >> ${fic_collecte}
+echo "netstat -an">> ${fic_collecte}
+echo "-----------" >> ${fic_collecte}
+echo "" >> ${fic_collecte}
+netstat -an >> ${fic_collecte}
+
+
+fic_collecte=${rep_collecte}/${maintenant}_tping_top.txt
+uname -a > ${fic_collecte}
+echo "" >> ${fic_collecte}
+
+echo "vtping" >> ${fic_collecte}
+echo "-----" >> ${fic_collecte}
+echo "" >> ${fic_collecte}
+vtping >> ${fic_collecte}
+	
+echo "" >> ${fic_collecte}	
+echo "top (${cde_top})" >> ${fic_collecte}
+echo "---" >> ${fic_collecte}
+echo "" >> ${fic_collecte}
+eval ${cde_top} ${cde_top_out} ${fic_collecte}
+	
+echo "" >> ${fic_collecte}
+echo "ps avec vsz (${cde_ps_vsz})" >> ${fic_collecte}
+echo "-----------" >> ${fic_collecte}
+echo "" >> ${fic_collecte}
+eval ${cde_ps_vsz} >> ${fic_collecte}	
+	
+fic_collecte=${rep_collecte}/${maintenant}_ps.txt
+uname -a > ${fic_collecte}
+echo "" >> ${fic_collecte}
+	
+echo "Lise des processus (ps -ef)" >> ${fic_collecte}
+echo "------------------" >> ${fic_collecte}
+echo "" >> ${fic_collecte}
+ps -ef >> ${fic_collecte}
+
+
+# ----- Archivage bases
+
+ecrit_journal "Archivage base"
+	
+archive=${rep_collecte}/${maintenant}_bases.tar
+
+ecrit_journal "Archivage base dans ${rep_collecte}/${maintenant}_bases.tar"
+
+vtbackup -p ${rep_collecte}/${maintenant}_vtbackup > /dev/null 2>&1
+
+if [ $? -gt 0 ] ; then
+
+	ecrit_journal "vtbackup impossible. Archivage de $TOM_BASES"
+	tar cf ${archive} ${TOM_BASES} > /dev/null 2>&1
+else
+	ecrit_journal "Sauvegarde de la base par vtbackup. Archivage de ${maintenant}_vtbackup"
+	echo
+	echo "Vous pourrez detruire le repertoire ${maintenant}_vtbackup"
+
+	tar cf ${archive} ${rep_collecte}/${maintenant}_vtbakup > /dev/null 2>&1
+fi
+
+ecrit_journal "Compression du fichier archive"
+sleep 2 ; compress ${archive} > /dev/null 2>&1 &
+
+		
+# ----- Archivage traces serveur 
+
+if [ ! -z "${rep_trc_serveurs}" ] ; then
+
+	archive=${rep_collecte}/${maintenant}_traces_serveurs.tar
+	
+	ecrit_journal "Archivage traces serveurs dans ${rep_collecte}/${maintenant}_traces_serveurs.tar"
+	tar cf ${archive} ${rep_trc_serveurs}/vtserver.log ${rep_trc_serveurs}/vtserver.log.1 ${rep_trc_serveurs}/vtsgbd.log ${rep_trc_serveurs}/vtsgbd.log.1 > /dev/null 2>&1
+
+	ecrit_journal "Compression du fichier archive"
+	sleep 2 ; compress ${archive} > /dev/null 2>&1 &
+	
+fi
+		
+# ----- Archivage traces moteurs
+
+if [ ! -z "${rep_trc_moteurs}" ] ; then
+
+	ecrit_journal "Archivage traces serveurs dans ${rep_collecte}/${maintenant}_traces_moteurs.tar"	
+
+	archive=${rep_collecte}/${maintenant}_traces_moteurs.tar
+
+	if [ "${rep_trc_moteurs}" = "${rep_trc_moteurs}" ] ; then
+		
+		tar cf ${archive} $fic_ini
+		find ${rep_trc_moteurs} \( -name "*.log" -a ! -name "vtserver.log" -a ! -name "vtsgbd.log" \) -exec tar uf ${archive} {} \;
+		find ${rep_trc_moteurs} \( -name "*.log.1" -a ! -name "vtserver.log.1" -a ! -name "vtsgbd.log.1" \) -exec tar uf ${archive} {} \;
+	else
+		tar cf ${archive} ${rep_trc_moteurs}/*.log ${rep_trc_moteurs}/*.log.1 > /dev/null 2>&1	
+	
+	fi
+	
+	ecrit_journal "Compression du fichier archive"	
+	sleep 2 ; compress ${archive} > /dev/null 2>&1 &
+fi
+
+}
+
+################## MAIN
+
+# ----- Recup chemins traces
+
+moi=`basename $0`
+
+TOM_ADMIN=/home4/plair/sss/collecte
+
+fic_ini=${TOM_ADMIN}/${moi}.ini
+
+
+if [ $# -gt 0 ] ; then
+
+
+	echo
+	echo "	$moi : collecte du contexte VTOM."
+	echo
+	echo "	Archivage des traces serveurs, traces moteurs, de la base VTOM et"
+	echo "	collecte du contexte par ps, top, netstat, tping."
+	echo
+	echo "	Les chemins ou se trouvent les traces, les commandes UNIX a utiliser"
+	echo "	pour top et ps (different d un UNIX a l autre) sont definis dans le fichier"
+	echo "	${fic_ini} :"
+	echo 
+	echo "	REP_TRC_SERVEURS : repertoire traces serveurs (facultatif)"
+	echo "	REP_TRC_MOTEURS  : repertoire traces moteurs (facultatif)"
+	echo "	REP_COLLECTE     : repertoire pour le stockage des elements collectes"
+	echo "	CMDE_PS_VSZ      : commande a utiliser pour obtenir ps -efo args,user,vsz"
+	echo "	CMDE_PS		 : commande a utiliser pour obtenir une liste complete des processus"
+	echo "                     avec la ligne de commande non tronquee"
+	echo "	CMDE_TOP         : commande pour top"
+	echo "	CMDE_TOP_OUT     : dans le cas de top -f fichier, indiquer -f. Si manquant, >> sera pris"
+	echo 
+	
+	exit
+fi
+
+
+
+if [ ! -f "${fic_ini}" ] ; then
+	echo ""
+	echo "Fichier ${fic_ini} inexistant. Sortie."
+	echo ""
+	exit
+fi
+
+rep_trc_serveurs=`cle_ficini "REP_TRC_SERVEURS"`
+
+if [ -z "${rep_trc_serveurs}" ] ; then
+	echo
+	echo "Repertoire des traces serveurs (cle REP_TRC_SERVEURS) non defini."
+	echo
+else
+	if [ ! -d "${rep_trc_serveurs}" ] ; then
+		echo ""
+		echo "Repertoire des traces serveurs ${rep_trc_serveurs} inexistant. Sortie."
+		echo
+		exit
+	fi
+fi
+
+rep_collecte=`cle_ficini "REP_COLLECTE"`
+
+if [ ! -z "${rep_collecte}" ] ; then
+	if [ ! -d "${rep_collecte}" ] ; then
+		echo
+		echo "Repertoire de destination des elements collectes ${rep_collecte} inexistant. Sortie."	
+		echo
+		exit
+	fi
+else
+	
+	rep_collecte=${rep_trc_serveurs}
+fi 
+
+clear
+
+journal=${rep_collecte}/${moi}_journal.txt
+
+echo "" >> ${journal}
+echo "---------------------------------------" >> ${journal}
+uname -a >> ${journal}
+echo "" >> ${journal}
+
+echo
+echo "  Collecte du contexte VTOM"
+echo 
+
+ecrit_journal "Traces serveurs dans "${rep_trc_serveurs}
+
+rep_trc_moteurs=`cle_ficini "REP_TRC_MOTEURS"`
+
+if [ ! -z "${rep_trc_moteurs}" ] ; then
+	if [ ! -d "${rep_trc_moteurs}" ] ; then
+		echo ""
+		echo "Repertoire traces moteurs ${rep_trc_moteurs} inexistant. Sortie."	
+		echo ""
+		exit
+	fi
+	ecrit_journal "Traces moteurs dans "${rep_trc_moteurs}
+fi 
+
+ecrit_journal "Les archivages (traces, base VTOM, journal, ps, top, netstat) seront faits dans "${rep_collecte}
+
+cde_ps_vsz=`cle_ficini "CMDE_PS_VSZ"`
+ecrit_journal "Commande ps avec vsz : $cde_ps_vsz"
+
+cde_ps=`cle_ficini "CMDE_PS"`
+ecrit_journal "Commande ps : $cde_ps"
+
+cde_top=`cle_ficini "CMDE_TOP"`
+ecrit_journal "Commande top : $cde_top"
+
+cde_top_out=`cle_ficini "CMDE_TOP_OUT"`
+[ -z "${cde_top_out}" ] && cde_top_out=">>"
+
+
+collecte
+
+ecrit_journal "Collecte terminee"
+
+echo
+echo "	Faites parvenir les elements collectes au support ABSYSS,"
+echo "	soit par mail (hotline@absyss.fr) si la taille des elements le permet,"
+echo "	soit en les postant sur votre compte ftp, sur le serveur ftp.absyss.fr"
+echo
+
+exit
+

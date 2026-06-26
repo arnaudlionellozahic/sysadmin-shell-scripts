@@ -1,0 +1,34 @@
+#!/bin/ksh
+cd $ABM_LOGS
+
+#ls -ltr CYCLIQUE_TOTO_CYCLE_TOTO_CYCLE_* | awk '{print $9}' > toto
+ls -Al | grep CYCLIQUE | awk '{print $9}' > toto
+
+#cat toto | cut -c1-31 > titi
+
+#perl -pi -e "s/CYCLIQUE_TOTO_CYCLE_TOTO_CYCLE_/CYCLIQUE_TOTO_CYCLE_TOTO_CYCLE_$(date +'%Y%m%d-%H%M%S')/g" titi
+
+list=`cat toto | cut -c1-31`
+
+#for u in `perl -pi -e "s/CYCLIQUE_TOTO_CYCLE_TOTO_CYCLE_/CYCLIQUE_TOTO_CYCLE_TOTO_CYCLE_$(date +'%Y%m%d-%H%M%S')/g" titi`
+#do
+#touch $u
+#done
+
+for u in $list
+do
+#touch $u$(date +'%Y%m%d-%H%M%S').o
+#touch $u$(date +'%Y%m%d-%H%M%S').e
+dd if=/dev/zero of=$u$(date +'%y%m%d-%H%M%S').o bs=1k count=10
+#echo "Duplication OK pour $u$(date +'%y%m%d-%H%M%S')" >> /tmp/duplication_logs.log
+dd if=/dev/zero of=$u$(date +'%y%m%d-%H%M%S').e bs=1k count=1
+#echo "OK" >> /tmp/duplication_logs.log
+done
+
+echo "Duplication OK le $(date +'%d-%m-%Y') a $(date +'%H:%M:%S')" >> /tmp/duplication_logs.log
+
+# Pour afficher les derniers fichiers crees et controles
+#ls -FlAt | head
+
+#chown root:alozahic CYCLIQUE_TOTO_CYCLE_TOTO_CYCLE_*
+#chmod 666 CYCLIQUE_TOTO_CYCLE_TOTO_CYCLE_*

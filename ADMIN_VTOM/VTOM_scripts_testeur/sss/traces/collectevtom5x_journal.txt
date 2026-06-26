@@ -1,0 +1,20 @@
+
+---------------------------------------
+HP-UX itanium B.11.23 U ia64 1220372574 unlimited-user license
+
+06-11-2009 17:06:13 - Traces serveurs dans /home4/plair/traces
+06-11-2009 17:06:13 - Traces moteurs dans /home4/plair/traces
+06-11-2009 17:06:13 - Les archivages (traces, base VTOM, journal, ps, top, netstat) seront faits dans /home4/plair/sss/traces
+06-11-2009 17:06:13 - Commande ps avec vsz : UNIX95= ps -eo pid,time,user,comm,sz,vsz
+06-11-2009 17:06:13 - Commande ps : ps -ex
+06-11-2009 17:06:13 - Commande top : top -d 1 -n 10000
+06-11-2009 17:06:13 - Collecte netstat, vtping, top et ps
+06-11-2009 17:06:19 - Archivage base
+06-11-2009 17:06:19 - Archivage base dans /home4/plair/sss/traces/091106_170613_bases.tar
+06-11-2009 17:06:19 - Sauvegarde de la base par vtbackup. Archivage de 091106_170613_vtbackup
+06-11-2009 17:06:19 - Compression du fichier archive
+06-11-2009 17:06:21 - Archivage traces serveurs dans /home4/plair/sss/traces/091106_170613_traces_serveurs.tar
+06-11-2009 17:06:21 - Compression du fichier archive
+06-11-2009 17:06:23 - Archivage traces serveurs dans /home4/plair/sss/traces/091106_170613_traces_moteurs.tar
+06-11-2009 17:06:24 - Compression du fichier archive
+06-11-2009 17:06:26 - Collecte terminee

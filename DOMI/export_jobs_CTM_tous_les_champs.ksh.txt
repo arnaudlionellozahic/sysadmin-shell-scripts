@@ -1,0 +1,86 @@
+#!/bin/ksh -x
+
+entete ()
+{
+echo "application;apr;aug;author;autoarch;change_date;change_time;change_userid;cmdline;confirm;creation_date;creation_time;creation_user;critical;cyclic;cyclic_times_sequence;cyclic_tolerance;cyclic_type;days_and_or;dec;description;feb;group;ind_cyclic;interval;jan;jobname;jul;jun;mar;maxdays;maxrerun;maxruns;maxwait;may;memname;multi_agent;nodeid;nov;oct;option;owner;par;parent_table;retro;rule_based_calendar_relationship;sep;shift;shiftnum;sysdb;tasktype;use_instream_jcl"
+}
+
+req()
+{
+for j in $list_job
+do
+cat ${j} | sed -e 's/\(APPLICATION=.*\)/RECORD_SEP\1/' -e 's/\(USE_INSTREAM_JCL=.*\)/\1RECORD_SEP/' |awk 'BEGIN{ RS="RECORD_SEP" } /APPLICATION=.*USE_INSTREAM_JCL=.*/ { print $0 }' | sed 's/   //g;s/"//g;s/ //g;s/;/|/g' | awk -F "=" 'BEGIN {deb=""}
+  $1 == "APPLICATION" { printf "\n%-s%-s",$2,";"}
+  $1 == "APR" { printf "%-s%-s",$2,";"}
+  $1 == "AUG" { printf "%-s%-s",$2,";"}
+  $1 == "AUTHOR" { printf "%-s%-s",$2,";"}
+  $1 == "AUTOARCH" { printf "%-s%-s",$2,";"}
+  $1 == "CHANGE_DATE" { printf "%-s%-s",$2,";"}
+  $1 == "CHANGE_TIME" { printf "%-s%-s",$2,";"}
+  $1 == "CHANGE_USERID" { printf "%-s%-s",$2,";"}
+  $1 == "CMDLINE" { printf "%-s%-s",$2,";"}
+  $1 == "CONFIRM" { printf "%-s%-s",$2,";"}
+  $1 == "CREATION_DATE" { printf "%-s%-s",$2,";"}
+  $1 == "CREATION_TIME" { printf "%-s%-s",$2,";"}
+  $1 == "CREATION_USER" { printf "%-s%-s",$2,";"}
+  $1 == "CRITICAL" { printf "%-s%-s",$2,";"}
+  $1 == "CYCLIC" { printf "%-s%-s",$2,";"}
+  $1 == "CYCLIC_TIMES_SEQUENCE" { printf "%-s%-s",$2,";"}
+  $1 == "CYCLIC_TOLERANCE" { printf "%-s%-s",$2,";"}
+  $1 == "CYCLIC_TYPE" { printf "%-s%-s",$2,";"}
+  $1 == "DAYS_AND_OR" { printf "%-s%-s",$2,";"}
+  $1 == "DEC" { printf "%-s%-s",$2,";"}
+  $1 == "DESCRIPTION" { printf "%-s%-s",$2,";"}
+  $1 == "FEB" { printf "%-s%-s",$2,";"}
+  $1 == "GROUP" { printf "%-s%-s",$2,";"}
+  $1 == "IND_CYCLIC" { printf "%-s%-s",$2,";"}
+  $1 == "INTERVAL" { printf "%-s%-s",$2,";"}
+  $1 == "JAN" { printf "%-s%-s",$2,";"}
+  $1 == "JOBNAME" { printf "%-s%-s",$2,";"}
+  $1 == "JUL" { printf "%-s%-s",$2,";"}
+  $1 == "JUN" { printf "%-s%-s",$2,";"}
+  $1 == "MAR" { printf "%-s%-s",$2,";"}
+  $1 == "MAXDAYS" { printf "%-s%-s",$2,";"}
+  $1 == "MAXRERUN" { printf "%-s%-s",$2,";"}
+  $1 == "MAXRUNS" { printf "%-s%-s",$2,";"}
+  $1 == "MAXWAIT" { printf "%-s%-s",$2,";"}
+  $1 == "MAY" { printf "%-s%-s",$2,";"}
+  $1 == "MEMNAME" { printf "%-s%-s",$2,";"}
+  $1 == "MULTY_AGENT" { printf "%-s%-s",$2,";"}
+  $1 == "NODEID" { printf "%-s%-s",$2,";"}
+  $1 == "NOV" { printf "%-s%-s",$2,";"}
+  $1 == "OCT" { printf "%-s%-s",$2,";"}
+  $1 == "OPTION" { printf "%-s%-s",$2,";"}
+  $1 == "OWNER" { printf "%-s%-s",$2,";"}
+  $1 == "PAR" { printf "%-s%-s",$2,";"}
+  $1 == "PARENT_TABLE" { printf "%-s%-s",$2,";"}
+  $1 == "RETRO" { printf "%-s%-s",$2,";"}
+  $1 == "RULE_BASED_CALENDAR_RELATIONSHIP" { printf "%-s%-s",$2,";"}
+  $1 == "SEP" { printf "%-s%-s",$2,";"}
+  $1 == "SHIFT" { printf "%-s%-s",$2,";"}
+  $1 == "SHIFTNUM" { printf "%-s%-s",$2,";"}
+  $1 == "SYSDB" { printf "%-s%-s",$2,";"}
+  $1 == "TASKTYPE" { printf "%-s%-s",$2,";"}
+  $1 == "USE_INSTREAM_JCL" { printf "%-s\n",$2}
+'
+done
+}
+
+#Main
+out=/home/alozahic/exploit/systeme/suivi/RANGE/CONTROL-M/EXTRACTION_EXPORT/EXPORT_JOBS_ARNAUD/export_traitement_3G.csv
+entete > $out
+
+#out1=/home/alozahic/exploit/systeme/suivi/RANGE/CONTROL-M/EXTRACTION_EXPORT/EXPORT_JOBS_ARNAUD/3G.xml
+#out2=/home/alozahic/exploit/systeme/suivi/RANGE/CONTROL-M/EXTRACTION_EXPORT/EXPORT_JOBS_ARNAUD/export_temp.txt
+rep1=/home/alozahic/exploit/systeme/suivi/RANGE/CONTROL-M/EXTRACTION_EXPORT/EXPORT_JOBS_ARNAUD
+rep2=/home/alozahic/exploit/systeme/suivi/RANGE/CONTROL-M/EXTRACTION_EXPORT/EXPORT_JOBS_ARNAUD/LISTE_XML
+#head=/home/alozahic/exploit/systeme/suivi/RANGE/ABSYSS/MAIL/header_gmail.info
+
+list_job=`ls -1 ${rep2}`
+
+cd $rep2
+req >> $out
+#rajout_champ_1
+#req >> $out
+
+#cat $head  | cat - $out | /usr/sbin/sendmail -t arnaud.lozahic@gmail.com

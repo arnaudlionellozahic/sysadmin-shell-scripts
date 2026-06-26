@@ -1,0 +1,64 @@
+list_job=$(vtexport  | grep "job:" | sed 's/\]//g;s/job://g;s/\[//g' | awk -F "/" '{ print $1 "/" $2 "/"  $3}') 
+
+
+
+echo"jobs;mode;heure_debut;heure_fin;type_periodicite;cyclique;cycle;periodicite;mettre_application_en_erreur;ne_pas_deplanifier;attendre_avant_deplanification;heure_deplanification;bloquer_la_date;rattrapage_type;duree_max;retenu;demande;script;parametres;modjobs;liens_amon;liens_aval" 
+
+
+
+
+for j in $list_job 
+do 
+ vtexport -f "$j" | sed 's/#//g;s/;/ /g'| awk -F "=" 'BEGIN {deb=""} 
+  $1 == "jobs" { printf "\n%-s%-s",$2,";"} 
+  $1 == "mode" { printf "%-s%-s",$2,";"} 
+  $1 == "heure_debut" { printf "%-s%-s",$2,";"} 
+  $1 == "heure_fin" { printf "%-s%-s",$2,";"} 
+  $1 == "type_periodicite" { printf "%-s%-s",$2,";"} 
+  $1 == "cyclique" { printf "%-s%-s",$2,";"} 
+  $1 == "cycle" { printf "%-s%-s",$2,";"} 
+  $1 == "periodicite" { printf "%-s%-s",$2,";"} 
+  $1 == "mettre_application_en_erreur" { printf "%-s%-s",$2,";"} 
+  $1 == "ne_pas_deplanifier" { printf "%-s%-s",$2,";"} 
+  $1 == "attendre_avant_deplanification" && $2 == "oui" { printf "%-s%-s",$2,";"} 
+  $1 == "attendre_avant_deplanification" && $2 == "non" { printf "%-s%-s",$2,";;"} 
+  $1 == "heure_deplanification" { printf "%-s%-s",$2,".;"} 
+  $1 == "bloquer_la_date" { printf "%-s%-s",$2,";"} 
+  $1 == "rattrapage_type" { printf "%-s%-s",$2,";"} 
+  $1 == "duree_max" { printf "%-s%-s",$2,";"} 
+  $1 == "retenu" { printf "%-s%-s",$2,";"} 
+  $1 == "demande" { printf "%-s%-s",$2,";"} 
+  $1 == "script" { printf "%-s%-s",$2,";"} 
+  $1 == "parametres" { printf "%-s%-s",$2,";"} 
+  $1 == "modjobs" { printf "%-s%-s",$2,";"} 
+  $1 == "liens_vers" { printf "%-s%-s",$2,";"} 
+  $1 == "liens_de" { printf "%-s\n",$2} 
+' >> toto
+done 
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+DECOMPOSITION PREMIERE PARTIE
+
+vtexport  | grep "job:" > job
+
+[job:PRODUCTION/APP/JOB]
+[job:PRODUCTION/APP/JOB2]
+[modjob:RETENIR/RETENUE/RETENU_JOB/27-03-2012/27-03-2012]
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+$cat job | sed 's/\]//g;s/job://g;s/\[//g'
+PRODUCTION/APP/JOB
+PRODUCTION/APP/JOB2
+modRETENIR/RETENUE/RETENU_JOB/27-03-2012/27-03-2012
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+SUFFISANT : 
+list_job=$(vtexport  | grep "\[job:" | sed 's/\]//g;s/job://g;s/\[//g')
+echo"jobs;mode;heure_debut;heure_fin;type_periodicite;cyclique;cycle;periodicite;mettre_application_en_erreur;ne_pas_deplanifier;attendre_avant_deplanification;heure_deplanification;bloquer_la_date;rattrapage_type;duree_max;retenu;demande;script;parametres;modjobs;liens_amon;liens_aval" 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------
+DECOMPOSITION SECONDE PARTIE

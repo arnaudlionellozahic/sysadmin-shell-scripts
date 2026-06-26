@@ -1,0 +1,7 @@
+Name            Nodename   Mount Pt               VFS   Size    Options    Auto Accounting
+/dev/lv_mqNCATL01Pl --         /var/mqm/log/NCATL01Pl jfs   1441792 --         yes  no 
+
+lv_mqNCATL01Pl:/var/mqm/log/NCATL01Pl
+PV                COPIES        IN BAND       DISTRIBUTION  
+hdiskpower1       011:000:000   100%          000:011:000:000:000 
+

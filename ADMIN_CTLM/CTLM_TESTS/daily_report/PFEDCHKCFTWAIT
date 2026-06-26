@@ -1,0 +1,74 @@
+#!/bin/ksh
+# ---------------------------------------------------------------------------- #
+# ?FEDCHKWAITFILES : Check des fichiers restants dans les puits de donnees WAIT#
+# ---------------------------------------------------------------------------- #
+# SVE  12/04/2013  creation                                                    #
+# ---------------------------------------------------------------------------- #
+
+ODATE=${1}
+[ "X${ODATE}" = "X" ] && echo "Parm ODATE non specifie" && exit 1
+
+ctrlmExports ${0} # exporte les variables CTM0, GEHLOG, GEDAA, GEDAACC et GEDSOFT
+switch ${GEHLOG} > /dev/null
+
+_GENERAL_ENV="${GEDAA}/etc/`echo ${GEIENV} | tr "PXG" "pxg"`v/env.ksh"
+_LOCAL_ENV="${GEDAACC}/etc/env.ksh"
+[ -a ${_GENERAL_ENV} ] && . ${_GENERAL_ENV}
+[ -a ${_LOCAL_ENV} ] && . ${_LOCAL_ENV}
+
+# ---------------------------------------------------------------------------- #
+# Variables
+# ---------------------------------------------------------------------------- #
+_CODE=0
+_MESSAGE="${GEDAACH}/travaux/message.html"
+_REPWAIT=$(find ${GEDAA}/${GEIENV}${CODE_APP}* -type d -name "*.wait")
+_MAIL=0
+
+# ---------------------------------------------------------------------------- #
+echo "DEBUT JOB ${CTM0} $(date "+%Y%m%d-%H%M%S")"
+# ---------------------------------------------------------------------------- #
+
+> ${_MESSAGE}
+
+echo "<p>Bonjour,<br /><br />" >> ${_MESSAGE}
+echo "Attention il y a des fichiers presents dans les puits de donnees WAIT.<br /><b><font color=\"blue\">Merci de verifier et de nous donner les actions a entreprendre.</font></b><br /><br />" >> ${_MESSAGE}
+	
+for rep in ${_REPWAIT}
+do
+		if [ "$(ls -lrth ${rep})" = "total 0" ]
+		then
+			echo "Pas de fichiers dans le puit de donnees ${rep}, tout est ok..."
+		else
+			_MAIL=1
+			echo "<b><u>${rep}</u></b><br />" >> ${_MESSAGE}
+			echo "<table border=\"1\"><tr><th>Fichier</th><th>Date</th><th>Taille</th></tr>" >> ${_MESSAGE}
+			ls -lrth ${rep}|grep -v 'total'|awk -F' ' '{ print "<tr><td><font color=\"red\"> "$NF" </font></td><td><font color=\"red\"> "$6" "$7" "$8" </font></td><td><font color=\"red\"> "$5" </font></td></tr>" }' >> ${_MESSAGE}
+			echo "</table><br /><br />" >> ${_MESSAGE}
+        fi
+done
+
+echo "Cordialement,<br />" >> ${_MESSAGE}
+echo "L'equipe RRI<br /></p>" >> ${_MESSAGE}
+
+if [ ${_MAIL} -eq 1 ]
+then
+FROM="mbx-tip-app-bfi-rri@natixis.com"
+MAILTO="GRP-DSI-ETU-RISQUES-FERMAT@natixis.com"
+CCOPY="LD-TIP-APP-BFI-RRI@natixis.com"
+OBJET="[RRI][${MY_ENV}][${CODE_APP}] Fichiers presents dans les puits de donnees WAIT"
+(
+ echo "FROM: $FROM"
+ echo "To: $MAILTO"
+ echo "Cc: $CCOPY"
+ echo "Subject: $OBJET"
+ echo "MIME-Version: 1.0"
+ echo "Importance: High"
+ echo "Content-Type: text/html"
+ cat ${_MESSAGE}
+) | /usr/sbin/sendmail -fmbx-tip-app-bfi-rri@natixis.com $MAILTO $CCOPY
+fi
+
+# ---------------------------------------------------------------------------- #
+echo "FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S")"
+# ---------------------------------------------------------------------------- #
+exit ${_CODE}

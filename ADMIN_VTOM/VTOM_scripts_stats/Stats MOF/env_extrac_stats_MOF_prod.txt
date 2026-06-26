@@ -1,0 +1,21 @@
+##############################################################################
+# 
+# Variables pour l'interface ENVOI_STATS 
+# Statistiques d'exécutions des traitements de la chaîne du Middle_Office
+#
+# Creation : le 26/07/2010
+#
+#
+#
+############################################################################# 
+ 
+
+EXT_FICHIER="/produit/vtom/v46/stats/stats_MOF_$DATE.csv";
+EXT_MAIL_TO="pierre.maurice@mondial-assistance.fr,françois.descoutures@mondial-assistance.fr,salim.djaroud@mondial-assistance.fr,charlotte.maillard@mondial-assistance.fr";
+EXT_MAIL_FROM="svc-exploit@mondial-assistance.fr"
+
+
+export EXT_FICHIER;
+export EXT_MAIL_TO; 
+export EXT_MAIL_FROM; 
+

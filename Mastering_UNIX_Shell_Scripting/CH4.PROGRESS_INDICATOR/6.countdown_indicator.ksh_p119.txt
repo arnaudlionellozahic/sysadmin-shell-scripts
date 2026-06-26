@@ -1,0 +1,74 @@
+#!/bin/ksh
+#
+# SCRIPT: countdown.ksh
+#
+# AUTHOR: Randy Michael - Systems Administrator
+# DATE: 02-29-2000
+# PLATFORM: Not Platform Dependent
+#
+# PURPOSE:  This script will do the same thing as a sleep command
+#    while giving the user feedback as to the number of seconds
+#    remaining.  It takes input between 1 and 9999 seconds only.
+#
+SCRIPT_NAME=$(basename $0)
+
+##########################################
+######## DEFINE FUNCTIONS HERE ###########
+##########################################
+
+usage () {
+     echo “\nUSAGE: $SCRIPT_NAME seconds\n”
+}
+
+##########################################
+
+trap_exit ()
+{
+    echo “\n\n...EXITING on a trapped signal...\n”
+}
+
+##########################################
+
+test_string ()
+{
+    # This function tests for a positive integer!
+    
+    if (( $# != 1 ))
+    then
+        print ‘ERROR’
+        break
+    fi
+    STRING=$1
+
+    case $STRING in
+    +([0-9])) print ‘POS_INT’
+                ;;
+            *) print ‘NOT’
+                ;;
+    esac 
+}
+
+##########################################
+########## START OF MAIN #################
+##########################################
+
+trap ‘trap_exit;exit 2’ 1 2 3 15
+
+if (( $# != 1 ))
+then
+    usage
+    exit 1 
+fi
+
+# Test for a positive integer
+
+INT_STRING=$(test_string $1)
+if [[ $INT_STRING != ‘POS_INT’ ]]
+then
+     echo “\nINVALID INPUT ==> $1 ...EXITING...\n”
+     usage
+     exit 1
+fi
+
+
+

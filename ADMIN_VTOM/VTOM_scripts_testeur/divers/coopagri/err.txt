@@ -1,0 +1,98 @@
+--- import des objets : properties ---
+=== properties (ok:0 ko:0) in 0ms ===
+
+--- import des objets : date ---
+         [1/2] date             name:       180_Admin id:                              DAT83 action:mise a jour result:ok
+         [2/2] date             name:     000_Systeme id:                              DAT2c action:mise a jour result:ok
+=== date (ok:2 ko:0) in 89ms ===
+
+--- import des objets : calendrier ---
+         [1/1] calendrier       name:  Tous_les_jours id:                              CAL8e action:mise a jour result:ok
+=== calendrier (ok:1 ko:0) in 44ms ===
+
+--- import des objets : period ---
+=== period (ok:0 ko:0) in 0ms ===
+
+--- import des objets : queue ---
+         [1/2] queue            name:      queue_perl id:                               QUE5 action:mise a jour result:ok
+         [2/2] queue            name:       queue_ksh id:                               QUE6 action:mise a jour result:ok
+=== queue (ok:2 ko:0) in 87ms ===
+
+--- import des objets : jeton ---
+=== jeton (ok:0 ko:0) in 0ms ===
+
+--- import des objets : machine ---
+         [1/1] machine          name:        manosque id:                              HOSa1 action:mise a jour result:ok
+=== machine (ok:1 ko:0) in 44ms ===
+
+--- import des objets : utilisateur ---
+         [1/1] utilisateur      name:        fcharbon id:                              USEae action:mise a jour result:ok
+=== utilisateur (ok:1 ko:0) in 44ms ===
+
+--- import des objets : ressource ---
+         [1/2] ressource        name:        180_hier id:                             RES2b6 action:mise a jour result:ok
+         [2/2] ressource        name:  180_aujourdhui id:                             RES3cf action:mise a jour result:ok
+=== ressource (ok:2 ko:0) in 97ms ===
+
+--- import des objets : contexts ---
+=== contexts (ok:0 ko:0) in 0ms ===
+
+--- import des objets : environnement ---
+=== environnement (ok:0 ko:0) in 0ms ===
+
+--- import des objets : application ---
+         [1/1] application      name:       180_Admin id:APP0a070b03202e31064b7130ba00000021 action:mise a jour result:ok
+=== application (ok:1 ko:0) in 59ms ===
+
+--- import des objets : job ---
+         [1/6] job              name:  Controle_Duree id:JOB0a070b0303d381494b7130c200000034 action:mise a jour result:ok
+         [2/6] job              name:  Controles_Auto id:JOB0a070b037f8a644c4b750f34000011d2 action:mise a jour result:ok
+         [3/6] job              name:       Mode_Exec id:JOB0a070b0378dc9caa4b7665e5000011d4 action:mise a jour result:ok
+         [4/6] job              name:  Date_Partagees id:JOB0a070b037a8898994bb10215000013f0 action:mise a jour result:ok
+         [5/6] job              name: Calendriers_Env id:JOB0a070b0356a612064c1082320000377c action:mise a jour result:ok
+         [6/6] job              name:   Controle_jobs id:JOB0a070b0360a4636b4c15c2fc0000386c action:mise a jour result:ok
+=== job (ok:6 ko:0) in 334ms ===
+
+--- import des objets : modification temporaire ---
+         [1/2] modification temporaire name:  Controles_Auto id:                               MDF1 action:mise a jour result:ok
+         [2/2] modification temporaire name:  Controles_Auto id:                               MDF2 action:mise a jour result:ok
+=== modification temporaire (ok:2 ko:0) in 57ms ===
+
+--- import des objets : date locale ---
+=== date locale (ok:0 ko:0) in 0ms ===
+
+--- import des objets : ressource locale ---
+=== ressource locale (ok:0 ko:0) in 0ms ===
+
+--- import des objets : Xlink ---
+=== Xlink (ok:0 ko:0) in 0ms ===
+
+--- import des objets : link ---
+         [1/1] link             name:          (null) id:JOB0a070b037a8898994bb10215000013f0 JOB0a070b0378dc9caa4b7665e5000011d4 action:mise a jour result:ok
+=== link (ok:1 ko:0) in 49ms ===
+
+--- import des objets : right ---
+=== right (ok:0 ko:0) in 0ms ===
+
+--- import des objets : profile ---
+=== profile (ok:0 ko:0) in 0ms ===
+
+--- import des objets : profile_right ---
+=== profile_right (ok:0 ko:0) in 0ms ===
+
+--- import des objets : compte ---
+=== compte (ok:0 ko:0) in 0ms ===
+
+--- import des objets : profile_account ---
+=== profile_account (ok:0 ko:0) in 0ms ===
+
+--- import des objets : profile properties ---
+=== profile properties (ok:0 ko:0) in 0ms ===
+
+--- import des objets : view ---
+=== view (ok:0 ko:0) in 0ms ===
+
+--- import des objets : graph default properties ---
+         [1/1] graph default properties name:          (null) id:                             (null) action:ajout result:ok
+=== graph default properties (ok:1 ko:0) in 45ms ===
+

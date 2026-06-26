@@ -1,0 +1,424 @@
+BONNES PRATIQUES
+
+Commenter son code
+
+En entrée de fonction
+Mettre les variables et quel type de donnéees est attendu en entrée
+Indiquer le résultat attendu en sortie
+
+Choix du shebang
+Extension non utilisé sur Linux (en ligne de commande)
+Manière dont est appelé le script ou le shebang
+
+sh: compliant posix
+#!/bin/sh
+
+la façon dont est interprété le shell
+sh pointe vers bash (interne au système)
+ubuntu => sh pointe vers dash => ko
+
+dash
+zsh
+ksh
+
+apt install zsh
+
+ALMA
+[root@testarnalma bin]# ls -ltr sh
+lrwxrwxrwx. 1 root root 4 May 23 10:55 sh -> bash
+UBUNTU
+/bin/sh -> dash
+
+si script comptatible posix, fonctionnera avec tous les shells
+
+-x pour verbose
+
+set -o pour flag
+set | grep vi
+SHELLOPTS=braceexpand:hashall:histexpand:history:interactive-comments:monitor:vi
+
+A CHERCHER LES FLAGS
+man bash ou man ksh
+set -o errexit #abort on nonzero exitstatus
+set -o nounset # abort on unbound variable
+set -o pipefail # do not hide errors within pipes
+
+SHELLOPTS
+A  colon-separated  list  of  enabled  shell  options.   Each word in the list is a valid argument for the -o option to the set builtin command (see SHELL BUILTIN COMMANDS below).  The options appearing in SHELLOPTS are those reported as on by set -o.  If this variable is in the environment when bash starts up, each shell option in the  list will be enabled before reading any startup files.  This variable is read-only.
+
+RESPECTER L'INDENTATION
+Utiliser un double-espace plutôt qu'une tabulation
+
+A CHERCHER
+VOIR auto-indentation dan vim
+if
+then
+
+A CHERCHER
+GERER LA SORTIE standard et sortie d'erreur de vos commandes
+sortie standard 1 
+sortie erreur 2
+2> /dev/null
+
+> /dev/stderr
+idem >&2
+
+Respecter une convention de nommage des variables
+minuscules pour variables de portée locale
+majuscules pour variables de portée globale (ex: hors de la fonction)
+
+echo $ double tabulation
+=> affiche toutes les variables d'environnement
+
+##########################################################
+
+CAS D'USAGE
+déploiement d'une appli
+
+sftp -4 -o ConnectTimeout=3 -q -P 1122 archeschool@sftp1.apovir.net:/version.1.tar.gz /tmp/ >> /tmp/script.log
+-4 pour ipv4
+-q pour quiet
+
+ls
+
+J'ai mis l'app dans /root
+version1.tar.gz
+version1.tar.gz.md5
+
+Créer ~/www et la décompresser dedans
+
+##########################################################
+
+#!/bin/bash
+
+# Script de déploiement de l'application archeschool
+
+echo "Deploiement de archeschool" > /tmp/script1.log
+
+# recuperation de l'archive
+sftp -4 -o ConnectTimeout=3 -q -P 1122 archeschool@sftp1.apovir.net:/version.1.tar.gz /tmp/ >> /tmp/script.log
+
+# deploiement de l'application
+mkdir -p ~/www/ > /dev/null
+cd ~/www/ > /dev/null
+tar xvzf /tmp/version1.tar.gz >> /tmp/script1.log
+cd - > /dev/null
+
+# redemarrage du service
+systemctl status apache2 | tee -a /tmp/script1.log
+
+# log & fin
+echp "deploiement termine" >> /tmp/script1.log
+
+cat /tmp/script1.log | mail -s "deploiement archeschool OK" -- arnaud.lozahic@arche-mc2.fr
+
+exit 0
+
+##########################################################
+
+VARIABILISER SES SCRIPTS
+
+Pourqui utiliser des variables ?
+- réutiliser plusieurs fois un même paramètre
+- centraliser des données modifiables
+- pouvoir modifier une valeur en cours d'exécution
+- pouvoir utiliser les variables d'environnement
+
+Les variables d'environnement
+
+Les variables spéciales
+echo $0
+nomdu script lancé
+echo $1
+première valeur passée au script
+echo $@
+toutes les options passées en paramètre
+
+##########################################################
+
+CONFIGURATION DEPORTEE ET SURCHARGE DE VARIABLE
+
+Pourquoi déporter une configuration ? 
+- séparer les données de conf du code afin d'éviter d'écraser nos paramètres à chaque maj du script
+- cacher les données qui peuvent être sensibles
+- gérer la conf en fonction des evenements
+
+Comment déporter une configuration ? 
+- en déplaçant ses variables de configuration dans un second fichier
+- ce fichier peut être caché
+- puis il faut inclure ce fichier dans notre script : .fichier
+
+Un fichier qui contient le code
+Un fichier qui contient les variables
+
+EXEMPLE
+Variabiliser le script existant dans un premier temps
+
+fichier contenant les variables
+peut être caché .arn.sh.conf
+même nom que le script pour appeller $0.conf dans le script
+
+Dans le script 
+#!/bin/bash
+WORK_DIR="/tmp"
+. $0.conf
+...
+LOG=
+ARCHIVE_NAME=
+...
+
+SURCHARGE DE VARIABLES
+Selon l'emplacement de la déclaration de la variable
+
+##########################################################
+
+CREER DES FONCTIONS
+
+function_name () {
+<commands>
+}
+
+or
+
+function function_name {
+<commands>
+}
+
+#!/bin/bash
+# Basic function
+print_something () {
+echo Hello I am a function
+}
+print_something
+print_something
+
+----------------------------------------------------------
+
+FONCTIONS UTILES
+
+print () {
+  ["$QUIET" -eq "1"] || echo -e "${1}"
+  ["$SEND_MAIL" -eq "1"] && echo -e "${1}\n\r" >>$MAIL_FILE
+  echo -e "${1}" >> $LOG_FILE
+}
+
+usage() {
+  echo -e "Usage: $0 [-h] [-q]"
+  echo -e " -h\t\tThis help"
+  echo -e " -q\t\tQuiet (no stdout)"
+}
+
+cleanup () {
+  echo "removing temporary files"
+  rm /tmp/mylog.txt
+}
+
+----------------------------------------------------------
+
+local pour lui dire que la variable est utilisée slt dans la fonction
+${WORK_DIR} variable globale definie avant dans un fichier de conf
+
+download_archive () {
+local archive_name="$1"
+sftp -q -P 1234 login@sftp:/${archive_name} ${WORK_DIR}
+echo "Le fichier ${archive_name} a ete recupere"
+}
+
+download_archive version1.tar.gz
+download_archive version2.tar.gz
+
+----------------------------------------------------------
+
+déclencher une fonction avec les traps
+
+#!/bin/bash
+
+trap cleanup 1 2 3 6 9 15
+
+cleanup () {
+  echo "removing temporary files"
+  rm /tmp/mylog.txt
+}
+
+##########################################################
+
+EFFECTUER DES TESTS
+
+Pour contrôler le bon fonctionnement de votre script
+
+Les tests peuvent se faire sur :
+- les variables
+- les retours de commandes
+- les retours de fonctions
+- les objets du système
+
+----------------------------------------------------------
+
+man [
+crochet existe
+
+[root@testarnalma ~]# ls -ltr /bin/[
+-rwxr-xr-x. 1 root root 54960 Apr  1  2023 '/bin/['
+
+Tester l'existence d'un fichier ou d'un répertoire
+[ -f /tmp/file.log ]
+[ -d /var/www/test/ ]
+
+
+[ -f /tmp/file.log ] || touch /tmp/file.log
+équivaut à
+if [ -f /tmp/file.log ]; then
+touch /tmp/file.log
+fi
+
+
+[ -f /tmp/file.log ] && echo "ok"
+
+Tester la bonne exécution d'une commande
+$(ls /tmp)
+`ls /tmp`
+
+Tester le retour d'une commande
+ls /tmp
+[ $? == 0 ]
+
+ls
+[ $? == 0 ] && echo ok || echo ko
+
+----------------------------------------------------------
+
+man bash
+
+double crochet => on est dans une fonction bash
+pour vérifier le contenu de la variable par exemple
+vérification bash
+
+[[ $var -eq toto ]]
+[[ $var == toto ]]
+
+----------------------------------------------------------
+
+Tester l'existence d'une variable
+[ $myvar ]
+
+Tester la valeur d'une variable numérique 
+[[ $myvar -eq 3 ]]
+
+Tester la valeur d'une variable de type chaine
+[[ $folder == "test" ]]
+essayer avec simple crochet
+
+##########################################################
+
+SCRIPTS INTERACTIFS
+
+----------------------------------------------------------
+
+GETOPTS 
+
+----------------------------------------------------------
+
+Il est possible de passer des options à nos scripts avec getops
+
+SCRIPT test.sh
+
+#!/bin/bash
+
+usage() {
+  
+  echo -e "Usage: $0 [-h] [-s | -d] [-q | -v] [-m] [-p <string>]"
+  echo -e " -h\t\tThis help"
+  echo -e " -q\t\tQuiet (no stdout)"
+  echo -e " -s\t\tSimulation"
+  echo -e " -b\t\tDeploy"
+  echo -e " -m\t\tSend mail"
+
+}
+
+while getopts ":hsqbdvmp:" option
+do
+  case $option in
+    h)
+      usage; exit 0
+      ;;
+    s)
+      SIMU=1
+      DEPLOY=0
+      ;;
+    q)
+      QUIET=1
+      ;;
+    b)
+      BACKUP=1
+      ;;
+    m)
+      SEND_MAIL=1
+      ;;
+    v)
+      VERBOSE=1
+      QUIET=0
+      ;;
+    d)
+      DEPLOY=1
+      SIMU=0
+      ;;
+    p)
+      USE_P=1
+      p=${OPTARG}
+      ;;
+    \?)
+      usage; exit 1
+      ;;
+  esac
+done
+
+echo "Simu=${SIMU} Quiet=${QUIET} Deploy=${DEPLOY}"
+[ $USE_P ] && echo "Use P with ${p}"
+ 
+
+
+
+
+
+si m:, on attend une option en entrée
+: peut être en plein milieu
+
+bash test.sh -p toto
+Use P with test
+
+----------------------------------------------------------
+
+READ
+
+if [ $WWW_DIR == "" ]; then
+  echo -n "Emplacement du dossier www ?"
+  read WWW_DIR
+else
+  echo -n "Emplacement du dossier www = ${WWW_DIR}"
+
+
+
+
+##########################################################
+
+GERER LA VERBOSITE
+
+Pour modifier la quantité d'information envoyée (par mail,logs, etc)
+
+Pour obtenir plus d'informations de débogage pour l'analyse du comportement
+
+Pour avoir plus ou moins d'information retour pour automatiser l'exécution (par exemple via une cron journalière)
+
+print () {
+  ["$QUIET" -eq "1"] || echo -e "${1}"
+  ["$SEND_MAIL" -eq "1"] && echo -e "${1}\n\r" >>$MAIL_FILE
+  echo -e "${1}" >> $LOG_FILE
+}
+
+----------------------------------------------------------
+
+apt install shellcheck
+
+shellcheck monscript.sh
+
+##########################################################

@@ -1,0 +1,13 @@
+VOLUME GROUP:       extvgBCV                 VG IDENTIFIER:  00c0692a00004c0000000129a8562bc9
+VG STATE:           active                   PP SIZE:        128 megabyte(s)
+VG PERMISSION:      read/write               TOTAL PPs:      1742 (222976 megabytes)
+MAX LVs:            256                      FREE PPs:       320 (40960 megabytes)
+LVs:                6                        USED PPs:       1422 (182016 megabytes)
+OPEN LVs:           6                        QUORUM:         2 (Enabled)
+TOTAL PVs:          2                        VG DESCRIPTORS: 3
+STALE PVs:          0                        STALE PPs:      0
+ACTIVE PVs:         2                        AUTO ON:        yes
+MAX PPs per VG:     32512                                     
+MAX PPs per PV:     1016                     MAX PVs:        32
+LTG size:           128 kilobyte(s)          AUTO SYNC:      no
+HOT SPARE:          no                       BB POLICY:      relocatable 

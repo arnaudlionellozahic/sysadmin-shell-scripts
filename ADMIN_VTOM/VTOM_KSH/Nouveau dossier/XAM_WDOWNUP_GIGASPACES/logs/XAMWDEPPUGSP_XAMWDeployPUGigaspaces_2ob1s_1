@@ -1,0 +1,13 @@
+***** Debut du job : 2013/05/04 16:34:08 *****
+
+Deploy process unit on space :
+
+[INFO] : deploypu in progress ... 
+
+Enter the deploy user : 
+Enter the password : 
+[INFO] : gs-grid.sh deploy -secured -user app-prod-amgs-adm -password XXXX -sla file:///msampdgs01/product/gigaspaces/admin/config/sla.xml /msampdgs01/product/gigaspaces/admin/pu/eepePU.jar
+
+[INFO] : deploypu done
+
+***** Fin du job : 2013/05/04 16:34:09 *****

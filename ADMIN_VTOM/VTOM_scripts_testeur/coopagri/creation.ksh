@@ -1,0 +1,7 @@
+
+
+vtaddjob /nom=APPLIS_UTIL/A1/J2 /script=#/home4/plair/scripts/jobok.ksh /Cycle=00:00:05  /Hfin=23:59:00
+vtaddjob /nom=APPLIS_UTIL/A1/J3 /script=#/home4/plair/scripts/jobok.ksh /Cycle=00:00:05  /Hfin=23:59:00
+vtaddjob /nom=APPLIS_UTIL/A1/J4 /script=#/home4/plair/scripts/jobok.ksh /Cycle=00:00:05  /Hfin=23:59:00
+vtaddjob /nom=APPLIS_UTIL/A1/J5 /script=#/home4/plair/scripts/jobok.ksh /Cycle=00:00:05  /Hfin=23:59:00
+

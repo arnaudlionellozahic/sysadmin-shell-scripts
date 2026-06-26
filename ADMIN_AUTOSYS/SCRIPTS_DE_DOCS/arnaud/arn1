@@ -1,0 +1,12 @@
+#echo "`date` : Lancement de $0" >> /home/user2/arn.log
+#echo "`date` : Lancement de ${AUTO_JOB_NAME}" >> /home/user2/arn.log
+echo "`date` : Lancement de ${AUTO_JOB_NAME}" >> /home/user2/${AUTO_JOB_NAME}.log
+
+sleep 30
+cd /home/user2
+
+#echo "`date` : Fin de $0" >> /home/user2/arn.log
+#echo "`date` : Fin de ${AUTO_JOB_NAME}" >> /home/user2/arn.log
+echo "`date` : Fin de ${AUTO_JOB_NAME}" >> /home/user2/${AUTO_JOB_NAME}.log
+
+exit 0

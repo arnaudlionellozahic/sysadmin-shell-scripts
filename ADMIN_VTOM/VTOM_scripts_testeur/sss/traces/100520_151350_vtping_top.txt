@@ -1,0 +1,270 @@
+HP-UX itanium B.11.23 U ia64 1220372574 unlimited-user license
+
+vtping
+------
+
+[serveur locaux (192.90.84.194)]
+vtsgbd     vtsgbd:33109     actif
+vtserver   vtserver:33107   actif
+vtnotifier vtnotifier:33108 actif
+vtlicense  vtlicense:33106  actif
+dserver    tomDBd:33101     actif
+gserver    gwd:33102        actif
+pserver    ntfy:33103       actif
+bdaemon    bdaemon:33104    arrete
+
+[moteurs]
+
+[sessions]
+vtping           itanium          plair            15:13:54 20-05-2010
+
+top (top -d 1 -n 10000)
+---
+
+System: itanium Thu May 20 15:14:05 2010
+Load averages: 0.02, 0.01, 0.00
+116 processes: 100 sleeping, 15 running, 1 zombie
+Cpu states:
+ LOAD   USER   NICE    SYS   IDLE  BLOCK  SWAIT   INTR   SSYS
+ 0.02   0.0%   0.0%   0.0% 100.0%   0.0%   0.0%   0.0%   0.0% 
+
+Memory: 69776K (44940K) real, 315228K (216884K) virtual, 16168K free  Page# 1/1
+
+ TTY    PID USERNAME PRI NI   SIZE    RES STATE    TIME %WCPU  %CPU COMMAND
+  ?      41 root     152 20  2088K  1856K run      6:38  0.29  0.29 vxfsd
+  ?    2018 root     152 20 41044K  2624K run      2:26  0.15  0.15 vxsvc
+  ?    1094 plair    152 20 35464K  6216K run      0:02  0.14  0.14 vtserver
+  ?     446 root     152 20  7640K  1108K run      1:31  0.12  0.12 utmpd
+  ?    1555 root     152 20 24268K  1884K run      0:11  0.12  0.12 rpcd
+  ?   13354 root     154 20 10232K   628K sleep    0:00  0.12  0.12 sshd:
+  ?    1564 root     152 20 36376K   800K run     16:21  0.09  0.09 cimserver
+  ?    1042 root     152 20  9760K   764K run      0:32  0.08  0.08 automountd
+  ?    1878 root     152 20 21636K  1436K run      0:38  0.08  0.08 swagentd
+  ?      34 root     152 20   216K   192K run      5:42  0.06  0.06 schedcpu
+  ?      20 root     100 20    72K    64K sleep    3:34  0.05  0.05 supsched
+  ?    1110 plair    168 20 51392K   896K run      0:07  0.05  0.05 postgres:
+  ?    1380 root     154 20  7592K   212K sleep    8:40  0.05  0.05 sendmail:
+pts/0 13574 plair    178 20 10168K  5240K run      0:00  0.19  0.04 top
+pts/0 13217 plair    158 20  4916K   336K sleep    0:00  0.04  0.04 ksh
+  ?    2194 root     154 10  8424K   540K sleep   15:04  0.04  0.04 psmctd
+pts/0 13180 plair    137 20  5004K   420K sleep    0:00  0.04  0.04 ksh
+  ?       0 root     127 20    72K    64K sleep    0:46  0.02  0.02 swapper
+  ?       1 root     168 20   960K   300K sleep    3:50  0.02  0.02 init
+  ?       2 root     128 20    72K    64K sleep    3:07  0.02  0.02 vhand
+  ?       3 root     128 20    72K    64K sleep    5:44  0.02  0.02 statdaemon
+  ?       4 root     128 20    72K    64K sleep    0:11  0.02  0.02 unhashdaemon
+  ?       9 root     152 20    72K    64K sleep    0:17  0.02  0.02 nfsktcpd
+  ?      10 root     152 20   288K   256K run      0:02  0.02  0.02 autofskd
+  ?      11 root     147 20    72K    64K sleep    0:00  0.02  0.02 lvmkd
+  ?      12 root     147 20    72K    64K sleep    0:00  0.02  0.02 lvmkd
+  ?      13 root     147 20    72K    64K sleep    0:00  0.02  0.02 lvmkd
+  ?      14 root     147 20    72K    64K sleep    0:00  0.02  0.02 lvmkd
+  ?      15 root     147 20    72K    64K sleep    0:00  0.02  0.02 lvmkd
+  ?      16 root     147 20    72K    64K sleep    0:00  0.02  0.02 lvmkd
+  ?      26 root     -32 20    72K    64K sleep    1:11  0.02  0.02 ipmid
+  ?     437 root     148 20  4004K    72K sleep    0:41  0.02  0.02 syncer
+  ?     608 root     168 20  5680K    84K sleep    1:09  0.02  0.02 ipmon
+  ?     667 root     154 20  4916K   220K sleep    0:00  0.02  0.02 syslogd
+  ?     721 root     127 20  8072K    92K sleep    1:52  0.02  0.02 netfmt
+  ?     922 root     154 20  9280K   184K sleep    0:00  0.02  0.02 sshd
+  ?     949 root     154 20  5528K    64K sleep    0:00  0.02  0.02 rpcbind
+  ?    1009 root     154 20    72K    64K sleep    0:06  0.02  0.02 biod
+  ?    1010 root     154 20    72K    64K sleep    0:06  0.02  0.02 biod
+  ?    1011 root     154 20    72K    64K sleep    0:07  0.02  0.02 biod
+  ?    1012 root     154 20    72K    64K sleep    0:06  0.02  0.02 biod
+  ?    1013 root     154 20    72K    64K sleep    0:06  0.02  0.02 biod
+  ?    1014 root     154 20    72K    64K sleep    0:06  0.02  0.02 biod
+  ?    1015 root     154 20    72K    64K sleep    0:06  0.02  0.02 biod
+  ?    1016 root     154 20    72K    64K sleep    0:06  0.02  0.02 biod
+  ?    1017 root     154 20    72K    64K sleep    0:06  0.02  0.02 biod
+  ?    1018 root     154 20    72K    64K sleep    0:06  0.02  0.02 biod
+  ?    1019 root     154 20    72K    64K sleep    0:06  0.02  0.02 biod
+  ?    1020 root     154 20    72K    64K sleep    0:06  0.02  0.02 biod
+  ?    1021 root     154 20    72K    64K sleep    0:06  0.02  0.02 biod
+  ?    1022 root     154 20    72K    64K sleep    0:06  0.02  0.02 biod
+  ?    1023 root     154 20    72K    64K sleep    0:06  0.02  0.02 biod
+  ?    1024 root     154 20    72K    64K sleep    0:06  0.02  0.02 biod
+  ?    1075 root     154 20  6820K   148K sleep    0:22  0.02  0.02 inetd
+  ?    1093 plair    158 20  8060K   760K sleep    0:00  0.02  0.02 vtsgbd
+  ?    1104 plair    154 20 51380K   884K sleep    0:01  0.02  0.02 postgres
+  ?    1111 plair    168 20 51392K   896K run      0:02  0.02  0.02 postgres:
+  ?    1112 plair    168 20 51512K  1000K sleep    0:01  0.02  0.02 postgres:
+  ?    1113 plair    154 20 13976K   968K sleep    0:01  0.02  0.02 postgres:
+  ?    1115 plair    137 20 52412K  1664K sleep    0:00  0.02  0.02 postgres:
+  ?    1116 plair    137 20 52124K  1552K sleep    0:00  0.02  0.02 postgres:
+  ?    1400 root     154 20  8416K    64K sleep    0:00  0.02  0.02 snmpdm
+  ?    1441 root     154 20 10436K   304K sleep    1:35  0.02  0.02 ipv6agt
+  ?    1470 root     154 20  6052K   240K sleep    1:48  0.02  0.02 mib2agt
+  ?    1750 root     154 20  4976K   264K sleep    3:47  0.02  0.02 pwgrd
+  ?    1824 root     154 10  7396K   168K sleep    1:06  0.02  0.02 diagmond
+  ?    2106 root     154 20 18624K    80K sleep    0:00  0.02  0.02 dtlogin
+  ?    2107 root     156 20  3344K    64K sleep    0:00  0.02  0.02 getty
+  ?    2108 root     138  0   692K    96K sleep    0:00  0.02  0.02 krsd
+  ?    2113 root     168 20  5608K   488K sleep    1:07  0.02  0.02 p_client
+  ?    2114 root     168 20  8956K   212K sleep    0:17  0.02  0.02 cimserverd
+  ?    2193 root     158 10  4852K   168K sleep    0:20  0.02  0.02 diaglogd
+  ?    2200 root     154 20  4876K    64K sleep    0:00  0.02  0.02 registrar
+  ?    2235 root     154 20  7260K   384K sleep    0:00  0.02  0.02 cmc_em
+  ?    2271 root     154 20  7428K   368K sleep    0:00  0.02  0.02 cpe_em
+  ?    2298 root     154 20  7284K   472K sleep    0:02  0.02  0.02 disk_em
+  ?    2461 root     154 20  6708K   480K sleep    0:22  0.02  0.02 fpl_em
+  ?    2497 root     154 20 22972K   860K sleep   22:21  0.02  0.02 ia64_corehw
+  ?    2551 root     154 20  7176K   444K sleep    0:00  0.02  0.02 memory_ia64
+  ?    2578 root     154 20  6708K   424K sleep    0:03  0.02  0.02 sysstat_em
+  ?   10356 root     154 20 10232K   796K sleep    0:00  0.02  0.02 sshd:
+pts/0 10358 plair    158 20  4972K   400K sleep    0:00  0.02  0.02 ksh
+pts/1 13425 plair    154 20  4972K   368K sleep    0:00  0.02  0.02 ksh
+  ?   19612 root     154 20 17272K   368K sleep    0:00  0.02  0.02 bdaemon
+  ?       8 root     152 20    72K    64K sleep    0:00  0.00  0.00 ioconfigd
+  ?      17 root     148 20    72K    64K sleep    0:00  0.00  0.00 lvmschedd
+  ?      18 root     148 20    72K    64K sleep    0:00  0.00  0.00 lvmdevd
+  ?      19 root     128 20    72K    64K sleep    0:00  0.00  0.00 pagetable_init_daemon
+  ?      21 root     100 20    72K    64K sleep    0:00  0.00  0.00 strmem
+  ?      22 root     100 20    72K    64K sleep    0:00  0.00  0.00 strweld
+  ?      23 root     100 20    72K    64K sleep    0:00  0.00  0.00 strfreebd
+  ?      24 root     152 20   144K   128K run      0:00  0.00  0.00 kmemdaemon
+  ?      25 root     -32 20    72K    64K sleep    0:00  0.00  0.00 ttisr
+  ?      33 root     128 20    72K    64K sleep    0:00  0.00  0.00 eventdaemon
+  ?      35 root     152 20   216K   192K run      0:00  0.00  0.00 kend
+  ?      66 root     152 20    72K    64K sleep    0:00  0.00  0.00 rng
+  ?     676 root     155 20  4868K    64K sleep    0:00  0.00  0.00 ptydaemon
+  ?     710 root     127 20  3336K    64K sleep    0:00  0.00  0.00 nktl_daemon
+  ?     720 root     127 20  3416K    64K sleep    0:00  0.00  0.00 ntl_reader
+  ?    1030 root     154 20  5956K    64K sleep    0:00  0.00  0.00 rpc.statd
+  ?    1036 root     154 20  6124K    64K sleep    0:00  0.00  0.00 rpc.lockd
+  ?    1102 plair    158 20  4200K   600K sleep    0:00  0.00  0.00 sh
+  ?    1117 plair    137 20 51996K  1376K sleep    0:00  0.00  0.00 postgres:
+  ?    1118 plair    137 20 51996K  1376K sleep    0:00  0.00  0.00 postgres:
+  ?    1119 plair    137 20 51996K  1376K sleep    0:00  0.00  0.00 postgres:
+  ?    1426 root     154 20 10312K    64K sleep    0:00  0.00  0.00 hp_unixagt
+  ?    1498 root     154 20 10152K    64K sleep    0:00  0.00  0.00 trapdestagt
+  ?    1535 root     154 20  5328K    64K sleep    0:00  0.00  0.00 fddi4subagt
+  ?    1799 root     154 20  4896K    64K sleep    0:00  0.00  0.00 cron
+  ?    1833 root     154 20  3352K    64K sleep    0:00  0.00  0.00 envd
+  ?    1858 root     153 20  3268K    64K sleep    0:00  0.00  0.00 hubd
+  ?    1943 root     154 20  5288K    64K sleep    0:00  0.00  0.00 emsagent
+  ?    2085 root     158 20  1300K    64K sleep    0:00  0.00  0.00 sh
+  ?    2109 root     154 20   568K    64K sleep    0:00  0.00  0.00 sfd
+  ?   13564 root     178 20    72K    64K zomb     0:00  0.00  0.00 ia64_corehw
+pts/0 13579 plair    168 20  3308K   232K sleep    0:00  0.00  0.00 sleep
+
+ps avec vsz (UNIX95= ps -eo pid,time,user,comm,sz,vsz)
+-----------
+
+  PID     TIME USER     COMMAND           SZ     VSZ
+    0    00:46 root     swapper            0       0
+    1    03:50 root     init             221     884
+    8    00:00 root     ioconfigd          0       0
+    9    00:17 root     nfsktcpd           0       0
+   10    00:02 root     autofskd           0       0
+   11    00:00 root     lvmkd              0       0
+   12    00:00 root     lvmkd              0       0
+   13    00:00 root     lvmkd              0       0
+   14    00:00 root     lvmkd              0       0
+   15    00:00 root     lvmkd              0       0
+   16    00:00 root     lvmkd              0       0
+   17    00:00 root     lvmschedd          0       0
+   18    00:00 root     lvmdevd            0       0
+   19    00:00 root     pagetable_init_daemon    0       0
+   20    03:34 root     supsched           0       0
+   21    00:00 root     strmem             0       0
+   22    00:00 root     strweld            0       0
+   23    00:00 root     strfreebd          0       0
+    2    03:07 root     vhand              0       0
+    3    05:44 root     statdaemon         0       0
+    4    00:11 root     unhashdaemon       0       0
+   24    00:00 root     kmemdaemon         0       0
+   25    00:00 root     ttisr              0       0
+   26    01:11 root     ipmid              0       0
+   33    00:00 root     eventdaemon        0       0
+   34    05:42 root     schedcpu           0       0
+   35    00:00 root     kend               0       0
+ 2108    00:00 root     krsd              21     600
+ 1555    00:11 root     rpcd              73    2632
+ 1115    00:00 plair    postgres:       1589   10068
+   41    06:38 root     vxfsd              0       0
+   66    00:00 root     rng                0       0
+  710    00:00 root     nktl_daemon        0      84
+ 1011    00:07 root     biod               0       0
+ 1010    00:06 root     biod               0       0
+  949    00:00 root     rpcbind            0    1000
+ 1833    00:00 root     envd               0      84
+  922    00:00 root     sshd             268    1880
+  676    00:00 root     ptydaemon          0     116
+ 1441    01:35 root     ipv6agt           65     632
+13217    00:00 plair    ksh               99     432
+  667    00:00 root     syslogd           33     252
+ 2298    00:02 root     disk_em           88    1308
+ 2107    00:00 root     getty              0      72
+  437    00:41 root     syncer             4     148
+ 1104    00:01 plair    postgres        1395    9036
+  446    01:31 root     utmpd            122    1568
+ 1535    00:00 root     fddi4subagt        0     672
+  608    01:09 root     ipmon              3    1188
+ 1564    16:21 root     cimserver         51    4544
+  720    00:00 root     ntl_reader         0      92
+ 1498    00:00 root     trapdestagt        0     472
+  721    01:52 root     netfmt             1     280
+ 1012    00:06 root     biod               0       0
+ 1009    00:06 root     biod               0       0
+ 1013    00:06 root     biod               0       0
+ 1014    00:06 root     biod               0       0
+ 1015    00:06 root     biod               0       0
+ 1016    00:06 root     biod               0       0
+ 1017    00:06 root     biod               0       0
+ 1018    00:06 root     biod               0       0
+ 1019    00:06 root     biod               0       0
+ 1020    00:06 root     biod               0       0
+ 1021    00:06 root     biod               0       0
+ 1022    00:06 root     biod               0       0
+ 1023    00:06 root     biod               0       0
+ 1024    00:06 root     biod               0       0
+ 1036    00:00 root     rpc.lockd          0    1544
+ 1030    00:00 root     rpc.statd          0    1384
+ 1042    00:32 root     automountd        71    1476
+ 2085    00:00 root     sh                 0    1224
+ 1470    01:48 root     mib2agt           55     748
+ 1075    00:22 root     inetd             29     644
+ 1750    03:47 root     pwgrd             56     308
+ 1426    00:00 root     hp_unixagt         0     464
+ 2114    00:17 root     cimserverd        19     148
+ 2106    00:00 root     dtlogin            0    1024
+10358    00:00 plair    -ksh             113     488
+ 1799    00:00 root     cron               0     140
+ 1380    08:40 root     sendmail:         95    2772
+ 2271    00:00 root     cpe_em            54    1544
+ 2578    00:03 root     sysstat_em        65     752
+ 1400    00:00 root     snmpdm             0    1648
+ 1824    01:06 root     diagmond          25    1176
+ 1858    00:00 root     hubd               0      16
+ 2497    22:21 root     ia64_corehw      208   17016
+ 2113    01:07 root     p_client          60     312
+ 2109    00:00 root     sfd                0     492
+ 1878    00:38 root     swagentd         109    2556
+ 2193    00:20 root     diaglogd          23     552
+ 2200    00:00 root     registrar         26    1028
+ 1943    00:00 root     emsagent           0     616
+ 2194    15:04 root     psmctd           116    1152
+ 2018    02:26 root     vxsvc            113    4016
+ 2235    00:00 root     cmc_em            62    1220
+ 2551    00:00 root     memory_ia64       61    1204
+19612    00:00 root     bdaemon           15    1468
+13425    00:00 plair    -ksh             109     488
+ 1111    00:02 plair    postgres:       1398    9048
+13580    00:00 plair    ps                57     260
+13180    00:00 plair    ksh              118     520
+ 2461    00:22 root     fpl_em            66     700
+ 1117    00:00 plair    postgres:       1517    9652
+ 1093    00:00 plair    vtsgbd           242    1432
+ 1102    00:00 plair    sh               174     948
+ 1118    00:00 plair    postgres:       1517    9652
+ 1113    00:01 plair    postgres:       1416    9136
+ 1110    00:07 plair    postgres:       1398    9048
+10356    00:00 root     sshd:            367    2216
+ 1094    00:02 plair    vtserver        2347   18176
+ 1119    00:00 plair    postgres:       1517    9652
+13354    00:00 root     sshd:            325    2216
+ 1112    00:01 plair    postgres:       1424    9168
+ 1116    00:00 plair    postgres:       1561    9780
+13564    00:00       -3 <defunct>          0       0
+13579    00:00 plair    sleep             10      56

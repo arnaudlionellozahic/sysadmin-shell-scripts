@@ -1,0 +1,64 @@
+
+
+[1m[4mATTENTION !! un client en version 542 de Vtom fonctionne actuellt sur Linux
+(B[mLE SHELL EST : /bin/ksh
+  PID TTY          TIME CMD
+ 6923 ?        00:00:00 sshd
+ 7392 ?        00:00:00 sshd
+ 7779 ?        00:00:00 sshd
+ 7780 ?        00:00:00 sftp-server
+ 7821 ?        00:00:00 ksh
+ 7874 ?        00:00:00 ps
+31282 ?        00:00:00 vtsgbd
+31283 ?        00:07:39 vtserver
+31407 ?        00:00:01 postgres
+31409 ?        00:00:01 postgres
+31410 ?        00:00:00 postgres
+31411 ?        00:00:04 postgres
+31412 ?        00:00:25 postgres
+31413 ?        00:00:05 postgres
+31414 ?        00:00:00 postgres
+31415 ?        00:00:00 postgres
+31416 ?        00:00:00 postgres
+31417 ?        00:00:00 postgres
+31418 ?        00:00:00 postgres
+31419 ?        00:00:00 postgres
+31420 ?        00:00:00 postgres
+31421 ?        00:00:00 postgres
+31422 ?        00:00:00 postgres
+31440 ?        00:00:03 vtmonitor
+31456 ?        00:00:04 tengine
+
+Aucun BACKUP declare
+Aucun PRIMAIRE declare
+_______________________________________________________________________
+Contexte Visual TOM du traitement
+ 
+Machine             : savigny
+Utilisateur         : alozahic
+Script              : /home4/alozahic/exploit/systeme/suivi/stats_errors_color_vfinal
+Shell               : /bin/ksh
+Serveur Visual TOM  : savigny
+ 
+Traitement          : STATS_COLOR
+Application         : ADMINISTRATION
+Environnement       : TEST_COMMANDES
+Job ID              : 16766
+Nombre de relances  : 0
+Label de reprise    : 0
+Mode Execution      : NORMAL
+Date d'exploitation : test_commandes
+Valeur de la date   : 29/12/2011
+_______________________________________________________________________
+jeudi 29/12/2011 - 10:58:39
+ Debut de l'execution du script ...
+_______________________________________________________________________
+ 
+TMAIL : 54 Build 2 LINUX 2011/10/14 Visual Tom (c) Absyss
+
+Mail sent
+_______________________________________________________________________
+jeudi 29/12/2011 - 10:58:44
+Fin de l'execution du script.
+ 
+--> Exit [0] donc acquitement

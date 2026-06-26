@@ -1,0 +1,25 @@
+#Main
+rep=/slqdl7bdd01/appli/dl7/sp/tests_ctlm/daily_report/EXPORTS
+rep0=/slqdl7bdd01/appli/dl7/sp/tests_ctlm/daily_report
+ININI_groups_JDAY=${rep}/error_groups_$(date "+%Y%m%d").csv
+ININI_groups_JDAY1=${rep}/error_groups_`TZ=MET+24 date "+%Y%m%d"`.csv
+ININI_groups_JDAY2=${rep}/error_groups_`date --date '2 days ago' "+%Y%m%d"`.csv
+ININI_jobs_JDAY=${rep}/error_jobs_$(date "+%Y%m%d").csv
+ININI_jobs_JDAY1=${rep}/error_jobs_`TZ=MET+24 date "+%Y%m%d"`.csv
+ININI_jobs_JDAY2=${rep}/error_jobs_`date --date '2 days ago' "+%Y%m%d"`.csv
+J_DAY=$(date "+%Y%m%d")
+J_DAY1=`TZ=MET+24 date "+%Y%m%d"`
+J_DAY2=`date --date '2 days ago' "+%Y%m%d"`
+ENVI=PREX
+FIC_HTML=/slqdl7bdd01/appli/dl7/sp/tests_ctlm/daily_report/EXPORTS/rapport_$(date "+%Y%m%d").html
+
+
+entete > ${FIC_HTML}
+fonc_groupe_JDAY >> ${FIC_HTML}
+fonc_job_JDAY >> ${FIC_HTML}
+fonc_groupe_JDAY1 >> ${FIC_HTML}
+fonc_job_JDAY1 >> ${FIC_HTML}
+fonc_groupe_JDAY2 >> ${FIC_HTML}
+fonc_job_JDAY2 >> ${FIC_HTML}
+mail_sendmail
+

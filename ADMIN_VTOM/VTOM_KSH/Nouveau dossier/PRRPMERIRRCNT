@@ -1,0 +1,507 @@
+#!/bin/ksh
+# ----------------------------------------------------------------------------
+# ?RRPM???? : Intégration du fichier ????? de l appli E-IRIS
+# ----------------------------------------------------------------------------
+# Parametres     :
+# Entrees        :
+# Sorties        :
+# ----------------------------------------------------------------------------
+# al 13-12-2006 creation
+# ----------------------------------------------------------------------------
+set -x
+
+######################FOR DEBUG , TO BE REMOVED
+#-------------------------------------------------------------------
+#Diverses initialisations de variables obligatoires
+#-------------------------------------------------------------------
+
+#Date passee en argument par CONTROLM
+ODATE=${1}
+[ "X${ODATE}" = "X" ] && echo "Parm ODATE non specifie" && exit 1
+
+ctrlmExports ${0}
+switch ${GEHLOG} > /dev/null
+
+
+#-------------------------------------------------------------------
+#Chargement des variables d'environnement
+#-------------------------------------------------------------------
+_GENERAL_ENV="${GEDAA}/etc/`echo ${GEIENV} | tr "PXG" "pxg"`v/env.ksh"
+_LOCAL_ENV="${GEDAACC}/etc/env.ksh"
+[ -a ${_GENERAL_ENV} ] && . ${_GENERAL_ENV}
+[ -a ${_LOCAL_ENV} ] && . ${_LOCAL_ENV}
+
+#-------------------------------------------------------------------
+#Initialisation des variables n'ayant pas a etre modifiees
+#-------------------------------------------------------------------
+_P_DATE=`date +"%y%m%d_%H%M%S"`
+_CODE=0
+
+#------------------------------------------------------------#
+# INTEGRATION DU FICHIER CONTRATS BO FOURNIS PAS E-RIS       #
+#------------------------------------------------------------#
+
+
+
+P_DATE=`date +"%d%m%H%M%S"`
+
+_MNEMO=ERIRRCNT
+DATAERIS=$DATA/${_MNEMO}.wait
+DATAERIS_done=$DATA/${_MNEMO}.done
+FIC_WORK=${TMP}/${_MNEMO}.dat
+
+FIC_SOURCE=`ls -tr $DATAERIS | tail -1`
+IDT_DATA=ANOMALIE
+
+ret_code=$?
+if [[ ! -f $DATAERIS/$FIC_SOURCE ]]
+then 
+     print "pb lors de la recuperation du fichier $ret_code"
+     exit 1
+fi
+
+if [[ "X$GEIENV" = "XU" ]];then
+	exec 1>$SYSOUT 2>&1
+fi
+
+fonc_execproc ()
+{
+echo   "*--------------------------------------------------*"
+echo   "* Execution de la PS $1                             "
+echo   "*--------------------------------------------------*"
+>$ISQL_OUT
+
+isql -S$SERVER -U$USER -P$PASS -s" " -w8000 <<EOF 1>$ISQL_OUT 2>&1
+
+go
+
+use $BASE
+go
+
+
+Declare @syb_err     Int,
+        @syb_lib     VarChar(255)
+
+EXECUTE $1 @syb_err OUTPUT, @syb_lib OUTPUT
+
+select "RET_SYB:" + Convert(VarChar(10),@syb_err) + ":"
+select "LIB_SYB:" + @syb_lib + ":"
+go
+EOF
+
+CODE=$?
+if [ $CODE -ne 0 ]
+then
+  echo "Code retour $CODE <> zero sur la PS $1"
+  cat $ISQL_OUT
+  exit 254
+fi
+
+
+
+egrep "Msg|error" $ISQL_OUT 2>/dev/null
+if [ $? -eq 0 ]
+then
+    echo "ERREUR detectee par grep sur trace du fichier de sortie."
+    cat $ISQL_OUT
+    exit 254
+fi
+
+RET_SYB=`cat $ISQL_OUT | grep "RET_SYB" | \
+ sed s/" "//g | awk -F":" '{print $2 }'`
+LIB_SYB=`cat $ISQL_OUT | grep "LIB_SYB" | \
+ awk -F":" '{print $2 }'`
+
+echo "Retour sybase = $RET_SYB $LIB_SYB"
+
+if [ $RET_SYB -ne 0 ]
+then
+    echo "\nCode retour $RET_SYB $RET_SYB <> zero sur PS $1"
+    exit 254
+else
+ echo "*----------------*"
+ echo "* ... Exec PS OK  "
+ echo "*----------------*"
+ return 0
+fi
+}
+
+fonc_bcpin ()
+{
+
+echo "\n*------------------------------------------------------*"
+echo   "*  Bcp in table $1 a partir de $2 avec le separateur $3 "
+echo   "*------------------------------------------------------*"
+>$BCPIN
+
+bcp $BASE.dbo.$1 in $2 -S$SERVER -U$USER -P$PASS -b2000 -t$3 -m -X -c -e$BCPERR >$BCP 2>&1
+
+CODE=$?
+if [ $CODE -ne 0 ]
+then
+   echo "Code retour $CODE <> zero sur bcp in $1"
+   cat $BCP
+   exit 254
+fi
+
+cat $BCP | grep error > /dev/null 2>&1
+if [ $? -eq 0 ]
+then
+        echo "Code retour > zero par grep error sur $1"
+        cat $BCP
+        exit 254
+fi
+
+cat $BCP | grep duplicate > /dev/null 2>&1
+if [ $? -eq 0 ]
+then
+  echo "Code retour > zero par grep duplicate sur $1"
+  cat $BCP
+  exit 254
+fi
+
+echo "*------------------*"
+echo "*... BCP OK                 "
+echo "*------------------*"
+
+}
+
+fonc_truncate ()
+{
+
+echo "\n*--------------------------------------------------*"
+echo   "* Truncate de la table $1                                                       "
+echo   "*--------------------------------------------------*"
+
+isql -S$SERVER -U$USER -P$PASS >$ISQL_OUT 2>&1 <<EOF
+truncate table $BASE..$1
+go
+
+Select "Nb lignes apres truncate", Count (*) From $1
+go
+EOF
+
+CODE=$?
+if [ $CODE -ne 0 ]
+then
+    echo "Code retour $CODE <> zero sur truncate table $1"
+    cat $ISQL_OUT
+    exit 254
+fi
+
+grep Msg $ISQL_OUT >/dev/null 2>&1
+if [ $? -eq 0 ]
+  then
+    echo "Erreur detectee par grep Msg"
+    cat $ISQL_OUT
+    exit 254
+else
+    echo "*------------------*"
+    echo "*... Truncate OK   *"
+    echo "*------------------*"
+fi
+}
+
+fonc_GetAnomalies()
+{
+#$1=SEPARATOR
+#$2=CODE TO SELECT LINES
+echo "\n*--------------------------------------------------*" 
+echo   "* Récupération des anomalies					" 
+echo   "*--------------------------------------------------*" 
+
+>$ISQL_OUT
+
+isql -s"$1" -S$SERVER -U$USER -P$PASS  -w1800 <<EOF 1>$ISQL_OUT 2>&1
+go
+use $BASE
+go
+select 
+	'$2',
+	'BGCOLOR="'+
+	case when type_rejet=1 then 
+		'AntiqueWhite'
+	else
+		case when type_rejet=2 then 
+			'BurlyWood'
+		else
+			case when type_rejet=3 then 
+				'Darkorange'
+			else
+				case when type_rejet=4 then 
+					'DodgerBlue'
+				else
+					case when type_rejet=5 then 
+						'Gold'
+					else
+						case when type_rejet=6 then 
+							'GreenYellow'
+						else
+							case when type_rejet=7 then 
+								'Pink'
+							else
+								'LightSteelBlue'
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+	+'"ENDCOLOR',
+	case when mont.cod_montage is null then
+		'---'
+	else
+		mont.cod_cat_asset
+	end  as Categorie,
+	ano.cod_appli as Application,
+	ano.cod_contrat as Reference_Contrat, 
+	--ano.cod_vers_mont as Version_Montage,
+	ano.cod_montage as Id_Montage,
+    ano.num_debt as Tranche,
+	ano.motif_rejet as Motif_Rejet
+from    
+		ta_mont_amor_contrat_anomalie ano
+		left join
+		ta_mont_montage mont
+		on 
+		mont.cod_montage=ano.cod_montage
+		and
+        (
+            
+    		mont.cod_vers_mont=
+            case when  dbo.fnc_GetMaxCodVersMont(mont.cod_montage) is null then
+                mont.cod_vers_mont
+            else
+                dbo.fnc_GetMaxCodVersMont(mont.cod_montage)
+            end
+         )
+where 
+type_rejet>0 
+and
+type_rejet!=5 
+order by type_rejet,cod_montage	,ano.cod_vers_mont
+
+go
+
+EOF
+
+CODE=$?
+if [ $CODE -ne 0 ]
+then
+    echo "Code retour $CODE <> zero sur Anomalies table ta_mont_amor_contrat_anomalie" 
+    cat $ISQL_OUT
+    exit 254
+fi
+
+egrep "Msg|error" $ISQL_OUT 2>/dev/null
+if [ $? -eq 0 ]
+  then
+    echo "Erreur detectee par grep Msg"
+    cat $ISQL_OUT
+    exit 254
+else
+    echo "*------------------*" 
+    echo "*... Anomalies OK   *"
+    echo "*------------------*" 
+fi
+}
+
+
+
+fonc_GetContratsIntegres ()
+{
+#$1=SEPARATOR
+#$2=CODE TO SELECT LINES
+echo "\n*--------------------------------------------------*" 
+echo   "* Contrats Intégrés					" 
+echo   "*--------------------------------------------------*" 
+
+>$ISQL_OUT
+
+isql -s"$1" -S$SERVER -U$USER -P$PASS  -w1800 <<EOF 1>$ISQL_OUT 2>&1
+go
+use $BASE
+go
+select 
+	'$2',
+	'BGCOLOR="'+
+	case when type_rejet=1 then 
+		'AntiqueWhite'
+	else
+		case when type_rejet=2 then 
+			'BurlyWood'
+		else
+			case when type_rejet=3 then 
+				'Darkorange'
+			else
+				case when type_rejet=4 then 
+					'DodgerBlue'
+				else
+					case when type_rejet=5 then 
+						'Gold'
+					else
+						case when type_rejet=6 then 
+							'GreenYellow'
+						else
+							case when type_rejet=6 then 
+								'Pink'
+							else
+								'LightSteelBlue'
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+	+'"ENDCOLOR',
+	mont.cod_cat_asset as Categorie,
+	ano.cod_appli as Application,
+	ano.cod_contrat as Reference_Contrat, 
+	--ano.cod_vers_mont as Version_Montage,
+	ano.cod_montage as Id_Montage,
+    ano.num_debt as Tranche/*,
+	ano.motif_rejet as Motif_Rejet*/
+from    
+		ta_mont_amor_contrat_anomalie ano
+		inner join
+		ta_mont_montage mont
+		on 
+		mont.cod_montage=ano.cod_montage
+		and
+		mont.cod_vers_mont=dbo.fnc_GetMaxCodVersMont(mont.cod_montage)
+where 
+type_rejet=0 
+order by type_rejet,cod_montage
+
+go
+
+EOF
+
+CODE=$?
+if [ $CODE -ne 0 ]
+then
+    echo "Code retour $CODE <> zero sur Anomalies table ta_mont_amor_contrat_anomalie" 
+    cat $ISQL_OUT
+    exit 254
+fi
+
+grep Msg $ISQL_OUT >/dev/null 2>&1
+if [ $? -eq 0 ]
+  then
+    echo "Erreur detectee par grep Msg"
+    cat $ISQL_OUT
+    exit 254
+else
+    echo "*------------------*" 
+    echo "*... Contrats Intégrés OK   *"
+    echo "*------------------*" 
+fi
+}
+fonc_ConstructTableauContratsIntegres()
+{
+# Construction du tableau
+	echo '<HTML><TABLE WIDTH="100%" BORDER="1">' > $1 
+	echo '<TR BORDER="0.0" STYLE="font-family: Times New Roman, Arial; font-size: 12pt" BGCOLOR="#E1EDFF" WIDTH="100%" BORDER="0.0">' >> $1  
+	echo '<TD>Category</TD>' >> $1  
+	echo '<TD>BO Application Id</TD>' >> $1  
+	echo '<TD>Contract reference</TD>' >> $1  	
+	echo '<TD>TRR Lending Id</TD>' >> $1  
+	echo '<TD>Tranche Id</TD>' >> $1
+	echo '</TR>' >> $1  
+}
+fonc_ConstructTableauAnomalies()
+{
+	# Construction du tableau
+	echo '<HTML><TABLE WIDTH="100%" BORDER="1">' > $1 
+	echo '<TR BORDER="0.0" STYLE="font-family: Times New Roman, Arial; font-size: 12pt" BGCOLOR="#E1EDFF" WIDTH="100%" BORDER="0.0">' >> $1  
+	echo '<TD>Category</TD>' >> $1  
+	echo '<TD>BO Application Id</TD>' >> $1  
+	echo '<TD>Contract reference</TD>' >> $1  	
+	echo '<TD>TRR Lending Id</TD>' >> $1  
+	echo '<TD>Tranche Id</TD>' >> $1
+	echo '<TD>Error audit</TD>' >> $1	
+	echo '</TR>' >> $1  
+}
+GetHtmlFile()
+{
+#$1=dest file
+#$2=Source File
+#$3=Separator
+#$4=Code to select lines
+	
+	grep "$3$4" $2 | sed -e "s/^$3$4 *\($3\)/<TR STYLE=\"font-family: Times New Roman, Arial; font-size: 10pt\" WIDTH=\"100%\" BORDER=\"0.0\"/" \
+		-e "s/$3BGCOLOR/ BGCOLOR/g" \
+		-e "s/ENDCOLOR *\($3\)/><TD>/g" \
+	    -e "s/$3/<\/TD><TD>/g" \
+		-e "s/ *$/<\/TR>/g"            \
+        -e "s/$3''/$3/g"          \
+		-e "s/<TD><\/TR>/<\/TR><\/font>/g" \
+		-e "s/$3//g" >> 	$1
+		
+	echo '</TABLE></HTML>' >> $1
+}
+#----------#
+#  MAIN    #
+#----------#
+#chargement librairie d'envoi de mail.
+. LibMail.sh
+
+echo "*----------------------------------------------------------------------------*"
+echo "*   Intégration du fichier E-RIS        "
+echo "*   Debut du script $JOB = $P_DATE                                                "
+echo "*----------------------------------------------------------------------------*"
+SEP_CHAMP_ORIGIN=`echo '\0331'`
+SEP_CHAMP_REPLACED=`echo '|'`
+
+echo "Fichier de données Source : $FIC_SOURCE"
+
+fonc_truncate ta_mont_amor_contrat_wk
+
+Rep=${DATA}/${_MNEMO}.wait
+File=${Rep}/${FIC_SOURCE}
+
+echo "remplacement caractere de separation"
+sed "s/$SEP_CHAMP_ORIGIN/$SEP_CHAMP_REPLACED/g" ${Rep}/${FIC_SOURCE} > $FIC_WORK.sed
+
+echo "Fichier pour traitement BCP : $FIC_WORK.sed"
+fonc_bcpin ta_mont_amor_contrat_wk $FIC_WORK.sed $SEP_CHAMP_REPLACED
+
+
+date
+fonc_execproc ps_55x42_ContratsBo
+echo "after proc stock"
+date
+FIC_LIST_DEST=$PARM/ListeDestContratsBo.lst
+FIC_MAIL_HTML=MailAlerteContratsBO
+FIC_ANOMALIE_HTML=MailAnomalieContratsBO.html
+FIC_CONTINT_HTML=MailOkContratsBO.html
+
+fonc_GetAnomalies $SEP_CHAMP_REPLACED $IDT_DATA
+fonc_ConstructTableauAnomalies $TMP/$FIC_ANOMALIE_HTML
+GetHtmlFile $TMP/$FIC_ANOMALIE_HTML $ISQL_OUT $SEP_CHAMP_REPLACED $IDT_DATA
+
+fonc_GetContratsIntegres $SEP_CHAMP_REPLACED $IDT_DATA
+fonc_ConstructTableauContratsIntegres $TMP/$FIC_CONTINT_HTML
+GetHtmlFile $TMP/$FIC_CONTINT_HTML $ISQL_OUT $SEP_CHAMP_REPLACED $IDT_DATA
+echo "Mail generation finished: " `date`
+
+MailSubject="Upload into TRR - $DATEFORMATTED - Errors and warnings during BO contracts mass upload from E-RIS to TRR LGD"
+report  "ERIRRCNT"  "$MailSubject" "$TMP/$FIC_ANOMALIE_HTML"
+
+MailSubject="Upload into TRR - $DATEFORMATTED - BO contracts mass upload from E-RIS to TRR LGD"
+report  "ERIRRCNT"  "$MailSubject" "$TMP/$FIC_CONTINT_HTML"
+
+
+mv $DATAERIS/${FIC_SOURCE} ${DATAERIS_done}
+echo "*--------------------------------------------* "
+echo "* Fin du script $JOB = $P_DATE                 "
+echo "*--------------------------------------------* "
+
+#FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S")
+#-------------------------------------------------------------------
+#Fin du job proprement dit
+#-------------------------------------------------------------------
+exit ${_CODE}
+

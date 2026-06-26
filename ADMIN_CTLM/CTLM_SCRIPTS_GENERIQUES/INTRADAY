@@ -1,0 +1,218 @@
+#!/bin/ksh
+# ----------------------------------------------------------------------------
+# SQLEXECUTE pour INTRADAY : Lancement d'une procedure SQL (execute)
+# ----------------------------------------------------------------------------
+# Parametres     :
+# Entrees        :
+# Sorties        :
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+
+######################################################
+# Diverses initialisations de variables obligatoires #
+######################################################
+
+# Parametres passes en arguments par CONTROL-M
+ODATE=${1}
+[ "X${ODATE}" = "X" ] && echo "Parm ODATE non specifie" && exit 1
+
+PROC=${2}
+[ "X${PROC}" = "X" ] && echo "Parm PROC non specifie" && exit 1
+
+DESC=${3}
+[ "X${DESC}" = "X" ] && echo "Parm DESC non specifie" && exit 1
+
+SQLE=${4}
+[ "X${SQLE}" = "X" ] && echo "Parm SQLE non specifie" && exit 1
+
+REP=${5}
+[ "X${REP}" = "X" ] && echo "Parm REP non specifie" && exit 1
+
+PROC_BEFORE=${6}
+[ "X${PROC_BEFORE}" = "X" ] && echo "Parm PROC_BEFORE non specifie" && exit 1
+
+CONTEXTE=${7}
+[ "X${CONTEXTE}" = "X" ] && echo "Parm CONTEXTE non specifie" && exit 1
+
+PARAM_CODE=${8}
+[ "X${CONTEXTE}" = "X" ] && echo "Parm CONTEXTE non specifie" && exit 1
+
+# exporte les variables CTM0, GEHLOG, GEDAA, GEDAACC et GEDSOFT
+ctrlmExports ${0}
+
+# source l'environnement de la machine logique
+switch ${GEHLOG} > /dev/null
+
+
+############################################
+# Chargement des variables d'environnement #
+############################################
+
+GENERAL_ENV="${GEDAA}/etc/`echo ${GEIENV} | tr "UQP" "uqp"`v/env_q04.ksh"
+LOCAL_ENV="${REP}/`echo ${GEIENV} | tr "UQP" "uqp"`v/etc/env.ksh"
+
+if [ -f ${GENERAL_ENV} ]; then
+  . ${GENERAL_ENV}
+  [ $? -ne 0 ] && MsgError "impossible de charger l'environnement" && exit 1
+fi
+
+if [ -f ${LOCAL_ENV} ]; then
+  . ${LOCAL_ENV}
+  [ $? -ne 0 ] && MsgError "impossible de charger l'environnement" && exit 1
+fi
+
+#############################################################
+# Initialisation des variables n'ayant pas a etre modifiees #
+#############################################################
+
+DATE=`date +"%y%m%d_%H%M%S"`
+
+###################################################
+# Initialisation des variables specifiques au job #
+###################################################
+
+REP_LOG=${REP}/logs
+FILE_LOG=${REP_LOG}/${DESC}-${DATE}.log
+
+CODEAPP=Q04
+
+#######################
+##LANCEMENT DU SCRIPT##
+#######################
+#-------------------------------------------------------------------
+# Debut du job
+#-------------------------------------------------------------------
+echo "----------------------------------------------------------------------------------------------------------"
+echo "----------------------------------------------------------------------------------------------------------"
+echo ""
+echo "#### DEBUT JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+echo ""
+
+sql_execute ()
+{
+
+sqlplus -s /nolog <<EOF > ${FILE_LOG}
+connect $EXE_PARM
+
+/* FERMAT BATCH - $DESC - Script generated on 06/10/2004 17:13:07 */
+execute $PROC;
+DELETE FROM CUST_PARAM_PARTITION WHERE PARAM_CODE = '${PARAM_CODE}';
+INSERT INTO CUST_PARAM_PARTITION (PARAM_CODE, param_val) values ('${PARAM_CODE}', 'E');
+COMMIT;
+exit
+
+quit
+EOF
+}
+
+sql_before ()
+{
+
+sqlplus -s /nolog <<EOF > ${FILE_LOG}
+connect $EXE_PARM
+
+/* FERMAT BATCH - $DESC - Script generated on 06/10/2004 17:13:07 */
+execute $PROC_BEFORE('20${ODATE}'); $PROC;
+DELETE FROM CUST_PARAM_PARTITION WHERE PARAM_CODE = '${PARAM_CODE}';
+INSERT INTO CUST_PARAM_PARTITION (PARAM_CODE, param_val) values ('${PARAM_CODE}', 'E');
+COMMIT;
+exit
+
+quit
+EOF
+}
+
+
+verif_apres_proc()
+{
+# ---------------------------------------------------------------------------- #
+# Information sur le fichier de sortie (avant lancement de la procedure)
+# ---------------------------------------------------------------------------- #
+# On verifie existance du fichier genere
+if [ -f ${FILE_LOG} ]; then
+	echo "Information sur le repertoire ${REP_LOG}"
+	echo "`ls -dl ${REP_LOG}`"
+	echo ""
+        echo "Information sur le fichier ${DESC}-${DATE}.log"
+        echo "Le fichier ${FILE_LOG} existe et n'est pas vide"
+        echo "`ls -ltr ${DESC}-${DATE}.log`"
+                else
+		echo "Information sur le repertoire ${REP_LOG}"
+		echo "`ls -dl ${REP_LOG}`"
+		echo ""
+                echo "Information sur le fichier ${DESC}-${DATE}.log"
+                echo "Le fichier ${FILE_LOG} est vide ou n'existe pas"
+                echo "`ls -ltr ${DESC}-${DATE}.log`"
+		echo ""
+                echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+                echo "exit 1"
+                exit 1
+fi
+
+
+# On verifie qu'il n'y a pas d'erreur ORACLE
+if [ `/bin/grep ERROR ${FILE_LOG} | wc -l` -gt 0 ] || [ `/bin/grep SP2-0640 ${FILE_LOG} | wc -l` -gt 0 ]; then
+  echo ""
+  echo "PLANTAGE DE LA PROCEDURE AVEC L'ERREUR SUIVANTE : "
+  echo ""
+  echo "`cat ${FILE_LOG}`"
+  echo "**********************************************************************************************************"
+  echo ""
+  echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+  echo "exit 2"
+  exit 2
+        else
+        echo ""
+        echo "**********************************************************************************************************"
+        echo "PAS D'ERREUR DANS LE FICHIER ${FILE_LOG} DE LA PROCEDURE"
+        echo "**********************************************************************************************************"
+fi
+
+}
+
+
+#Main
+echo "VARIABLES CTLM"
+echo "PROC=${PROC}"
+echo "DESC=${DESC}"
+echo "SQLE=${SQLE}"
+echo "REP=${REP}"
+echo "PROC_BEFORE=${PROC_BEFORE}"
+echo "CONTEXTE=${CONTEXTE}"
+echo "PARAM_CODE=${PARAM_CODE}"
+echo ""
+echo "VARIABLES VALORISEES DANS LE SCRIPT"
+echo "GENERAL_ENV=${GENERAL_ENV}"
+echo "LOCAL_ENV=${LOCAL_ENV}"
+echo "REP_LOG=${REP_LOG}"
+echo "FILE_LOG=${FILE_LOG}"
+echo ""
+
+cd ${REP_LOG}
+
+echo ""
+echo "**********************************************************************************************************"
+
+if [ $CONTEXTE == O ]; then 
+	echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : LANCEMENT DES PROCEDURES SQL $PROC_BEFORE('20${ODATE}') et ${PROC}"
+	sql_before
+		else
+		echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : LANCEMENT DE LA PROCEDURE SQL ${PROC}"
+		$SQLE
+fi
+
+echo ""
+echo "**********************************************************************************************************"
+echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : VERIFICATION APRES LANCEMENT PROCEDURE SQL"
+echo ""
+verif_apres_proc
+
+
+echo ""
+echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+#-------------------------------------------------------------------
+# Fin du job proprement dit
+#-------------------------------------------------------------------
+echo "exit ${?}"
+exit ${?}
+

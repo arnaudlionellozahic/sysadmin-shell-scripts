@@ -1,0 +1,200 @@
+#! /bin/ksh
+
+set -x
+
+OUTPUT_FILE=/exploit/systeme/suivi/HTML/Erreurs_VTOM_RECETTE.html 
+
+case $# in
+  0) DATE_D=$(date +"%Y-%m-%d"); DATE_F=$DATE_D; CLAUSE="vtexpdatevalue = CURRENT_DATE";;
+  1) DATE_D=$1; DATE_F=$DATE_D; CLAUSE="vtexpdatevalue = cast ('$DATE_D' as date)";;
+  2) DATE_D=$1; DATE_F=$2; CLAUSE="vtexpdatevalue >= cast ('$DATE_D' as date) AND vtexpdatevalue <= cast ('$DATE_F' as date)";;
+  *) echo "Nombre d'arguments incorrect"; exit 1;;
+esac
+
+echo ' <html>
+     <head>
+  <title></title>
+<html><head>
+<style type="text/css">
+/* Style des lignes de sération */
+.table-separateur {
+  font-size : 12px; 
+  font-family : Verdana, arial, helvetica, sans-serif; 
+  color : #333333; 
+  background-color : #d6d3ce; 
+}
+
+/* Style du titre du tableau */
+.table-titre {
+   font-size : 12px; 
+   font-family : Verdana, arial, helvetica, sans-serif; 
+  color : #eeeeee; 
+  text-align : center; 
+  font-weight : bold; 
+  background-color : #666666; 
+}
+
+/* Style des en-tês du tableau */
+.table-entete {
+  font-size : 12px; 
+  font-family : Verdana, arial, helvetica, sans-serif; 
+  color : #333333; 
+  background-color : #a7ada7; 
+}
+
+/* Style des en-tês du tableau (centré*/
+.table-entete-centre {
+  font-size : 12px; 
+   font-family : Verdana, arial, helvetica, sans-serif; 
+   color : #333333; 
+   text-align : center; 
+  background-color : #a7ada7; 
+}
+
+/* Style des en-tês du tableau (droite) */
+.table-entete-droit {
+  font-size : 12px; 
+   font-family : Verdana, arial, helvetica, sans-serif; 
+   color : #333333; 
+  text-align : right; 
+  background-color : #a7ada7; 
+}
+
+/* Style 1 des cellules */
+.table-ligne1 {
+  font-size : 12px; 
+  font-family : Verdana, arial, helvetica, sans-serif; 
+  color : #333333; 
+  background-color : #c6c3bd; 
+}
+
+/* Style 2 des cellules */
+.table-ligne2 {
+  font-size : 12px; 
+  font-family : Verdana, arial, helvetica, sans-serif;
+  color : #333333; 
+  background-color : #cccccc; 
+}
+
+/* Style 1 des cellules (centré*/
+.table-ligne1-centre {
+  font-size : 12px; 
+   font-family : Verdana, arial, helvetica, sans-serif; 
+  color : #333333; 
+  text-align : center; 
+  background-color : #c6c3bd; 
+}
+
+/* Style 2 des cellules (centré*/
+.table-ligne2-centre {
+  font-size : 12px; 
+  font-family : Verdana, arial, helvetica, sans-serif; 
+  color : #333333; 
+  text-align : center; 
+  background-color : #cccccc; 
+}
+
+/* Style 1 des cellules (droite) */
+.table-ligne1-droit {
+  font-size : 12px; 
+  font-family : Verdana, arial, helvetica, sans-serif; 
+  color : #333333; 
+  text-align : right; 
+  background-color : #c6c3bd; 
+}
+
+/* Style 2 des cellules (droite) */
+.table-ligne2-droit {
+  font-size : 12px; 
+  font-family : Verdana, arial, helvetica, sans-serif; 
+  color : #333333; 
+  text-align : right; 
+  background-color : #cccccc; 
+}
+</style>
+</head>
+
+<body>
+<!-- Premier tableau -->
+<table width="400" border="0" cellspacing="0" cellpadding="0"><tr><td class="table-separateur">
+
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+<tr><td class="table-titre" colspan="4">Titre</td></tr>
+<tr>
+  <td width="100" class="table-entete">colonne 1</td>
+  <td width="100" class="table-entete-centre">colonne 2</td>
+  <td width="100" class="table-entete">colonne 3</td>
+  <td width="100" class="table-entete">colonne 4</td>
+</tr>
+<tr>
+  <td width="100" class="table-ligne1">ligne 1</td>
+  <td width="100" class="table-ligne1-centre">centrétd>
+  <td width="100" class="table-ligne1">ligne 1</td>
+  <td width="100" class="table-ligne1">ligne 1</td>
+</tr>
+<tr>
+  <td width="100" class="table-ligne2">ligne 2</td>
+  <td width="100" class="table-ligne2-centre">centrétd>
+  <td width="100" class="table-ligne2">ligne 2</td>
+  <td width="100" class="table-ligne2">ligne 2</td>
+</tr>
+<tr>
+  <td width="100" class="table-ligne1">ligne 1</td>
+  <td width="100" class="table-ligne1-centre">centrétd>
+  <td width="100" class="table-ligne1">ligne 1</td>
+  <td width="100" class="table-ligne1">ligne 1</td>
+</tr>
+<tr>
+  <td width="100" class="table-ligne2">ligne 2</td>
+  <td width="100" class="table-ligne2-centre">centrétd>
+  <td width="100" class="table-ligne2">ligne 2</td>
+  <td width="100" class="table-ligne2">ligne 2</td>
+</tr>
+</table>
+
+</td></tr></table>
+<!-- Deuxiè tableau -->
+<table width="400" border="0" cellspacing="0" cellpadding="0"><tr><td class="table-separateur">
+
+<table width="100%" border="0" cellspacing="1" cellpadding="2">
+<tr><td class="table-titre" colspan="4">Titre</td></tr>
+<tr>
+  <td width="100" class="table-entete">colonne 1</td>
+  <td width="100" class="table-entete">colonne 2</td>
+  <td width="100" class="table-entete">colonne 3</td>
+  <td width="100" class="table-entete-droit">colonne 4</td>
+</tr>
+<tr>
+  <td width="100" class="table-ligne1">ligne 1</td>
+  <td width="100" class="table-ligne1">ligne 1</td>
+  <td width="100" class="table-ligne1">ligne 1</td>
+  <td width="100" class="table-ligne1-droit">Droite</td>
+</tr>
+<tr>
+  <td width="100" class="table-ligne1">ligne 1</td>
+  <td width="100" class="table-ligne1">ligne 1</td>
+  <td width="100" class="table-ligne1">ligne 1</td>
+  <td width="100" class="table-ligne1-droit">Droite</td>
+</tr>
+<tr>
+  <td width="100" class="table-ligne1">ligne 1</td>
+  <td width="100" class="table-ligne1">ligne 1</td>
+  <td width="100" class="table-ligne1">ligne 1</td>
+  <td width="100" class="table-ligne1-droit">Droite</td>
+</tr>
+<tr>
+  <td width="100" class="table-ligne1">ligne 1</td>
+  <td width="100" class="table-ligne1">ligne 1</td>
+  <td width="100" class="table-ligne1">ligne 1</td>
+  <td width="100" class="table-ligne1-droit">Droite</td>
+</tr>
+</table>
+
+</td></tr></table>
+     </head> ' > $OUTPUT_FILE
+
+/produit/vtom/v52/sgbd/bin/psql -A -H -c "SELECT vtenvname, vtapplname, vtjobname, vtbegin, vtend, vtend - vtbegin, vtexpdatevalue, vtnbretry, 'EN-ERREUR', vtretcode, vterrmess FROM vt_stats_job WHERE $CLAUSE AND vtjobname IS NOT NULL AND vtstatus = 4 ORDER BY vtend ASC" -d vtom -h localhost -p 30009 -U vtom >> $OUTPUT_FILE
+
+NB_TEST=$(grep "EN-ERREUR" $OUTPUT_FILE|wc -l)
+
+/exploit/batch/sendmime.sh -s "[VTOM RECETTE] Erreurs ($NB_TEST)" -t "Statistiques du $DATE_D au $DATE_F extraites le $(date +'%d/%m/%Y a %H:%M')" arnaud.lozahic@mondial-assistance.fr $OUTPUT_FILE 

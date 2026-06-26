@@ -1,0 +1,14 @@
+LOGICAL VOLUME:     lv_orion               VOLUME GROUP:   extvgBCV
+LV IDENTIFIER:      00c0692a00004c0000000129a8562bc9.6 PERMISSION:     read/write
+VG STATE:           active/complete        LV STATE:       opened/syncd
+TYPE:               jfs                    WRITE VERIFY:   off
+MAX LPs:            512                    PP SIZE:        128 megabyte(s)
+COPIES:             1                      SCHED POLICY:   parallel
+LPs:                8                      PPs:            8
+STALE PPs:          0                      BB POLICY:      relocatable
+INTER-POLICY:       minimum                RELOCATABLE:    yes
+INTRA-POLICY:       middle                 UPPER BOUND:    32
+MOUNT POINT:        /apps/orion            LABEL:          /apps/orion
+MIRROR WRITE CONSISTENCY: on/ACTIVE                              
+EACH LP COPY ON A SEPARATE PV ?: yes                                    
+Serialize IO ?:     NO                                     

@@ -1,0 +1,15 @@
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/mapper/vg_centos63-lv_root
+                     1008M  356M  601M  38% /
+tmpfs                 520M   24K  520M   1% /dev/shm
+/dev/sda1             485M   51M  409M  12% /boot
+/dev/mapper/vg_centos63-lv_home
+                       15G   12G  1.9G  87% /home
+/dev/mapper/vg_centos63-lv_opt
+                      124M  5.6M  113M   5% /opt
+/dev/mapper/vg_centos63-lv_tmp
+                      124M  5.9M  112M   5% /tmp
+/dev/mapper/vg_centos63-lv_usr
+                      3.7G  2.9G  604M  83% /usr
+/dev/mapper/vg_centos63-lv_var
+                      1.5G  301M  1.1G  22% /var

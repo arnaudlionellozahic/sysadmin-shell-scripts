@@ -1,0 +1,81 @@
+#! /bin/ksh 
+#__________________________________________________________
+#
+#     Demarrage des servers Visual TOM en mode securise
+#          (relance automatique en cas de disparition du
+#           processus vtsgbd ou bien vtserver)
+#
+#		***** Mode SIMULATION *****
+#__________________________________________________________
+
+
+ecrit_journal()
+{
+
+	msg=$1
+
+	instant=`date '+%d-%m-%Y %H:%M:%S'`
+	echo ""
+	echo "  SIMULATION  **********  "${msg}
+	echo ${instant}" - "${msg} >> ${journal}
+}
+
+cle_ficini()
+{
+
+	cle=$1
+	valeur_cle=`grep "^${cle}:" ${fic_ini} | cut -d":" -f2-`
+	
+	echo $valeur_cle
+	
+}
+
+
+moi=`basename $0`
+
+
+fic_ini=${TOM_ADMIN}/sssecure_simu.ini
+
+
+if [ ! -f "${fic_ini}" ] ; then
+	echo ""
+	echo "Fichier ${fic_ini} inexistant. Sortie."
+	echo ""
+	exit
+fi
+
+rep_collecte=`cle_ficini "REP_COLLECTE"`
+
+journal=${rep_collecte}/${moi}_journal.txt
+
+
+ftp_serveur=`cle_ficini "FTP_SERVEUR"`
+if [ ! -z ${ftp_serveur} ] ; then
+	ftp_user=`cle_ficini "FTP_USER"`
+	if [ ! -z ${ftp_user} ] ; then
+		ecrit_journal "Envoi par ftp sur le serveur $ftp_serveur par le user $ftp_user"
+	fi
+else
+	ftp_user=""
+fi
+
+
+ftp_passwd=`cle_ficini "FTP_PASSWD"`
+
+		# ----- Postage ftp
+		if [ ! -z ${ftp_serveur} ] ; then
+			if [ ! -z ${ftp_user} ] ; then
+				
+				ecrit_journal "Envoi par ftp sur serveur $ftp_serveur"
+ftp -nv <<__FINFTP__ > ${rep_collecte}/ftp.log 2>&1
+open ${ftp_serveur}
+user ${ftp_user} ${ftp_passwd}
+lcd ${rep_collecte}
+binary
+prompt
+cd incoming
+mput ${maintenant}_*
+bye
+__FINFTP__
+			fi
+		fi

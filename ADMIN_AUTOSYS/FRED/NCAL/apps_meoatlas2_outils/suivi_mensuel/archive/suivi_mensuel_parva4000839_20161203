@@ -1,0 +1,25 @@
+Dec 2 23:59 # 00.26.02 .CASH_I_0072 Jobset msuaCald 0100 Started at 00.26.02
+Dec 2 23:59 # 05.46.02 .CASH_I_0072 Jobset mfu99Cald 0200 Started at 05.46.02
+Dec 3 00:00 # 00.15.51 .CASH_I_0072 Jobset msfaCald 0100 Started at 00.15.51
+Dec 3 00:00 # 00.36.54 .CASH_I_0060 msfaCald 0100 Completed at 00.36.53, code: 00000000
+Dec 3 00:00 # 05.04.26 .CASH_I_0100 Jobset msuaCald, Job dask12, Jno 0001, Qual 0101 queued for submit
+Dec 3 00:00 # 05.04.27 .CASH_I_0069 msuaCald dask12 0001 0101 Started at 05.04.26 at node parva4000839, Pid = 02752792
+Dec 3 00:00 # 05.04.48 .CASH_I_0054 msuaCald dask12 0001 0101 Completed at 05.04.45, code: 00000000 at node parva4000839, Pid = 02752792
+Dec 3 00:00 # 05.05.45 .CASH_I_0060 msuaCald 0100 Completed at 05.05.45, code: 00000000
+Dec 3 00:00 # 05.05.45 .CASH_I_0072 Jobset mww0Cald 0100 Started at 05.05.45
+Dec 3 00:00 # 05.07.34 .CASH_I_0060 mww0Cald 0100 Completed at 05.07.34, code: 00000000
+Dec 3 00:00 # 05.13.23 .CASH_I_0072 Jobset mdi1Cald 0100 Started at 05.13.23
+Dec 3 00:00 # 05.26.00 .CASH_I_0060 mdi1Cald 0100 Completed at 05.26.00, code: 00000000
+Dec 3 00:00 # 05.27.14 .CASH_I_0072 Jobset mrf4Cald 0100 Started at 05.27.14
+Dec 3 00:00 # 05.27.44 .CASH_I_0060 mrf4Cald 0100 Completed at 05.27.44, code: 00000000
+Dec 3 00:00 # 05.27.44 .CASH_I_0072 Jobset mrfaCald 0100 Started at 05.27.44
+Dec 3 00:00 # 05.31.10 .CASH_I_0060 mrfaCald 0100 Completed at 05.31.10, code: 00000000
+Dec 3 00:00 # 05.36.17 .CASH_I_0072 Jobset mrf8Cald 0100 Started at 05.36.17
+Dec 3 00:00 # 05.36.48 .CASH_I_0060 mrf8Cald 0100 Completed at 05.36.48, code: 00000000
+Dec 3 00:00 # 05.46.03 .CASH_I_0072 Jobset mrfcCald 0100 Started at 05.46.03
+Dec 3 00:00 # 05.46.30 .CASH_I_0060 mrfcCald 0100 Completed at 05.46.30, code: 00000000
+Dec 3 00:00 # 05.49.53 .CASH_I_0060 mfu99Cald 0200 Completed at 05.49.53, code: 00000000
+Dec 3 23:34 # 01.35.59 .CASH_I_0072 Jobset mfu50Cald 0200 Started at 01.35.59
+Dec 3 23:34 # 01.57.09 .CASH_I_0060 mfu50Cald 0200 Completed at 01.57.09, code: 00000000
+Dec 3 23:50 # 00.48.24 .CASH_I_0072 Jobset mfu17Cald 0200 Started at 00.48.24
+Dec 3 23:50 # 00.50.36 .CASH_I_0060 mfu17Cald 0200 Completed at 00.50.36, code: 00000000

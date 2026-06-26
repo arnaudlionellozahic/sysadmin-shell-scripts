@@ -1,0 +1,25 @@
+#!/bin/ksh 
+
+function process_ori 
+{ 
+ssh $SERV  ps -ef |  awk '  $8 !~ /^[0-9]*:[0-9]*$/ {printf "%-10s;%-15s; %-70s\n","serv",$1,$8" "$9" "$10" "$11 } 
+                            $8 ~ /^[0-9]*:[0-9]*$/ {printf "%-10s;%-15s; %-70s\n","serv",$1,$9" "$10" "$11" "$12 }' | sed "s/serv/$SERV/g" | sort | grep -v UID | grep -v grep 
+} 
+
+
+
+#MAIN 
+
+rm /root/DOMI/procs*.csv 
+
+#liste=`cat /root/DOMI/serv_lolo.txt` 
+liste=`cat /root/DOMI/serv_lolo_ori.txt` 
+#liste=`cat /root/DOMI/serv_lolo_pourri.txt` 
+
+for SERV in $liste 
+do 
+   process_ori  | sed 's/10.34.68.192/upn1e29  \(10.34.68.192\)/g'| sed 's/10.34.68.188/upn1e28  \(10.34.68.188\)/g' | sed 's/10.34.68.189/clpctl01 \(10.34.68.189\)/g' | sed 's/10.34.68.190/trkct101 \(10.34.68.190\)/g' | sed 's/10.34.68.191/upnnt21  \(10.34.68.191\)/g'| sed 's/10.34.68.193/upn1e1   \(10.34.68.193\)/g' >> /root/DOMI/procs.csv 
+done 
+
+#grep ":"  procs.csv | sed 's/[0-9]*:[0-9]*//g' 
+uniq /root/DOMI/procs.csv > /root/DOMI/procs_uniq.csv 

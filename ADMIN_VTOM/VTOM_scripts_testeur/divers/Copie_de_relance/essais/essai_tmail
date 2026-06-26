@@ -1,0 +1,95 @@
+#! /bin/ksh 
+#__________________________________________________________
+#
+#     Demarrage des servers Visual TOM en mode securise
+#          (relance automatique en cas de disparition du
+#           processus vtsgbd ou bien vtserver)
+#
+#		***** Mode SIMULATION *****
+#__________________________________________________________
+
+
+ecrit_journal()
+{
+
+	msg=$1
+
+	instant=`date '+%d-%m-%Y %H:%M:%S'`
+	echo ""
+	echo "  SIMULATION  **********  "${msg}
+	echo ${instant}" - "${msg} >> ${journal}
+	return $instant
+}
+
+cle_ficini()
+{
+
+	cle=$1
+	valeur_cle=`grep "^${cle}:" ${fic_ini} | cut -d":" -f2`
+	
+	echo $valeur_cle
+	
+}
+
+
+moi=`basename $0`
+
+
+TOM_ADMIN=f:/absyss/sss/simulation
+TOM_BIN=f:/absyss/sss/simulation
+
+fic_ini=${TOM_ADMIN}/${moi}.ini
+
+
+if [ ! -f "${fic_ini}" ] ; then
+	echo ""
+	echo "Fichier ${fic_ini} inexistant. Sortie."
+	echo ""
+	exit
+fi
+
+rep_collecte=`cle_ficini "REP_COLLECTE"`
+
+mail_dest=`cle_ficini "NOTIF_MAIL_DEST"`
+ecrit_journal "Notification mail - destinataires : $mail_dest"
+
+mail_cc=`cle_ficini "NOTIF_MAIL_CC"`
+ecrit_journal "Notification mail - destinataires en cc : $mail_cc"
+
+mail_ccc=`cle_ficini "NOTIF_MAIL_CCC"`
+ecrit_journal "Notification mail - destinataires en ccc : $mail_ccc"
+
+mail_serveur=`cle_ficini "NOTIF_MAIL_SERVEUR"`
+ecrit_journal "Notification mail - serveur : $mail_serveur"
+
+mail_port=`cle_ficini "NOTIF_MAIL_PORT"`
+ecrit_journal "Notification mail - port : $mail_port"
+
+
+# ----- Notification par mail
+if [ ! -z ${mail_dest} ] ; then
+	if [ ! -z ${mail_serveur} ] ; then
+	
+		ecrit_journal "Notification par mail a $mail_dest"
+			
+		# ----- si port non surcharge, on prend la valeur par defaut (25)
+		if [ -z "${mail_port}" ] ; then
+			mail_port=25
+		fi
+			
+		destinataires="-to ${mail_dest}"
+		if [ ! -z ${mail_cc} ] ; then
+			destinataires="${destinataires} -cc ${mail_cc}"
+		fi
+		if [ ! -z ${mail_ccc} ] ; then
+			destinataires="${destinataires} -bcc ${mail_ccc}"
+		fi
+				
+		fic_extrait_journal=${rep_collecte}/extrait_${moi}_journal.txt
+				
+		echo "Extrait de $journal (50 dernieres lignes)" > $fic_extrait_journal
+		tail -100 $journal >> $fic_extrait_journal
+				
+		tmail -se ${moi}@vtom.fr ${destinataires} -sub "VTOM - relance automatique des serveurs" -msgf $fic_extrait_journal -att $journal
+	fi
+fi

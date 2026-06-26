@@ -1,0 +1,275 @@
+/*
+
+update_job: GR2_BOX1_J1
+box_name: GR2_BOX1
+owner: user2
+machine: rh602
+command: echo ok
+std_out_file: >/tmp/$AUTO_JOB_NAME.log
+std_err_file: >/tmp/$AUTO_JOB_NAME.err
+
+update_job: GR2_BOX1_FT1
+box_name: GR2_BOX1
+owner: user2
+machine: rh602
+command: echo ok
+std_out_file: >/tmp/$AUTO_JOB_NAME.log
+std_err_file: >/tmp/$AUTO_JOB_NAME.err
+
+update_job: GR2_BOX1_J2
+box_name: GR2_BOX1
+condition: e(GR2_BOX1_J1) = 0
+owner: user2
+machine: rh602
+command: echo ok
+std_out_file: >/tmp/$AUTO_JOB_NAME.log
+std_err_file: >/tmp/$AUTO_JOB_NAME.err
+
+
+
+
+update_job: GR2_BOX2_J1
+box_name: GR2_BOX2
+owner: user2
+machine: rh602
+command: echo ok
+condition: D(GR2_BOX2_J3)&D(GR2_BOX2_J2)
+std_out_file: >/tmp/$AUTO_JOB_NAME.log
+std_err_file: >/tmp/$AUTO_JOB_NAME.err
+
+update_job: GR2_BOX2_J3
+box_name: GR2_BOX2
+owner: user2
+machine: rh602
+command: echo ok
+std_out_file: >/tmp/$AUTO_JOB_NAME.log
+std_err_file: >/tmp/$AUTO_JOB_NAME.err
+
+update_job: GR2_BOX2_J2
+box_name: GR2_BOX2
+owner: user2
+machine: rh602
+command: echo ok
+std_out_file: >/tmp/$AUTO_JOB_NAME.log
+std_err_file: >/tmp/$AUTO_JOB_NAME.err
+
+
+*/
+
+/* CONDITION ENTRE BOX1 ET BOX2
+SUR BOX2
+update_job: GR2_BOX2
+condition: d(GR2_BOX1)
+*/
+
+
+
+/* CREATION BOX */
+
+
+/* DELETE BOX OR JOB
+delete_job: GR2_BOX3 */
+
+/* INSERTION DE BOX1 ET BOX2 DANS SUPERBOX GR2_BOX0
+update_job: GR2_BOX2
+box_name: GR2_BOX0
+
+update_job: GR2_BOX1
+box_name: GR2_BOX0 */
+
+
+/* RAJOUT CALEDENDRIER SUR LA SUPERBOX BOX0
+update_job: GR2_BOX0
+date_conditions: 1
+run_calendar: GR2_cal1
+start_mins: 00,10,20,30,40,50,55
+run_window: "08:00-18h00" */
+
+
+/* BOX avec 8 JOBS EN // et sleep 30
+insert_job: GR2_BOX4
+job_type: b
+
+update_job: GR2_BOX4_J1
+box_name: GR2_BOX4
+command: /home/user2/arn1
+owner: root
+machine: rh602
+std_out_file: >/home/user2/toto_box4.log
+days_of_week: tu,we,th
+start_mins: 15,30,45,00
+
+update_job: GR2_BOX4_J2
+box_name: GR2_BOX4
+command: /home/user2/arn1
+owner: root
+machine: rh602
+std_out_file: >/home/user2/toto_box4.log
+days_of_week: tu,we,th
+start_mins: 15,30,45,00
+
+update_job: GR2_BOX4_J3
+box_name: GR2_BOX4
+command: /home/user2/arn1
+owner: root
+machine: rh602
+std_out_file: >/home/user2/toto_box4.log
+days_of_week: tu,we,th
+start_mins: 15,30,45,00
+
+update_job: GR2_BOX4_J4
+box_name: GR2_BOX4
+command: /home/user2/arn1
+condition: VALUE(GR2_FLAG)=CAFE
+owner: root
+machine: rh602
+std_out_file: >/home/user2/toto_box4.log
+days_of_week: tu,we,th
+start_mins: 15,30,45,00
+
+update_job: GR2_BOX4_J5
+box_name: GR2_BOX4
+command:/home/user2/arn1
+condition: V(ARN_FLAG)>=2
+owner: root
+machine: rh602
+std_out_file: >/home/user2/toto_box4.log
+
+update_job: GR2_BOX4_J6
+box_name: GR2_BOX4
+command: /home/user2/arn1
+owner: root
+machine: rh602
+std_err_file: /home/user2/toto_box4.err
+std_out_file:
+
+update_job: GR2_BOX4_J7
+box_name: GR2_BOX4
+command: /home/user2/arn1
+owner: root
+machine: rh602
+std_out_file: >/home/user2/toto_box4.log
+
+update_job: GR2_BOX4_J8
+box_name: GR2_BOX4
+command: sleep $${GR2_PARAM}
+owner: root
+machine: rh602
+std_out_file: >/home/user2/toto_box4.log */
+
+/*
+
+RAJOUT MACHINE VIRTUELLE ET SOUMISSION DESSUS
+insert_machine: GR2_exploit
+machine: rh602
+#type: v
+
+update_job: GR2_BOX4_J1
+box_name: GR2_BOX4
+command: /home/user2/arn1
+owner: root
+machine: GR2_exploit
+std_out_file: >/home/user2/toto_box4.log
+date_conditions: 1
+days_of_week: tu,we,th
+start_mins: 15,30,45,00
+
+update_job: GR2_BOX4_J2
+box_name: GR2_BOX4
+command: /home/user2/arn1
+owner: root
+machine: GR2_exploit
+std_out_file: >/home/user2/toto_box4.log
+date_conditions: 1
+days_of_week: tu,we,th
+start_mins: 15,30,45,00
+
+update_job: GR2_BOX4_J3
+box_name: GR2_BOX4
+command: /home/user2/choix.sh
+owner: root
+machine: GR2_exploit
+std_out_file: >/home/user2/toto_box4.log
+date_conditions: 1
+days_of_week: tu,we,th
+start_mins: 15,30,45,00
+
+update_job: GR2_BOX4_J4
+box_name: GR2_BOX4
+command: /home/user2/arn1
+condition: VALUE(GR2_FLAG)=CAFE
+owner: root
+machine: GR2_exploit
+std_out_file: >/home/user2/toto_box4.log
+date_conditions: 1
+days_of_week: tu,we,th
+start_mins: 15,30,45,00
+*/
+
+/*
+insert_machine: GR2_arn
+machine: rh602
+*/
+
+/*CHOIX SERVEUR REPARTITION CHARGE
+update_job: GR2_BOX4_J3
+box_name: GR2_BOX4
+machine: `/home/user2/choix.sh`
+#machine: GR2_arn
+command: /home/user2/arn1
+owner: root
+std_out_file: /home/user2/toto_box4.log
+date_conditions: 1
+days_of_week: th
+start_mins: 15,30,45,00
+
+update_job: GR2_BOX4_J1
+box_name: GR2_BOX4
+command: /home/user2/arn1
+owner: root
+machine: GR2_arn
+std_out_file: >/home/user2/toto_box4.log
+date_conditions: 1
+days_of_week: tu,we,th
+start_mins: 15,30,45,00
+
+update_job: GR2_BOX4_J2
+box_name: GR2_BOX4
+command: /home/user2/arn1
+owner: root
+machine: GR2_arn
+std_out_file: >/home/user2/toto_box4.log
+date_conditions: 1
+days_of_week: tu,we,th
+start_mins: 15,30,45,00
+
+update_job: GR2_BOX4_J4
+box_name: GR2_BOX4
+command: /home/user2/arn1
+condition: VALUE(GR2_FLAG)=CAFE
+owner: root
+machine: GR2_arn
+std_out_file: >/home/user2/toto_box4.log
+date_conditions: 1
+days_of_week: tu,we,th
+start_mins: 15,30,45,00
+*/
+
+/*RESOURCES*/
+
+insert_resource: GR2_res
+res_type: R
+amount: 3
+
+update_job: GR2_BOX4_J1
+resources: GR2_res
+
+update_job: GR2_BOX4_J2
+resources: GR2_res
+
+update_job: GR2_BOX4_J3
+resources: GR2_res
+
+update_job: GR2_BOX4_J4
+resources: GR2_res
+

@@ -1,0 +1,465 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE DEFTABLE SYSTEM "deftable.dtd">
+<DEFTABLE>
+
+
+<SMART_TABLE 
+
+ ADJUST_COND="0" 
+
+ APPLICATION="X6A_REPORTING_RISQUE" 
+
+ AUTHOR="mgavinet" 
+
+ CONFIRM="0" 
+
+ CREATION_DATE="20150123" 
+
+ CREATION_TIME="152915  " 
+
+ CREATION_USER="alozahic" 
+
+ CRITICAL="0" 
+
+ DATACENTER="pctrr" 
+
+ DESCRIPTION="Job d intégration des données FE dans la base de reporting entreprise" 
+
+ GROUP="PX6A_DLOAD_FE_REPORTING" 
+
+ JOBNAME="PX6A_DLOAD_FE_REPORTING" 
+
+ OWNER="px6aprocs" 
+
+ TABLE_NAME="PX6A_DLOAD_FE_REPORTING" 
+
+ TABLE_USERDAILY="PX6A" 
+
+ TIMETO="1300" 
+
+ USED_BY_CODE="0">
+
+
+
+  <AUTOEDIT2 NAME="%%APPLI" VALUE="x6a"/>
+
+
+
+  <AUTOEDIT2 NAME="%%GEIENV" VALUE="p"/>
+
+
+
+  <AUTOEDIT2 NAME="%%PATHNAME" VALUE="/%%NODEID/appli/%%APPLI/%%APPLGROUP/travaux"/>
+
+
+
+  <RULE_BASED_CALENDAR 
+
+   APR="1" 
+
+   AUG="1" 
+
+   DAYS_AND_OR="OR" 
+
+   DEC="1" 
+
+   FEB="1" 
+
+   JAN="1" 
+
+   JUL="1" 
+
+   JUN="1" 
+
+   LEVEL="TABLE" 
+
+   MAR="1" 
+
+   MAXWAIT="03" 
+
+   MAY="1" 
+
+   NAME="PX6A_DLOAD_FE_REPOR" 
+
+   NOV="1" 
+
+   OCT="1" 
+
+   RETRO="0" 
+
+   SEP="1" 
+
+   SHIFT="IGNOREJOB" 
+
+   SHIFTNUM="+00" 
+
+   WEEKDAYS="1,2,3,4,5,6"/>
+
+
+
+  <JOB 
+
+   APPLICATION="X6A_REPORTING_RISQUE" 
+
+   APR="1" 
+
+   AUG="1" 
+
+   AUTHOR="mgavinet" 
+
+   AUTOARCH="0" 
+
+   CMDLINE="/%%NODEID/appli/%%APPLI/%%APPLGROUP/%%GEIENV.v/sbin/%%JOBNAME %%PARM1 %%PATHNAME" 
+
+   CONFIRM="0" 
+
+   CREATION_DATE="20150123" 
+
+   CREATION_TIME="152915  " 
+
+   CREATION_USER="alozahic" 
+
+   CRITICAL="0" 
+
+   CYCLIC="0" 
+
+   CYCLIC_TOLERANCE="1" 
+
+   CYCLIC_TYPE="Interval" 
+
+   DAYS_AND_OR="OR" 
+
+   DEC="1" 
+
+   DESCRIPTION="Job de chargement des tables FE" 
+
+   FEB="1" 
+
+   GROUP="PX6A_DLOAD_FE_REPORTING" 
+
+   IND_CYCLIC="START" 
+
+   INTERVAL="00000H" 
+
+   JAN="1" 
+
+   JOBNAME="PX6ADLOADFE" 
+
+   JUL="1" 
+
+   JUN="1" 
+
+   MAR="1" 
+
+   MAXDAYS="0" 
+
+   MAXRERUN="0" 
+
+   MAXRUNS="0" 
+
+   MAXWAIT="3" 
+
+   MAY="1" 
+
+   MEMNAME="PX6ADLoadFE" 
+
+   MULTY_AGENT="N" 
+
+   NODEID="mspx6aubat01" 
+
+   NOV="1" 
+
+   OCT="1" 
+
+   OPTION="Copy" 
+
+   OWNER="px6aprocs" 
+
+   PAR="/%%NODEID/appli/%%APPLI/%%APPLGROUP/logs/%%JOBNAME._%%MEMNAME._%%DATE._%%ORDERID._%%RUNCOUNT" 
+
+   PARENT_TABLE="PX6A_DLOAD_FE_REPORTING" 
+
+   RETRO="0" 
+
+   RULE_BASED_CALENDAR_RELATIONSHIP="OR" 
+
+   SEP="1" 
+
+   SHIFT="IGNOREJOB" 
+
+   SHIFTNUM="+00" 
+
+   SYSDB="0" 
+
+   TASKTYPE="Command" 
+
+   USE_INSTREAM_JCL="N" 
+
+   WEEKDAYS="1,2,3,4,5">
+
+    <QUANTITATIVE NAME="PRQ_SUBMIT" QUANT="1"/>
+
+    <QUANTITATIVE NAME="PRQ_X6A" QUANT="1"/>
+
+    <AUTOEDIT2 NAME="%%PARM1" VALUE="%%ODATE"/>
+
+    <SHOUT 
+
+     DEST="MAIL" 
+
+     MESSAGE="LD-M-DRA-MOE-DOSSIER_CREDIT@natixis.com,LD-DSI-R2C-RPA-PRR-PR2@natixis.com:[PREX][X6A] - Le job %%APPLGROUP / %%JOBNAME a dure plus de 120 minutes : Le traitement des fichiers sous /%%NODEID/appli/%%APPLI/%%APPLGROUP a dure plus de 120 minutes." 
+
+     TIME=">120" 
+
+     URGENCY="R" 
+
+     WHEN="EXECTIME"/>
+
+    <ON CODE="NOTOK" STMT="*">
+
+      <DOSYSOUT OPTION="Copy" PAR="/%%NODEID/appli/%%APPLI/%%APPLGROUP/logs/%%JOBNAME._%%MEMNAME._%%DATE._%%ORDERID._%%RUNCOUNT"/>
+
+      <DOCOND NAME="PX6ACPYCFTFE-PX6ADLOADFE_OK" ODATE="ODAT" SIGN="DEL"/>
+
+    </ON>
+
+    <RULE_BASED_CALENDARS NAME="PX6A_DLOAD_FE_REPOR"/>
+
+  </JOB>
+
+
+
+</SMART_TABLE>
+</DEFTABLE><?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE DEFTABLE SYSTEM "deftable.dtd">
+<DEFTABLE>
+
+
+<SMART_TABLE 
+
+ ADJUST_COND="0" 
+
+ APPLICATION="X6A_REPORTING_RISQUE" 
+
+ AUTHOR="mgavinet" 
+
+ CONFIRM="0" 
+
+ CREATION_DATE="20150123" 
+
+ CREATION_TIME="152915  " 
+
+ CREATION_USER="alozahic" 
+
+ CRITICAL="0" 
+
+ DATACENTER="pctrr" 
+
+ DESCRIPTION="Job d intégration des données FE dans la base de reporting entreprise" 
+
+ GROUP="PX6A_DLOAD_FE_REPORTING" 
+
+ JOBNAME="PX6A_DLOAD_FE_REPORTING" 
+
+ OWNER="xx6aprocs" 
+
+ TABLE_NAME="PX6A_DLOAD_FE_REPORTING" 
+
+ TABLE_USERDAILY="PX6A" 
+
+ TIMETO="1300" 
+
+ USED_BY_CODE="0">
+
+
+
+  <AUTOEDIT2 NAME="%%APPLI" VALUE="x6a"/>
+
+
+
+  <AUTOEDIT2 NAME="%%GEIENV" VALUE="p"/>
+
+
+
+  <AUTOEDIT2 NAME="%%PATHNAME" VALUE="/%%NODEID/appli/%%APPLI/%%APPLGROUP/travaux"/>
+
+
+
+  <RULE_BASED_CALENDAR 
+
+   APR="1" 
+
+   AUG="1" 
+
+   DAYS_AND_OR="OR" 
+
+   DEC="1" 
+
+   FEB="1" 
+
+   JAN="1" 
+
+   JUL="1" 
+
+   JUN="1" 
+
+   LEVEL="TABLE" 
+
+   MAR="1" 
+
+   MAXWAIT="03" 
+
+   MAY="1" 
+
+   NAME="PX6A_DLOAD_FE_REPOR" 
+
+   NOV="1" 
+
+   OCT="1" 
+
+   RETRO="0" 
+
+   SEP="1" 
+
+   SHIFT="IGNOREJOB" 
+
+   SHIFTNUM="+00" 
+
+   WEEKDAYS="1,2,3,4,5,6"/>
+
+
+
+  <JOB 
+
+   APPLICATION="X6A_REPORTING_RISQUE" 
+
+   APR="1" 
+
+   AUG="1" 
+
+   AUTHOR="mgavinet" 
+
+   AUTOARCH="0" 
+
+   CMDLINE="/%%NODEID/appli/%%APPLI/%%APPLGROUP/%%GEIENV.v/sbin/%%JOBNAME %%PARM1 %%PATHNAME" 
+
+   CONFIRM="0" 
+
+   CREATION_DATE="20150123" 
+
+   CREATION_TIME="152915  " 
+
+   CREATION_USER="alozahic" 
+
+   CRITICAL="0" 
+
+   CYCLIC="0" 
+
+   CYCLIC_TOLERANCE="1" 
+
+   CYCLIC_TYPE="Interval" 
+
+   DAYS_AND_OR="OR" 
+
+   DEC="1" 
+
+   DESCRIPTION="Job de chargement des tables FE" 
+
+   FEB="1" 
+
+   GROUP="PX6A_DLOAD_FE_REPORTING" 
+
+   IND_CYCLIC="START" 
+
+   INTERVAL="00000H" 
+
+   JAN="1" 
+
+   JOBNAME="PX6ADLOADFE" 
+
+   JUL="1" 
+
+   JUN="1" 
+
+   MAR="1" 
+
+   MAXDAYS="0" 
+
+   MAXRERUN="0" 
+
+   MAXRUNS="0" 
+
+   MAXWAIT="3" 
+
+   MAY="1" 
+
+   MEMNAME="PX6ADLoadFE" 
+
+   MULTY_AGENT="N" 
+
+   NODEID="msxx6aubat01" 
+
+   NOV="1" 
+
+   OCT="1" 
+
+   OPTION="Copy" 
+
+   OWNER="xx6aprocs" 
+
+   PAR="/%%NODEID/appli/%%APPLI/%%APPLGROUP/logs/%%JOBNAME._%%MEMNAME._%%DATE._%%ORDERID._%%RUNCOUNT" 
+
+   PARENT_TABLE="PX6A_DLOAD_FE_REPORTING" 
+
+   RETRO="0" 
+
+   RULE_BASED_CALENDAR_RELATIONSHIP="OR" 
+
+   SEP="1" 
+
+   SHIFT="IGNOREJOB" 
+
+   SHIFTNUM="+00" 
+
+   SYSDB="0" 
+
+   TASKTYPE="Command" 
+
+   USE_INSTREAM_JCL="N" 
+
+   WEEKDAYS="1,2,3,4,5">
+
+    <QUANTITATIVE NAME="PRQ_SUBMIT" QUANT="1"/>
+
+    <QUANTITATIVE NAME="PRQ_X6A" QUANT="1"/>
+
+    <AUTOEDIT2 NAME="%%PARM1" VALUE="%%ODATE"/>
+
+    <SHOUT 
+
+     DEST="MAIL" 
+
+     MESSAGE="LD-M-DRA-MOE-DOSSIER_CREDIT@natixis.com,LD-DSI-R2C-RPA-PRR-PR2@natixis.com:[PREX][X6A] - Le job %%APPLGROUP / %%JOBNAME a dure plus de 120 minutes : Le traitement des fichiers sous /%%NODEID/appli/%%APPLI/%%APPLGROUP a dure plus de 120 minutes." 
+
+     TIME=">120" 
+
+     URGENCY="R" 
+
+     WHEN="EXECTIME"/>
+
+    <ON CODE="NOTOK" STMT="*">
+
+      <DOSYSOUT OPTION="Copy" PAR="/%%NODEID/appli/%%APPLI/%%APPLGROUP/logs/%%JOBNAME._%%MEMNAME._%%DATE._%%ORDERID._%%RUNCOUNT"/>
+
+      <DOCOND NAME="PX6ACPYCFTFE-PX6ADLOADFE_OK" ODATE="ODAT" SIGN="DEL"/>
+
+    </ON>
+
+    <RULE_BASED_CALENDARS NAME="PX6A_DLOAD_FE_REPOR"/>
+
+  </JOB>
+
+
+
+</SMART_TABLE>
+</DEFTABLE>

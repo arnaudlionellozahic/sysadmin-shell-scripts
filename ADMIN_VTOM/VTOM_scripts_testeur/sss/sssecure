@@ -1,0 +1,401 @@
+#! /bin/ksh 
+#__________________________________________________________
+#
+#     Demarrage des servers Visual TOM en mode securise
+#          (relance automatique en cas de disparition du
+#           processus vtsgbd ou bien vtserver)
+#__________________________________________________________
+
+
+ecrit_journal()
+{
+
+	msg=$1
+
+	instant=`date '+%d-%m-%Y %H:%M:%S'`
+	echo ""
+	echo "     **********  "${msg}
+	echo ${instant}" - "${msg} >> ${journal}
+
+}
+
+cle_ficini()
+{
+
+	cle=$1
+	valeur_cle=`grep "^${cle}:" ${fic_ini} | cut -d":" -f2`
+	
+	echo $valeur_cle
+	
+}
+
+
+collecte()
+{
+
+# ----- Collecte infos netstat, memoire et processus en cours
+
+	ecrit_journal "Collecte netstat, vtping, top et ps"
+	
+	maintenant=`date '+%y%m%d_%H%M%S'`
+
+	fic_collecte=${rep_collecte}/${maintenant}_netstat.txt
+	uname -a > ${fic_collecte}
+	echo "" >> ${fic_collecte}
+	
+	echo "netstat -a" >> ${fic_collecte}
+	echo "----------" >> ${fic_collecte}
+	echo "" >> ${fic_collecte}
+	netstat -a >> ${fic_collecte}
+	
+	echo "" >> ${fic_collecte}
+	echo "netstat -an">> ${fic_collecte}
+	echo "-----------" >> ${fic_collecte}
+	echo "" >> ${fic_collecte}
+	netstat -an >> ${fic_collecte}
+
+
+	fic_collecte=${rep_collecte}/${maintenant}_vtping_top.txt
+	uname -a > ${fic_collecte}
+	echo "" >> ${fic_collecte}
+
+	echo "vtping" >> ${fic_collecte}
+	echo "------" >> ${fic_collecte}
+	echo "" >> ${fic_collecte}
+	vtping >> ${fic_collecte}
+	
+	echo "" >> ${fic_collecte}	
+	echo "top (${cde_top})" >> ${fic_collecte}
+	echo "---" >> ${fic_collecte}
+	echo "" >> ${fic_collecte}
+	eval ${cde_top} ${cde_top_out} ${fic_collecte}
+	
+	echo "" >> ${fic_collecte}
+	echo "ps avec vsz (${cde_ps_vsz})" >> ${fic_collecte}
+	echo "-----------" >> ${fic_collecte}
+	echo "" >> ${fic_collecte}
+	eval ${cde_ps_vsz} >> ${fic_collecte}	
+	
+	fic_collecte=${rep_collecte}/${maintenant}_ps.txt
+	uname -a > ${fic_collecte}
+	echo "" >> ${fic_collecte}
+	
+	echo "Lise des processus (ps -ef)" >> ${fic_collecte}
+	echo "------------------" >> ${fic_collecte}
+	echo "" >> ${fic_collecte}
+	ps -ef >> ${fic_collecte}
+}
+
+ensure()
+{
+	pid=$1
+	name=$2
+
+	if [ -n "`${cde_ps} | grep ${pid} | grep ${name}`" ] ; then
+	
+		export pid
+		return $pid
+	fi
+	
+        if [ "${name}" = "vtserver" ] ; then
+
+		ecrit_journal "Processus vtserver absent"
+
+        	# ----- si vtsgbd absent, inutile de redemarrer vtserver. On sort.
+        	#       La collecte netstat, top et ps sera faite dans ensure vtsgbd
+
+		if [ -z "`${cde_ps} | grep ${vtsgbd} | grep vtsgbd`" ] ; then
+			ecrit_journal "Processus vtsgbd absent. On sort"
+			export pid
+			return $pid
+		fi
+		
+		# ----- Collecte netstat, top, ps
+		
+		if [ ${collecter} -gt 0 ] ; then
+			collecte
+		fi
+		
+		collecter=1
+		export collecter
+		
+		# ----- on stocke la liste des moteurs allumes        
+
+		find ${TOM_BASES} -name "*.pid" -exec basename {} \; | grep -v "postmaster" > ${rep_collecte}/lma.txt
+		
+		# ----- Archivage traces vtserver et vtsgbd
+
+		ecrit_journal "Archivage traces serveurs"
+	
+		archive=${rep_collecte}/${maintenant}_traces_serveurs.tar
+	
+		tar cf ${archive} ${rep_trc_serveurs}/vtserver.log ${rep_trc_serveurs}/vtserver.log.1 ${rep_trc_serveurs}/vtsgbd.log ${rep_trc_serveurs}/vtsgbd.log > /dev/null 2>&1
+
+		sleep 2 ; compress ${archive} > /dev/null 2>&1 &
+	
+		# ----- Archivage bases
+		#       vtserver etant potentiellement tombe, on ne peut pas utiliser vtbackup		
+		
+		ecrit_journal "Archivage base"
+	
+		archive=${rep_collecte}/${maintenant}_bases.tar
+	
+		tar cf ${archive} ${TOM_BASES} > /dev/null 2>&1
+	
+		sleep 2 ; compress ${archive} > /dev/null 2>&1 &
+
+		# ----- Lancement service		
+
+		ecrit_journal "Redemarrage "${name}
+		
+		${TOM_BIN}/${name} > /dev/null &
+		pid=$!
+		
+
+		# ----- Redemarrage des moteurs
+		
+		if [ -s ${rep_collecte}/lma.txt ] ; then
+		
+			# ----- on attend 2 min avant de démarrer les moteurs. En principe, il faudrait tester tlist env
+		
+			ecrit_journal "Attente 2 minutes avant redemarrage des moteurs"
+		
+			sleep 120
+		
+			maintenant=`date '+%y%m%d_%H%M%S'`
+
+			for item in `cat ${rep_collecte}/lma.txt`
+			do
+				if [ ! -z "${item}" ] ; then
+				
+					moteur=`echo ${item}|cut -d"." -f1`				
+					
+					# ----- Archivage traces moteur si chemin specifie dans fichier ini
+	
+					if [ ! -z "${rep_trc_moteurs}" ] ; then
+	
+						if [ -f "${rep_trc_moteurs}/${moteur}.log" ] ; then
+	
+							ecrit_journal "Archivage traces moteur environnement "${moteur}
+	
+							archive=${rep_collecte}/${maintenant}_${moteur}.tar
+		
+							tar cf ${archive} ${rep_trc_moteurs}/${moteur}.log ${rep_trc_moteurs}/${moteur}.log.1 > /dev/null 2>&1
+	
+							sleep 2 ; compress ${archive} > /dev/null 2>&1 &
+						fi
+					fi
+					ecrit_journal "Redemarrage moteur environnement "${moteur}
+		
+					estart ${moteur}
+					sleep 1
+				fi
+		
+			done			
+		else
+			sleep 30
+			ecrit_journal "Aucun moteur a redemarrer"
+		fi
+			
+
+	else
+		
+		ecrit_journal "Processus vtsgbd absent"
+		
+		# ----- Collecte netstat, top, ps si pas déjà fait par ensure vtserver
+		
+		collecte
+		
+		# ----- inutile de collecter de nouveau des infos volatiles
+		collecter=0
+		export collecter
+
+		
+		# ----- si vtserver present, il faut l arreter
+
+		if [ ! -z "`${cde_ps} | grep ${vtserver} | grep vtserver`" ] ; then
+			ecrit_journal "Processus vtsgbd absent. vtserver present - on arrete vtserver"
+                        vtdcs /vtserver
+                        sleep 2
+                fi
+                
+		# ----- absence du process vtsgbd mais il faut l'arreter proprement (processus Postgres encore vivants)
+
+		ecrit_journal "Arret propre vtsgbd par vtdcs"
+		vtdcs /vtsgbd
+		sleep 2
+                
+		# ----- Lancement service		                
+
+		ecrit_journal "Redemarrage "${name}
+	
+		${TOM_BIN}/${name} > /dev/null &
+		pid=$!
+	fi
+
+	export pid
+	return $pid
+}
+
+
+################## MAIN
+
+# ----- Recup chemins traces
+
+moi=`basename $0`
+
+fic_ini=${TOM_ADMIN}/${moi}.ini
+
+
+if [ $# -gt 0 ] ; then
+
+
+	echo
+	echo "	$moi : lancement securise des serveurs VTOM."
+	echo
+	echo "	En cas de disparition d'un ou des deux serveurs vtsgbd et vtserver,"
+	echo "	Il y a archivage des traces serveurs, traces moteurs, de la base et"
+	echo "	collecte du contexte par ps, top, netstat."
+	echo
+	echo "	Les chemins ou se trouvent les traces, les commandes UNIX a utiliser"
+	echo "	pour top et ps (different d un UNIX a l autre) sont definis dans le fichier"
+	echo "	${fic_ini} :"
+	echo 
+	echo "	REP_TRC_SERVEURS : repertoire traces serveurs"
+	echo "	REP_TRC_MOTEURS  :                   moteurs"
+	echo "	REP_COLLECTE     : repertoire pour l archivage des elements collectes"
+	echo "	CYCLE_SECURE     : cycle en secondes pour la verification de la presence des serveurs"
+	echo "	CMDE_PS_VSZ      : commande a utiliser pour obtenir ps -efo args,user,vsz"
+	echo "	CMDE_PS		 : commande a utiliser pour obtenir une liste complete des processus"
+	echo "                     avec la ligne de commande non tronquee"
+	echo "	CMDE_TOP         : commande pour top"
+	echo "	CMDE_TOP_OUT     : dans le cas de top -f fichier, indiquer -f. Si manquant, >> sera pris"
+	echo
+	
+	exit
+fi
+
+
+
+if [ ! -f "${fic_ini}" ] ; then
+	echo ""
+	echo "Fichier ${fic_ini} inexistant. Sortie."
+	echo ""
+	exit
+fi
+
+rep_trc_serveurs=`cle_ficini "REP_TRC_SERVEURS"`
+
+if [ -z "${rep_trc_serveurs}" ] ; then
+	echo ""
+	echo "Repertoire des traces serveurs (cle REP_TRC_SERVEURS) non defini. Sortie."
+	echo ""
+	exit
+fi
+
+if [ ! -d "${rep_trc_serveurs}" ] ; then
+	echo ""
+	echo "Repertoire des traces serveurs ${rep_trc_serveurs} inexistant. Sortie."
+	echo ""
+	exit
+fi
+
+rep_collecte=`cle_ficini "REP_COLLECTE"`
+
+if [ ! -z "${rep_collecte}" ] ; then
+	if [ ! -d "${rep_collecte}" ] ; then
+		echo ""
+		echo "Repertoire de destination des elements collectes ${rep_collecte} inexistant. Sortie."	
+		echo ""
+		exit
+	fi
+else
+	
+	rep_collecte=${rep_trc_serveurs}
+fi 
+
+clear
+
+journal=${rep_collecte}/${moi}_journal.txt
+
+echo "" >> ${journal}
+echo "---------------------------------------" >> ${journal}
+uname -a >> ${journal}
+echo "" >> ${journal}
+
+ecrit_journal "Demarrage des serveurs en mode securise"
+
+echo ""
+echo "     **********  Historisation dans "${journal}
+
+ecrit_journal "Traces serveurs dans "${rep_trc_serveurs}
+
+rep_trc_moteurs=`cle_ficini "REP_TRC_MOTEURS"`
+
+if [ ! -z "${rep_trc_moteurs}" ] ; then
+	if [ ! -d "${rep_trc_moteurs}" ] ; then
+		echo ""
+		echo "Repertoire traces moteurs ${rep_trc_moteurs} inexistant. Sortie."	
+		echo ""
+		exit
+	fi
+	ecrit_journal "Traces moteurs dans "${rep_trc_moteurs}
+fi 
+
+ecrit_journal "Les archivages (traces, base VTOM, journal, ps, top, netstat) seront faits dans "${rep_collecte}
+
+cde_ps_vsz=`cle_ficini "CMDE_PS_VSZ"`
+ecrit_journal "Commande ps avec vsz : $cde_ps_vsz"
+
+cde_ps=`cle_ficini "CMDE_PS"`
+ecrit_journal "Commande ps : $cde_ps"
+
+cde_top=`cle_ficini "CMDE_TOP"`
+ecrit_journal "Commande top : $cde_top"
+
+cde_top_out=`cle_ficini "CMDE_TOP_OUT"`
+[ -z "${cde_top_out}" ] && cde_top_out=">>"
+
+cycle_secure=`cle_ficini "CYCLE_SECURE"`
+ecrit_journal "Cycle Secure : $cycle_secure"
+
+vtserver=0
+vtsgbd=0
+pid=0
+
+ecrit_journal "Demarrage vtsgbd"
+${TOM_BIN}/vtsgbd &
+vtsgbd=$!
+
+sleep 30
+
+ecrit_journal "Demarrage vtserver"
+${TOM_BIN}/vtserver &
+vtserver=$!
+
+sleep 20
+
+collecter=1
+
+while  [ 0 ] ; do
+
+	sleep ${cycle_secure}
+
+        now=`date '+%d-%m-%Y %H:%M:%S'`
+	echo ""
+	echo ${now}" - Controle vtserver"
+	ensure ${vtserver} "vtserver"
+	vtserver=${pid}
+	unset pid
+
+        now=`date '+%d-%m-%Y %H:%M:%S'`
+	echo ""
+	echo ${now}" - Controle vtsgbd"
+	ensure ${vtsgbd} "vtsgbd"
+	vtsgbd=${pid}
+	unset pid
+
+done
+
+exit
+

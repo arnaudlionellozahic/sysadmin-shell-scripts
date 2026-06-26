@@ -1,0 +1,51 @@
+#!/usr/bin/ksh
+. /usr/bin/EnvironnementEM
+export LANG=C
+DATE=$(date +'%Y%m%d')
+CHEMIN="/apps/waae/11.3/autouser.P20/out"
+FILE=$(ls -altr $CHEMIN/event_demon* | tail -2 | awk '{print $9}' )
+TMPFILE="/apps/meoatlas2/autosys/tmp"
+
+if [ ! -f $TMPFILE/JOBFAILURE.OK.txt.${DATE} ]
+then
+        touch $TMPFILE/JOBFAILURE.OK.txt.${DATE}
+fi
+
+>$TMPFILE/JOBFAILURE.diff.txt
+FILEOK=$(ls -altr $TMPFILE/JOBFAILURE.OK.txt* | tail -4 | awk '{print $9}' )
+for i in $(echo $FILEOK)
+do
+cat $i >> $TMPFILE/JOBFAILURE.diff.txt
+done
+cat $TMPFILE/JOBFAILURE.diff.txt | sort | sort -u > $TMPFILE/JOBFAILURE.final.txt
+
+>$TMPFILE/JOBFAILURE.txt
+for j in $(echo $FILE)
+do
+grep JOBFAILURE $j >> $TMPFILE/JOBFAILURE.txt
+done
+
+LINE=$(cat $TMPFILE/JOBFAILURE.txt | wc -l)
+NB=1
+
+while [ $NB -le $LINE ]
+do
+
+CHECKFILE=$(cat $TMPFILE/JOBFAILURE.txt | sed -n ${NB}p)
+
+grep -F "$(echo ${CHECKFILE})" $TMPFILE/JOBFAILURE.final.txt
+if [[ $? -ne 0 ]]
+then
+        echo do
+        echo ${CHECKFILE} >> $TMPFILE/JOBFAILURE.OK.txt.${DATE}
+        /apps/meoatlas2/supervision/sendemail_autosys_jobfailure.ksh \"${CHECKFILE}\"
+        cat $TMPFILE/JOBFAILURE.OK.txt.${DATE} | sort | sort -u > $TMPFILE/JOBFAILURE.OK.txt.${DATE}.tmp
+        mv $TMPFILE/JOBFAILURE.OK.txt.${DATE}.tmp $TMPFILE/JOBFAILURE.OK.txt.${DATE}
+else
+        echo rien
+fi
+
+((NB=$NB+1))
+
+done
+

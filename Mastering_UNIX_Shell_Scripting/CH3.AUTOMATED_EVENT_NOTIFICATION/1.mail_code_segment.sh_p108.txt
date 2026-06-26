@@ -1,0 +1,16 @@
+#!/bin/ksh
+
+MAIL_FILE='/tmp/mailfile.out'
+
+# cat /dev/null > $MAIL_FILE
+echo 'toto' > $MAIL_FILE
+
+MAIL_LIST='hyperuptime@gmail.com'
+
+# check_filesystems # This function checks the filesystems percentage
+
+if [ -s $MAIL_FILE ]
+then
+    # mail -s "Filesystem Full" $MAIL_LIST < $MAIL_FILE
+    mailx -v -r 'hyperuptime@gmail.com' -s 'Filesystem Full' -S smtp='smtp.gmail.com:587' -S smtp-use-starttls -S smtp-auth=login -S smtp-auth-user='hyperuptime@gmail.com' -S smtp-auth-password='vrad lebe xbzh yslh' -S ssl-verify=ignore -S nss-config-dir='/etc/pki/nssdb/' $MAIL_LIST < $MAIL_FILE
+fi

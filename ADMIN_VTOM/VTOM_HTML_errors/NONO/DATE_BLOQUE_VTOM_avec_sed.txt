@@ -1,0 +1,10 @@
+#! /bin/ksh
+
+DATE=$(date "+%d %h a %H:%M")
+{
+  print - "\n\tVerification des dates bloquees dans les environnements VTOM le $DATE\n"
+  #tlist bloquage
+  tlist bloquage | sed "s/lockes/lockes\n/g" | sed 'n;d'
+  print - "\n\n\tVerification des jobs encore en cours le $DATE\n"
+  tlist ENCOURS -v
+} | /bin/mailx -s "[VTOM RECETTE] Blocage" mail_exploit

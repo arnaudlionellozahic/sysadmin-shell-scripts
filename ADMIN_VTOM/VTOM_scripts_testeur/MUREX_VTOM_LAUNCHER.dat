@@ -1,0 +1,89 @@
+#!/bin/ksh
+###############################################################################
+# @(#)V1  : This script is a generic vtom launcher
+# Programme :   MUREX_VTOM_LAUNCHER
+# Auteur    :   Vincent Tougne 
+#
+# Description :
+#
+# Input parameters : Parameters sent from vtom
+#
+# History:      	2007-12-05      Creation
+# Vincent Tougne	2009-02-23	Add post commande in 3nd field
+# 
+################################################################################
+
+#. /usr/prg/SEF/par/env.SEF
+#. /usr/prg/MRX/par/env.MRX
+
+echo "Environnement : $TOM_ENVIRONMENT"
+echo "Applivation vtom : $TOM_APPLICATION"
+echo "Job vtom : $TOM_JOB"
+
+FIC_VTOM_ETUDE=/home4/plair/scripts/correspondance_appmurex
+
+echo "Nombre de parametre : $#"
+
+if ! [ -f $FIC_VTOM_ETUDE ] ; then
+        echo "Le fichier de configuration $FIC_VTOM_ETUDE n existe pas sur `hostname`"
+        exit 1
+fi
+
+SCRIPT_ETUDE=`grep -w "$TOM_ENVIRONMENT/$TOM_APPLICATION/$TOM_JOB" $FIC_VTOM_ETUDE | grep -v "^#" |cut -d'§' -f2`
+if [ ! "$SCRIPT_ETUDE" ] ; then
+        echo "Le job $TOM_ENVIRONMENT/$TOM_APPLICATION/$TOM_JOB n existe pas dans le fichier $FIC_VTOM_ETUDE"
+        exit 2
+fi
+
+if ! [ -f $SCRIPT_ETUDE ] ; then
+        echo "Le script etude pour $TOM_ENVIRONMENT/$TOM_APPLICATION/$TOM_JOB n existe pas sur le serveur `hostname`, dans le fichier $FIC_VTOM_ETUDE"
+        #exit 3;
+fi
+
+SCRIPT_POST=`grep -w "$TOM_ENVIRONMENT/$TOM_APPLICATION/$TOM_JOB" $FIC_VTOM_ETUDE | grep -v "^#" |cut -d'§' -f3`
+
+cmd="$SCRIPT_ETUDE $@"
+echo "Script etude : $cmd"
+eval $cmd
+
+status=$?
+
+case $status in 
+	0)
+	echo ""
+	echo " -FIN $0 " `date`
+	if [ ! -z $SCRIPT_POST ] ; then
+		echo "[EXEC POST ACTION DETECTED] $SCRIPT_POST"
+		cmd="$SCRIPT_POST"
+		eval $cmd
+		if [ $? -ne 0 ] ; then
+			echo "[WARNING] post action $SCRIPT_POST failed"
+		fi
+	fi
+	exit 0
+	;;
+
+	8)
+	echo ""
+	echo "Warning detecte, on continu\n" 
+	echo " -FIN $0 " `date`
+        if [ ! -z $SCRIPT_POST ] ; then
+                echo "[EXEC POST ACTION DETECTED] $SCRIPT_POST"
+                cmd="$SCRIPT_POST"
+                eval $cmd
+                if [ $? -ne 0 ] ; then
+                        echo "[WARNING] post action $SCRIPT_POST failed"
+                fi
+        fi
+
+	exit 0
+	;;
+
+	*)
+        echo ""
+        echo "Traitement en erreur ( CR=$status )"
+        echo "`grep -w "$TOM_ENVIRONMENT/$TOM_APPLICATION/$TOM_JOB" $FIC_VTOM_ETUDE |cut -d'§' -f3`"
+        exit 12
+	;;
+
+esac

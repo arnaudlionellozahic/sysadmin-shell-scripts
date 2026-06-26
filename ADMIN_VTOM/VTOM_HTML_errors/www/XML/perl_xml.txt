@@ -1,0 +1,110 @@
+
+use XML::Parser;
+
+my $file = shift;
+
+my $parser = new XML::Parser(Style=>'Subs', Pkg=>'SubHandlers', ErrorContext => 2);
+$parser->setHandlers(Char  => \&char_handler);
+
+$parser->parsefile($file);
+
+# ---------------------------------------------
+
+sub char_handler
+{
+    my ($p, $data) = @_;
+    print $data;
+
+}
+
+# ---------------------------------------------
+
+package SubHandlers;
+
+sub stock_quotes {
+  print "<title>Stock Quotes</title>\n";
+  print "<BODY BGCOLOR=\"#ffffff\" LINK=\"#0000ff\" ALINK=\"#ff0000\" TEXT=\"#000000\">";
+}
+
+sub stock_quotes_ {
+  print "</BODY>";
+}
+
+sub stock_quote {
+  print "<table width=100%>\n";
+}
+
+sub  stock_quote_ {
+  print "</tr>\n</table>\n</td>\n</tr>\n</table>\n";
+}
+
+sub symbol {
+  print "<tr>\n<td>\n<img src=images/";
+}
+
+sub symbol_ {
+  print ".gif>\n<br>\n";
+}
+
+sub when {
+  print "<br>\n";
+}
+
+sub when_ {
+  print "</td>\n<td>\n<table width=100%>\n<tr>\n";
+}
+
+sub price {
+  my $expat = shift; my $element = shift;
+
+  # Read the attributes
+  while (@_) {
+    my $att = shift;
+    my $val = shift;
+    $attr{$att} = $val;
+  }
+
+  my $type  = $attr{'type'};
+  my $price = $attr{'value'};
+
+  my $rowbreak = 0;
+
+  if ($type eq 'ask') {
+    $label="Ask Price";
+  } elsif ($type eq 'open') {
+    $label="Opening Price";
+    $rowbreak = 1;
+  } elsif ($type eq 'dayhigh') {
+    $label="Today's High";
+  } elsif ($type eq 'daylow') {
+    $label="Today's Low";
+    $rowbreak = 1;
+  }
+
+  print "<td align=left>\n<b>$label</b></td>\n";
+  print "<td align=right>$price</td>\n";
+
+  if ($rowbreak) {
+    print "</tr><tr>\n";
+  }
+}
+
+sub price_ {
+}
+
+sub change {
+  print "<td align=left>\n<b>Change</b>\n</td>\n";
+  print "<td align=right>";
+}
+
+sub change_ {
+  print "</td>\n";
+}
+
+sub volume {
+  print "<td align=left>\n<b>Volume</b>\n</td>\n<td align=right>";
+}
+
+sub volume_ {
+  print "</td>\n";
+}

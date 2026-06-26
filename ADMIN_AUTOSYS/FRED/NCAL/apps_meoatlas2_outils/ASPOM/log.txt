@@ -1,0 +1,16 @@
+Le fichier /apps/arch/imp-0/parva4000839_stat.20170519 existe et n'est pas vide
+
+  ####   ######   #####
+ #    #  #          #
+ #       #####      #
+ #       #          #
+ #    #  #          #
+  ####   #          #
+
+
+CFTU20I Version 2.7.1 20130627
+      * level   = SP8_P1 
+
+CFTU00I SEND     _ Correct (part=MF247000,fname=/apps/arch/imp-0/parva4000839_ 
+CFTU00I                     stat.20170519,idf=CALREP01,parm=parva4000839_stat. 
+CFTU00I                     vacation.20170519.004558)

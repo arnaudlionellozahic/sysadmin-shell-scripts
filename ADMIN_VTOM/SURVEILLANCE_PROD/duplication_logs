@@ -1,0 +1,22 @@
+#!/bin/ksh
+OUTPUT_FILE2=/tmp/duplication_logs.log
+cd $ABM_LOGS
+
+ls -Al | grep CYCLIQUE | awk '{print $9}' > toto
+
+list=`cat toto | cut -c1-31`
+
+for u in $list
+do
+dd if=/dev/zero of=$u$(date +'%y%m%d-%H%M%S').o bs=1k count=10 #Creation fichiers de 10 ko
+dd if=/dev/zero of=$u$(date +'%y%m%d-%H%M%S').e bs=1k count=1 #Creation fichiers de 1 ko
+done
+
+echo "Duplication OK le $(date +'%d-%m-%Y a %H:%M:%S')" > $OUTPUT_FILE2 
+
+#if [ `/bin/grep OK /tmp | wc -l` -ne 0 ]
+#then
+tmail -se "arnaud.lozahic@absyss.com" -to "arnaud.lozahic@absyss.com" -smtp "jupiter" -sub "[Duplication des logs OK]" -att "$OUTPUT_FILE2" -msgf "$OUTPUT_FILE2"
+#else
+#echo "La duplication a echoue"
+#exit $?

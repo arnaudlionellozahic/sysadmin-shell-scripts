@@ -1,0 +1,173 @@
+# profileA2 : Definition des variables d'environnement ATLAS2 sur parva4000634
+#
+# PROFILE A2 version U400 installee le 24 avril 2010.
+
+#. $CAIGLBL0000/scripts/envusr
+. /apps/init_vars
+export A2_WEBKIX=$A2_OUTILS/webkix
+export LANG=C
+
+usr=$(id -un)
+clear
+                                export A2_VERSION=apps/atlas/atlas2v0
+                                export A2_ENV=uf1
+                                export A2_DATA=data1
+                                export A2_PORTAIL=v0_0
+                                export A2_LIBENV=MAROC-Prod
+                                export A2_BASE=atpr01
+                                export A2_BASE_DR=atdr01
+                                export A2_BASE_OWN=atlas
+                                export A2_BASE_DR_OWN=atlas
+                                export A2_TYPE_ENV=R40050
+                                export A2_SECORA=0
+                                export ORACLE_SID=atpr01
+                                export A2_ORAVER=O920
+                                export ORACLE_SID_DR=atdr01
+                                export A2_TYPE_BASE=P
+                                export A2_DATABASE_JOURNALING=O
+                                export A2_KIX_PORT=20050
+                 #              export A2_KIX_TRANS=AA01
+                                export A2_KIX_TRANS=CPLT
+                                export A2_KIX_PORTCLI=50001
+                                export A2_KIX_PORTTCP=8001
+                                export A2_KIX_PORTTCP_REFL=8010
+                                export A2_COBVER=sx4.0
+                                #export A2_KIXVER=t8.1.0p11
+                                export A2_KIXVER=t8.1.0p11D2
+                                export A2_FICSAV=/$A2_VERSION/$A2_ENV/ficsav
+                                export A2_ORACLE_SID_REFL=atrefl01
+                                export A2_BASE_REFL=atrefl01
+                                export A2_BASE_OWN_REFL=atlas
+                                export A2_CKPBASE_REFL=$A2_BNP/oradbf/backup_refl
+                                export A2_LIMIT_PARAL=3
+                                export A2_FIC01=/$A2_VERSION/$A2_ENV/$A2_DATA/fic
+                                export A2_FIC02=/$A2_VERSION/$A2_ENV/$A2_DATA/fic02
+                                export A2_FIC03=/$A2_VERSION/$A2_ENV/$A2_DATA/fic03
+
+# Variables Multi Regions:
+export A2_MULTI_KIX=2
+export A2_NOM_REG=vsam:tcp
+export A2_KIXMAXIST=10:1
+export A2_TCPSTERM=2:10
+export A2_TCPRTERM=10:2
+#export A2_PORT3270_REG=20050:0
+export A2_PORT3270_REG=20050:20051
+export A2_PORTTCP_REG=0:8001
+export A2_PORTCLI_REG=50001:50002
+
+###debut CID
+if [[ -d /$A2_VERSION/$A2_ENV/$A2_DATA ]] then
+
+# appel calpathead pour envt desynchro
+. $A2_EXPLOIT/calcpathead tp || return 1
+
+# Demande du numero de terminal UniKix
+. $A2_EXPLOIT/termkix
+
+# Positionnement de la variable A2_ENV_GRAPH
+. $A2_EXPLOIT/askenvgraph
+
+# Definition des variables par defaut du jcl unix
+. $A2_EXPLOIT/valdef
+
+# Definition des variables cobol et syncsort
+. $A2_EXPLOIT/cobsyncenv
+
+# Definition des variables pour le multi region unikix
+. $A2_EXPLOIT/multikixenv
+
+# Definition des variables UNIKIX
+. $A2_EXPLOIT/kixenv
+
+# Definition des variables A2_NIVPATCH
+. $A2_EXPLOIT/nivpatch
+
+# Saisie du nom de la file d'attente d'impression batch
+. $A2_EXPLOIT/impbatch
+
+# Definition des alias pas defaut
+. $A2_EXPLOIT/aliasA2
+
+# Variable d'environnement pour java et webkix
+. $A2_OUTILS/java.env
+
+
+# Calling profileS2
+if [[ -r $A2_OUTILS/profileS2 ]]
+then
+. $A2_OUTILS/profileS2
+else
+print $A2_OUTILS/profileS2 non charge
+fi
+
+# Definition des PATH specifiques aux environnements
+# Specific environment PATH script
+if type pathSpecial >/dev/null 2>&1
+then
+. pathSpecial
+else
+. pathSpecialead
+fi
+
+else
+clear
+print "/$A2_VERSION/$A2_ENV/$A2_DATA inexistant\n"
+print " Appuyer sur une touche pour continuer\n"
+read
+fi
+if [[ -d /$A2_VERSION/$A2_ENV ]] then
+cd /$A2_VERSION/$A2_ENV
+fi
+# Droits de lecture/ecriture pour l'utilisateur, le groupe et les autres
+umask 002
+
+# Suppression des chemins en double dans $PATH
+. modpath
+
+export PS1="{`hostname`} `echo "\033[1m"`($USER) {$A2_LIBENV - $A2_ENV}`echo "\033[0m"`$(echo \"\\n\")\$PWD$ "
+
+###   FIN CID
+
+
+export PATH=$PATH:/apps/cft/filexe:/apps/cft/filusr:/apps/cft/fildat:.
+export PS1='S00VA9930435 => PRE PRODUCTION Maroc ($LOGIN) $PWD :
+'
+#clear
+print - '----------------------------------------------'
+print "Attention vous etes connecte :"
+print
+print - " - machine             : " $(uname -n)
+print - " - type terminal       : " $TERM
+print - " - version             : " $A2_VERSION
+print - " - environnement       : " $A2_ENV
+print - " - donnees             : " $A2_DATA
+print - " - Niveau de patch     : " $A2_NIVPATCH
+print - " - base production     : " $A2_BASE
+print - " - base date rem.      : " $A2_BASE_DR
+print - " - owner bases         : " $A2_BASE_OWN
+print - " - Term. UniKix        : " $A2_TERMKIX
+print - " - Port Unikix TCP     : " $A2_KIX_PORTTCP
+print - " - Port TN3270         : " $A2_KIX_PORT
+print - " - F.A impression      : " $A2_PRT
+print - "----------------------------------------------"
+
+# Appel de mail, dfinition des variables MAIL..
+export MAILCHECK=60
+export MAILPATH=$MAIL?'VOUS AVEZ RECU UN MESSAGE, VEUILLEZ CONSULTER VOTRE BOITE !'
+print
+print Courrier :
+print
+#from $LOGNAME
+print
+if [[ ! $(from $LOGNAME) = '' ]] then
+   print - "------------------------------------------------------"
+   print MERCI DE LIRE VOTRE COURRIER \(commande mail\)........
+   print - "------------------------------------------------------"
+   print
+fi
+
+# Ajout home dans le PATH
+export PATH=$PATH:~
+# export A2_NIV_INFO=DIN036.00
+export A2_NIV_INFO=DIN047.00
+export A2_CODE_SITE_EER=10

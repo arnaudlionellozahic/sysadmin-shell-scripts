@@ -1,0 +1,3 @@
+crontab -l | awk '/auto/'
+# This is an automatically generated prolog.
+50 07 * * * /apps/meoatlas2/outils/Rapport/Rapport_autosys.ksh

@@ -1,0 +1,22 @@
+#!/bin/ksh
+# suivi_PS - surveillance des process zombies - envoi de mail
+# auteur: WA    date 15/03/2007
+H=`hostname`
+CTOUT=/tmp/rapport_suivi_PS.log
+touch $CTOUT.zombies
+touch $CTOUT.zombies.tmp
+ps -ef > $CTOUT
+
+ps -ef|grep "<defunct>$"|awk '{print $2}'|xargs -i -t grep {} $CTOUT > $CTOUT.zombies.tmp
+cat $CTOUT.zombies.tmp |wc -l|read NEW
+if [ $NEW -ne 0 ]
+then
+        cat $CTOUT.zombies.tmp |xargs -i -t grep {} $CTOUT.zombies|sort -u|wc -l|read DIFF
+        if [ $DIFF -ne $NEW ]
+        then
+                cat $CTOUT.zombies.tmp >> $CTOUT.zombies
+                mailx -s "Rapport du suivi des process zombies" arnaud.lozahic@mondial-assistance.fr < $CTOUT.zombies
+                cp $CTOUT $CTOUT.$$
+        fi
+fi
+

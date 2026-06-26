@@ -1,0 +1,115 @@
+
+
+/* ----------------- GR2_BOX4 ----------------- */
+
+insert_job: GR2_BOX4   job_type: BOX
+owner: root@rh602
+permission:
+date_conditions: 0
+alarm_if_fail: 1
+
+
+ /* ----------------- GR2_BOX4_J1 ----------------- */
+
+ insert_job: GR2_BOX4_J1   job_type: CMD
+ box_name: GR2_BOX4
+ command: /home/user2/arn1
+ machine: rh602
+ owner: root
+ permission:
+ date_conditions: 0
+ std_out_file: ">/home/user2/toto_box4.log"
+ alarm_if_fail: 1
+
+
+ /* ----------------- GR2_BOX4_J2 ----------------- */
+
+ insert_job: GR2_BOX4_J2   job_type: CMD
+ box_name: GR2_BOX4
+ command: /home/user2/arn1
+ machine: rh602
+ owner: root
+ permission:
+ date_conditions: 0
+ std_out_file: ">/home/user2/toto_box4.log"
+ alarm_if_fail: 1
+
+
+ /* ----------------- GR2_BOX4_J3 ----------------- */
+
+ insert_job: GR2_BOX4_J3   job_type: CMD
+ box_name: GR2_BOX4
+ command: /home/user2/arn1
+ machine: rh602
+ owner: root
+ permission:
+ date_conditions: 0
+ std_out_file: ">/home/user2/toto_box4.log"
+ alarm_if_fail: 1
+
+
+ /* ----------------- GR2_BOX4_J4 ----------------- */
+
+ insert_job: GR2_BOX4_J4   job_type: CMD
+ box_name: GR2_BOX4
+ command: /home/user2/arn1
+ machine: rh602
+ owner: root
+ permission:
+ date_conditions: 0
+ condition: v(GR2_FLAG) = "CAFE"
+ std_out_file: ">/home/user2/toto_box4.log"
+ alarm_if_fail: 1
+
+
+ /* ----------------- GR2_BOX4_J5 ----------------- */
+
+ insert_job: GR2_BOX4_J5   job_type: CMD
+ box_name: GR2_BOX4
+ command: /home/user2/arn1
+ machine: rh602
+ owner: root
+ permission:
+ date_conditions: 0
+ condition: v(ARN_FLAG) >= "2"
+ std_out_file: ">/home/user2/toto_box4.log"
+ alarm_if_fail: 1
+
+
+ /* ----------------- GR2_BOX4_J6 ----------------- */
+
+ insert_job: GR2_BOX4_J6   job_type: CMD
+ box_name: GR2_BOX4
+ command: echo "CA VA"; tototototo
+ machine: rh602
+ owner: root
+ permission:
+ date_conditions: 0
+ std_err_file: "/home/user2/toto_box4.err"
+ alarm_if_fail: 1
+
+
+ /* ----------------- GR2_BOX4_J7 ----------------- */
+
+ insert_job: GR2_BOX4_J7   job_type: CMD
+ box_name: GR2_BOX4
+ command: /home/user2/arn1
+ machine: rh602
+ owner: root
+ permission:
+ date_conditions: 0
+ std_out_file: ">/home/user2/toto_box4.log"
+ alarm_if_fail: 1
+
+
+ /* ----------------- GR2_BOX4_J8 ----------------- */
+
+ insert_job: GR2_BOX4_J8   job_type: CMD
+ box_name: GR2_BOX4
+ command: sleep $${GR2_PARAM}
+ machine: rh602
+ owner: root
+ permission:
+ date_conditions: 0
+ std_out_file: ">/home/user2/toto_box4.log"
+ alarm_if_fail: 1

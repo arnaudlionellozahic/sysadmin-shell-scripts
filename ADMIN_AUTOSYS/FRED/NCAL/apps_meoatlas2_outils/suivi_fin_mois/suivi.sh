@@ -1,0 +1,143 @@
+#!/bin/ksh
+#################### Test du User Atlas #############################
+USER=`whoami`
+
+if [ ! "$USER" = "atlas" ]
+then
+	echo "Le script doit obligatoirement être lancé par Atlas!"
+	echo "Exit ..."
+	exit 10
+fi
+###################################################################
+
+################## Test du lancement ##############################
+## Le script doit impérativement se lancer depuis son répertoire ##
+## avec la syntaxe ./suivi.sh #####################################
+###################################################################
+
+MYDIR=`dirname $0`
+MYPWD=`pwd`
+
+if [[ ! "$MYDIR" = "." && ! "$MYDIR" = "$MYPWD" ]]
+then
+	echo "Script lancé de façon incorrecte"
+	echo "Merci de :"
+	echo "	1 - Vous rendre dans le répertoire du script ( cd /votre/chemin/de/script )"
+	echo "	2 - Lancer le script en atlas avec ./suivi.sh"
+	echo "Exit..."
+	exit 10
+fi
+
+##################################################################
+##################################################################
+
+################# Test des Arguments #############################
+## Les script prend obligatoirement comme argument ############### 
+## TNG ou AUTOSYS et charge en fonction les librairies ###########
+## de fonction pour l'ordonnanceur installé ######################
+##################################################################
+case $1 in 
+	TNG )
+	if [ -e functions/fonctions_tng.sh ]
+	then
+		. functions/fonctions_tng.sh
+	else
+		echo "La librairie de fonctions pour TNG n'existe pas. Merci de vérifier le contenu de votre répertoire ./functions ...."
+		echo "Exit..."
+		exit 10
+	fi;;	
+	AUTOSYS )
+        if [ -e functions/fonctions_autosys.sh ]
+        then
+                . functions/fonctions_autosys.sh
+        else
+                echo "La librairie de fonctions pour AUTOSYS n'existe pas. Merci de vérifier le contenu de votre répertoire ./functions ...."
+                echo "Exit..."
+                exit 10
+        fi;;
+	* )
+echo "Le script se lance : ./suivi.sh ORDONNANCEUR ; où ORDONNANCEUR peut avoir deux valeur: TNG ou AUTOSYS en fonction de l'environnement du serveur. Merci de relancer le script correctement..."
+echo "Exit..."
+exit 10 ;;
+esac
+#################################################################
+
+#################################################################
+### Variables pour la création des rapports #####################
+#################################################################
+MYREPORT=Rapport_Mensuel_`date +"%Y%m%d_%H%M%S"`.txt
+FIC_JALONS=conf/jalons.txt
+#################################################################
+
+#################################################################
+## Elaboration du rapport - Jobs abort/hold/dependances #########
+## Vérification de l'ouverture TP ###############################
+## Vérification de l'atldat #####################################
+#################################################################
+jobs_abort
+if [ "$ABORTS" = "y" ]
+then
+	jobs_successors ABORT tmp/final_abort_jobs
+fi
+jobs_hold
+if [ "$HOLDS" = "y" ]
+then
+	jobs_successors HOLD tmp/final_hold_jobs
+fi
+jobset_hold
+if [ "$HOLDSET" = "y" ]
+then
+	jobset_successors HOLD_JOBSET tmp/final_hold_jobset
+fi
+
+echo "************************************************************************************" >> report/$MYREPORT
+echo "************************TEST DES JALONS DE FIN DE MOIS******************************" >> report/$MYREPORT
+echo "" >> report/$MYREPORT
+exit
+check_jalons
+
+echo "************************************************************************************" >> report/$MYREPORT
+echo "" >> report/$MYREPORT
+
+jobs_start
+
+echo "************************************************************************************" >> report/$MYREPORT
+echo "************************ OUVERTURE DU TP DU JOUR ***********************************" >> report/$MYREPORT
+
+kixtran -t aa01 > tmp/testkix.tmp
+VERIF_KIX=`grep "CICS_EPI_ERR_TRAN_ACTIVE" tmp/testkix.tmp`
+
+if [ ! "$VERIF_KIX" = "" ]
+then
+	case $1 in
+		TNG )
+			DATE_OUVERTURE=`cautil sel tjob id=jtp1*,jcics1,* li |grep End: |sed '$d' |awk '{print $5"_"$6}'` ;;
+		AUTOSYS )
+			DATE_OUVERTURE=" A RENSEIGNER " ;;
+	esac
+	
+	echo "Le TP est Ouvert! HEURE OUVERTURE : $DATE_OUVERTURE " >> report/$MYREPORT
+else
+	echo "Le TP est Fermé! Merci de vérifier si tout est OK..." >> report/$MYREPORT
+fi
+
+
+echo "************************************************************************************" >> report/$MYREPORT
+echo "************************ VERIF BASE REMARQUABLE ************************************" >> report/$MYREPORT
+
+BASE_REM=`atldat |tail -2 | head -1 `
+TEST_BASEREM=`echo $BASE_REM |grep -i indisponible`
+
+if [ "$TEST_BASEREM" = "" ]
+then
+	echo "La base remarquable est en date du : `echo $BASE_REM |awk -F '|' '{print $3}'`" >> report/$MYREPORT
+else
+	echo "La base remarquable est indisponible!!! Merci de vérifier le relocatedb et le mvb9 et le m9k2" >> report/$MYREPORT
+fi
+##################################################################
+
+##################################################################
+## Clean des répertoires temporaires #############################
+##################################################################
+cp -pR tmp/dependances tmp/dependances_`date +"%Y%m%d_%H%M%S` && rm -rf tmp/dependances/*
+ls -lrt tmp/ |grep -v dependances |grep -v conlog |sed '1d' |awk '{print $NF}' |xargs -Ivar rm -f tmp/var

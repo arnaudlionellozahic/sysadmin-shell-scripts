@@ -1,0 +1,21 @@
+Apr 4 23:20 # 00.36.11 .CASH_I_0072 Jobset msfaCald 0300 Started at 00.36.11
+Apr 4 23:20 # 00.46.44 .CASH_I_0072 Jobset msuaCald 0300 Started at 00.46.44
+Apr 4 23:20 # 00.58.03 .CASH_I_0060 msfaCald 0300 Completed at 00.58.03, code: 00000000
+Apr 4 23:20 # 09.15.05 .CASH_I_0100 Jobset msuaCald, Job dask12, Jno 0001, Qual 0301 queued for submit
+Apr 4 23:20 # 09.15.06 .CASH_I_0069 msuaCald dask12 0001 0301 Started at 09.15.05 at node parva4000839, Pid = 39321880
+Apr 4 23:20 # 09.15.27 .CASH_I_0054 msuaCald dask12 0001 0301 Completed at 09.15.26, code: 00000000 at node parva4000839, Pid = 39321880
+Apr 4 23:20 # 09.16.34 .CASH_I_0060 msuaCald 0300 Completed at 09.16.34, code: 00000000
+Apr 4 23:20 # 09.16.34 .CASH_I_0072 Jobset mww0Cald 0300 Started at 09.16.34
+Apr 4 23:20 # 09.18.12 .CASH_I_0060 mww0Cald 0300 Completed at 09.18.12, code: 00000000
+Apr 4 23:20 # 09.26.26 .CASH_I_0072 Jobset mdi1Cald 0300 Started at 09.26.26
+Apr 4 23:20 # 09.43.36 .CASH_I_0060 mdi1Cald 0300 Completed at 09.43.36, code: 00000000
+Apr 4 23:20 # 09.44.55 .CASH_I_0072 Jobset mrf4Cald 0300 Started at 09.44.55
+Apr 4 23:20 # 09.45.52 .CASH_I_0060 mrf4Cald 0300 Completed at 09.45.52, code: 00000000
+Apr 4 23:20 # 09.45.52 .CASH_I_0072 Jobset mrfaCald 0300 Started at 09.45.52
+Apr 4 23:20 # 09.46.20 .CASH_I_0062 mrfaCald mapt21 0001 0301 Aborted at 09.46.19, code: 00000222 at node parva4000839, Pid = 11075994
+Apr 4 23:20 # 09.56.41 .CASH_I_0072 Jobset mrf8Cald 0300 Started at 09.56.41
+Apr 4 23:20 # 09.57.13 .CASH_I_0060 mrf8Cald 0300 Completed at 09.57.13, code: 00000000
+Apr 4 23:20 # 21.05.55 .CASH_I_0060 mrfaCald 0300 Completed at 21.05.55, code: 00000222
+Apr 4 23:20 # 21.21.28 .CASH_I_0072 Jobset mfu99Cald 0400 Started at 21.21.28
+Apr 4 23:20 # 21.21.32 .CASH_I_0072 Jobset mrfcCald 0300 Started at 21.21.32
+Apr 4 23:20 # 21.22.14 .CASH_I_0060 mrfcCald 0300 Completed at 21.22.14, code: 00000000

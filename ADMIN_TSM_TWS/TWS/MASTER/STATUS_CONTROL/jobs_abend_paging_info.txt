@@ -1,0 +1,20 @@
+%sj @#@+state=abend;info
+-------- Restart ---------
+CPU      Schedule SchedTime  Job      JobFile                Opt  Job            Prompt
+HADES   #PTFJOUR5 0930 07/21
+                             JPTF51V  /exploit1fs1/prod/scripte/ptf//jptf51V
+PRODEAF+#NSV2JOU5 0800 07/21
+                     (HADES#)JNSV518  /exploit1fs1/prod/scripte/nsv2/jnsv518
+PVL0-CY+#BHEBULYG 2100 07/21
+                             HEXP200+ ssh -o batchmode=yes -o ServerAliveInterval=30 root@PPA0-TSM-01.europ-assistance.fr  ". ~/.profile; /exploit1fs1/prod/scripte/expl/hexp200"
+PVL0-CY+#BINCJOU+ 0800 07/21
+                             BINCDOT+ ssh -o batchmode=yes -o ServerAliveInterval=30 root@PPA0-TSM-01.europ-assistance.fr  ". ~/.profile; /exploit1fs1/prod/scripte/expl/bincdotd"
+PVL0-CY+#BINCJOU+ 0800 07/21
+                             BINCEXC+ ssh -o batchmode=yes -o ServerAliveInterval=30 root@PPA0-TSM-01.europ-assistance.fr  ". ~/.profile; /exploit1fs1/prod/scripte/expl/bincexch2"
+                             BINCLUS+ ssh -o batchmode=yes -o ServerAliveInterval=30 root@PPA0-TSM-01.europ-assistance.fr  ". ~/.profile; /exploit1fs1/prod/scripte/expl/binclustu1"
+                             BINCPVW+ ssh -o batchmode=yes -o ServerAliveInterval=30 root@PPA0-TSM-01.europ-assistance.fr  ". ~/.profile; /exploit1fs1/prod/scripte/expl/bincpvw0ssisge1"
+PVL0-CY+#SISJOU5+ 0800 07/21
+                             JSIS501+ ssh -o batchmode=yes -o ServerAliveInterval=30 EA-FR_tws85@PRODBPC7.europ-assistance.fr 'cmd /c "d:\exploit1fs1\prod\scripte\sis\jsis501.bat"'
+                             JSIS500+ ssh -o batchmode=yes -o ServerAliveInterval=30 EA-FR_tws85@PRODBPC7.europ-assistance.fr 'cmd /c "d:\exploit1fs1\prod\scripte\sis\jsis500.bat"'
+PVL0BE-+#BINCJOU+ 1900 07/21
+                             BINCFUS+ /exploit1fs1/prod/scripte/expl/bincfusprwbe02

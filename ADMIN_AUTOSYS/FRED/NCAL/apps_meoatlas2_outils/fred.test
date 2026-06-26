@@ -1,0 +1,14 @@
+#set -x
+export EXCL=$(cat /tmp/liststart.log |awk '{print $1}')
+for a in $(echo $EXCL)
+do
+if grep -q "$a" /tmp/listtemp.log
+  then
+  continue
+  elif grep -q "$a" /tmp/listrunning.log
+  then
+  continue
+  else
+  print "$a \tprochain"
+  fi
+  done

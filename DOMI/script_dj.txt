@@ -1,0 +1,60 @@
+#!/bin/ksh
+typeset -u rep
+clear
+heure=$(ssh lgqev13 ps -ef | grep j_tc-intergeo | grep start | awk  '{print $5}')
+ssh  lgqev13 tail -200 /data/java/j2ee/tc-intergeo/logs/tc-intergeo.service.log | egrep "User message=Cannot access to Jahia files|ERR_SYSTEM"
+[ "$?" != 1 ] &&  echo "User message=Cannot access to Jahia files"
+
+echo "  PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND"
+ssh  lgqev13 top -b -d 0.05  -n 20   |  grep j_tc-intergeo
+ssh  lgqev13 ping -c 5 www.geopostgroup.com
+echo " "
+echo  "Sur lgqev13 process  j_tc-intergeo start actif depuis $heure : relance O/N ?"
+read rep
+#/etc/init.d/j_tc-intergeo restart
+[ "$rep" = O ] &&  ssh lgqev13  /etc/init.d/j_tc-intergeo restart
+ssh  lgqev13 ping -c 5 www.geopostgroup.com
+ 
+====================================================================================
+ 
+  PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.47 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.47 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.47 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.47 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.47 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.47 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.47 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.47 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.47 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.47 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.47 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.47 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.47 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.47 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S   12  8.4   1:53.48 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.48 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.48 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.48 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.48 j_tc-intergeo
+31914 java      16   0 1187m 504m 1468 S    0  8.4   1:53.48 j_tc-intergeo
+PING www.geopostgroup.com (10.38.235.12) 56(84) bytes of data.
+64 bytes from lgqev7-2.tlt (10.38.235.12): icmp_seq=0 ttl=61 time=0.923 ms
+64 bytes from lgqev7-2.tlt (10.38.235.12): icmp_seq=1 ttl=61 time=0.645 ms
+64 bytes from lgqev7-2.tlt (10.38.235.12): icmp_seq=2 ttl=61 time=0.659 ms
+64 bytes from lgqev7-2.tlt (10.38.235.12): icmp_seq=3 ttl=61 time=0.479 ms
+64 bytes from lgqev7-2.tlt (10.38.235.12): icmp_seq=4 ttl=61 time=0.566 ms
+--- www.geopostgroup.com ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4004ms
+rtt min/avg/max/mdev = 0.479/0.654/0.923/0.150 ms, pipe 2
+Sur lgqev13 process  j_tc-intergeo start actif depuis 12:47 : relance O/N ?
+n
+PING www.geopostgroup.com (10.38.235.12) 56(84) bytes of data.
+64 bytes from lgqev7-2.tlt (10.38.235.12): icmp_seq=0 ttl=61 time=1.17 ms
+64 bytes from lgqev7-2.tlt (10.38.235.12): icmp_seq=1 ttl=61 time=1.05 ms
+64 bytes from lgqev7-2.tlt (10.38.235.12): icmp_seq=2 ttl=61 time=0.919 ms
+64 bytes from lgqev7-2.tlt (10.38.235.12): icmp_seq=3 ttl=61 time=1.00 ms
+64 bytes from lgqev7-2.tlt (10.38.235.12): icmp_seq=4 ttl=61 time=0.829 ms
+--- www.geopostgroup.com ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4004ms
+rtt min/avg/max/mdev = 0.829/0.996/1.172/0.118 ms, pipe 2

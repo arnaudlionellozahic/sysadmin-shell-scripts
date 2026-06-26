@@ -1,0 +1,334 @@
+#!/usr/bin/perl -w
+
+use strict;
+use warnings;
+use POSIX qw/strftime/;
+
+#CALCUL DE J
+my $date = strftime("%Y%m%d", localtime());
+my $time = strftime("%H:%M:%S", localtime());
+my $J_DAY = strftime("%Y%m%d", localtime());
+
+#CALCUL DE J-1
+my ($sec, $min, $heure, $jour, $mois,$annee, undef, undef, undef) = localtime(time-3600*24);
+$mois += 1 and $annee -= 100;
+$jour = sprintf("%02d",$jour);
+$mois = sprintf("%02d",$mois);
+$annee = sprintf("20%02d",$annee);
+my $J_DAY1 = "$annee$mois$jour";
+print $J_DAY1,"\n";
+
+#CALCUL DE J-2
+my ($sec_, $min_, $heure_, $jour_, $mois_, $annee_, undef, undef, undef) = localtime(time-3600*48);
+$mois_ += 1 and $annee_ -= 100;
+$jour_ = sprintf("%02d",$jour_);
+$mois_ = sprintf("%02d",$mois_);
+$annee_ = sprintf("20%02d",$annee_);
+my $J_DAY2 = "$annee_$mois_$jour_";
+print $J_DAY2,"\n";
+
+my $i;
+my @list_groups = qw /P3G_ PAM_ PAJ_ PAH_ PBX_ PCL_ PDQ1_ PEJ_ PFE_ PFG_ PKD_ PKS_ POJ_ PR3_ PRR_ PSR_ PX6A_ PMO_ QM62_ QDL7_ QQ34_ QQ04_/;
+
+my $rep="/slqdl7bdd01/appli/dl7/sp/tests_ctlm/daily_report/EXPORTS";
+my $rep0="/slqdl7bdd01/appli/dl7/sp/tests_ctlm/daily_report";
+my $out_groups_JDAY="$rep/error_groups_$J_DAY.csv";
+my $temp_JDAY="$rep/temp_$J_DAY.csv";
+my $out_groups_JDAY1="$rep/error_groups_$J_DAY1.csv";
+my $temp_JDAY1="$rep/temp_$J_DAY1.csv";
+my $out_groups_JDAY2="$rep/error_groups_$J_DAY2.csv";
+my $temp_JDAY2="$rep/temp_$J_DAY2.csv";
+my $out2="$rep/export_tables_temp.txt";
+#ENVI=PREX
+my $gen_rapport_html="${rep0}/gen_rapport_html.ksh";
+my ($Ligne, $Orderid, $Jobname)="";
+
+ sub mail {
+ if (-e ${FIC_HTML}) {
+                echo -e "\033[31mPas de groupes en erreur\033[00m"
+                echo "Pas de groupes en erreur"
+                FROM="bal-dsi-r2c-rpa-prr-pr2@natixis.com"
+                MAILTO="arnaud.lozahic-ext@natixis.com"
+                OBJET="[${ENVI}] : Liste des traitements et groupes en erreur entre le ${J_DAY2} et le ${J_DAY} sur pctrr"
+(
+ echo "FROM: $FROM"
+ echo "To: $MAILTO"
+ echo "Subject: $OBJET"
+ echo "MIME-Version: 1.0"
+ echo "Importance: High"
+ echo "Content-Type: text/plain"
+ cat << EOF
+Bonjour,
+
+Il n'y a pas de traitements ni groupes en erreur sur pctrr entre le ${J_DAY2} et le ${J_DAY}.
+
+Cordialement,
+L'equipe Integration Resultats et Risques
+EOF
+) | /usr/sbin/sendmail -fbal-dsi-r2c-rpa-prr-pr2@natixis.com $MAILTO
+
+        else
+
+                FROM="bal-dsi-r2c-rpa-prr-pr2@natixis.com"
+                MAILTO="arnaud.lozahic-ext@natixis.com"
+                OBJET="[${ENVI}] : Liste des traitements et groupes en erreur entre le ${J_DAY2} et le ${J_DAY} sur pctrr"
+                export ATTACH="${FIC_HTML}"
+(
+ echo "FROM: $FROM"
+ echo "To: $MAILTO"
+ echo "Subject: $OBJET"
+ echo "MIME-Version: 1.0"
+ echo "Importance: High"
+ echo 'Content-Disposition: attachment; filename="'$(basename $ATTACH)'"'
+) | cat - ${ATTACH} | /usr/sbin/sendmail -fbal-dsi-r2c-rpa-prr-pr2@natixis.com -t $MAILTO
+
+fi
+}
+
+
+fonc_groupe_JDAY ()
+{
+        
+
+	echo "<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">" >> ${FIC_HTML}
+        echo "<html><head>" >> ${FIC_HTML}
+        echo "<meta http-equiv="Content-Type" content="text/html\;charset=windows-1252">" >> ${FIC_HTML}
+        echo "<meta content="MSHTML 6.00.2900.3157" name="GENERATOR"></head>" >> ${FIC_HTML}
+        echo "<body>" >> ${FIC_HTML}
+	echo "<hr></hr></p>" >> ${FIC_HTML}
+        echo "<table border=0 align="middle" bgcolor="#CCFFFF" width="50%">" >> ${FIC_HTML}
+        echo "<tr bgcolor="#CD5C5C">" >> ${FIC_HTML}
+        echo "<td>" >> ${FIC_HTML}
+        echo "<b><center>EXPORT DES ERREURS DU JOUR</center></b>" >> ${FIC_HTML}
+        echo "</td>" >> ${FIC_HTML}
+        echo "</tr>" >> ${FIC_HTML}
+	echo "</table>" >> ${FIC_HTML}
+        echo "<p><b>" >> ${FIC_HTML}
+        echo "Vous trouverez ci-dessous la liste des groupes en erreur sur le plan du ${J_DAY}" >>${FIC_HTML}
+        echo "</b></p>" >> ${FIC_HTML}
+        echo "<table border=0 align="middle" bgcolor="#CCFFFF" width="50%">" >> ${FIC_HTML}
+        cat ${out_groups_JDAY} | while read line
+        do
+                        echo "<tr bgcolor="#FFFFFF">" >> ${FIC_HTML}
+                        echo "<td>" >> ${FIC_HTML}
+                        echo "$(echo ${line} | awk -F";" '{print $1}')" >> ${FIC_HTML}
+                        echo "</td>" >> ${FIC_HTML}
+                        echo "</tr>" >> ${FIC_HTML}
+        done
+
+        echo "</table>" >> ${FIC_HTML}
+        echo "</body>" >> ${FIC_HTML}
+        echo "</html>" >> ${FIC_HTML}
+}
+
+
+fonc_job_JDAY ()
+{
+
+
+        echo "<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">" >> ${FIC_HTML}
+        echo "<html><head>" >> ${FIC_HTML}
+        echo "<meta http-equiv="Content-Type" content="text/html\;charset=windows-1252">" >> ${FIC_HTML}
+        echo "<meta content="MSHTML 6.00.2900.3157" name="GENERATOR"></head>" >> ${FIC_HTML}
+        echo "<body>" >> ${FIC_HTML}
+        echo "<p><b>" >> ${FIC_HTML}
+        echo "Vous trouverez ci-dessous la liste des jobs en erreur sur le plan du ${J_DAY}" >>${FIC_HTML}
+        echo "</b></p>" >> ${FIC_HTML}
+        echo "<table border=0 align="middle" bgcolor="#CCFFFF" width="50%">" >> ${FIC_HTML}
+        cat ${out_jobs_JDAY} | while read line
+        do
+                        echo "<tr bgcolor="#FFFFFF">" >> ${FIC_HTML}
+                        echo "<td>" >> ${FIC_HTML}
+                        echo "$(echo ${line} | awk -F";" '{print $1}')" >> ${FIC_HTML}
+                        echo "</td>" >> ${FIC_HTML}
+                        echo "</tr>" >> ${FIC_HTML}
+        done
+
+        echo "</table>" >> ${FIC_HTML}
+        echo "</body>" >> ${FIC_HTML}
+        echo "</html>" >> ${FIC_HTML}
+}
+
+
+fonc_groupe_JDAY1 ()
+{
+
+	echo "<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">" >> ${FIC_HTML}
+        echo "<html><head>" >> ${FIC_HTML}
+        echo "<meta http-equiv="Content-Type" content="text/html\;charset=windows-1252">" >> ${FIC_HTML}
+        echo "<meta content="MSHTML 6.00.2900.3157" name="GENERATOR"></head>" >> ${FIC_HTML}
+        echo "<body>" >> ${FIC_HTML}
+	echo "<br>" >> ${FIC_HTML}
+        echo "<p><hr></hr></p>" >> ${FIC_HTML}
+        echo "<table border=0 align="middle" bgcolor="#CCFFFF" width="50%">" >> ${FIC_HTML}
+        echo "<tr bgcolor="#CD5C5C">" >> ${FIC_HTML}
+        echo "<td>" >> ${FIC_HTML}
+        echo "<b><center>EXPORT DES ERREURS DE LA VEILLE</center></b>" >> ${FIC_HTML}
+        echo "</td>" >> ${FIC_HTML}
+        echo "</tr>" >> ${FIC_HTML}
+        echo "</table>" >> ${FIC_HTML}
+        echo "<p><b>" >> ${FIC_HTML}
+        echo "Vous trouverez ci-dessous la liste des groupes en erreur sur le plan du ${J_DAY1}" >>${FIC_HTML}
+        echo "</b></p>" >> ${FIC_HTML}
+        echo "<table border=0 align="middle" bgcolor="#CCFFFF" width="50%">" >> ${FIC_HTML}
+        cat ${out_groups_JDAY1} | while read line
+        do
+                        echo "<tr bgcolor="#FFFFFF">" >> ${FIC_HTML}
+                        echo "<td>" >> ${FIC_HTML}
+                        echo "$(echo ${line} | awk -F";" '{print $1}')" >> ${FIC_HTML}
+                        echo "</td>" >> ${FIC_HTML}
+                        echo "</tr>" >> ${FIC_HTML}
+        done
+
+        echo "</table>" >> ${FIC_HTML}
+        echo "</body>" >> ${FIC_HTML}
+        echo "</html>" >> ${FIC_HTML}
+
+}
+
+
+fonc_job_JDAY1 ()
+{
+
+        echo "<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">" >> ${FIC_HTML}
+        echo "<html><head>" >> ${FIC_HTML}
+        echo "<meta http-equiv="Content-Type" content="text/html\;charset=windows-1252">" >> ${FIC_HTML}
+        echo "<meta content="MSHTML 6.00.2900.3157" name="GENERATOR"></head>" >> ${FIC_HTML}
+        echo "<body>" >> ${FIC_HTML}
+        echo "<p><b>" >> ${FIC_HTML}
+        echo "Vous trouverez ci-dessous la liste des jobs en erreur sur le plan du ${J_DAY1}" >>${FIC_HTML}
+        echo "</b></p>" >> ${FIC_HTML}
+        echo "<table border=0 align="middle" bgcolor="#CCFFFF" width="50%">" >> ${FIC_HTML}
+        cat ${out_jobs_JDAY1} | while read line
+        do
+                        echo "<tr bgcolor="#FFFFFF">" >> ${FIC_HTML}
+                        echo "<td>" >> ${FIC_HTML}
+                        echo "$(echo ${line} | awk -F";" '{print $1}')" >> ${FIC_HTML}
+                        echo "</td>" >> ${FIC_HTML}
+                        echo "</tr>" >> ${FIC_HTML}
+        done
+
+        echo "</table>" >> ${FIC_HTML}
+        echo "</body>" >> ${FIC_HTML}
+        echo "</html>" >> ${FIC_HTML}
+
+}
+
+
+fonc_groupe_JDAY2 ()
+{
+
+
+        echo "<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">" >> ${FIC_HTML}
+        echo "<html><head>" >> ${FIC_HTML}
+        echo "<meta http-equiv="Content-Type" content="text/html\;charset=windows-1252">" >> ${FIC_HTML}
+        echo "<meta content="MSHTML 6.00.2900.3157" name="GENERATOR"></head>" >> ${FIC_HTML}
+        echo "<body>" >> ${FIC_HTML}
+        echo "<br>" >> ${FIC_HTML}
+        echo "<p><hr></hr></p>" >> ${FIC_HTML}
+        echo "<table border=0 align="middle" bgcolor="#CCFFFF" width="50%">" >> ${FIC_HTML}
+        echo "<tr bgcolor="#CD5C5C">" >> ${FIC_HTML}
+        echo "<td>" >> ${FIC_HTML}
+        echo "<b><center>EXPORT DES ERREURS DE L'AVANT-VEILLE</center></b>" >> ${FIC_HTML}
+        echo "</td>" >> ${FIC_HTML}
+        echo "</tr>" >> ${FIC_HTML}
+        echo "</table>" >> ${FIC_HTML}
+        echo "<p><b>" >> ${FIC_HTML}
+        echo "Vous trouverez ci-dessous la liste des groupes en erreur sur le plan du ${J_DAY2}" >>${FIC_HTML}
+        echo "</b></p>" >> ${FIC_HTML}
+        echo "<table border=0 align="middle" bgcolor="#CCFFFF" width="50%">" >> ${FIC_HTML}
+        cat ${out_groups_JDAY2} | while read line
+        do
+                        echo "<tr bgcolor="#FFFFFF">" >> ${FIC_HTML}
+                        echo "<td>" >> ${FIC_HTML}
+                        echo "$(echo ${line} | awk -F";" '{print $1}')" >> ${FIC_HTML}
+                        echo "</td>" >> ${FIC_HTML}
+                        echo "</tr>" >> ${FIC_HTML}
+        done
+
+        echo "</table>" >> ${FIC_HTML}
+        echo "</body>" >> ${FIC_HTML}
+        echo "</html>" >> ${FIC_HTML}
+}
+
+
+fonc_job_JDAY2 ()
+{
+
+
+        echo "<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">" >> ${FIC_HTML}
+        echo "<html><head>" >> ${FIC_HTML}
+        echo "<meta http-equiv="Content-Type" content="text/html\;charset=windows-1252">" >> ${FIC_HTML}
+        echo "<meta content="MSHTML 6.00.2900.3157" name="GENERATOR"></head>" >> ${FIC_HTML}
+        echo "<body>" >> ${FIC_HTML}
+        echo "<p><b>" >> ${FIC_HTML}
+        echo "Vous trouverez ci-dessous la liste des jobs en erreur sur le plan du ${J_DAY2}" >>${FIC_HTML}
+        echo "</b></p>" >> ${FIC_HTML}
+        echo "<table border=0 align="middle" bgcolor="#CCFFFF" width="50%">" >> ${FIC_HTML}
+        cat ${out_jobs_JDAY2} | while read line
+        do
+                        echo "<tr bgcolor="#FFFFFF">" >> ${FIC_HTML}
+                        echo "<td>" >> ${FIC_HTML}
+                        echo "$(echo ${line} | awk -F";" '{print $1}')" >> ${FIC_HTML}
+                        echo "</td>" >> ${FIC_HTML}
+                        echo "</tr>" >> ${FIC_HTML}
+        done
+	
+	echo "</table>" >> ${FIC_HTML}
+	echo "<br>" >> ${FIC_HTML}
+        echo "<p><hr><b> Statistiques extraites le $(date "+%d-%m-%Y a %Hh%M") </b><hr></p>" >> ${FIC_HTML}
+        echo "<br>" >> ${FIC_HTML}
+        echo "</body>" >> ${FIC_HTML}
+        echo "</html>" >> ${FIC_HTML}
+}
+
+
+entete ()
+{
+
+echo '<html>
+     <head>
+  <title>ERREURS CONTROL-M></title>
+  <style type="text/css">
+  #ctlm {
+   color:red;
+   }
+   body {
+    color:blue;
+        background:#DCDCDC
+        }
+  </style>
+</head>
+<body>
+<div id="ctlm"><h1>ERREURS CONTROL-M</h1></div>
+</body>
+</html> '
+
+}
+
+
+#Main
+rep=/slqdl7bdd01/appli/dl7/sp/tests_ctlm/daily_report/EXPORTS
+rep0=/slqdl7bdd01/appli/dl7/sp/tests_ctlm/daily_report
+out_groups_JDAY=${rep}/error_groups_$(date "+%Y%m%d").csv
+out_groups_JDAY1=${rep}/error_groups_`TZ=MET+24 date "+%Y%m%d"`.csv
+out_groups_JDAY2=${rep}/error_groups_`date --date '2 days ago' "+%Y%m%d"`.csv
+out_jobs_JDAY=${rep}/error_jobs_$(date "+%Y%m%d").csv
+out_jobs_JDAY1=${rep}/error_jobs_`TZ=MET+24 date "+%Y%m%d"`.csv
+out_jobs_JDAY2=${rep}/error_jobs_`date --date '2 days ago' "+%Y%m%d"`.csv
+J_DAY=$(date "+%Y%m%d")
+J_DAY1=`TZ=MET+24 date "+%Y%m%d"`
+J_DAY2=`date --date '2 days ago' "+%Y%m%d"`
+ENVI=PREX
+FIC_HTML=/slqdl7bdd01/appli/dl7/sp/tests_ctlm/daily_report/EXPORTS/rapport_$(date "+%Y%m%d").html
+
+
+entete > ${FIC_HTML}
+fonc_groupe_JDAY >> ${FIC_HTML}
+fonc_job_JDAY >> ${FIC_HTML}
+fonc_groupe_JDAY1 >> ${FIC_HTML}
+fonc_job_JDAY1 >> ${FIC_HTML}
+fonc_groupe_JDAY2 >> ${FIC_HTML}
+fonc_job_JDAY2 >> ${FIC_HTML}
+mail_sendmail
+

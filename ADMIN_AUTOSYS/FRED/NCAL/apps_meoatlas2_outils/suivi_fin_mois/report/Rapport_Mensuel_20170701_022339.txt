@@ -1,0 +1,32 @@
+ ************************* 
+ *** JOBS EN ABORT ******* 
+
+Il n'y a aucun job en abort pour le moment pour le qualifier 
+
+
+ ************************* 
+ *** JOBS EN HOLD ******* 
+
+arz1Guin_dasa9c_01
+
+
+ ************************* 
+ *** JOBSET EN HOLD ****** 
+
+jdi1Guin_dasf4c_01
+jt6cGuin_jast6c_01
+jef2Guin_jasd06_01
+jir4Guin_jas767_01
+jir4Guin_jas768_01
+dwu3Guin_dasu91_01
+mrsaGuin_mrsp10_01
+mwk7Guin_mwuk70_01
+mvb9Guin_mrstbr_01
+jrs2Guin_jrsp21_01
+jsr0Guin_jsrt90_01
+jqp1Guin_jaqp02_01
+
+
+************************************************************************************
+************************TEST DES JALONS DE FIN DE MOIS******************************
+

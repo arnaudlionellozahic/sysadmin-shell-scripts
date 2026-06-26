@@ -1,0 +1,189 @@
+#!/bin/ksh
+
+menu ()
+{
+rep=""
+echo "                                  EXPORT OBJETS VTOM "
+echo " 0  HELP"
+echo " 1  export TRAITEMENT "
+echo " 2  export APPLICATIONS "
+echo " 3  export ENVIRONNEMENTS "
+echo " 4  export CALENDRIERS "
+echo " q  quitter"
+echo -e "          commande: \c"
+read rep
+choix
+}
+
+
+
+req_jobs ()
+{
+
+ENV=SOUMISSION
+out=/home/alozahic/exploit/systeme/suivi/RANGE/ABSYSS/EXTRACTION_EXPORT/EXPORT_CENTRAL/export_traitement.csv
+out1=/home/alozahic/exploit/systeme/suivi/RANGE/ABSYSS/EXTRACTION_EXPORT/EXPORT_CENTRAL/export_temp.txt
+
+echo "jobs;mode;heure_debut;heure_fin;type_periodicite;cyclique;cycle;periodicite;mettre_application_en_erreur;ne_pas_deplanifier;attendre_avant_deplanification;heure_deplanification;bloquer_la_date;rattrapage_type;duree_max;retenu;demande;script;parametres;modjobs;liens_amon;liens_aval" > $out
+
+vtexport -f $ENV > $out1
+
+cat $out1 | grep "job:" | perl -pi -e 's/\[//g;s/\]//g;s/:/=/g' $out1 
+
+cat $out1 | sed -e 's/\(job=.*\)/RECORD_SEP\1/' -e 's/\(liens_de=.*\)/\1RECORD_SEP/' |awk 'BEGIN{ RS="RECORD_SEP" } /job=.*liens_de=.*/ { print $0 }' | sed 's/#//g;s/;/ /g' | awk -F "=" 'BEGIN {deb=""}
+  $1 == "job" { printf "\n%-s%-s",$2,";"}
+  $1 == "mode" { printf "%-s%-s",$2,";"}
+  $1 == "heure_debut" { printf "%-s%-s",$2,";"}
+  $1 == "heure_fin" { printf "%-s%-s",$2,";"}
+  $1 == "type_periodicite" { printf "%-s%-s",$2,";"}
+  $1 == "cyclique" { printf "%-s%-s",$2,";"}
+  $1 == "cycle" { printf "%-s%-s",$2,";"}
+  $1 == "periodicite" { printf "%-s%-s",$2,";"}
+  $1 == "mettre_application_en_erreur" { printf "%-s%-s",$2,";"}
+  $1 == "ne_pas_deplanifier" { printf "%-s%-s",$2,";"}
+  $1 == "attendre_avant_deplanification" { printf "%-s%-s",$2,";"}
+  $1 == "heure_deplanification" { printf "%-s%-s",$2,";"}
+  $1 == "bloquer_la_date" { printf "%-s%-s",$2,";"}
+  $1 == "rattrapage_type" { printf "%-s%-s",$2,";"}
+  $1 == "duree_max" { printf "%-s%-s",$2,";"}
+  $1 == "retenu" { printf "%-s%-s",$2,";"}
+  $1 == "demande" { printf "%-s%-s",$2,";"}
+  $1 == "script" { printf "%-s%-s",$2,";"}
+  $1 == "parametres" { printf "%-s%-s",$2,";"}
+  $1 == "modjobs" { printf "%-s%-s",$2,";"}
+  $1 == "liens_vers" { printf "%-s%-s",$2,";"}
+  $1 == "liens_de" { printf "%-s\n",$2}
+' >> $out
+
+rm -f $out1
+tmail -se "arnaud.lozahic@absyss.fr" -to "arnaud.lozahic@absyss.fr" -smtp "jupiter" -sub "export_jobs" -att "$out" -msgf "$out"
+
+}
+
+
+
+req_applis ()
+{
+
+ENV=SOUMISSION
+out=/home/alozahic/exploit/systeme/suivi/RANGE/ABSYSS/EXTRACTION_EXPORT/EXPORT_CENTRAL/export_application.csv
+out1=/home/alozahic/exploit/systeme/suivi/RANGE/ABSYSS/EXTRACTION_EXPORT/EXPORT_CENTRAL/export_temp.txt
+
+echo "applis;mode;heure_debut;heure_fin;type_periodicite;cyclique;cycle;periodicite;machine;queue;status;retenu;demande;ne_pas_deplanifier;attendre_avant_deplanification;liens_vers;liens_de;planning;jobs;position" > $out
+
+vtexport -f $ENV > $out1
+
+cat $out1 | grep "app:" | perl -pi -e 's/\[//g;s/\]//g;s/:/=/g' $out1 
+
+cat $out1 | sed -e 's/\(app=.*\)/RECORD_SEP\1/' -e 's/\(position=.*\)/\1RECORD_SEP/' | awk 'BEGIN{ RS="RECORD_SEP" } /app=.*position=.*/ { print $0 }' | sed 's/#//g;s/;/ /g' | awk -F "=" 'BEGIN {deb=""}
+  $1 == "app" { printf "\n%-s%-s",$2,";"}
+  $1 == "mode" { printf "%-s%-s",$2,";"}
+  $1 == "heure_debut" { printf "%-s%-s",$2,";"}
+  $1 == "heure_fin" { printf "%-s%-s",$2,";"}
+  $1 == "type_periodicite" { printf "%-s%-s",$2,";"}
+  $1 == "cyclique" { printf "%-s%-s",$2,";"}
+  $1 == "cycle" { printf "%-s%-s",$2,";"}
+  $1 == "periodicite" { printf "%-s%-s",$2,";"}
+  $1 == "machine" { printf "%-s%-s",$2,";"}
+  $1 == "queue" { printf "%-s%-s",$2,";"}
+  $1 == "status" { printf "%-s%-s",$2,";"}
+  $1 == "retenu" { printf "%-s%-s",$2,";"}
+  $1 == "demande" { printf "%-s%-s",$2,";"}
+  $1 == "ne_pas_deplanifier" { printf "%-s%-s",$2,";;"}
+  $1 == "attendre_avant_deplanification" { printf "%-s%-s",$2,";"}
+  $1 == "liens_vers" { printf "%-s%-s",$2,";"}
+  $1 == "liens_de" { printf "%-s%-s",$2,";"}
+  $1 == "planning" { printf "%-s%-s",$2,";"}
+  $1 == "jobs" { printf "%-s%-s",$2,";"}
+  $1 == "position" { printf "%-s\n",$2}
+' >> $out
+
+rm -f $out1
+tmail -se "arnaud.lozahic@absyss.fr" -to "arnaud.lozahic@absyss.fr" -smtp "jupiter" -sub "export_applications" -att "$out" -msgf "$out"
+
+}
+
+
+
+req_env ()
+{
+
+out=/home/alozahic/exploit/systeme/suivi/RANGE/ABSYSS/EXTRACTION_EXPORT/EXPORT_CENTRAL/export_environnement.csv
+out1=/home/alozahic/exploit/systeme/suivi/RANGE/ABSYSS/EXTRACTION_EXPORT/EXPORT_CENTRAL/export_temp.txt
+
+echo "env;queue;scripts;log;typelog;utilisateur;date;machine;calendrier;calendriers;dates;machines;queues;utilisateurs;applications" > $out
+
+vtexport > $out1
+
+cat $out1 | grep "env:" | perl -pi -e 's/\[//g;s/\]//g;s/:/=/g' $out1 
+
+cat $out1 | sed -e 's/\(env=.*\)/RECORD_SEP\1/' -e 's/\(applications=.*\)/\1RECORD_SEP/' | awk 'BEGIN{ RS="RECORD_SEP" } /env=.*applications=.*/ { print $0 }' | sed 's/#//g;s/;/ /g' | awk -F "=" 'BEGIN {deb=""}
+  $1 == "env" { printf "\n%-s%-s",$2,";"}
+  $1 == "queue" { printf "%-s%-s",$2,";"}
+  $1 == "scripts" { printf "%-s%-s",$2,";"}
+  $1 == "log" { printf "%-s%-s",$2,";"}
+  $1 == "typelog" { printf "%-s%-s",$2,";"}
+  $1 == "utilisateur" { printf "%-s%-s",$2,";"}
+  $1 == "date" { printf "%-s%-s",$2,";"}
+  $1 == "machine" { printf "%-s%-s",$2,";"}
+  $1 == "calendrier" { printf "%-s%-s",$2,";"}
+  $1 == "calendriers" { printf "%-s%-s",$2,";"}
+  $1 == "dates" { printf "%-s%-s",$2,";"}
+  $1 == "machines" { printf "%-s%-s",$2,";"}
+  $1 == "queues" { printf "%-s%-s",$2,";"}
+  $1 == "utilisateurs" { printf "%-s%-s",$2,";"}
+  $1 == "applications" { printf "%-s\n",$2}
+' >> $out
+
+rm -f $out1
+tmail -se "arnaud.lozahic@absyss.fr" -to "arnaud.lozahic@absyss.fr" -smtp "jupiter" -sub "export_environnements" -att "$out" -msgf "$out"
+
+}
+
+
+
+req_cal ()
+{
+
+out=/home/alozahic/exploit/systeme/suivi/RANGE/ABSYSS/EXTRACTION_EXPORT/EXPORT_CENTRAL/export_calendrier.csv
+out1=/home/alozahic/exploit/systeme/suivi/RANGE/ABSYSS/EXTRACTION_EXPORT/EXPORT_CENTRAL/export_temp.txt
+
+echo "calendrier;jours_specifique;jours_de_la_semaine;jours_feries;holidays_group;periodicite" > $out
+
+vtexport > $out1
+
+cat $out1 | grep "cal:" | perl -pi -e 's/\[//g;s/\]//g;s/:/=/g' $out1 
+
+cat $out1 | sed -e 's/\(cal=.*\)/RECORD_SEP\1/' -e 's/\(periodicite=.*\)/\1RECORD_SEP/' | awk 'BEGIN{ RS="RECORD_SEP" } /cal=.*periodicite=.*/ { print $0 }' | sed 's/#//g;s/;/ /g' | awk -F "=" 'BEGIN {deb=""}
+  $1 == "cal" { printf "\n%-s%-s",$2,";"}
+  $1 == "jours_specifique" { printf "%-s%-s",$2,";"}
+  $1 == "jours_de_la_semaine" { printf "%-s%-s",$2,";"}
+  $1 == "jours_feries" { printf "%-s%-s",$2,";"}
+  $1 == "holidays_group" { printf "%-s%-s",$2,";"}
+  $1 == "periodicite" { printf "%-s\n",$2}
+' >> $out
+
+rm -f $out1
+tmail -se "arnaud.lozahic@absyss.fr" -to "arnaud.lozahic@absyss.fr" -smtp "jupiter" -sub "export_calendriers" -att "$out" -msgf "$out"
+
+}
+
+
+
+choix ()
+{
+case $rep in
+ 0) info ;;
+ 1) req_jobs ;;
+ 2) req_applis ;;
+ 3) req_env ;;
+ 4) req_cal ;;
+ *)echo -e "\\033[1;32m  ALLER BOIRE UN CAFE ";echo -en "\\033[0;39m" ; exit 0 ;;
+esac
+}
+
+
+#Main
+clear
+menu
+

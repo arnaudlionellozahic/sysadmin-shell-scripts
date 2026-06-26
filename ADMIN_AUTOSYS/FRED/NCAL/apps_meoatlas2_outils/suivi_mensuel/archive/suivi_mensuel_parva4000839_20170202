@@ -1,0 +1,21 @@
+Feb 2 23:49 # 00.08.11 .CASH_I_0072 Jobset msfaCald 0100 Started at 00.08.11
+Feb 2 23:49 # 00.18.30 .CASH_I_0072 Jobset msuaCald 0100 Started at 00.18.30
+Feb 2 23:49 # 00.29.36 .CASH_I_0060 msfaCald 0100 Completed at 00.29.36, code: 00000000
+Feb 2 23:49 # 04.34.07 .CASH_I_0100 Jobset msuaCald, Job dask12, Jno 0001, Qual 0101 queued for submit
+Feb 2 23:49 # 04.34.08 .CASH_I_0069 msuaCald dask12 0001 0101 Started at 04.34.07 at node parva4000839, Pid = 34078862
+Feb 2 23:49 # 04.34.26 .CASH_I_0054 msuaCald dask12 0001 0101 Completed at 04.34.25, code: 00000000 at node parva4000839, Pid = 34078862
+Feb 2 23:49 # 04.35.19 .CASH_I_0060 msuaCald 0100 Completed at 04.35.19, code: 00000000
+Feb 2 23:49 # 04.35.20 .CASH_I_0072 Jobset mww0Cald 0100 Started at 04.35.20
+Feb 2 23:49 # 04.36.40 .CASH_I_0060 mww0Cald 0100 Completed at 04.36.40, code: 00000000
+Feb 2 23:49 # 04.41.12 .CASH_I_0072 Jobset mdi1Cald 0100 Started at 04.41.12
+Feb 2 23:49 # 04.54.43 .CASH_I_0060 mdi1Cald 0100 Completed at 04.54.43, code: 00000000
+Feb 2 23:49 # 05.18.43 .CASH_I_0072 Jobset mfu99Cald 0200 Started at 05.18.43
+Feb 2 23:49 # 05.22.36 .CASH_I_0060 mfu99Cald 0200 Completed at 05.22.36, code: 00000000
+Feb 2 23:50 # 04.55.45 .CASH_I_0072 Jobset mrf4Cald 0100 Started at 04.55.45
+Feb 2 23:50 # 04.56.19 .CASH_I_0060 mrf4Cald 0100 Completed at 04.56.19, code: 00000000
+Feb 2 23:50 # 04.56.19 .CASH_I_0072 Jobset mrfaCald 0100 Started at 04.56.19
+Feb 2 23:50 # 04.59.50 .CASH_I_0060 mrfaCald 0100 Completed at 04.59.50, code: 00000000
+Feb 2 23:50 # 05.08.51 .CASH_I_0072 Jobset mrf8Cald 0100 Started at 05.08.51
+Feb 2 23:50 # 05.09.24 .CASH_I_0060 mrf8Cald 0100 Completed at 05.09.24, code: 00000000
+Feb 2 23:50 # 05.18.45 .CASH_I_0072 Jobset mrfcCald 0100 Started at 05.18.45
+Feb 2 23:50 # 05.19.10 .CASH_I_0060 mrfcCald 0100 Completed at 05.19.10, code: 00000000

@@ -1,0 +1,144 @@
+#!/bin/ksh -x
+
+
+backup_svn ()
+
+{
+tar -pcf ${fic1} ${rep1}
+
+ if [ $? == 0 ]
+then
+        echo "Bonjour," > ${out}
+        echo "" >> ${out}
+        echo "Le backup du repertoire ${rep1a} est OK le $(date +'%d/%m/%Y a %H:%M')" >> ${out}
+        echo "" >> ${out}
+else
+        echo "Bonjour," > ${out}
+        echo "" >> ${out}
+        echo "Le backup du repertoire ${rep1a} est KO le $(date +'%d/%m/%Y a %H:%M')" >> ${out}
+        mailx -r mbx-tip-app-bfi-rri@natixis.com -s "[${ENVI}][SVN] - Le backup du repertoire ${rep1a} est KO le ${J_DAY}" ld-tip-app-bgc-rri@natixis.com < ${out}
+        exit 1
+fi
+}
+
+
+backup_svn_rri ()
+
+{
+tar -pcf ${fic2} ${rep2}
+
+if [ $? == 0 ]
+then
+        echo "Le backup du repertoire ${rep2a} est OK le $(date +'%d/%m/%Y a %H:%M')" >> ${out}
+        echo "" >> ${out}
+else
+        echo "Bonjour," > ${out}
+        echo "" >> ${out}
+        echo "Le backup du repertoire ${rep2a} est KO le $(date +'%d/%m/%Y a %H:%M')" >> ${out}
+        mailx -r mbx-tip-app-bfi-rri@natixis.com -s "[${ENVI}][SVN] - Le backup du repertoire ${rep2a} est KO le ${J_DAY}" ld-tip-app-bgc-rri@natixis.com < ${out}
+        exit 1
+fi
+}
+
+
+tsm_ba_svn ()
+
+{
+dsmc ba ${rep_appli}/${fic1} -optfile=/opt/tivoli/tsm/client/ba/bin/BK/SLQDL7BDD01_BK-dsm.opt
+}
+
+
+tsm_ba_svn_rri ()
+
+{
+dsmc ba ${rep_appli}/${fic2} -optfile=/opt/tivoli/tsm/client/ba/bin/BK/SLQDL7BDD01_BK-dsm.opt
+}
+
+
+tsm_q_ba_svn ()
+
+{
+dsmc q ba ${rep_appli}/${fic1} -optfile=/opt/tivoli/tsm/client/ba/bin/BK/SLQDL7BDD01_BK-dsm.opt
+}
+
+
+tsm_q_ba_svn_rri ()
+
+{
+dsmc q ba ${rep_appli}/${fic2} -optfile=/opt/tivoli/tsm/client/ba/bin/BK/SLQDL7BDD01_BK-dsm.opt
+}
+
+
+test_backup ()
+
+{
+if [ `/bin/grep ${fic1} ${out2}_${J_DAY} | wc -l` -lt 1 ]
+then
+        echo -e "\033[31mLa sauvegarde TSM du repertoire ${rep1a} est KO, veuillez verifier les logs ${out1} et ${out2}\033[00m"
+        echo "Bonjour," > ${out}
+        echo "" >> ${out}
+        echo "La sauvegarde tsm du repertoire ${rep1a} est KO le $(date +'%d/%m/%Y a %H:%M'), veuillez consulter les logs ${out1} et ${out2}" >> ${out}
+        mailx -r mbx-tip-app-bfi-rri@natixis.com -s "[${ENVI}][SVN] - La sauvegarde incrementale du repertoire ${rep1a} est KO le ${J_DAY}" ld-tip-app-bgc-rri@natixis.com < ${out}
+        exit 1
+
+        elif [ `/bin/grep ${fic2} ${out2}_${J_DAY} | wc -l` -lt 1 ]
+        then
+                echo -e "\033[31mLa sauvegarde TSM du repertoire ${rep2a} est KO, veuillez verifier les logs ${out1} et ${out2}\033[00m"
+                echo "Bonjour," > ${out}
+                echo "" >> ${out}
+                echo "La sauvegarde tsm du repertoire ${rep2a} est KO le $(date +'%d/%m/%Y a %H:%M'), veuillez consulter les logs ${out1} et ${out2}" >> ${out}
+                mailx -r mbx-tip-app-bfi-rri@natixis.com -s "[${ENVI}][SVN] - La sauvegarde incrementale du repertoire ${rep2a} est KO le ${J_DAY}" ld-tip-app-bgc-rri@natixis.com < ${out}
+                exit 1
+else
+        echo -e "\033[31mLa sauvegarde TSM des repertoires ${rep1} et ${rep2} est OK\033[00m"
+        echo "La sauvegarde TSM des repertoires ${rep1} et ${rep2} est OK le $(date +'%d/%m/%Y a %H:%M')" >> ${out}
+        echo "" >> ${out}
+        echo "-------------" >> ${out}
+        echo "" >> ${out}
+        cp -p ${out2}_${J_DAY} ${out3}
+	cat ${out3} | grep svn | grep "$date" | awk -F " " '{printf "%+10s %+25s %+25s %+55s\n", $1, $3, $4, $7}' >> ${out}
+        mailx -r mbx-tip-app-bfi-rri@natixis.com -s "[${ENVI}][SVN] - Log de la sauvegarde incrementale du ${J_DAY}" ld-tip-app-bgc-rri@natixis.com < ${out}
+fi
+}
+
+# Main
+rep1=svn
+rep2=svn_rri
+rep1a=/slqdl7bdd01/appli/dl7/svn
+rep2a=/slqdl7bdd01/appli/dl7/svn_rri
+rep_backup=/slqdl7bdd01/appli/dl7/sp/backup
+rep_appli=/slqdl7bdd01/appli/dl7
+fic1=svn_pcf.tar
+fic2=svn_pcf_rri.tar
+sub1=subversion.tar
+sub2=subversion_rri.tar
+out=${rep_appli}/QDL7_DDUMP_SVN_RRI/logs/tsm.log
+out1=${rep_appli}/QDL7_DDUMP_SVN_RRI/logs/tsm_ba.log
+out2=${rep_appli}/QDL7_DDUMP_SVN_RRI/logs/tsm_q_ba.log
+out3=${rep_appli}/QDL7_DDUMP_SVN_RRI/logs/tsm_q_ba_tmp.log
+J_DAY=$(date "+%Y%m%d")
+date=$(date "+%m/%d/%Y")
+ENVI=PREX
+
+cd ${rep_appli}
+backup_svn
+backup_svn_rri
+
+tsm_ba_svn > ${out1}_${J_DAY}
+echo "" >> ${out1}_${J_DAY}
+echo "---------------------------" >> ${out1}_${J_DAY}
+echo "" >> ${out1}_${J_DAY}
+tsm_ba_svn_rri >> ${out1}_${J_DAY}
+
+tsm_q_ba_svn > ${out2}_${J_DAY}
+echo "" >> ${out2}_${J_DAY}
+echo "---------------------------" >> ${out2}_${J_DAY}
+echo "" >> ${out2}_${J_DAY}
+tsm_q_ba_svn_rri >> ${out2}_${J_DAY}
+
+test_backup
+
+mv ${fic1} ${rep_backup}/${sub1}
+mv ${fic2} ${rep_backup}/${sub2}
+rm -f ${out} ${out3}
+

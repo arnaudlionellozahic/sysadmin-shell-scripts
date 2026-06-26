@@ -1,0 +1,4 @@
+#!/bin/ksh
+su - alozahic <<EOF
+sleep 500
+EOF

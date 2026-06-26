@@ -1,0 +1,35 @@
+#!/bin/ksh
+
+alias ll='ls -ltr'                  
+alias psme='ps -ef |grep alozahic|egrep -v "grep|ps -aef"'
+alias trc='cd /home4/alozahic/traces'
+alias la='ls -al'
+alias killvtom=' kill `psme | cut -d " " -f4|grep -v grep| grep -v ^$`'
+alias vi=vi
+alias ls=ls
+#set -o vi 
+set -o emacs
+alias ss='start_servers'
+alias ssa='start_servers_arnaud'
+alias es='stop_servers'
+alias esa='stop_servers_arnaud'
+alias sm='start_moteurs all'
+alias em='stop_moteurs all'
+alias sc='start_client'
+alias ec='stop_client'
+alias vt='vtping'
+alias tl='tlist -v env'
+alias psal='ps -fu alozahic'
+alias psef='ps -ef | grep' 
+
+stty erase "^H" 1>/dev/null 2>&1                   
+stty erase "^?" 1>/dev/null 2>&1                   
+stty intr "^C" 1>/dev/null 2>&1
+
+export DISPLAY=192.90.84.186:0.0
+export COLUMNS=132                           
+HISTFILE=/tmp/.sh_history.$LOGNAME
+export VTOM_KSH=/home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/KSH/SURVEIL_PROD/VTOM
+export SYSTEME_KSH=/home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/KSH/SURVEIL_PROD/SYSTEME
+export TRAINING=/home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/TRAINING
+export RANGE=/home/alozahic/exploit/systeme/suivi/RANGE

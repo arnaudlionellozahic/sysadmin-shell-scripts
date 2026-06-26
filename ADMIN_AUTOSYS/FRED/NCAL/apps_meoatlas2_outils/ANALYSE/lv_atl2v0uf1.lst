@@ -1,0 +1,14 @@
+LOGICAL VOLUME:     lv_atl2v0uf1           VOLUME GROUP:   extvgBCV
+LV IDENTIFIER:      00c0692a00004c0000000129a8562bc9.1 PERMISSION:     read/write
+VG STATE:           active/complete        LV STATE:       opened/syncd
+TYPE:               jfs                    WRITE VERIFY:   off
+MAX LPs:            2048                   PP SIZE:        128 megabyte(s)
+COPIES:             1                      SCHED POLICY:   parallel
+LPs:                74                     PPs:            74
+STALE PPs:          0                      BB POLICY:      relocatable
+INTER-POLICY:       minimum                RELOCATABLE:    yes
+INTRA-POLICY:       middle                 UPPER BOUND:    32
+MOUNT POINT:        /apps/atlas/atlas2v0/uf1 LABEL:          /apps/atlas/atlas2v0/uf1
+MIRROR WRITE CONSISTENCY: on/ACTIVE                              
+EACH LP COPY ON A SEPARATE PV ?: yes                                    
+Serialize IO ?:     NO                                     

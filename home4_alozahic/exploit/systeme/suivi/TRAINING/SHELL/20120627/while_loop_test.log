@@ -1,0 +1,18 @@
+#------- m27-03/24/03M12
+UID        PID  PPID  C STIME TTY          TIME CMD
+alozahic 19844 19840  0 16:59 ?        00:00:00 sshd: alozahic@pts/1
+alozahic 19845 19844  0 16:59 pts/1    00:00:00 -ksh
+alozahic 20442 19845  0 17:12 pts/1    00:00:00 ksh -xv while_loop.ksh
+alozahic 20444 20442  0 17:12 pts/1    00:00:00 ps -fu alozahic
+#------- mer. juin 27 17:13:07 CEST 2012
+UID        PID  PPID  C STIME TTY          TIME CMD
+alozahic 19844 19840  0 16:59 ?        00:00:00 sshd: alozahic@pts/1
+alozahic 19845 19844  0 16:59 pts/1    00:00:00 -ksh
+alozahic 20450 19845  0 17:13 pts/1    00:00:00 ksh -xv while_loop.ksh
+alozahic 20452 20450  1 17:13 pts/1    00:00:00 ps -fu alozahic
+#------- mer. juin 27 17:14:57 CEST 2012
+#------- mer. juin 27 17:15:17 CEST 2012
+UID        PID  PPID  C STIME TTY          TIME CMD
+alozahic 19844 19840  0 16:59 ?        00:00:00 sshd: alozahic@pts/1
+alozahic 19845 19844  0 16:59 pts/1    00:00:00 -ksh
+alozahic 20637 20635  0 17:15 pts/1    00:00:00 ps -fu alozahic

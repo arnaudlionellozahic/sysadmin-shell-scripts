@@ -1,0 +1,113 @@
+#* ------------------------------------------------------------------------- *
+#*                                                                           *
+#*                Copyright (c) 2012 CA.  All rights reserved.               *
+#*                                                                           *
+#* This software and all information contained therein is confidential and   *
+#* proprietary and shall not be duplicated, used, disclosed or disseminated  *
+#* in any way except as authorized by the applicable license agreement,      *
+#* without the express written permission of CA. All authorized              *
+#* reproductions must be marked with this language.                          *
+#*                                                                           *
+#* EXCEPT AS SET FORTH IN THE APPLICABLE LICENSE AGREEMENT, TO THE EXTENT    *
+#* PERMITTED BY APPLICABLE LAW, CA PROVIDES THIS SOFTWARE WITHOUT WARRANTY   *
+#* OF ANY KIND, INCLUDING WITHOUT LIMITATION, ANY IMPLIED WARRANTIES OF      *
+#* MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  IN NO EVENT WILL    *
+#* CA BE LIABLE TO THE END USER OR ANY THIRD PARTY FOR ANY LOSS OR DAMAGE,   *
+#* DIRECT OR INDIRECT, FROM THE USE OF THIS SOFTWARE, INCLUDING WITHOUT      *
+#* LIMITATION, LOST PROFITS, BUSINESS INTERRUPTION, GOODWILL, OR LOST DATA,  *
+#* EVEN IF CA IS EXPRESSLY ADVISED OF SUCH LOSS OR DAMAGE.                   *
+#*                                                                           *
+#* ------------------------------------------------------------------------- *
+# CA Workload Automation AE Environment File
+
+# Enable Full Core Dump only if current user is root
+if [ "`id | grep "uid=0"`" != "" ]; then
+ ulimit -c unlimited
+fi
+
+# Set CA Workload Automation AE variables
+AUTOSYS=/apps/waae/11.3/autosys ; export AUTOSYS
+AUTOUSER=/apps/waae/11.3/autouser.R41 ; export AUTOUSER
+AUTOSERV=R41 ; export AUTOSERV
+ISDBGACTIV=OFF ; export ISDBGACTIV
+EEMTERMSUPPRESSERR=true ; export EEMTERMSUPPRESSERR
+
+# Conditionally set FIPS environment based on EnableFIPSMode in config
+if [ -f $AUTOUSER/config.$AUTOSERV ]; then
+   if grep -v \^\# $AUTOUSER/config.$AUTOSERV | grep "EnableFIPSMode=[ ^I]*1[ ^I]*" > /dev/null; then
+      CA_FIPS1402_ENABLE=1 ; export CA_FIPS1402_ENABLE
+   else
+      unset CA_FIPS1402_ENABLE
+   fi
+fi
+
+# Cross Platform Scheduling - Uncomment to set a value other than 3
+#ASB_MAX_PROCESSJOB_RETRY=3 ; export ASB_MAX_PROCESSJOB_RETRY
+
+# Set Timezone
+TZ=Europe/Paris ; export TZ
+
+# Set CA Secure Socket Adapter information
+export CASHCOMP CSAM_SOCKADAPTER
+CSAM_SOCKADAPTER=${CASHCOMP:=/opt/CA/SharedComponents}/Csam/SockAdapter
+aslibs=$AUTOSYS/lib:$CSAM_SOCKADAPTER/lib:/opt/CA/CAlib
+
+# Set Oracle variables
+if [[ -n $A2_ORACLI ]]
+then
+ORACLE_HOME=/apps/oracle/product/11204cli32 ; export ORACLE_HOME
+else
+ORACLE_HOME=/apps/oracle/product/11204 ; export ORACLE_HOME
+fi
+TNS_ADMIN=/apps/waae/custom/oracle ; export TNS_ADMIN
+#TNS_ADMIN=/apps/oracle/network/admin ; export TNS_ADMIN
+aslibs=$aslibs:/apps/oracle/product/11204cli32/lib
+PATH=$PATH:$ORACLE_HOME/bin ; export PATH
+
+# Set JAVA_HOME and JRE environment
+JRE_PATH=/apps/waae/11.3/JRE_WA
+JRE_HOME=/apps/waae/11.3/JRE_WA ; export JRE_HOME
+JAVA_HOME=/apps/waae/11.3/JRE_WA ; export JAVA_HOME
+aslibs=/apps/waae/11.3/JRE_WA/lib:$aslibs
+# Set system path
+PATH="$AUTOSYS/bin:$JRE_PATH/bin:$PATH" ; export PATH
+
+# Set gcclib variable.
+gcclib=""
+
+# Set system library path
+aslibvar=LD_LIBRARY_PATH
+case `uname` in
+AIX) aslibvar=LIBPATH ;;
+HP-UX) aslibvar=SHLIB_PATH ;;
+Linux) gcclib=/lib ;;
+OSF1) _RLD_ARGS=-ignore_unresolved ; export _RLD_ARGS ;;
+esac
+eval $aslibvar=\$aslibs\${$aslibvar:+:\$$aslibvar}:\$gcclib
+export $aslibvar
+
+unset aslibs aslibvar gcclib
+
+# Set MANPATH variable
+if [ -n "$MANPATH" ]; then
+MANPATH=`echo $MANPATH |
+awk ' {
+      ix=index( $0, r11path )
+      if( ix==0 )
+         print $0
+      else
+      {
+         len=length( r11path )
+         print substr( $0, 1, ix-1 ) substr( $0, ix+len+1 )
+      }
+      } ' r11path=/opt/CA/UnicenterAutoSysJM/autosys/doc `
+fi
+manpath=`cd $AUTOSYS; cd ..; pwd`
+if echo $MANPATH | grep $manpath > /dev/null 2>&1; then
+:
+else
+MANPATH="${MANPATH:-/usr/share/man}:${manpath}/Documentation" ; export MANPATH
+fi
+
+TZ=Europe/Paris
+export TZ

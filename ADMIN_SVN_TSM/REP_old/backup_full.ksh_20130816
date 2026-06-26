@@ -1,0 +1,80 @@
+#!/bin/ksh -x 
+
+
+backup ()
+{
+tar -pcf ${fic} svn
+
+if [ $? == 0 ]
+then
+	echo "Bonjour," > ${out}
+        echo "" >> ${out}
+	echo "Le backup du repertoire ${rep} est OK le $(date +'%d/%m/%Y a %H:%M')" >> ${out}
+	echo "" >> ${out}
+else 
+	echo "Bonjour," > ${out}
+        echo "" >> ${out}
+	echo "Le backup du repertoire ${rep} est KO le $(date +'%d/%m/%Y a %H:%M')" >> ${out}
+	mailx -r mbx-tip-app-bfi-rri@natixis.com -s "[${ENVI}][SVN] - Le backup du repertoire ${rep} est KO le ${J_DAY}" arnaud.lozahic-ext@natixis.com < ${out}
+   	exit 1 	
+fi
+}
+
+
+tsm_ar ()
+
+{
+dsmc ar ${rep_appli}/${fic} -optfile=/opt/tivoli/tsm/client/ba/bin/AR/SLQDL7BDD01_AR-dsm.opt
+}
+
+
+tsm_q_ar ()
+
+{
+dsmc q ar ${rep_appli}/${fic} -optfile=/opt/tivoli/tsm/client/ba/bin/AR/SLQDL7BDD01_AR-dsm.opt > ${out2}_${J_DAY}
+
+if [ `/bin/grep svn_pcf.tar ${out2}_${J_DAY} | wc -l` -lt 1 ]
+then
+        echo -e "\033[31mLa sauvegarde TSM full est KO, veuillez verifier les logs ${out1} et ${out2}\033[00m"
+	echo "Bonjour," > ${out}
+	echo "" >> ${out}
+        echo "La sauvegarde tsm full est KO le $(date +'%d/%m/%Y a %H:%M'), veuillez consulter les logs ${out1} et ${out2}" >> ${out}
+        mailx -r mbx-tip-app-bfi-rri@natixis.com -s "[${ENVI}][SVN] - La sauvegarde full est KO le ${J_DAY}" arnaud.lozahic-ext@natixis.com < ${out}
+        exit 1
+else
+        echo -e "\033[31mLa sauvegarde TSM full est OK\033[00m"
+        echo "La sauvegarde TSM full est OK le $(date +'%d/%m/%Y a %H:%M')" >> ${out}
+        echo "" >> ${out}
+        echo "-------------" >> ${out}
+        echo "" >> ${out}
+	cp -rp ${out2}_${J_DAY} ${out3}
+	sed -i -e '1,14d' ${out3}
+	cat ${out3} | awk -F " " '{printf "%+10s %+15s %+10s %+15s\n", $1, $3, $4, $5}' > ${toto}
+	cat ${toto} >> ${out}
+        mailx -r mbx-tip-app-bfi-rri@natixis.com -s "[${ENVI}][SVN] - Log de la sauvegarde full du ${J_DAY}" arnaud.lozahic-ext@natixis.com < ${out}
+fi
+}
+
+
+# Main
+rep=/slqdl7bdd01/appli/dl7/svn
+rep_backup=/slqdl7bdd01/appli/dl7/sp/backup
+rep_appli=/slqdl7bdd01/appli/dl7
+fic=svn_pcf.tar
+out=${rep_appli}/QDL7_DDUMP_SVN_RRI/logs/tsm.log
+out1=${rep_appli}/QDL7_DDUMP_SVN_RRI/logs/tsm_ar.log
+out2=${rep_appli}/QDL7_DDUMP_SVN_RRI/logs/tsm_q_ar.log
+out3=${rep_appli}/QDL7_DDUMP_SVN_RRI/logs/tsm_q_ar_tmp.log
+toto=${rep_appli}/QDL7_DDUMP_SVN_RRI/logs/toto.log
+J_DAY=$(date "+%Y%m%d")
+ENVI=PREX
+
+cd ${rep_appli}
+backup
+tsm_ar > ${out1}_${J_DAY}
+tsm_q_ar
+
+mail
+
+mv ${fic} ${rep_backup}/subversion.tar
+rm -f ${out3} ${toto} ${out}

@@ -1,0 +1,66 @@
+#! /bin/ksh
+
+OUTPUT_FILE=/exploit/systeme/suivi/HTMLL/Erreurs_VTOM_RECETTE.html 
+
+case $# in
+  0) DATE_D=$(date +"%Y-%m-%d"); DATE_F=$DATE_D; CLAUSE="vtexpdatevalue = CURRENT_DATE";;
+  1) DATE_D=$1; DATE_F=$DATE_D; CLAUSE="vtexpdatevalue = cast ('$DATE_D' as date)";;
+  2) DATE_D=$1; DATE_F=$2; CLAUSE="vtexpdatevalue >= cast ('$DATE_D' as date) AND vtexpdatevalue <= cast ('$DATE_F' as date)";;
+  *) echo "Nombre d'arguments incorrect"; exit 1;;
+esac
+
+echo ' <html>
+     <head>
+  <title></title>
+  <style type="text/css">
+body
+{
+      background-repeat: no-repeat;
+      background-position: left top;
+      padding-top:68px;
+      margin-bottom:50px; }
+  </style>
+  </head>
+</html>
+<table border="1">
+  <tr bgcolor="#808080"> ' > $OUTPUT_FILE 
+
+/produit/vtom/v52/sgbd/bin/psql -A -H -c "SELECT vtenvname, vtapplname, vtjobname, vtbegin, vtend, vtend - vtbegin, vtexpdatevalue, vtnbretry, 'EN-ERREUR', vtretcode, vterrmess FROM vt_stats_job WHERE $CLAUSE AND vtjobname IS NOT NULL AND vtstatus = 4 ORDER BY vtend ASC" -d vtom -h localhost -p 30009 -U vtom >> $OUTPUT_FILE
+
+#cat $OUTPUT_FILE | sed 12d | sed 's/<tr valign="top"/<tr valign="top" bgcolor=yellow/g' |  grep -v "<tr>" > $OUTPUT_FILE
+#cat $OUTPUT_FILE | sed 12d | sed '/<tr valign="top"/d' |  grep -v "<tr>" > $OUTPUT_FILE
+cat $OUTPUT_FILE | sed 15d | sed '/<tr valign="top"/d' |  grep -v "<tr>" > $OUTPUT_FILE
+
+#if [ `/bin/grep TEST_RESSOURCES Erreurs_VTOM_RECETTE.html | wc -l` -ne 0 ] 
+#then 
+#sed -i "/TEST_RESSOURCES/i <tr valign="top" bgcolor=#008000>" $OUTPUT_FILE 
+#fi
+		
+#if [ `/bin/grep TEST_MOF Erreurs_VTOM_RECETTE.html | wc -l` -ne 0 ] 
+#then
+#sed -i "/TEST_MOF/i <tr valign="top" bgcolor=#FFFF00>" $OUTPUT_FILE 
+#fi				
+
+#if [ `/bin/grep TEST_SFDS Erreurs_VTOM_RECETTE.html | wc -l` -ne 0 ]
+#then
+#sed -i "/TEST_SFDS/i <tr valign="top" bgcolor=#FF0000>" $OUTPUT_FILE 
+#fi
+
+#if [ `/bin/grep TEST_AIDA_LOT2 Erreurs_VTOM_RECETTE.html | wc -l` -ne 0 ]
+#then
+#sed -i "/TEST_AIDA_LOT2/i <tr valign="top" bgcolor=#0000FF>" $OUTPUT_FILE 
+#fi
+
+#if [ `/bin/grep TEST_COMMERCIAL Erreurs_VTOM_RECETTE.html | wc -l` -ne 0 ]
+#then
+#sed -i "/TEST_COMMERCIAL/i <tr valign="top" bgcolor=#FFA500>" $OUTPUT_FILE 
+#fi
+				
+#if [ `/bin/grep TEST_STAT Erreurs_VTOM_RECETTE.html | wc -l` -ne 0 ]
+#then
+#sed -i "/TEST_STAT/i <tr valign="top" bgcolor=#8A2BE2>" $OUTPUT_FILE 
+#fi
+
+NB_TEST=$(grep "EN-ERREUR" $OUTPUT_FILE|wc -l)
+
+/exploit/batch/sendmime.sh -s "[VTOM RECETTE] Erreurs ($NB_TEST)" -t "Statistiques du $DATE_D au $DATE_F extraites le $(date +'%d/%m/%Y a %H:%M')" arnaud.lozahic@mondial-assistance.fr $OUTPUT_FILE

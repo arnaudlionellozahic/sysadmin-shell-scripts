@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml:stylesheet type="text/xsl" href="export.xsl"?>
+<Domain name="centos63" stamp="VTEXPORT : 5.5.1d LINUX 2012/10/25 Visual Tom (c) Absyss" version="5.5.1" generationDate="Wed Dec 12 17:26:39 2012">
+  <Properties>
+    <Property id="DOM00000" key="mail.smtp.encryption" value="none"/>
+    <Property id="DOM00000" key="mail.smtp.user" value=""/>
+    <Property id="DOM00000" key="mail.smtp.port" value="25"/>
+    <Property id="DOM00000" key="mail.from" value="arnaud.lozahic@absyss.fr"/>
+    <Property id="DOM00000" key="mail.smtp.auth" value="false"/>
+    <Property id="DOM00000" key="mail.smtp.host" value="jupiter"/>
+    <Property id="DOM00000" key="mail.smtp.password" value=""/>
+    <Property id="DOM00000" key="mail.recipients" value="arnaud.lozahic@absyss.fr;"/>
+  </Properties>
+  <Calendars>
+    <Calendar name="cal_soumission" year="2012" publicHolidays="1" specificDays="1" firstInWeek="0" lastInWeek="0" firstInHalfMonth="0" lastInHalfMonth="0" firstInMonth="0" lastInMonth="0" firstInYear="0" lastInYear="0" daysInWeek="wwwwwhh" daysInYear="" holidaysGroupName="FR"/>
+  </Calendars>
+  <Dates>
+    <Date name="SOUMISSION" type="S" value="2012/11/28" recovery="0" blocked="0" tz="0"/>
+  </Dates>
+  <Periods/>
+  <Hosts>
+    <Host name="centos63" real="centos63" port="0" comment="" lastStatus="R" lastIP="127.0.0.1" lastTimeStatus="1355326994280" lastTimeResolv="1355326994201" lastTimeCheck="1355326994201" savedIP="127.0.0.1" savedOS="Linux"/>
+    <Host name="tokyo" real="tokyo" port="0" comment="" lastStatus="R" lastIP="192.90.84.143" lastTimeStatus="1355326995378" lastTimeResolv="1355326994767" lastTimeCheck="1355326994767" savedIP="192.90.84.143" savedOS="Win7"/>
+    <Host name="avize" real="avize" port="0" comment="" lastStatus="R" lastIP="192.90.84.231" lastTimeStatus="1355326994100" lastTimeResolv="1355326993866" lastTimeCheck="1355326993866" savedIP="192.90.84.231" savedOS="Linux"/>
+    <Host name="uranus" real="uranus" port="0" comment="" lastStatus="R" lastIP="192.90.84.50" lastTimeStatus="1355326995999" lastTimeResolv="1355326995478" lastTimeCheck="1355326995478" savedIP="192.90.84.50" savedOS="AIX"/>
+  </Hosts>
+  <Queues>
+    <Queue name="queue_ksh"/>
+    <Queue name="queue_wnt"/>
+    <Queue name="queue_sh"/>
+  </Queues>
+  <Users>
+    <User name="alozahic" comment="00:00:00"/>
+    <User name="centos"/>
+  </Users>
+  <Resources>
+    <Resource name="FILERES" type="F" host="centos63">
+      <Value><![CDATA[/home/alozahic/Linux/centos63/Ver551/scripts/toto.csv]]></Value>
+    </Resource>
+    <Resource name="FILERES1" type="F" host="centos63">
+      <Value><![CDATA[/home/alozahic/Linux/centos63/Ver551/scripts/toto.csv (fileresdelay1)]]></Value>
+    </Resource>
+    <Resource name="FILERES2" type="F" host="client_local">
+      <Value><![CDATA[/home/alozahic/Linux/centos63/Ver551/scripts/toto.csv(fileresdelay2)]]></Value>
+    </Resource>
+    <Resource name="Bandes" type="W" current="2">
+      <Value><![CDATA[2]]></Value>
+    </Resource>
+  </Resources>
+  <Contexts/>
+  <Environments>
+    <Environment name="SOUMISSION" scriptsDir="" tracesDir="" logsLifeSpan="0" calendar="cal_soumission/2012" date="SOUMISSION" host="centos63" queue="queue_ksh" user="alozahic" enginePid="-1" lastAskOfExploitation="1354040510" lastTimeStatus="1355326995515">
+      <UsedCalendars names="cal_soumission/2012"/>
+      <UsedDates names="SOUMISSION"/>
+      <UsedHosts names="avize centos63 tokyo uranus"/>
+      <UsedQueues names="queue_ksh queue_sh queue_wnt"/>
+      <UsedResources names="FILERES FILERES1 FILERES2 Bandes"/>
+      <UsedUsers names="alozahic centos"/>
+      <UsedPeriods/>
+      <Applications>
+        <Application name="TEST1_1" retained="0" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" mode="O" status="U" descOnErr="1" host="centos63" queue="queue_ksh" user="alozahic">
+          <Planning calendar="cal_soumission/2012" planning="1" formula="0" daysInWeek="WWWWWWW" daysInMonth="BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" weeksInMonth="11111" monthsInYear="111111111111"/>
+          <ExpectedResources>
+            <ExpectedResource resource="Bandes" operator="!" wait="1" startAfter="1" free="1">
+              <Value><![CDATA[2]]></Value>
+            </ExpectedResource>
+          </ExpectedResources>
+          <Jobs>
+            <Job name="test_1" retained="0" information="Attente lien obligatoire  vers test actuellement NON-PLANIFIE" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" mode="O" queue="queue_ksh" retcode="0" status="U" appInErr="1" descOnErr="0" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1350553185" timeEnd="1350553190">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_ksh]]></Script>
+              <Parameters>
+                <Parameter><![CDATA["C:\VTOM5\SCRIPTS"]]></Parameter>
+              </Parameters>
+              <ExpectedResources>
+                <ExpectedResource resource="FILERES2" operator="P" wait="1" startAfter="0" free="1">
+                  <Value></Value>
+                </ExpectedResource>
+              </ExpectedResources>
+              <Node objectType="job" x="40" y="200"/>
+            </Job>
+            <Job name="test" retained="0" information="Application a stop, job non planifie" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" mode="E" queue="queue_ksh" retcode="0" status="U" appInErr="1" descOnErr="0" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1350583962" timeEnd="1350583970">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_ksh]]></Script>
+              <Parameters>
+                <Parameter><![CDATA["C:\VTOM5\SCRIPTS"]]></Parameter>
+              </Parameters>
+              <ExpectedResources>
+                <ExpectedResource resource="FILERES2" operator="P" wait="1" startAfter="0" free="1">
+                  <Value></Value>
+                </ExpectedResource>
+              </ExpectedResources>
+              <Node objectType="job" x="160" y="110"/>
+            </Job>
+            <Job name="test_2" retained="0" information="Attente lien facultatif  vers test_3 actuellement NON-PLANIFIE" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" mode="O" queue="queue_ksh" retcode="0" status="U" appInErr="1" descOnErr="0" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="0" timeEnd="0">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_ksh]]></Script>
+              <Parameters>
+                <Parameter><![CDATA["C:\VTOM5\SCRIPTS"]]></Parameter>
+              </Parameters>
+              <ExpectedResources>
+                <ExpectedResource resource="FILERES2" operator="P" wait="1" startAfter="0" free="1">
+                  <Value></Value>
+                </ExpectedResource>
+              </ExpectedResources>
+              <Node objectType="job" x="40" y="270"/>
+            </Job>
+            <Job name="test_3" retained="0" information="Attente lien obligatoire  vers test actuellement NON-PLANIFIE" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" mode="O" queue="queue_ksh" retcode="0" status="U" appInErr="1" descOnErr="0" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="0" timeEnd="0">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_ksh]]></Script>
+              <Parameters>
+                <Parameter><![CDATA["C:\VTOM5\SCRIPTS"]]></Parameter>
+              </Parameters>
+              <ExpectedResources>
+                <ExpectedResource resource="FILERES2" operator="P" wait="1" startAfter="0" free="1">
+                  <Value></Value>
+                </ExpectedResource>
+              </ExpectedResources>
+              <Node objectType="job" x="270" y="200"/>
+            </Job>
+            <Job name="test_4" retained="0" information="Attente lien conditionnel  vers test_3 actuellement NON-PLANIFIE" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" mode="O" queue="queue_ksh" retcode="0" status="U" appInErr="1" descOnErr="0" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="0" timeEnd="0">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_ksh]]></Script>
+              <Parameters>
+                <Parameter><![CDATA["C:\VTOM5\SCRIPTS"]]></Parameter>
+              </Parameters>
+              <ExpectedResources>
+                <ExpectedResource resource="FILERES2" operator="P" wait="1" startAfter="0" free="1">
+                  <Value></Value>
+                </ExpectedResource>
+              </ExpectedResources>
+              <Node objectType="job" x="270" y="270"/>
+            </Job>
+            <Job name="test_5" retained="0" information="Attente lien facultatif  vers test_4 actuellement NON-PLANIFIE" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" mode="E" queue="queue_ksh" retcode="0" status="U" appInErr="1" descOnErr="0" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1350583971" timeEnd="1350583975">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_ksh]]></Script>
+              <Parameters>
+                <Parameter><![CDATA["C:\VTOM5\SCRIPTS"]]></Parameter>
+              </Parameters>
+              <ExpectedResources>
+                <ExpectedResource resource="FILERES2" operator="P" wait="1" startAfter="0" free="1">
+                  <Value></Value>
+                </ExpectedResource>
+              </ExpectedResources>
+              <Node objectType="job" x="160" y="360"/>
+            </Job>
+          </Jobs>
+          <Graph name="TEST1_1"/>
+          <Node objectType="app" x="120" y="200"/>
+        </Application>
+        <Application name="TEST1_2" retained="0" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" mode="O" status="U" descOnErr="1" host="centos63" queue="queue_ksh" user="alozahic">
+          <Planning calendar="cal_soumission/2012" planning="1" formula="0" daysInWeek="WWWWWWW" daysInMonth="BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" weeksInMonth="11111" monthsInYear="111111111111"/>
+          <ExpectedResources>
+            <ExpectedResource resource="Bandes" operator="!" wait="1" startAfter="1" free="1">
+              <Value><![CDATA[2]]></Value>
+            </ExpectedResource>
+          </ExpectedResources>
+          <Jobs>
+            <Job name="test_5" retained="0" information="Attente lien facultatif  vers test_2 actuellement NON-PLANIFIE" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" mode="E" queue="queue_ksh" retcode="0" status="U" appInErr="1" descOnErr="0" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1350584001" timeEnd="1350584005">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_ksh]]></Script>
+              <Parameters>
+                <Parameter><![CDATA["C:\VTOM5\SCRIPTS"]]></Parameter>
+              </Parameters>
+              <ExpectedResources>
+                <ExpectedResource resource="FILERES2" operator="P" wait="1" startAfter="0" free="1">
+                  <Value></Value>
+                </ExpectedResource>
+              </ExpectedResources>
+              <Node objectType="job" x="160" y="360"/>
+            </Job>
+            <Job name="test_3" retained="0" information="Attente lien obligatoire  vers test actuellement NON-PLANIFIE" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" mode="O" queue="queue_ksh" retcode="0" status="U" appInErr="1" descOnErr="0" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="0" timeEnd="0">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_ksh]]></Script>
+              <Parameters>
+                <Parameter><![CDATA["C:\VTOM5\SCRIPTS"]]></Parameter>
+              </Parameters>
+              <ExpectedResources>
+                <ExpectedResource resource="FILERES2" operator="P" wait="1" startAfter="0" free="1">
+                  <Value></Value>
+                </ExpectedResource>
+              </ExpectedResources>
+              <Node objectType="job" x="270" y="200"/>
+            </Job>
+            <Job name="test" retained="0" information="Application a stop, job non planifie" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" mode="E" queue="queue_ksh" retcode="0" status="U" appInErr="1" descOnErr="0" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1350583996" timeEnd="1350584000">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_ksh]]></Script>
+              <Parameters>
+                <Parameter><![CDATA["C:\VTOM5\SCRIPTS"]]></Parameter>
+              </Parameters>
+              <ExpectedResources>
+                <ExpectedResource resource="FILERES2" operator="P" wait="1" startAfter="0" free="1">
+                  <Value></Value>
+                </ExpectedResource>
+              </ExpectedResources>
+              <Node objectType="job" x="160" y="110"/>
+            </Job>
+            <Job name="test_1" retained="0" information="Attente lien obligatoire  vers test actuellement NON-PLANIFIE" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" mode="O" queue="queue_ksh" retcode="0" status="U" appInErr="1" descOnErr="0" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1350553185" timeEnd="1350553190">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_ksh]]></Script>
+              <Parameters>
+                <Parameter><![CDATA["C:\VTOM5\SCRIPTS"]]></Parameter>
+              </Parameters>
+              <ExpectedResources>
+                <ExpectedResource resource="FILERES2" operator="P" wait="1" startAfter="0" free="1">
+                  <Value></Value>
+                </ExpectedResource>
+              </ExpectedResources>
+              <Node objectType="job" x="40" y="200"/>
+            </Job>
+            <Job name="test_2" retained="0" information="Attente lien facultatif  vers test_1 actuellement NON-PLANIFIE" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" mode="O" queue="queue_ksh" retcode="0" status="U" appInErr="1" descOnErr="0" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="0" timeEnd="0">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_ksh]]></Script>
+              <Parameters>
+                <Parameter><![CDATA["C:\VTOM5\SCRIPTS"]]></Parameter>
+              </Parameters>
+              <ExpectedResources>
+                <ExpectedResource resource="FILERES2" operator="P" wait="1" startAfter="0" free="1">
+                  <Value></Value>
+                </ExpectedResource>
+              </ExpectedResources>
+              <Node objectType="job" x="40" y="270"/>
+            </Job>
+            <Job name="test_4" retained="0" information="Attente lien conditionnel  vers test_3 actuellement NON-PLANIFIE" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" mode="O" queue="queue_ksh" retcode="0" status="U" appInErr="1" descOnErr="0" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="0" timeEnd="0">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_ksh]]></Script>
+              <Parameters>
+                <Parameter><![CDATA["C:\VTOM5\SCRIPTS"]]></Parameter>
+              </Parameters>
+              <ExpectedResources>
+                <ExpectedResource resource="FILERES2" operator="P" wait="1" startAfter="0" free="1">
+                  <Value></Value>
+                </ExpectedResource>
+              </ExpectedResources>
+              <Node objectType="job" x="270" y="270"/>
+            </Job>
+          </Jobs>
+          <Graph name="TEST1_2"/>
+          <Node objectType="app" x="120" y="270"/>
+        </Application>
+        <Application name="LIEN_OU" retained="0" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" mode="J" status="F" descOnErr="1" host="centos63" queue="queue_ksh" user="alozahic">
+          <Planning calendar="cal_soumission/2012" planning="1" formula="0" daysInWeek="WWWWWWW" daysInMonth="BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" weeksInMonth="11111" monthsInYear="111111111111"/>
+          <Jobs>
+            <Job name="test" retained="0" information="en erreur (1)" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" maxLength="00:01:00" mode="E" queue="queue_ksh" retcode="1" status="E" appInErr="0" descOnErr="1" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1354060801" timeEnd="1354060806">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_KO.ksh]]></Script>
+              <Node objectType="job" x="180" y="70"/>
+            </Job>
+            <Job name="test_2" retained="0" information="Job a stop, non planifie" frequency="D" onDemand="0" isAsked="0" cycleEnabled="1" cycle="*/2" minStart="00:00:00" maxStart="22:00:00" mode="O" queue="queue_ksh" retcode="0" status="U" appInErr="0" descOnErr="1" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1350646331" timeEnd="1350646331">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_ksh]]></Script>
+              <Parameters>
+                <Parameter><![CDATA["C:\VTOM5\SCRIPTS"]]></Parameter>
+              </Parameters>
+              <ExpectedResources>
+                <ExpectedResource resource="Bandes" operator="!" wait="1" startAfter="1" free="1">
+                  <Value><![CDATA[2]]></Value>
+                </ExpectedResource>
+              </ExpectedResources>
+              <Node objectType="job" x="180" y="170"/>
+            </Job>
+            <Job name="test_1" retained="0" information="Job a stop, non planifie" frequency="D" onDemand="0" isAsked="0" cycleEnabled="1" cycle="*/2" minStart="00:00:00" maxStart="22:00:00" mode="O" queue="queue_ksh" retcode="0" status="U" appInErr="0" descOnErr="1" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1350646201" timeEnd="1350646208">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_ksh]]></Script>
+              <Parameters>
+                <Parameter><![CDATA["C:\VTOM5\SCRIPTS"]]></Parameter>
+              </Parameters>
+              <ExpectedResources>
+                <ExpectedResource resource="Bandes" operator="!" wait="1" startAfter="1" free="1">
+                  <Value><![CDATA[2]]></Value>
+                </ExpectedResource>
+              </ExpectedResources>
+              <Node objectType="job" x="180" y="120"/>
+            </Job>
+            <Job name="test_3" retained="0" information="termine (0)" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" maxLength="00:01:00" mode="E" queue="queue_ksh" retcode="0" status="F" appInErr="0" descOnErr="1" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1354060801" timeEnd="1354060806">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551d/scripts/job_ksh]]></Script>
+              <Node objectType="job" x="70" y="260"/>
+            </Job>
+            <Job name="test_4" retained="0" information="termine (0)" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" maxLength="00:01:00" mode="E" queue="queue_ksh" retcode="0" status="F" appInErr="0" descOnErr="1" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1354060802" timeEnd="1354060866">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551d/scripts/sleep.ksh]]></Script>
+              <Node objectType="job" x="280" y="260"/>
+            </Job>
+            <Job name="test_5" retained="0" information="termine (0)" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" maxLength="00:01:00" mode="E" queue="queue_ksh" retcode="0" status="F" appInErr="0" descOnErr="0" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1354060811" timeEnd="1354060816">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551d/scripts/job_ksh]]></Script>
+              <Node objectType="job" x="180" y="390"/>
+            </Job>
+            <Job name="OU_" retained="0" information="termine (0)" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" maxLength="00:01:00" mode="E" queue="queue_ksh" retcode="0" status="F" appInErr="0" descOnErr="1" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1354060806" timeEnd="1354060811">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551d/scripts/job_ksh]]></Script>
+              <Node objectType="job" x="180" y="320"/>
+            </Job>
+            <Job name="test_6" retained="0" information="Attente lien erreur (value) vers test_5 actuellement TERMINE" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" mode="E" queue="queue_ksh" retcode="0" status="D" appInErr="0" descOnErr="1" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1354041362" timeEnd="1354041367">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551d/scripts/job_ksh]]></Script>
+              <Node objectType="job" x="500" y="390"/>
+            </Job>
+          </Jobs>
+          <Graph name="TEST1_3"/>
+          <Node objectType="app" x="120" y="330"/>
+        </Application>
+        <Application name="TEST1_4" retained="0" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="20:00:00" maxStart="22:00:00" mode="O" status="U" descOnErr="1" host="centos63" queue="queue_ksh" user="alozahic">
+          <Planning calendar="cal_soumission/2012" planning="1" formula="0" daysInWeek="WWWWWWW" daysInMonth="BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" weeksInMonth="11111" monthsInYear="111111111111"/>
+          <Jobs>
+            <Job name="test" retained="0" information="Application a stop, job non planifie" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="20:00:00" maxStart="22:00:00" maxLength="00:01:00" mode="E" queue="queue_ksh" retcode="0" status="U" appInErr="0" descOnErr="1" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1352805963" timeEnd="1352805968">
+              <Script><![CDATA[#/home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/KSH/SURVEIL_PROD/VTOM/PARAM/param.ksh]]></Script>
+              <Node objectType="job" x="180" y="150"/>
+            </Job>
+            <Job name="test_2" retained="0" information="Application a stop, job non planifie" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="20:00:00" maxStart="22:00:00" mode="E" queue="queue_ksh" retcode="0" status="U" appInErr="0" descOnErr="1" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1352806008" timeEnd="1352806073">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_ksh]]></Script>
+              <Parameters>
+                <Parameter><![CDATA["C:\VTOM5\SCRIPTS"]]></Parameter>
+              </Parameters>
+              <Node objectType="job" x="180" y="250"/>
+            </Job>
+            <Job name="test_1" retained="0" information="Application a stop, job non planifie" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="20:00:00" maxStart="22:00:00" mode="E" queue="queue_ksh" retcode="0" status="U" appInErr="0" descOnErr="1" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1352806008" timeEnd="1352806073">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_ksh]]></Script>
+              <Parameters>
+                <Parameter><![CDATA["C:\VTOM5\SCRIPTS"]]></Parameter>
+              </Parameters>
+              <Node objectType="job" x="180" y="200"/>
+            </Job>
+          </Jobs>
+          <Graph name="TEST1_4"/>
+          <Node objectType="app" x="120" y="390"/>
+        </Application>
+        <Application name="TEST1" retained="0" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" mode="O" status="U" descOnErr="1" host="centos63" queue="queue_ksh" user="alozahic">
+          <Planning calendar="cal_soumission/2012" planning="1" formula="0" daysInWeek="WWWWWWW" daysInMonth="BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" weeksInMonth="11111" monthsInYear="111111111111"/>
+          <ExpectedResources>
+            <ExpectedResource resource="Bandes" operator="!" wait="1" startAfter="1" free="1">
+              <Value><![CDATA[2]]></Value>
+            </ExpectedResource>
+          </ExpectedResources>
+          <Jobs>
+            <Job name="test_1" retained="0" information="Application a stop, job non planifie" frequency="D" onDemand="0" isAsked="0" cycleEnabled="1" cycle="*/2" minStart="00:00:00" maxStart="22:00:00" mode="O" queue="queue_ksh" retcode="0" status="U" appInErr="0" descOnErr="1" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1350646201" timeEnd="1350646208">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_ksh]]></Script>
+              <Parameters>
+                <Parameter><![CDATA["C:\VTOM5\SCRIPTS"]]></Parameter>
+              </Parameters>
+              <ExpectedResources>
+                <ExpectedResource resource="Bandes" operator="!" wait="1" startAfter="1" free="1">
+                  <Value><![CDATA[2]]></Value>
+                </ExpectedResource>
+              </ExpectedResources>
+              <Node objectType="job" x="180" y="200"/>
+            </Job>
+            <Job name="test_2" retained="0" information="Application a stop, job non planifie" frequency="D" onDemand="0" isAsked="0" cycleEnabled="1" cycle="*/2" minStart="00:00:00" maxStart="22:00:00" mode="O" queue="queue_ksh" retcode="0" status="U" appInErr="0" descOnErr="1" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1350646331" timeEnd="1350646331">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_ksh]]></Script>
+              <Parameters>
+                <Parameter><![CDATA["C:\VTOM5\SCRIPTS"]]></Parameter>
+              </Parameters>
+              <ExpectedResources>
+                <ExpectedResource resource="Bandes" operator="!" wait="1" startAfter="1" free="1">
+                  <Value><![CDATA[2]]></Value>
+                </ExpectedResource>
+              </ExpectedResources>
+              <Node objectType="job" x="180" y="250"/>
+            </Job>
+            <Job name="test" retained="0" information="Application a stop, job non planifie" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" maxLength="00:01:00" mode="E" queue="queue_ksh" retcode="0" status="U" appInErr="0" descOnErr="1" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1352806018" timeEnd="1352806023">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551/scripts/job_KO.ksh]]></Script>
+              <ExpectedResources>
+                <ExpectedResource resource="Bandes" operator="!" wait="1" startAfter="1" free="1">
+                  <Value><![CDATA[2]]></Value>
+                </ExpectedResource>
+              </ExpectedResources>
+              <Node objectType="job" x="180" y="150"/>
+            </Job>
+          </Jobs>
+          <Graph name="TEST1_5"/>
+          <Node objectType="app" x="120" y="140"/>
+        </Application>
+        <Application name="TEST1_5" retained="0" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" mode="J" status="F" descOnErr="1" host="centos63" queue="queue_ksh">
+          <Planning calendar="cal_soumission/2012" planning="1" formula="0" daysInWeek="WWWWWWW" daysInMonth="BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" weeksInMonth="11111" monthsInYear="111111111111"/>
+          <Jobs>
+            <Job name="test" retained="0" information="termine (0)" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" maxLength="00:01:00" mode="E" user="alozahic" retcode="0" status="F" appInErr="0" descOnErr="1" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1354060801" timeEnd="1354060806">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551d/scripts/toto]]></Script>
+              <Node objectType="job" x="280" y="150"/>
+            </Job>
+            <Job name="test_1" retained="0" information="termine (0)" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" maxLength="00:01:00" mode="E" user="alozahic" retcode="0" status="F" appInErr="0" descOnErr="1" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1354060806" timeEnd="1354060811">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551d/scripts/toto]]></Script>
+              <Node objectType="job" x="280" y="210"/>
+            </Job>
+            <Job name="test_2" retained="0" information="termine (0)" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" maxLength="00:01:00" mode="E" user="alozahic" retcode="0" status="F" appInErr="0" descOnErr="1" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1354060811" timeEnd="1354060816">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551d/scripts/toto]]></Script>
+              <Node objectType="job" x="280" y="280"/>
+            </Job>
+            <Job name="test_3" retained="0" information="termine (0)" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="22:00:00" maxLength="00:01:00" mode="E" user="alozahic" retcode="0" status="F" appInErr="0" descOnErr="1" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="1354060816" timeEnd="1354060821">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551d/scripts/toto]]></Script>
+              <Node objectType="job" x="280" y="350"/>
+            </Job>
+            <Job name="test_4" retained="0" information="Attente lien obligatoire (value) vers test_2 actuellement TERMINE" frequency="D" onDemand="0" isAsked="0" cycleEnabled="0" cycle="00:00:00" minStart="00:00:00" maxStart="20:00:00" maxLength="00:01:00" mode="E" user="alozahic" retcode="0" status="D" appInErr="0" descOnErr="1" blockDate="0" restartType="M" restartCount="0" restartMax="1" restartLabel="0" timeBegin="0" timeEnd="0">
+              <Script><![CDATA[#/home/alozahic/Linux/centos63/Ver551d/scripts/toto]]></Script>
+              <Node objectType="job" x="10" y="280"/>
+            </Job>
+          </Jobs>
+          <Graph name="TEST1_5"/>
+          <Node objectType="app" x="120" y="460"/>
+        </Application>
+      </Applications>
+      <Graph name="SOUMISSION"/>
+    </Environment>
+  </Environments>
+  <Rights>
+    <Right name="READ_DOM_DATE"/>
+    <Right name="WRITE_DOM_DATE"/>
+    <Right name="READ_DOM_CALENDAR"/>
+    <Right name="WRITE_DOM_CALENDAR"/>
+    <Right name="READ_DOM_PERIOD"/>
+    <Right name="WRITE_DOM_PERIOD"/>
+    <Right name="READ_DOM_RESOURCE"/>
+    <Right name="WRITE_DOM_RESOURCE"/>
+    <Right name="READ_DOM_USER"/>
+    <Right name="WRITE_DOM_USER"/>
+    <Right name="READ_DOM_HOST"/>
+    <Right name="WRITE_DOM_HOST"/>
+    <Right name="READ_DOM_QUEUE"/>
+    <Right name="WRITE_DOM_QUEUE"/>
+    <Right name="READ_DOM_ENV"/>
+    <Right name="WRITE_DOM_ENV"/>
+    <Right name="READ_DOM_TOKEN"/>
+    <Right name="WRITE_DOM_TOKEN"/>
+    <Right name="READ_DOM_CONTEXT"/>
+    <Right name="WRITE_DOM_CONTEXT"/>
+    <Right name="READ_DOM_ACCOUNT"/>
+    <Right name="WRITE_DOM_ACCOUNT"/>
+    <Right name="READ_DOM_ALARM"/>
+    <Right name="WRITE_DOM_ALARM"/>
+    <Right name="READ_DOM_INSTRUCTION"/>
+    <Right name="WRITE_DOM_INSTRUCTION"/>
+    <Right name="FCT_VIEW_PILOT"/>
+    <Right name="FCT_ACT_PILOT"/>
+    <Right name="FCT_LAUNCH_ENGINE"/>
+    <Right name="FCT_ACT_VIEW"/>
+    <Right name="FCT_STOP_ENGINE"/>
+    <Right name="FCT_STATISTICS"/>
+    <Right name="FCT_HISTORIC"/>
+    <Right name="FCT_EVENT_CONSOLE"/>
+    <Right name="FCT_REMOTE_TRANSFERT"/>
+    <Right name="FCT_REPORT"/>
+    <Right name="FCT_MULTIDOMAIN"/>
+    <Right name="READ_ENV_RIGHT" environmentName="SOUMISSION"/>
+    <Right name="WRITE_ENV_RIGHT" environmentName="SOUMISSION"/>
+  </Rights>
+  <Accounts>
+    <Account name="alozahic" comment="" usualName="" password="" useLDAP="0"/>
+    <Account name="TOM" comment="user TOM" usualName="" password="02cf1b" useLDAP="0"/>
+    <Account name="pilote" comment="" usualName="" password="" useLDAP="0"/>
+  </Accounts>
+  <Profiles>
+    <Profile name="TOM_prf" comment="">
+      <ProfileAccounts>
+        <ProfileAccount default="1" name="alozahic"/>
+        <ProfileAccount default="1" name="TOM"/>
+      </ProfileAccounts>
+      <ProfileRights>
+        <ProfileRight name="FCT_STATISTICS"/>
+        <ProfileRight name="WRITE_DOM_ENV"/>
+        <ProfileRight name="READ_DOM_DATE"/>
+        <ProfileRight name="FCT_EVENT_CONSOLE"/>
+        <ProfileRight name="FCT_REPORT"/>
+        <ProfileRight name="READ_DOM_CALENDAR"/>
+        <ProfileRight name="READ_ENV_RIGHT/SOUMISSION"/>
+        <ProfileRight name="READ_DOM_TOKEN"/>
+        <ProfileRight name="READ_DOM_INSTRUCTION"/>
+        <ProfileRight name="WRITE_DOM_TOKEN"/>
+        <ProfileRight name="READ_DOM_ACCOUNT"/>
+        <ProfileRight name="READ_DOM_HOST"/>
+        <ProfileRight name="WRITE_DOM_PERIOD"/>
+        <ProfileRight name="WRITE_DOM_ACCOUNT"/>
+        <ProfileRight name="WRITE_ENV_RIGHT/SOUMISSION"/>
+        <ProfileRight name="READ_DOM_USER"/>
+        <ProfileRight name="WRITE_DOM_INSTRUCTION"/>
+        <ProfileRight name="WRITE_DOM_USER"/>
+        <ProfileRight name="WRITE_DOM_RESOURCE"/>
+        <ProfileRight name="READ_DOM_ALARM"/>
+        <ProfileRight name="WRITE_DOM_ALARM"/>
+        <ProfileRight name="FCT_HISTORIC"/>
+        <ProfileRight name="WRITE_DOM_CALENDAR"/>
+        <ProfileRight name="FCT_REMOTE_TRANSFERT"/>
+        <ProfileRight name="READ_DOM_PERIOD"/>
+        <ProfileRight name="FCT_VIEW_PILOT"/>
+        <ProfileRight name="READ_DOM_ENV"/>
+        <ProfileRight name="FCT_MULTIDOMAIN"/>
+        <ProfileRight name="WRITE_DOM_DATE"/>
+        <ProfileRight name="READ_DOM_CONTEXT"/>
+        <ProfileRight name="READ_DOM_QUEUE"/>
+        <ProfileRight name="WRITE_DOM_HOST"/>
+        <ProfileRight name="WRITE_DOM_CONTEXT"/>
+        <ProfileRight name="FCT_ACT_VIEW"/>
+        <ProfileRight name="WRITE_DOM_QUEUE"/>
+        <ProfileRight name="READ_DOM_RESOURCE"/>
+        <ProfileRight name="FCT_LAUNCH_ENGINE"/>
+        <ProfileRight name="FCT_STOP_ENGINE"/>
+        <ProfileRight name="FCT_ACT_PILOT"/>
+      </ProfileRights>
+      <Properties>
+        <Property id="PRO7f000001431d64cb5024f0e600000001" key="look" value="com.jgoodies.looks.plastic.PlasticXPLookAndFeel"/>
+        <Property id="PRO7f000001431d64cb5024f0e600000001" key="style" value="com.jgoodies.looks.plastic.theme.DesertBlue"/>
+      </Properties>
+    </Profile>
+    <Profile name="pilote_prf" comment="">
+      <ProfileAccounts>
+        <ProfileAccount default="0" name="TOM"/>
+        <ProfileAccount default="1" name="pilote"/>
+      </ProfileAccounts>
+      <ProfileRights>
+        <ProfileRight name="WRITE_DOM_ENV"/>
+        <ProfileRight name="READ_DOM_DATE"/>
+        <ProfileRight name="READ_DOM_CALENDAR"/>
+        <ProfileRight name="READ_ENV_RIGHT/SOUMISSION"/>
+        <ProfileRight name="READ_DOM_TOKEN"/>
+        <ProfileRight name="READ_DOM_INSTRUCTION"/>
+        <ProfileRight name="WRITE_DOM_TOKEN"/>
+        <ProfileRight name="READ_DOM_ACCOUNT"/>
+        <ProfileRight name="READ_DOM_HOST"/>
+        <ProfileRight name="WRITE_DOM_PERIOD"/>
+        <ProfileRight name="WRITE_DOM_ACCOUNT"/>
+        <ProfileRight name="READ_DOM_USER"/>
+        <ProfileRight name="WRITE_DOM_INSTRUCTION"/>
+        <ProfileRight name="WRITE_DOM_USER"/>
+        <ProfileRight name="WRITE_DOM_RESOURCE"/>
+        <ProfileRight name="READ_DOM_ALARM"/>
+        <ProfileRight name="WRITE_DOM_ALARM"/>
+        <ProfileRight name="WRITE_DOM_CALENDAR"/>
+        <ProfileRight name="READ_DOM_PERIOD"/>
+        <ProfileRight name="FCT_VIEW_PILOT"/>
+        <ProfileRight name="READ_DOM_ENV"/>
+        <ProfileRight name="WRITE_DOM_DATE"/>
+        <ProfileRight name="READ_DOM_CONTEXT"/>
+        <ProfileRight name="READ_DOM_QUEUE"/>
+        <ProfileRight name="WRITE_DOM_HOST"/>
+        <ProfileRight name="WRITE_DOM_CONTEXT"/>
+        <ProfileRight name="WRITE_DOM_QUEUE"/>
+        <ProfileRight name="READ_DOM_RESOURCE"/>
+      </ProfileRights>
+      <Properties>
+        <Property id="PRO7f00000154abd978508fbfa500000000" key="look" value="com.jgoodies.looks.plastic.PlasticXPLookAndFeel"/>
+        <Property id="PRO7f00000154abd978508fbfa500000000" key="style" value="com.jgoodies.looks.plastic.theme.DesertBlue"/>
+      </Properties>
+    </Profile>
+  </Profiles>
+  <Links>
+    <Link parent="SOUMISSION/TEST1_1/test_2" child="SOUMISSION/TEST1_1/test_4" type="O" status="U" statusIgor="K">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_2/test_5" child="SOUMISSION/TEST1_2/test_4" type="O" status="U" statusIgor="K">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_1/test_2" child="SOUMISSION/TEST1_1/test_3" type="O" status="U" statusIgor="K">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_2/test_5" child="SOUMISSION/TEST1_2/test_2" type="O" status="U" statusIgor="K">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_1/test_1" child="SOUMISSION/TEST1_1/test" type="M" status="U" statusIgor="U">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_5/test_1" child="SOUMISSION/TEST1_5/test" type="M" status="F" statusIgor="K">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_1/test_4" child="SOUMISSION/TEST1_1/test_3" type="C" status="U" statusIgor="U">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_5/test_3" child="SOUMISSION/TEST1_5/test_2" type="M" status="F" statusIgor="K">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_1/test_3" child="SOUMISSION/TEST1_1/test" type="M" status="U" statusIgor="U">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_5/test_2" child="SOUMISSION/TEST1_5/test_1" type="M" status="F" statusIgor="K">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_2/test_3" child="SOUMISSION/TEST1_2/test" type="M" status="U" statusIgor="U">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_5/test_4" child="SOUMISSION/TEST1_5/test_2" type="M" status="F" statusIgor="K" acceptedValues="2-2">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_2/test_4" child="SOUMISSION/TEST1_2/test_3" type="C" status="U" statusIgor="U">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/LIEN_OU/OU_" child="SOUMISSION/LIEN_OU/test_3" type="M" status="F" statusIgor="K">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_2/test_1" child="SOUMISSION/TEST1_2/test" type="M" status="U" statusIgor="U">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/LIEN_OU/OU_" child="SOUMISSION/LIEN_OU/test_4" type="M" status="F" statusIgor="K">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_1/test_5" child="SOUMISSION/TEST1_1/test_2" type="O" status="U" statusIgor="K">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_2/test_2" child="SOUMISSION/TEST1_2/test_3" type="O" status="U" statusIgor="K">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/LIEN_OU/test_5" child="SOUMISSION/LIEN_OU/OU_" type="M" status="F" statusIgor="K">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_1/test_5" child="SOUMISSION/TEST1_1/test_4" type="O" status="U" statusIgor="K">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_2/test_2" child="SOUMISSION/TEST1_2/test_4" type="O" status="U" statusIgor="K">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/LIEN_OU/test_6" child="SOUMISSION/LIEN_OU/test_5" type="E" status="F" statusIgor="K" acceptedValues="1-5">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_1/test_2" child="SOUMISSION/TEST1_1/test_1" type="O" status="U" statusIgor="K">
+      <GLink/>
+    </Link>
+    <Link parent="SOUMISSION/TEST1_2/test_2" child="SOUMISSION/TEST1_2/test_1" type="O" status="U" statusIgor="K">
+      <GLink/>
+    </Link>
+  </Links>
+  <Domains/>
+  <Alarms/>
+  <ObjectAlarms/>
+  <Instructions>
+    <Instruction name="TEST_WIKI" comment="" url="http://nezumi.wiki-site.com/index.php?search={VT_ENVIRONMENT_NAME}"/>
+    <Instruction name="TEST_GOOGLE" comment="" url="http://www.google.fr"/>
+  </Instructions>
+  <ObjectInstructions>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_2/test" instructionName="TEST_WIKI"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_2/test_5" instructionName="TEST_WIKI"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_1/test" instructionName="TEST_WIKI"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_1/test_5" instructionName="TEST_WIKI"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_5/test_1" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_5/test" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1/test" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1/test_2" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1/test_1" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_4/test_1" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_4/test_2" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_4/test" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/LIEN_OU/test_1" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/LIEN_OU/test_2" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/LIEN_OU/test" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_2/test_4" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_2/test_2" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_2/test_1" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_2/test_3" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_1/test_4" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_1/test_3" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_1/test_2" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_1/test_1" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/LIEN_OU/OU_" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/LIEN_OU/test_5" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/LIEN_OU/test_4" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/LIEN_OU/test_3" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_5/test_4" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_5/test_3" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/TEST1_5/test_2" instructionName="TEST_GOOGLE"/>
+    <ObjectInstruction objectName="SOUMISSION/LIEN_OU/test_6" instructionName="TEST_GOOGLE"/>
+  </ObjectInstructions>
+  <HolidaysGroups/>
+</Domain>

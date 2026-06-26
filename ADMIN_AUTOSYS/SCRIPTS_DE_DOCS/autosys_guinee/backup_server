@@ -1,0 +1,32 @@
+
+
+/* ----------------- s00va9930772 ----------------- */ 
+
+insert_machine: s00va9930772
+type: a
+factor: 1.00  
+port: 11601
+node_name: s00va9930772
+agent_name: s00va9930772
+/* key_to_agent: *** masked value ***/
+encryption_type: AES
+heartbeat_attempts: 1
+heartbeat_freq: 5
+character_code: ASCII
+
+
+/* ----------------- BWAED01-PRIMARY ----------------- */ 
+
+insert_machine: BWAED01-PRIMARY
+type: v
+machine: s00va9930772
+max_load: 100       
+factor: 0.00  
+
+
+/* ----------------- exploit ----------------- */ 
+
+insert_machine: exploit
+type: v
+machine: s00va9930772
+factor: ----

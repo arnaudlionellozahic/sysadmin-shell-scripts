@@ -1,0 +1,75 @@
+##
+## vthttpd.ini par defaut
+##
+## Ce fichier doit se trouver dans le repertoire courant ou %WINDIR% (sous Windows) ou $HOME (sous Unix).
+##
+## Les valeurs par defaut sont prefixees par ';'
+##
+
+[params]
+
+## updateMode
+## vtnotifier   : mise a jour via le vtnotifier (mise a jour en temps reel)
+## vtserver:<s> : mise a jour a interval regulier via le vtserver (<s> cycle doit etre superieur a 30s)
+## file:<f>     : mise a jour a partir d'un fichier (le fichier est produit via la commande "vthttpd -dump db.dat")
+;updateMode=vtnotifier
+
+## nom du fichier contenant le cache (":memory:" indique que le cache est en memoire)
+;cacheFile=:memory:
+
+## machine hebergeant le vtserver
+;vtserverHost=localhost
+
+## port du vtserver (vous pouvez laisser ce parametre en commentaire si "vtserver" est declare dans "etc/services")
+;vtserverPort=30007
+
+## port httpd (vous pouvez laisser ce parametre en commentaire si "vthttpd" est declare dans "etc/services")
+;httpPort=30080
+
+## chemin pour les pages web
+;httpRoot=./www
+
+## langue fr_fr/en_us
+;httpLanguage=fr_fr
+
+## httpAcl (+|-)x.x.x.x/x,...
+## Specifiez une liste de controle d'acces (ACL). ACL est une liste separee
+## par des virgules de sous-reseaux IP, chaque sous-reseau est prefixe par
+## '-' ou 'signe' + '. Si le masque sous-reseau est omis, comme "-1.2.3.4",
+## cela signifie une adresse IP unique. Masque peut varier de 0 a 32
+## inclusivement. A chaque demande, la liste complete est analysee.
+## Par defaut aucun masque n'est defini (permettant a tous).
+## Exemple:
+## refuser les connexions de partout, ne permettent que l'adresse IP 127.0.0.1 
+## HttpAcl=-0.0.0.0/0,+127.0.0.1/ 32 
+;httpAcl=
+
+## Variables d'environnement passer au script CGI, en plus des varaibles Standard.
+## La liste doit être la liste separee par des virgules de paires X=Y,
+## Comme ceci: "variable1=valeur1,variable2="valeur2".
+;httpCgiEnv=
+
+## Liste separee par des virgules des extensions CGI. Tous les fichiers ayant ces
+## extensions sont traites comme des scripts CGI.
+## Par defaut: "cgi,pl,php"
+httpCgiExt=
+
+## Force un interpreteur pour tous les scripts CGI.
+## Par defaut cette option n'est pas definie, car c'est la premiere ligne du script
+## qui permet de decider.
+## Pour utiliser php "/usr/local/php5/php-cgi"
+;httpCgiInterp=
+
+## Cette option permet la redirection vers un repertoire a l'exterieur de 'httpRoot'
+## La liste doit être separee par des virgules de paires URI=PATH, comme ceci:
+## "/etc/=/my_etc,/tmp=/my_tmp".
+;httpAliases=
+
+## Cette option permet d'autoriser les requêtes vers des URIs sans passer par l'authentification.
+## Par defaut, /favicon.ico,/css/*,/img/*,/js/* sont autorises.
+## En positionnant "httpAlowedURI", vous pouvez en ajouter d'autres.
+;httpAlowedURI=
+
+## url de base pour les consignes
+[instructions]
+;url=

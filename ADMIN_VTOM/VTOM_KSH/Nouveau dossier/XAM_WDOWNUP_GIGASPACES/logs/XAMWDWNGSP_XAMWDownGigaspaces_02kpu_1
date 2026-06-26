@@ -1,0 +1,229 @@
+***** Debut du job : 2013/12/07 17:20:44 *****
+Stop gigaspaces on msampdgs01 in progress, pid=14394
+
+Stop gigaspaces on msampdgs02 in progress, pid=14395
+
+Stop gigaspaces on msampdgs03 in progress, pid=14396
+
+Stop gigaspaces on msampdgs04 in progress, pid=14397
+
+Stop gigaspaces on msampdgs05 in progress, pid=14398
+
+Stop gigaspaces on msampdgs06 in progress, pid=14399
+
+Stop gigaspaces on msampdgs07 in progress, pid=14400
+
+Stop gigaspaces on msampdgs08 in progress, pid=14401
+
+Stop gigaspaces on msampdgs09 in progress, pid=14402
+
+Stop gigaspaces on msampdgs10 in progress, pid=14403
+
+Stop gigaspaces on msampdgs11 in progress, pid=14404
+
+Stop gigaspaces on msampdgs12 in progress, pid=14405
+
+Stop gigaspaces on msampdgs13 in progress, pid=14406
+
+Stop gigaspaces on msampdgs14 in progress, pid=14407
+
+Stop gigaspaces on msampdgs15 in progress, pid=14408
+
+Stop gigaspaces on msampdgs16 in progress, pid=14409
+
+
+
+Stop still in progress, pids : 14394 14395 14396 14397 14398 14399 14400 14401 14402 14403 14404 14405 14406 14407 14408 14409 ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 10888
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 24181
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 5696
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 15988
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 22590
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 25874
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 20163
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 25505
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 25046
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 26983
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 25114
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 24613
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 24918
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 25168
+[INFO] : Pause de 30 secs ... 
+Stop still in progress, pids : 14394 14395 14396 14397 14398 14399 14400 14401 14402 14403 14404 14405 14406 14407 14408 14409 ... 
+Stop still in progress, pids : 14394 14395 14396 14397 14398 14399 14400 14401 14402 14403 14404 14405 14406 14407 14408 14409 ... 
+Stop still in progress, pids : 14394 14395 14396 14397 14398 14399 14400 14401 14402 14403 14404 14405 14406 14407 14408 14409 ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+Stop still in progress, pids : 14394 14395 14396 14397 14398 14399 14400 14401 14402 14403 14404 14405 14406 14407 14408 14409 ... 
+Stop still in progress, pids : 14394 14395 14396 14397 14398 14399 14400 14401 14402 14403 14404 14405 14406 14407 14408 14409 ... 
+Stop still in progress, pids : 14394 14395 14396 14397 14398 14399 14400 14401 14402 14403 14404 14405 14406 14407 14408 14409 ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+Stop still in progress, pids : 14394 14395 14396 14397 14398 14399 14400 14401 14402 14403 14404 14405 14406 14407 14408 14409 ... 
+Stop still in progress, pids : 14394 14395 14396 14397 14398 14399 14400 14401 14402 14403 14404 14405 14406 14407 14408 14409 ... 
+Stop still in progress, pids : 14394 14395 14396 14397 14398 14399 14400 14401 14402 14403 14404 14405 14406 14407 14408 14409 ... 
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+Stop done for pid 14394
+Stop done for pid 14395
+Stop done for pid 14396
+Stop done for pid 14397
+Stop done for pid 14398
+Stop done for pid 14399
+Stop done for pid 14400
+Stop done for pid 14401
+Stop done for pid 14402
+Stop done for pid 14403
+Stop done for pid 14404
+Stop done for pid 14405
+Stop done for pid 14406
+Stop done for pid 14407
+Stop done for pid 14408
+Stop done for pid 14409
+
+***** Fin du job : 2013/12/07 17:22:25 *****

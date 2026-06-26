@@ -1,0 +1,43 @@
+Bonjour,
+
+
+Machine de Production : CALD ( parva4000839 )
+
+Saving /etc/filesystems : OK
+File already saved
+/etc/filesystems.20100101.014843
+
+Check applicative FS not in rootvg : WR
+Presence de FS applicatifs dans rootvg
+/apps/sys/log/stats/NMON /apps/sys/back /apps/esm/6.5.3
+
+Check Paging space not in applicative VG: OK
+
+Check forbidden stanza repetition in /etc/filesystems : OK
+
+Check all FS with automatically mount : OK
+
+Check all mounetd FS are known :  OK
+
+Check all known FS are mounted :  KO
+/apps/atlas/atlas2v0/uf1/data1/infoc is not mounted
+/apps/atlas/atlas2v0/uf1/data1/infocdr is not mounted
+/var/mqm/log/NCATL01Pl is not mounted
+WARNING : le FS /apps/oradbf/atmir01 est monte vide
+WARNING : le FS /var/mqm/log est monte vide
+WARNING : le FS /var/mqm/qmgrs/NCATL01Pd est monte vide
+WARNING : le FS /ficsav/A2_DEBUG est monte vide
+
+Check all mounted FS are in order:  OK
+
+Check fs order in /etc/filesystems : KO
+Probleme execution de /apps/meoatlas2/outils/CheckFsOrder
+
+
+Merci de votre intervention
+
+
+Cordialement
+Mise En Oeuvre ATLAS2
+
+A2CHKFS:KO -- 20100101 -- 20/Dec/10 09:03 -- 04/Jan/10 20:57

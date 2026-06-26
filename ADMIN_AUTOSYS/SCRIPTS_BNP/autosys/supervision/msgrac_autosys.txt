@@ -1,0 +1,22 @@
+define msgrec
+       msgid="CAUAJM_I_40245 EVENT: ALARM            ALARM: JOBFAILURE       JOB: *"
+       type="MSG"
+       desc="Forward alarme Autosys job FAILURE"
+       cont='Y'
+       msgact='Y'
+       wcsingle='?'
+       wcmany='*'
+define msgact
+       name=(*,10)
+       action="FORWARD"
+       attrib="DEFAULT"
+       color="DEFAULT"
+       evaluate='Y'
+       node="PARV09114929"
+       quiet='N'
+       runid="root"
+       status="ACTIVE"
+       sim='N'
+       sev="E"
+       text="WCC parvl4021530,parvl4021531 &TEXT"
+

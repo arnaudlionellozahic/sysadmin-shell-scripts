@@ -1,0 +1,9 @@
+VARTABLE MAIN_TABLE 
+  ISDEFAULT 
+  MEMBERS
+  DIRPROD "/exploit1fs1/prod/scripte/expl"
+  JOBNAME "^UNISON_JOB^"
+  NTPATH1 "d:\exploit1fs1\prod\scripts\expl\"
+END
+
+

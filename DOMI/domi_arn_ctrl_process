@@ -1,0 +1,23 @@
+#!/bin/ksh 
+
+function process_ori 
+{ 
+# ssh $SERV ps -ef |  awk '  $8 !~ /^[0-9]*:[0-9]*$/ {printf "%-10s;%-15s; %-70s\n","serv",$1,$8" "$9" "$10" "$11" "$12 }' | sed "s/serv/$SERV/g" | sort | grep -v UID | grep -v grep 
+ps -ef |  awk '  $8 !~ /^[0-9]*:[0-9]*$/ {printf "%-10s;%-15s; %-70s\n","serv",$1,$8" "$9" "$10" "$11" "$12 }' | sed "s/serv/$SERV/g" | sort | grep -v awk | grep -v grep 
+} 
+
+
+
+#MAIN 
+
+PROC=/home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/SURVEILLANCE_PROD_544/DOMI
+rm $PROC/procs*.csv 
+
+liste=`cat $PROC/serv_lolo_ori.txt` 
+
+for SERV in $liste 
+do 
+  process_ori >> $PROC/procs.csv 
+done 
+
+uniq $PROC/procs.csv > $PROC/procs_uniq.csv 

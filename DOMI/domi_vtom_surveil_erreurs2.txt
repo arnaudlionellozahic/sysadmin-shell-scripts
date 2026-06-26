@@ -1,0 +1,49 @@
+#! /bin/ksh
+
+set -x
+
+NB_PROD=50
+
+OUTPUT_FILE_TEST=/exploit/systeme/suivi/stats_aida2/$(basename $0)-out.$$; touch $OUTPUT_FILE_TEST
+#trap "rm -f $OUTPUT_FILE" 0 1 2 5 15
+
+case $# in
+  0) DATE_D=$(date +"%Y-%m-%d"); DATE_F=$DATE_D; CLAUSE="vtexpdatevalue = CURRENT_DATE";;
+  1) DATE_D=$1; DATE_F=$DATE_D; CLAUSE="vtexpdatevalue = cast ('$DATE_D' as date)";;
+  2) DATE_D=$1; DATE_F=$2; CLAUSE="vtexpdatevalue >= cast ('$DATE_D' as date) AND vtexpdatevalue <= cast ('$DATE_F' as date)";;
+  *) echo "Nombre d'arguments incorrect"; exit 1;;
+esac
+
+{
+  echo "Statistiques du $DATE_D au $DATE_F extraites le $(date +'%d/%m/%Y a %H:%M')" > $OUTPUT_FILE_TEST
+  echo "" >> $OUTPUT_FILE_TEST
+#  echo "Recette ($NB_PROD jobs)" >> $OUTPUT_FILE_TEST
+  echo "-------" >> $OUTPUT_FILE_TEST
+  echo "ENV;APP;JOB;BEGIN;END;ELAPSE;EXPDATE;RETRY;STATUS;RETCODE;MESSAGE" >> $OUTPUT_FILE_TEST
+#  grep "AIDA2" $OUTPUT_FILE_TEST >> $OUTPUT_FILE_TEST
+}
+
+/produit/vtom/v52/sgbd/bin/psql -A -F \; -t -c "SELECT vtenvname, vtapplname, vtjobname, vtbegin, vtend, vtend - vtbegin, vtexpdatevalue, vtnbretry, 'EN-ERREUR', vtretcode, vterrmess FROM vt_stats_job WHERE $CLAUSE AND vtjobname IS NOT NULL  AND vtstatus = 4 ORDER BY vtend ASC" -d vtom -h localhost -p 30009 -U vtom | grep AIDA2_PROD>> $OUTPUT_FILE_TEST
+
+NB_PROD=$(grep "AIDA2" $OUTPUT_FILE_TEST |wc -l)
+
+sed -i "/"-------"/i Production ($NB_PROD jobs)\n" $OUTPUT_FILE_TEST
+#Ne fonctionne pas sans guillemets entre ---------
+#sed -i "/----------/i Production ($NB_PROD jobs)\n" $OUTPUT_FILE_TEST
+
+if [ `/bin/grep AIDA2 $OUTPUT_FILE_TEST | wc -l` -ne 0 ]
+then
+        /bin/mailx -s "[VTOM RECETTE] Statistiques ($NB_PROD)" arnaud.lozahic@mondial-assistance.fr < $OUTPUT_FILE_TEST
+fi
+
+
+RESULTAT (PAS D'ERREUR VTOM)
+
+Statistiques du 2011-10-21 au 2011-10-21 extraites le 21/10/2011 a 13:14
+
+Production (0 jobs)
+
+-------
+ENV;APP;JOB;BEGIN;END;ELAPSE;EXPDATE;RETRY;STATUS;RETCODE;MESSAGE
+
+

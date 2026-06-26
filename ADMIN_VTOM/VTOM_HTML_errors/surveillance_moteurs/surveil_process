@@ -1,0 +1,123 @@
+serv1=coqexpl1
+SERV1=SERVEUR1
+
+DATE=`date "+%d %h %H:%M"`
+
+FIC_LOG=/exploit/systeme/suivi/surveil_ps/surveil_process.log
+
+>$FIC_LOG
+
+function PROC_APP
+{
+
+vtserver=$(ps -ef | grep vtserver | grep -v grep | wc -l)
+vtsgbd=$(ps -ef | grep vtsgbd | grep -v grep | wc -l)
+bdaemon=$(ps -ef | grep  bdaemon | grep -v grep | wc -l)
+TEST_AIDA_LOT2=$(ps -ef | grep TEST_AIDA_LOT2 | grep -v grep | wc -l)
+TEST_MOF=$(ps -ef | grep TEST_MOF  | grep -v grep | wc -l)
+TEST_ARCOLE_3G=$( ps -ef | grep TEST_ARCOLE_3G | grep -v grep | wc -l)
+TEST_SFDS=$( ps -ef | grep TEST_SFDS | grep -v grep | wc -l)
+#sunopsis_serv1=$(ps -ef | grep sunopsis | grep -v java | grep -v grep | wc -l)
+
+
+
+if [ "$vtserver" = "0" ]
+then
+  printf "Serveur $serv1 $DATE "  "process Vtserver" STOP >> $FIC_LOG
+else
+ nb_vtserver=$(ps -ef | grep vtserver | grep -v grep | wc -l)
+ echo "Serveur $serv1    $SERV1    $nb_vtserver   process Vtserver" >> $FIC_LOG
+fi
+
+
+
+if [ "vtsgbd" = "0" ]
+then
+ echo "Serveur $serv1 Vtsgbd    STOP" >> $FIC_LOG
+else
+ nb_vtsgbd=$(ps -ef | grep vtsgbd | grep -v grep | wc -l)
+ echo "Serveur $serv1    $SERV1    $nb_vtsgbd   process Vtsgbd" >> $FIC_LOG
+fi
+
+
+if [ "bdaemon" = "0" ]
+then
+ echo "Serveur $serv1  Bdaemon    STOP" >> $FIC_LOG
+else
+ nb_bdaemon=$(ps -ef | grep  bdaemon | grep -v grep | wc -l)
+ echo "Serveur $serv1    $SERV1    $nb_bdaemon   process Bdaemon" >> $FIC_LOG
+fi
+
+
+if [ "$TEST_ARCOLE_3G" = "0" ]
+then
+ printf "Serveur $serv1 %-8s %-24s %+4s \n"   "tengine TEST_ARCOLE_3G" STOP >> $FIC_LOG
+else
+ nb_TEST_ARCOLE_3G=$(ps -ef | grep TEST_ARCOLE_3G | grep -v grep | wc -l)
+ echo "Serveur $serv1    $SERV1    $nb_TEST_ARCOLE_3G   tengine TEST_ARCOLE_3G" >> $FIC_LOG
+fi
+
+
+if [ "$TEST_SFDS" = "0" ]
+then
+ printf "Serveur $serv1 %-8s %-24s %+4s \n"   "tengine TEST_SFDS" STOP >> $FIC_LOG
+else
+ nb_TEST_SFDS=$(ps -ef | grep TEST_SFDS | grep -v grep | wc -l)
+ echo "Serveur $serv1    $SERV1    $nb_TEST_SFDS   tengine TEST_SFDS" >> $FIC_LOG
+fi
+
+
+if [ "$TEST_AIDA_LOT2" = "0" ]
+then
+ printf "Serveur $serv1 %-8s %-24s %+4s \n"   "tengine TEST_AIDA_LOT2" STOP >> $FIC_LOG
+else
+ nb_TEST_AIDA_LOT2=$(ps -ef | grep TEST_AIDA_LOT2 | grep -v grep | wc -l)
+ echo "Serveur $serv1    $SERV1    $nb_TEST_AIDA_LOT2   tengine TEST_AIDA_LOT2" >> $FIC_LOG
+fi
+
+
+if [ "$TEST_MOF" = "0" ]
+then
+ printf "Serveur $serv1 %-8s %-24s %+4s \n"   "tengine TEST_MOF" STOP >> $FIC_LOG
+ echo "----------------------------------------------------------" >> $FIC_LOG
+else
+ nb_TEST_MOF=$( ps -ef | grep TEST_MOF  | grep -v grep | wc -l)
+ echo "Serveur $serv1    $SERV1    $nb_TEST_MOF   tengine TEST_MOF " >> $FIC_LOG
+ echo "----------------------------------------------------------" >> $FIC_LOG
+fi
+
+
+
+#if [ "$sunopsis_serv1" = "0" ]
+#then
+# printf "Serveur $serv1    $SERV1   %-8s %-24s %+4s \n"  STOP "process Sunopsis" STOP >> $FIC_LOG
+# echo "----------------------------------------------------------" >> $FIC_LOG
+#else
+# nb_sunopsis_serv1=$( ps -ef | grep sunopsis | grep -v java | grep -v grep | wc -l)
+# echo "Serveur $serv1    $SERV1    $nb_sunopsis_serv1   process sunopsis " >> $FIC_LOG
+# echo "-----------------------------------------------------------" >> $FIC_LOG
+#fi
+
+
+
+
+
+
+
+echo   "   RECETTE " $(date +%d-%m-%y\ %Hh%M) >> $FIC_LOG
+
+}
+
+
+# programme principal
+clear
+echo   "   PROD " $(date +%d-%m-%y\ %Hh%M)
+echo   "   PROD " $(date +%d-%m-%y\ %Hh%M) >> $FIC_LOG
+echo "----------------------------------------------------------" >> $FIC_LOG
+
+PROC_APP
+
+if [ `/bin/grep STOP $FIC_LOG | wc -l` -ne 0 ]
+then
+        /bin/mailx -s "SURVEILLANCE_PROCESS COQEXPL1 RECETTE VTOM" arnaud.lozahic@mondial-assistance.fr < $FIC_LOG
+fi

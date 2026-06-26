@@ -1,0 +1,149 @@
+DEBUT JOB /msxamubdd01/appli/am/XAM_WDOWNUP_GRIDDR/xv/sbin/XAMWCHKMSGILCMN 20140525-084513
+
+Check de msgilcmn001.cdcsdm apres reboot
+msgilcmn001.cdcsdm is alive
+Machine msgilcmn001.cdcsdm OK
+
+Check de msgilcmn002.cdcsdm apres reboot
+msgilcmn002.cdcsdm is alive
+Machine msgilcmn002.cdcsdm OK
+
+Check de msgilcmn030.cdcsdm apres reboot
+msgilcmn030.cdcsdm is alive
+Machine msgilcmn030.cdcsdm OK
+
+Check de msgilcmn050.cdcsdm apres reboot
+msgilcmn050.cdcsdm is alive
+Machine msgilcmn050.cdcsdm OK
+
+msgilcmn-patch1.cdcsdm est dans la liste d'exclusion
+
+msgilcmn-patch2.cdcsdm est dans la liste d'exclusion
+
+msgilcmn-test1.cdcsdm est dans la liste d'exclusion
+
+msgilcmn-test2.cdcsdm est dans la liste d'exclusion
+
+Check de msgilcmn003.cdcsdm apres reboot
+no answer from msgilcmn003.cdcsdm
+Machine msgilcmn003.cdcsdm KO !!!
+
+Check de msgilcmn004.cdcsdm apres reboot
+msgilcmn004.cdcsdm is alive
+Machine msgilcmn004.cdcsdm OK
+
+Check de msgilcmn005.cdcsdm apres reboot
+msgilcmn005.cdcsdm is alive
+Machine msgilcmn005.cdcsdm OK
+
+Check de msgilcmn006.cdcsdm apres reboot
+msgilcmn006.cdcsdm is alive
+Machine msgilcmn006.cdcsdm OK
+
+Check de msgilcmn007.cdcsdm apres reboot
+no answer from msgilcmn007.cdcsdm
+Machine msgilcmn007.cdcsdm KO !!!
+
+Check de msgilcmn008.cdcsdm apres reboot
+msgilcmn008.cdcsdm is alive
+Machine msgilcmn008.cdcsdm OK
+
+Check de msgilcmn009.cdcsdm apres reboot
+msgilcmn009.cdcsdm is alive
+Machine msgilcmn009.cdcsdm OK
+
+Check de msgilcmn010.cdcsdm apres reboot
+no answer from msgilcmn010.cdcsdm
+Machine msgilcmn010.cdcsdm KO !!!
+
+Check de msgilcmn011.cdcsdm apres reboot
+no answer from msgilcmn011.cdcsdm
+Machine msgilcmn011.cdcsdm KO !!!
+
+Check de msgilcmn012.cdcsdm apres reboot
+msgilcmn012.cdcsdm is alive
+Machine msgilcmn012.cdcsdm OK
+
+Check de msgilcmn013.cdcsdm apres reboot
+no answer from msgilcmn013.cdcsdm
+Machine msgilcmn013.cdcsdm KO !!!
+
+
+Check de msgilcmn016.cdcsdm apres reboot
+no answer from msgilcmn016.cdcsdm
+Machine msgilcmn016.cdcsdm KO !!!
+
+Check de msgilcmn018.cdcsdm apres reboot
+no answer from msgilcmn018.cdcsdm
+Machine msgilcmn018.cdcsdm KO !!!
+
+Check de msgilcmn019.cdcsdm apres reboot
+no answer from msgilcmn019.cdcsdm
+Machine msgilcmn019.cdcsdm KO !!!
+
+
+
+Check de msgilcmn023.cdcsdm apres reboot
+no answer from msgilcmn023.cdcsdm
+Machine msgilcmn023.cdcsdm KO !!!
+
+
+
+
+Check de msgilcmn028.cdcsdm apres reboot
+no answer from msgilcmn028.cdcsdm
+Machine msgilcmn028.cdcsdm KO !!!
+
+Check de msgilcmn029.cdcsdm apres reboot
+no answer from msgilcmn029.cdcsdm
+Machine msgilcmn029.cdcsdm KO !!!
+
+Check de msgilcmn031.cdcsdm apres reboot
+no answer from msgilcmn031.cdcsdm
+Machine msgilcmn031.cdcsdm KO !!!
+
+Check de msgilcmn032.cdcsdm apres reboot
+no answer from msgilcmn032.cdcsdm
+Machine msgilcmn032.cdcsdm KO !!!
+
+
+Check de msgilcmn034.cdcsdm apres reboot
+no answer from msgilcmn034.cdcsdm
+Machine msgilcmn034.cdcsdm KO !!!
+
+Check de msgilcmn035.cdcsdm apres reboot
+no answer from msgilcmn035.cdcsdm
+Machine msgilcmn035.cdcsdm KO !!!
+
+
+
+Check de msgilcmn037.cdcsdm apres reboot
+no answer from msgilcmn037.cdcsdm
+Machine msgilcmn037.cdcsdm KO !!!
+
+
+
+Check de msgilcmn041.cdcsdm apres reboot
+no answer from msgilcmn041.cdcsdm
+Machine msgilcmn041.cdcsdm KO !!!
+
+Check de msgilcmn042.cdcsdm apres reboot
+no answer from msgilcmn042.cdcsdm
+Machine msgilcmn042.cdcsdm KO !!!
+
+
+
+Check de msgilcmn045.cdcsdm apres reboot
+no answer from msgilcmn045.cdcsdm
+Machine msgilcmn045.cdcsdm KO !!!
+
+
+Check de msgilcmn060.cdcsdm apres reboot
+no answer from msgilcmn060.cdcsdm
+Machine msgilcmn060.cdcsdm KO !!!
+
+Check de msgilcmn073.cdcsdm apres reboot
+no answer from msgilcmn073.cdcsdm
+Machine msgilcmn073.cdcsdm KO !!!
+
+

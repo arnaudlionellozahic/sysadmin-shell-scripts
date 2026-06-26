@@ -1,0 +1,7 @@
+Jan 16 00:00 # 23.38.38 .CASH_I_0072 Jobset dsu1Cald 1500 Started at 23.38.38
+Jan 16 23:55 # 21.56.29 .CASH_I_0100 Jobset dsu1Cald, Job dask12, Jno 0001, Qual 1501 queued for submit
+Jan 16 23:55 # 21.56.31 .CASH_I_0069 dsu1Cald dask12 0001 1501 Started at 21.56.29 at node parva4000839, Pid = 01405052
+Jan 16 23:55 # 21.56.45 .CASH_I_0054 dsu1Cald dask12 0001 1501 Completed at 21.56.45, code: 00000000 at node parva4000839, Pid = 01405052
+Jan 16 23:55 # 21.57.46 .CASH_I_0060 dsu1Cald 1500 Completed at 21.57.46, code: 00000000
+Jan 16 23:55 # 21.57.46 .CASH_I_0072 Jobset mww0Cald 1500 Started at 21.57.46
+Jan 16 23:55 # 21.58.22 .CASH_I_0060 mww0Cald 1500 Completed at 21.58.22, code: 00000000

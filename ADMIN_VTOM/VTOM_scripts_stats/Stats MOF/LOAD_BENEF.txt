@@ -1,0 +1,8 @@
+AIDA_LOT2       	LOAD_BENEF      	SYNCHRO_PROTOS  	smapx251        	prod_aida_cli    
+AIDA_LOT2       	LOAD_BENEF      	CREER_SCRIPTS   	smapx251        	prod_aida_cli    
+AIDA_LOT2       	LOAD_BENEF      	DROP_INDEX      	smapx251        	prod_aida_cli    
+AIDA_LOT2       	LOAD_BENEF      	DEMARRE_AJOUT   	smapx251        	prod_aida_cli    
+AIDA_LOT2       	LOAD_BENEF      	DROP_PK         	smapx251        	prod_aida_cli    
+AIDA_LOT2       	LOAD_BENEF      	DEMARRE_COMPLET 	smapx251        	prod_aida_cli    
+AIDA_LOT2       	LOAD_BENEF      	recreer_index   	smapx251        	prod_aida_cli    
+AIDA_LOT2       	LOAD_BENEF      	edition_rapport 	smapx251        	prod_aida_cli    

@@ -1,0 +1,182 @@
+#!/bin/ksh
+# ----------------------------------------------------------------------------
+# COPYFILE : Copie des fichiers cft dans travaux
+# ----------------------------------------------------------------------------
+# Parametres     :
+# Entrees        :
+# Sorties        :
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+
+######################################################
+# Diverses initialisations de variables obligatoires #
+######################################################
+
+# Parametres passes en arguments par CONTROL-M
+ODATE=${1}
+[ "X${ODATE}" = "X" ] && echo "Parm ODATE non specifie" && exit 1
+
+IDF=${2}
+[ "X${IDF}" = "X" ] && echo "Parm IDF non specifie" && exit 1
+
+FIC_CFT=${3}
+[ "X${FIC_CFT}" = "X" ] && echo "Parm FIC_CFT non specifie" && exit 1
+
+REP=${4}
+[ "X${REP}" = "X" ] && echo "Parm REP non specifie" && exit 1
+
+
+# exporte les variables CTM0, GEHLOG, GEDAA, GEDAACC et GEDSOFT
+ctrlmExports ${0}
+
+# source l'environnement de la machine logique
+switch ${GEHLOG} > /dev/null
+
+
+############################################
+# Chargement des variables d'environnement #
+############################################
+
+GENERAL_ENV="${GEDAA}/etc/`echo ${GEIENV} | tr "UQP" "uqp"`v/env_q04.ksh"
+LOCAL_ENV="${REP}/`echo ${GEIENV} | tr "UQP" "uqp"`v/etc/env.ksh"
+
+if [ -f ${GENERAL_ENV} ]; then
+  . ${GENERAL_ENV}
+  [ $? -ne 0 ] && MsgError "impossible de charger l'environnement" && exit 1
+fi
+
+if [ -f ${LOCAL_ENV} ]; then
+  . ${LOCAL_ENV}
+  [ $? -ne 0 ] && MsgError "impossible de charger l'environnement" && exit 1
+fi
+
+#############################################################
+# Initialisation des variables n'ayant pas a etre modifiees #
+#############################################################
+
+_DATE=`date +"%Y%m%d_%H%M%S"`
+
+#code retour pour fichier non present
+_CODE1=0
+#code retour pour cp en erreur
+_CODE2=0
+#code retour pour mv et bzip en erreur
+_CODE3=0
+
+###################################################
+# Initialisation des variables specifiques au job #
+###################################################
+
+_REP_WAIT=${REP}/cft/${IDF}.wait
+_REP_DONE=${REP}/cft/${IDF}.done
+REP_WORK=${REP}/travaux
+
+CODEAPP=Q04
+
+#######################
+##LANCEMENT DU SCRIPT##
+#######################
+#-------------------------------------------------------------------
+# Debut du job
+#-------------------------------------------------------------------
+echo "----------------------------------------------------------------------------------------------------------"
+echo ""
+echo "#### DEBUT JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+echo ""
+
+echo "VARIABLES CTLM"
+echo "IDF=${IDF}"
+echo "FIC_CFT=`echo $FIC_CFT | awk -F '{print $1}'`"
+echo "REP=${REP}"
+echo ""
+echo "VARIABLES VALORISEES DANS LE SCRIPT"
+echo "_REP_WAIT=${_REP_WAIT}"
+echo "_REP_DONE=${_REP_DONE}"
+echo "REP_WORK=${REP_WORK}"
+
+
+# ---------------------------------------------------------------------------- #
+# Reception des Fichiers en entrée via CFT et copie dans travaux
+# ---------------------------------------------------------------------------- #
+
+        echo ""
+        echo "CFT : Reception de fichiers `echo $FIC_CFT | awk -F '{print $1}'` via flux ${IDF}"
+
+for i in `echo $FIC_CFT | awk -F '{print $1}'`
+do
+cd ${_REP_WAIT}
+
+        if [ -s ${i} ]; then
+                echo ""
+                echo "**********************************************************************************************************"
+                echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Avant copie : Information sur les fichiers presents dans ${_REP_WAIT}"
+                echo "`ls -ltr ${_REP_WAIT} | grep -v total`"
+                echo ""
+                #Copie du fichier dans le repertoire travaux
+                echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Copie du fichier ${i} dans ${REP_WORK}"
+                cp -p ${i} ${REP_WORK}/${i}
+                _CODE2=$?
+                if [ ${_CODE2} -ne 0 ]; then
+                        echo ""
+                        echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : La copie du fichier ${i} vers ${REP_WORK} a echoue"
+                        let "_CODE2+=2"
+                        echo "code retour du cp en echec : ${_CODE2}"
+                        echo "exit ${_CODE2}"
+                        exit ${_CODE2}
+                                else
+                                echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Le fichier ${i} a ete copie avec succes dans ${REP_WORK}"
+                                echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Archivage du fichier ${i} dans ${_REP_DONE}"
+                                #Pour mes tests
+                                #mv ${_REP_WAIT}/${i} ${_REP_DONE}/ && bzip2 ${_REP_DONE}/${i} && mv ${_REP_DONE}/${i}.bz2 ${_REP_DONE}/${i}-${_DATE}.bz2
+                                mv ${_REP_WAIT}/${i} ${_REP_DONE}/${i}#${_DATE}
+                                _CODE3=$?
+                fi
+                if [ ${_CODE3} -ne 0 ]; then
+                        echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : L'archivage du fichier ${i} dans ${_REP_DONE} a echoue"
+                        echo ""
+                        echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Apres move : Information sur les fichiers presents dans ${_REP_WAIT}"
+                        echo "`ls -ltr ${_REP_WAIT} | grep -v total`"
+                        echo "**********************************************************************************************************"
+                        let "_CODE3+=2"
+                        echo "code retour pour mv et bzip en erreur : ${_CODE3}"
+                        echo "exit ${_CODE3}"
+                        exit ${_CODE3}
+                                else
+                                echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Le fichier ${i} a ete archive avec succes dans ${_REP_DONE}"
+                                echo ""
+                                echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Apres move : Information sur les fichiers presents dans ${_REP_WAIT}"
+                                echo "`ls -ltr ${_REP_WAIT} | grep -v total`"
+                                echo ""
+                                echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Apres move : Information sur les fichiers presents dans ${_REP_DONE}"
+                                echo "`ls -ltr ${_REP_DONE} | grep -v total`"
+                                echo "**********************************************************************************************************"
+                fi
+
+                        else
+                        echo ""
+                        echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Fichier ${i} vide ou non present."
+                        let "_CODE1+=2"
+                        echo "code retour du fichier vide ou non present : ${_CODE1}"
+        fi
+done
+
+
+echo ""
+echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+#-------------------------------------------------------------------
+# Fin du job proprement dit
+#-------------------------------------------------------------------
+if [ ${_CODE2} -ne 0 ]; then
+        #echo "code retour du cp en echec : ${_CODE2}"
+        echo "exit ${_CODE2}"
+        exit ${_CODE2}
+                elif [ ${_CODE3} -ne 0 ]; then
+                #echo "code retour du fichier vide ou non present : ${_CODE3}"
+                echo "exit ${_CODE3}"
+                exit ${_CODE3}
+                        else
+                        #echo "code retour pour mv et bzip en erreur : ${_CODE1}"
+                        echo "exit ${_CODE1}"
+                        exit ${_CODE1}
+fi
+

@@ -1,0 +1,53 @@
+#!/bin/ksh
+#
+# script de compression d'un fichier et envoi par mail via sunopsis
+# Auteur: 
+# Date creation : 27-07-2010 
+# Date MAJ : 27-07-2010 
+# Version : 1.0
+#
+# Parametres:
+#		$1 : date à J-1
+#		$2 : chemin du fichier de filtre
+#		$3 : nom du fichier
+#       $4 : adresse destinataire  
+#       $5 : adresse emetteur  
+#
+########################################################################
+set -x
+
+DATE=$1
+FILTRE=$2
+NOM=$3
+EXT_MAIL_TO=$4
+EXT_MAIL_FROM=$5
+
+DATE_JOUR=`date +"%d-%m-%Y"`;
+EXT_FICHIER="/produit/vtom/v46/stats/$(echo $DATE|sed 's/\(..\)-\(..\)-\(....\)/\3-\2-\1/')_$3.csv";
+#EXT_MAIL_TO="arnaud.lozahic@mondial-assistance.fr,svc-exploit@mondial-assistance.fr";
+#EXT_MAIL_FROM="svc-exploit@mondial-assistance.fr"
+
+STATS_FILE=$TOM_STATS/$(echo $DATE|sed 's/\(..\)-\(..\)-\(....\)/\3-\2-\1/').csv
+echo $STATS_FILE
+
+while read app; do
+  grep "FIDELIO_LOT2/$app" $STATS_FILE
+done < $2 > $EXT_FICHIER
+
+	if [ $? -eq 0 ]
+	then
+		/usr/local/bin/sendmime.sh -s "Statistiques $3" -t "Bonjour, nous sommes le $DATE_JOUR. Vous trouverez ci joint la liste des statistiques d'exécutions des traitements de la chaîne $3 du $DATE. En cas de probleme, contacter svc-exploit@mondial-assistance.fr. Bonne reception." -f $5 $4 $EXT_FICHIER
+
+                if [ $? -eq 0 ]
+                then
+                echo "le fichier $EXT_FICHIER a bien ete envoye a $4";
+		gzip -9 $EXT_FICHIER;
+                exit ;
+
+                else
+			echo "pas de fichier passe en parametre";
+			exit1;
+		fi
+	fi
+
+

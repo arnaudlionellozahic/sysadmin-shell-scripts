@@ -1,0 +1,6 @@
+mode Database log              mode Archive
+Archivage automatique             Activé
+Destination de l'archive             /apps/oradbf/atpr01/archive
+Séquence de journal en ligne la plus ancienne     344840
+Séquence de journal suivante à archiver      344842
+Séquence de journal courante            344842

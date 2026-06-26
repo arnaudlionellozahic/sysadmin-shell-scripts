@@ -1,0 +1,141 @@
+#!/usr/bin/ksh
+#Suivi des PROD ATLAS2
+#Equipe: MEO ATLAS2
+#Planification crontab: 30 08 * * 2-6 ksh /apps/meoatlas2/outils/newcheck.sh
+#---------------------
+
+#-------------------------
+#Mise en place envt TNG
+#-------------------------
+if type cautil >/dev/null
+  then
+      :
+  else
+  . /usr/bin/EnvironnementTNG
+fi
+
+WORK=/apps/meoatlas2
+. $WORK/outils/param_check
+DATE=$(date +"%d%m%Y")
+LOG=$WORK/log/check_prod.lst.$DATE
+LOG1=$WORK/log/check_prod.lst1
+LOG2=$WORK/log/check_prod.lst2
+LOG3=$WORK/log/check_prod.lst3
+
+
+echo "Subject: Suivi PROD $(hostname)" > $LOG 
+echo "To: $MAIL_DEST" >> $LOG
+(
+echo "\nverif si Sauvegardes apres EOD OK\n******************************\n"
+for i in $FILES
+  do
+/usr/bin/dsmc q ar $INST_TSM $NODE_TSM $PASS_TSM "$i" |tail -1 
+done
+
+
+echo "\nHeure Déchargement infocentre (infoc)\n******************************\n"
+for i in $A1 
+  do
+    cautil sel jobsethist id=${i}* list |grep "^ Start:" | tail -1
+done | sort +5
+
+
+
+D1_TP1=`cautil sel jobhist id=jtp1*,jcics1,* list | grep "^ Start:" | tail -2 | head -1 | awk '{ print $2","$3 }'`
+D1_TP2=`cautil sel jobhist id=jtp2*,jcics2,* list | grep "^ Start:" | tail -1 | awk '{ print $2","$3 }'`
+D1_BA1=`cautil sel jobhist id=jtp1*,jcics1,* list | grep "^ Start:" | tail -1 | awk '{ print $2","$3 }'`
+DATE1=$(echo $D1_TP1 | cut -d"," -f1)
+
+
+#Qualifier du dernier BATCH
+qual=$(cautil sel jobhist id=jtp2*,jcics2,* list | grep Qualifier: | tail -1 | awk '{print $NF}' | cut -c 1-2)
+
+
+m1=$(echo $D1_TP1 | cut -c 4-5)
+j1=$(echo $D1_TP1 | cut -c 1-2)
+a1=$(echo $D1_TP1 | cut -c 7-10)
+he1=$(echo $D1_TP1 | cut -c 12-13)
+mi1=$(echo $D1_TP1 | cut -c 15-16)
+d1_D1_TP1=${m1}${j1}${he1}${mi1}${a1}
+
+
+m2=$(echo $D1_TP2 | cut -c 4-5)
+j2=$(echo $D1_TP2 | cut -c 1-2)
+a2=$(echo $D1_TP2 | cut -c 7-10)
+he2=$(echo $D1_TP2 | cut -c 12-13)
+mi2=$(echo $D1_TP2 | cut -c 15-16)
+d1_D1_TP2=${m2}${j2}${he2}${mi2}${a2}
+
+
+
+m3=$(echo $D1_BA1 | cut -c 4-5)
+j3=$(echo $D1_BA1 | cut -c 1-2)
+a3=$(echo $D1_BA1 | cut -c 7-10)
+he3=$(echo $D1_BA1 | cut -c 12-13)
+mi3=$(echo $D1_BA1 | cut -c 15-16)
+d1_D1_BA1=${m3}${j3}${he3}${mi3}${a3}
+
+
+
+touch -m $d1_D1_TP1 $LOG1
+Duree_D1_TP1=$(ctime $LOG1 | awk '{print $1}')
+
+touch -m $d1_D1_TP2 $LOG2
+Duree_D1_TP2=$(ctime $LOG2 | awk '{print $1}')
+
+touch -m $D1_BA1 $LOG3
+Duree_D1_BA1=$(ctime $LOG3 | awk '{print $1}')
+
+
+SEUIL_JTP1_JTP2=$( echo "$Duree_D1_TP2 - $Duree_D1_TP1" | bc -l)
+SEUIL_JTP1_JTP1=$( echo "$Duree_D1_BA1 - $Duree_D1_TP1" | bc -l)
+
+
+
+#4 cas:
+#SEUIL = Jx - JTP1
+#SEUIL < 0 ==> Autre jour
+#0 < SEUIL < SEUIL_JTP1_JTP2 ==> Abort TP
+#SEUIL_JTP1_JTP2 < SEUIL < SEUIL_JTP1_JTP1 ==> Abort BATCH
+#SEUIL_JTP1_JTP1 < SEUIL ==> Autre jour
+echo "$SEUIL_JTP1_JTP2 -- $SEUIL_JTP1_JTP1"
+
+
+
+
+
+echo "\nBATCH: JOBS EN ABORT ENTRE $D1_TP2 - $D1_BA1\n*********************\n"
+cautil select conlog start="$D1_TP2" end="$D1_BA1" list conlog | grep CASH_I_0062 | grep "(.)"  | grep GENERATED | sed "s/(.)//g" | grep "cau8trk" | awk '{ print $22,$23,$6,$7 }' | sed  -e "s/(//g" -e "s/)//g" | sort -un +0 +1 |
+while read a b c d
+do
+if [[ $a -ge $DATE1 ]]
+then
+echo "$c $d $a $b" $(cautil sel job id=$c,$d,* list | grep "Description" )
+fi
+done
+
+echo "\nTP: JOBS EN ABORT ENTRE $D1_TP1 - $D1_TP2 \n*********************\n"
+cautil select conlog start="$D1_TP1" end="$D1_TP2" list conlog | grep CASH_I_0062 | grep "(.)"  | grep GENERATED | sed "s/(.)//g" | grep "cau8trk" | awk '{ print $22,$23,$6,$7 }' | sed  -e "s/(//g" -e "s/)//g" | sort -un +0 +1 |
+while read a b c d
+do
+if [[ $a -ge $DATE1 ]]
+then
+echo "$c $d $a $b" $(cautil sel job id=$c,$d,* list | grep "Description" )
+fi
+done
+
+
+
+echo "\n\nBATCH GIL\n"
+cautil select conlog start="$D1_TP2" end="$D1_BA1" list conlog | grep CASH_I_0062 | grep -w "${qual}0." | grep "(.)" | grep GENERATED |sed "s/(1)//g" | sort -nr +1 | grep "cau8trk" | awk '{ print $21,$22,$23,$6,$7 }' | sed -e "s/(1)//g" -e "s/(//g" -e "s/)//g" | sort -nr +1 | sort -u |
+while read e a b c d
+do
+l=$(cautil sel job id=$c,$d,* list | grep "Description" | sed "s/Description://g")
+echo "$c $d $e $a $b $l"
+done
+
+
+) >> $LOG 
+
+cat $LOG
+#sendmail -f paris_sig_pbcb2_atlas@bnpparibas.com -t < $LOG >/dev/null

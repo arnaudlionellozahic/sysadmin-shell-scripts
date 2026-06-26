@@ -1,0 +1,214 @@
+***** Debut du job : 2013/10/26 16:00:15 *****
+Stop gigaspaces on msampdgs01 in progress, pid=3460
+
+Stop gigaspaces on msampdgs02 in progress, pid=3461
+
+Stop gigaspaces on msampdgs03 in progress, pid=3462
+
+Stop gigaspaces on msampdgs04 in progress, pid=3463
+
+Stop gigaspaces on msampdgs05 in progress, pid=3464
+
+Stop gigaspaces on msampdgs06 in progress, pid=3465
+
+Stop gigaspaces on msampdgs07 in progress, pid=3466
+
+Stop gigaspaces on msampdgs08 in progress, pid=3467
+
+Stop gigaspaces on msampdgs09 in progress, pid=3468
+
+Stop gigaspaces on msampdgs10 in progress, pid=3469
+
+Stop gigaspaces on msampdgs11 in progress, pid=3470
+
+Stop gigaspaces on msampdgs12 in progress, pid=3471
+
+Stop gigaspaces on msampdgs13 in progress, pid=3472
+
+Stop gigaspaces on msampdgs14 in progress, pid=3473
+
+Stop gigaspaces on msampdgs15 in progress, pid=3474
+
+Stop gigaspaces on msampdgs16 in progress, pid=3475
+
+
+
+Stop still in progress, pids : 3460 3461 3462 3463 3464 3465 3466 3467 3468 3469 3470 3471 3472 3473 3474 3475 ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 22831
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 26039
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 5022
+[INFO] : Pause de 30 secs ... 
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 21251
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 11248
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 736
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 24504
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 22982
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 8697
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 6084
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 2742
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 10761
+[INFO] : Pause de 30 secs ... 
+Stop still in progress, pids : 3460 3461 3462 3463 3464 3465 3466 3467 3468 3469 3470 3471 3472 3473 3474 3475 ... 
+Stop still in progress, pids : 3460 3461 3462 3463 3464 3465 3466 3467 3468 3469 3470 3471 3472 3473 3474 3475 ... 
+Stop still in progress, pids : 3460 3461 3462 3463 3464 3465 3466 3467 3468 3469 3470 3471 3472 3473 3474 3475 ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+Stop still in progress, pids : 3460 3461 3462 3463 3464 3465 3466 3467 3468 3469 3470 3471 3472 3473 3474 3475 ... 
+Stop still in progress, pids : 3460 3461 3462 3463 3464 3465 3466 3467 3468 3469 3470 3471 3472 3473 3474 3475 ... 
+Stop still in progress, pids : 3460 3461 3462 3463 3464 3465 3466 3467 3468 3469 3470 3471 3472 3473 3474 3475 ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+Stop still in progress, pids : 3460 3461 3462 3463 3464 3465 3466 3467 3468 3469 3470 3471 3472 3473 3474 3475 ... 
+Stop still in progress, pids : 3460 3461 3462 3463 3464 3465 3466 3467 3468 3469 3470 3471 3472 3473 3474 3475 ... 
+Stop still in progress, pids : 3460 3461 3462 3463 3464 3465 3466 3467 3468 3469 3470 3471 3472 3473 3474 3475 ... 
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+Stop done for pid 3460
+Stop done for pid 3461
+Stop done for pid 3462
+Stop done for pid 3463
+Stop done for pid 3464
+Stop done for pid 3465
+Stop done for pid 3466
+Stop done for pid 3467
+Stop done for pid 3468
+Stop done for pid 3469
+Stop done for pid 3470
+Stop done for pid 3471
+Stop done for pid 3472
+Stop done for pid 3473
+Stop done for pid 3474
+Stop done for pid 3475
+
+***** Fin du job : 2013/10/26 16:01:56 *****

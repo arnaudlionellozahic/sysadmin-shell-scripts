@@ -1,0 +1,35 @@
+#! /bin/ksh
+
+set -x 
+
+OUTPUT_FILE=$TOTO/COLOR/VTOM.html 
+OUTPUT_FILE2=$TOTO/COLOR/VTOM2.html 
+
+case $# in
+  0) DATE_D=$(date +"%Y-%m-%d"); DATE_F=$DATE_D; CLAUSE="vtexpdatevalue = CURRENT_DATE";;
+  1) DATE_D=$1; DATE_F=$DATE_D; CLAUSE="vtexpdatevalue = cast ('$DATE_D' as date)";;
+  2) DATE_D=$1; DATE_F=$2; CLAUSE="vtexpdatevalue >= cast ('$DATE_D' as date) AND vtexpdatevalue <= cast ('$DATE_F' as date)";;
+  *) echo "Nombre d'arguments incorrect"; exit 1;;
+esac
+
+$TOM_HOME/sgbd/bin/psql -A -H -c "SELECT vtenvname, vtapplname, vtjobname, vtbegin, vtend, vtend - vtbegin, vtexpdatevalue, vtnbretry, vtretcode, vterrmess FROM vt_stats_job WHERE vtexpdatevalue=CURRENT_DATE AND vtjobname IS NOT NULL AND vtstatus=3 ORDER BY vtend ASC" -d vtom -h centos63 -p 33909 -U vtom > $OUTPUT_FILE
+
+#Controle avant modification pour la couleur
+NB_TEST=$(grep row $OUTPUT_FILE | cut -c5-8)
+echo $NB_TEST
+
+cat $OUTPUT_FILE | sed '/<tr/d' > $OUTPUT_FILE2
+
+#Création du bandeau d'entête en couleur
+sed -i "/vtenvname/i <tr valign="top" bgcolor=gainsboro>" $OUTPUT_FILE2
+sed -i "/GLISSE/i <tr valign="top" bgcolor=deeppink>" $OUTPUT_FILE2
+sed -i "/SURVEIL/i <tr valign="top" bgcolor=springgreen>" $OUTPUT_FILE2
+sed -i "/PRODUCTION/i <tr valign="top" bgcolor=springgreen>" $OUTPUT_FILE2
+sed -i "/PERL/i <tr valign="top" bgcolor=#0000FF>" $OUTPUT_FILE2
+sed -i "/TSEND/i <tr valign="top" bgcolor=#FFA500>" $OUTPUT_FILE2
+#XLIENS est également le nom d'une application ATTENTION CAS D'ERREUR
+#sed -i "/XLIENS/i <tr valign="top" bgcolor=#8A2BE2>" $OUTPUT_FILE2
+
+NB_TEST=$(grep row $OUTPUT_FILE2 | cut -c5-8)
+
+tmail -se "arnaud.lozahic@absyss.com" -to "arnaud.lozahic@absyss.com" -smtp "jupiter" -sub "[ARNAUD_TERMINE_COLOR] ($NB_TEST)" -msg "Statistiques du $DATE_D au $DATE_F extraites le $(date +'%d/%m/%Y a %H:%M')" -att "$OUTPUT_FILE2" -msgf "$OUTPUT_FILE2"

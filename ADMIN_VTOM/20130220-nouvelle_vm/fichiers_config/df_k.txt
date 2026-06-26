@@ -1,0 +1,15 @@
+Filesystem           1K-blocks      Used Available Use% Mounted on
+/dev/mapper/vg_centos63-lv_root
+                       1032088    364484    615176  38% /
+tmpfs                   531784        24    531760   1% /dev/shm
+/dev/sda1               495844     52140    418104  12% /boot
+/dev/mapper/vg_centos63-lv_home
+                      15118728  12442168   1908560  87% /home
+/dev/mapper/vg_centos63-lv_opt
+                        126931      5649    114729   5% /opt
+/dev/mapper/vg_centos63-lv_tmp
+                        126931      5947    114431   5% /tmp
+/dev/mapper/vg_centos63-lv_usr
+                       3830056   3017204    618292  83% /usr
+/dev/mapper/vg_centos63-lv_var
+                       1535856    307972   1149864  22% /var

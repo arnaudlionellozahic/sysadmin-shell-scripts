@@ -1,0 +1,1 @@
+#!/bin/ksh#Script qui permet de voir la prochaine execution des BOXs et Jobs###Liste des jobs ON_ICE a exclureautorep -J % -d |egrep "^( )*[a-zB]( )*|STARTJOB" >/tmp/test.fred_verif/ficsav/EQUIPE_MEO/fred/awk.awk /tmp/test.fred_verif |tee /tmp/liste_pred.fred

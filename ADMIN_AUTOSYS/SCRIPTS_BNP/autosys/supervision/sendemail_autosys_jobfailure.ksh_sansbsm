@@ -1,0 +1,40 @@
+#!/usr/bin/ksh
+DATE=$(date +'%Y%m%d')
+HEURE=$(date +'%H:%M')
+MAIL=/usr/sbin/sendmail
+HOST=$(hostname)
+ARGUMENT="$*"
+
+from="PARIS_IPS_MEO_IRB@bnpparibas.com"
+to="fathi.beddiar@bnpparibas.com"
+cc="benjamin.kalfon@bnpparibas.com "
+subject="A2 NCAL $ARGUMENT"
+
+# Build headers
+{
+
+printf '%s\n' "From: $from
+To: $to
+Cc: $cc
+Subject: $subject
+Mime-Version: 1.0
+Content-Type: multipart/mixed; boundary=\"$boundary\"
+
+--${boundary}
+Content-Type: text/plain; charset=\"US-ASCII\"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+
+Suivi sous TNG JOBFAILURE $HOST: A2 NCAL
+
+un ticket ITSM a ete envoye pour creation au pilotage, si vous constatez encore le failure
+merci de contacter vos correspondants habituels si sur le chemin critique du FJ ou TP
+
+$ARGUMENT
+
+"
+
+}|$MAIL -t -oi
+
+
+

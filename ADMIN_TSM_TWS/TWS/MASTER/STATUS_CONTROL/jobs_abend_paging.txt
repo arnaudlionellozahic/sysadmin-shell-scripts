@@ -1,0 +1,30 @@
+%sj @#@+state=abend
+                                               (Est)  (Est)
+CPU      Schedule SchedTime  Job      State Pr Start  Elapse RetCode Deps
+ 
+HADES   #PTFJOUR5 0930 07/21 *LIM  5* ABEND 10 07/21  18:00          [07/21/15]
+                             JPTF51V  ABEND 10 07/21  00:01        1 #J36831366
+ 
+PRODEAF+#NSV2JOU5 0800 07/21 ******** ABEND 10 07/21  06:24          [07/21/15]
+                     (HADES#)JNSV518  ABEND 10 00:03  00:01        1 #J20316364
+ 
+PVL0-CY+#BHEBULYG 2100 07/21 *LIM  5* ABEND 10 07/21  11:53          [07/21/15]
+                             HEXP200+ ABEND 10 08:52  00:01        1 #J10311
+ 
+PVL0-CY+#BINCJOU+ 0800 07/21 *LIM 30* ABEND 10 07/21  15:15          [07/21/15]
+                             BINCDOT+ ABEND 10 07/21  00:05       12 #J21155
+ 
+PVL0-CY+#BINCJOU+ 0800 07/21 *LIM 30* ABEND 10 07/21  22:35          [07/21/15]
+                             BINCEXC+ ABEND 10 07/21  00:03       12 #J16097
+                             BINCLUS+ ABEND 10 07/21  00:32       12 #J24617
+                             BINCPVW+ ABEND 10 07/21  00:01      255 #J21172
+ 
+PVL0-CY+#SISJOU5+ 0800 07/21 ******** ABEND 10 05:45  00:16          [07/21/15]
+                                               (Est)  (Est)
+CPU      Schedule SchedTime  Job      State Pr Start  Elapse RetCode Deps
+PVL0-CY+#SISJOU5+ -- Continued --
+                             JSIS501+ ABEND 10 06:00  00:01       99 #J25093
+                             JSIS500+ ABEND 10 05:45  00:01       99 #J23483
+ 
+PVL0BE-+#BINCJOU+ 1900 07/21 *LIM 30* EXEC  10 07/21 (76:05)         [07/21/15]
+                             BINCFUS+ ABEND 10 07/21  00:08       18 #J7810

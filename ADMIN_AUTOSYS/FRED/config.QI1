@@ -1,0 +1,1411 @@
+#* ------------------------------------------------------------------------- *
+#*                                                                           *
+#*                Copyright (c) 2016 CA.  All rights reserved.               *
+#*                                                                           *
+#* This software and all information contained therein is confidential and   *
+#* proprietary and shall not be duplicated, used, disclosed or disseminated  *
+#* in any way except as authorized by the applicable license agreement,      *
+#* without the express written permission of CA. All authorized              *
+#* reproductions must be marked with this language.                          *
+#*                                                                           *
+#* EXCEPT AS SET FORTH IN THE APPLICABLE LICENSE AGREEMENT, TO THE EXTENT    *
+#* PERMITTED BY APPLICABLE LAW, CA PROVIDES THIS SOFTWARE WITHOUT WARRANTY   *
+#* OF ANY KIND, INCLUDING WITHOUT LIMITATION, ANY IMPLIED WARRANTIES OF      *
+#* MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  IN NO EVENT WILL    *
+#* CA BE LIABLE TO THE END USER OR ANY THIRD PARTY FOR ANY LOSS OR DAMAGE,   *
+#* DIRECT OR INDIRECT, FROM THE USE OF THIS SOFTWARE, INCLUDING WITHOUT      *
+#* LIMITATION, LOST PROFITS, BUSINESS INTERRUPTION, GOODWILL, OR LOST DATA,  *
+#* EVEN IF CA IS EXPRESSLY ADVISED OF SUCH LOSS OR DAMAGE.                   *
+#*                                                                           *
+#* ------------------------------------------------------------------------- *
+# "@(#)[file] [version] [modtime]"
+#* ------------------------------------------------------------------------- *
+
+
+#-------------------------------------------------------------------#
+# +---------------------------------------------------------------+ #
+# |                                                               | #
+# |     Configuration File: CA Workload Automation AE             | #
+# |                                                               | #
+# +---------------------------------------------------------------+ #
+#-------------------------------------------------------------------#
+
+
+#-------------------------------------------------------------------#
+#            #  #  #  #  Database Parameters  #  #  #  #            #
+#-------------------------------------------------------------------#
+
+#+---------
+#
+# Keyword: Provider=<ORA|SYB>
+#
+# Specifies  which Relational  Database  Management  System (RDBMS)
+# provider CA Workload Automation AE uses.
+#
+# The valid values are as follows:
+#
+#    ORA = Identifies Oracle as the database provider.
+#    SYB = Identifies Sybase as the database provider.
+#
+Provider=
+
+
+#+----------
+#
+# Keyword: DBAccessMode=<0|1>
+#
+# Activates the SSL  certificate  based authentication to establish
+# connections  to  the  database. This  is  based  on   public  key
+# infrastructure  abbreviated  as  PKI  used  to establish a secure
+# information  exchange. This  configuration is currently supported
+# by WAAE only for Oracle and for other databases this setting will
+# be ignored.
+#
+# The valid values are as follows:
+#
+#    0 = Specifies that password based authentication is used.
+#
+#    1 = Specifies that certificate based authentication is used.
+#
+# Note: If you set the value to 1, the required certificate, wallet
+#       location and TNS_ADMIN  environment  variable  needs to be
+#       configured properly for the product to work.
+#       DBAccess parameter will be ignored if DBAccessMode is set to 1.
+#
+DBAccessMode=
+
+
+#+---------
+#
+# Keyword: DBAccess=username/password
+#
+# Defines  the user name and password (in encrypted format) used by
+# the scheduler and  application server to connect to the database.
+# The database user name  and  password is  defined  during  the CA
+# Workload Automation AE installation.
+#
+DBAccess=
+
+
+#+----------
+#
+# Keyword: EventServer_1=<SYBASE_SVR:SYBASE_DB,DBPORT,DBHOST |
+#                         ORACLE_SVR,DBPORT,DBHOST >
+#
+# Specifies  the  database  for a specific event server. Typically,
+# this name is AEDB. In dual event server mode, the value for  both
+# secondary event servers  can be different  and it is specified as
+#
+# Keyword: EventServer_2=<SYBASE_SVR:SYBASE_DB,DBPORT,DBHOST |
+#                         ORACLE_SVR,DBPORT,DBHOST >
+#
+# When CA Workload Automation AE  runs in single event server mode,
+# only one event server is defined.  If you wish to run CA Workload
+# Automation AE in dual  event  server mode, you must  specify  the
+# database  that  the  second  event  server will connect to in the
+# EventServer_2 keyword.
+#
+#
+# The valid values for a Sybase database are as follows:
+#
+# SYBASE_SVR:SYBASE_DB,DBPORT,DBHOST
+#    Identifies Sybase as the database for a specific event server.
+#
+#    For Sybase, the parameters that  compose  this  keyword  value
+#    consist of the  Sybase server name:database name  combination,
+#    database TCP-IP port, and the database host,  comma-delimited.
+#
+#    Example: EventServer_1=SYBSVRPROD:AEDB,5000,MACHPROD
+#
+#
+# The valid values for an Oracle database are as follows:
+#
+# ORACLE_SVR,DBPORT,DBHOST
+#    Identifies Oracle as the database for a specific event server.
+#
+#    For Oracle, the parameters that  compose  this  keyword  value
+#    consist  of  the  Oracle SID,  database TCP-IP port,  and  the
+#    database host, comma-delimited.
+#
+#    Example: EventServer_1=orcl,1521,MACHPROD
+#
+# Note: For Oracle database, database TCP-IP port and database host
+#       values will be ignored when DBAccessMode value is set to 1.
+#
+EventServer_1=
+
+
+#+----------
+#
+# Keyword: DBLibWaitTime=<value>
+#
+# Defines the time (in seconds) the scheduler and  the  application
+# server wait before  breaking the  connection with an event server
+# in an unknown state.  That is, the  scheduler and the application
+# server maintain and check connections  with the databases, and if
+# an event server is in an unknown state,  the connection is broken
+# after the specified time.
+#
+# Default: 90
+#
+# Note:  If you set the  DBLibWaitTime  parameter  to 0 (zero), the
+#        scheduler or the application server  do not time out. They
+#        wait until the database  responds.  We  do  not  recommend
+#        setting this parameter to 0 because the scheduler may stop
+#        responding.
+#
+DBLibWaitTime=90
+
+
+#+----------
+#
+# Keyword: DBEventReconnect=<value>       - Single Server Mode
+#          DBEventReconnect=<value,value> - Dual Server Mode
+#
+# Defines  the number  of times  the  scheduler or  the application
+# server try to connect (or reconnect)  to an  event  server before
+# shutting down or before rolling over to single event server mode.
+#
+# Default: 50   (in single event server mode)
+#          50,5 (in dual event server mode)
+#
+# Limits: For dual event server mode, specify two numbers separated
+#         by a comma.
+#
+DBEventReconnect=50
+#
+# In  Dual  Event  Server Mode,  this parameter contains two values
+# describing the connection and rollover behaviors as follows:
+#
+#DBEventReconnect=50,5
+
+
+#+----------
+#
+# Keyword: DBMaintTime=<HH:MM>
+# Keyword: DBMaintCmd=<pathed_command>
+#
+# Once a day, the Scheduler goes into a database maintenance cycle.
+# During this time,  it does not process any events,  but waits for
+# the  maintenance activities  to  complete  before resuming normal
+# operations.
+#
+# Use the DBMaintTime parameter to specify the time of day for this
+# maintenance cycle, and  the  DBMaintCmd  parameter  to  specify a
+# maintenance command. The time you specify should be during a time
+# of minimal system activity.
+#
+# DBMaintTime Default: 03:30
+# DBMaintCmd Default: $AUTOSYS/bin/DBMaint
+#
+DBMaintTime=03:30
+DBMaintCmd=$AUTOSYS/bin/DBMaint
+
+
+#-------------------------------------------------------------------#
+#            #  #  #  #  Instance Parameters  #  #  #  #            #
+#-------------------------------------------------------------------#
+
+#+----------
+#
+# Keyword: EnableFIPSMode=<0|1>
+#
+# Sets  the  mode so  that CA  Workload  Automation  AE  only  uses
+# security   algorithms   and  methods   approved  by  the  Federal
+# Information Processing Standards (FIPS) publications.
+#
+# The valid values are as follows:
+#
+#    0 = Specifies  that  CA  Workload   Automation  AE  use   both
+#        FIPS-approved and non-FIPS approved security functions.
+#
+#    1 = Specifies  that  CA  Workload   Automation  AE   use  only
+#        FIPS-approved security functions.
+#
+#
+EnableFIPSMode=0
+
+#+----------
+#
+# Keyword: UseEncryption=<0|1|2>
+#
+# Defines  the  instance-specific  encryption  key for all communi-
+# cation between the CA Workload  Automation  AE  components of the
+# same instance. This key must be the same  on all  computers where
+# the server and clients are installed for a particular CA Workload
+# Automation AE instance.
+#
+# The valid values are as follows:
+#
+#    0 = Specifies that no encryption is used.
+#
+#    1 = Specifies  that  the  default  encryption key  is  used to
+#        encrypt data.  This key is created during  the CA Workload
+#        Automation AE installation.
+#
+#    2 = Specifies that a  user-specified encryption key is used to
+#        encrypt data.
+#
+# Note:  If you set the  UseEncryption  parameter  to  2, you  must
+#        specify the encryption key using the as_config command.
+#
+UseEncryption=1
+
+#+----------
+#
+# Keyword: EnableIPCaching=<0|1>
+#
+# When the computer where the scheduler, agent, application server,
+# or client  utilities is running is  assigned a new IP address, it
+# may adversely impact job  processing  because the  IP address  of
+# each component is cached by the other component.
+#
+# Note:  We  recommend that  you  enable  IP  address  caching (the
+# default). However, in a dynamic network environment, you may have
+# to disable IP address caching so that the IP address  is resolved
+# for every network request and this may impact performance.
+#
+# The valid values are as follows:
+#
+#    0 = Specifies that IP address caching is disabled.
+#
+#    1 = Specifies that IP address caching is enabled.
+#
+# Default: 1
+#
+EnableIPCaching=1
+
+#+----------
+#
+# Keyword: UseCommAliasEncryption=<0|2>
+#
+# Defines  whether encryption is used for all communication between
+# the CA Workload Automation AE components and zOS managers.
+#
+# The valid values are as follows:
+#
+#    0 = No encryption is used.
+#
+#    2 = AES encryption be used to encrypt data.  The  key must  be
+#        user-specified.
+#
+# Note:  If you set the UseCommAliasEncryption parameter to 2,  you
+#        must specify the encryption key using the -a option of the
+#        as_config command.
+#
+UseCommAliasEncryption=0
+
+#+----------
+#
+# Keyword: ManagerHostAlias=<value>
+#
+# Resolves the  host name  of  the scheduler, application server and
+# clients to the specified value.
+#
+# Manager Hostname Alias  is used to represent the  host name  of
+# the scheduler, application  server and clients as an alternative
+# to the value obtained by the operating system.
+#
+# Notes:
+#
+# 1.  When this  parameter  is   commented  out  or  the  value  is
+#     left empty,  the  host name resolves   to  the value returned
+#     by  the operating system.
+#
+#ManagerHostAlias=
+
+#-------------------------------------------------------------------#
+#       #  #  #  #  General Scheduler Parameters  #  #  #  #        #
+#-------------------------------------------------------------------#
+
+
+#+----------
+#
+# Keyword: RoleDesignator=<1|2|3>
+#
+# Specifies  whether  the  scheduler is a  primary, shadow, or tie-
+# breaker scheduler.
+#
+# The valid values are as follows:
+#
+#    1 = Specifies  that  the  scheduler  is the primary scheduler.
+#        This is the default.
+#
+#    2 = Specifies that the scheduler is the shadow scheduler.
+#
+#    3 = Specifies that the scheduler is the tie-breaker scheduler.
+#
+RoleDesignator=1
+
+
+#+----------
+#
+# Keyword: HAPollInterval=<value>
+#
+# Defines the time interval  (in seconds) between status polls when
+# the scheduler runs in high availability mode.
+#
+# Default: 15
+#
+HAPollInterval=15
+
+
+#+----------
+#
+# Keyword: FileSystemThreshold=<value>
+#
+# Defines the minimum amount of disk space that must  be  available
+# for the  Scheduler log.  If the amount of  available  disk  space
+# falls below that specified  by the File System Threshold setting,
+# the Scheduler issues warning messages.
+#
+# If  the amount  of  disk  space  falls  below  8192KB (8MB),  the
+# Scheduler  issues  an  EP_SHUTDOWN  alarm  and  shuts  down.  The
+# Scheduler passes the  File System Threshold setting to the legacy
+# agent as part of running a job.  If the  amount of available disk
+# space  falls  below  that  specified by the File System Threshold
+# setting, the legacy agent writes dots to its log file.
+#
+# If the available space drops below 8192KB (8MB), the legacy agent
+# issues a  warning  and stops  writing  to  the  log file, but the
+# service keeps running.
+#
+# Valid  settings are between 8192KB (8MB) and 102400KB (100MB). If
+# the values are not within the  specified range the Scheduler will
+# issue a warning message and reset the value to the default.
+#
+# Note: The FileSystemThreshold setting is  valid for legacy agents
+#       only. Type 'a' agents do not support this setting.
+#
+# Default: 20480 (20MB)
+#
+FileSystemThreshold=20480
+
+
+#+----------
+#
+# Keyword: EvtTransferWaitTime=<value>
+#
+# Defines the time-out delay for transferring events in  dual event
+# server mode. An event that is  missing from  one  event server is
+# copied over to the second event server after this time-out delay.
+#
+# Default: 5
+#
+EvtTransferWaitTime=5
+
+
+#+----------
+#
+# Keyword: InetdSleepTime=<value>
+#
+# Defines  the  time interval (in seconds) that inetd waits between
+# consecutive job starts on the same agent computer.
+#
+# Default: .05 seconds
+#
+# Note:  The  InetdSleepTime  parameter  is  not  included  in  the
+#        configuration file.  If  you  want  to  modify the default
+#        value, you  must  add  the InetdSleepTime parameter to the
+#        configuration file and change the value.
+#
+InetdSleepTime=.05
+
+
+#+----------
+#
+# Keyword: ChaseOnStartup=<0|1>
+#
+# Specifies  whether  the chase utility program should run when the
+# Scheduler starts. The chase utility  verifies  whether  jobs  and
+# Agents are actually running.
+#
+# The valid values are as follows:
+#
+#    0 = Specifies that the  chase  command  does  not run when the
+#        Scheduler starts.
+#
+#    1 = Specifies that the chase command runs when  the  Scheduler
+#        starts.
+#
+# Default: 0
+#
+# Note:  For  more  information  about  the  chase utility, see the
+#        Reference Guide.
+#
+ChaseOnStartup=0
+
+
+#+----------
+#
+# Keyword: GlobalAutoHold=<0|1>
+#
+# Specifies  whether  Global Auto Hold  mode is on or off.  Turn on
+# Global Auto Hold  when  you  restart a Scheduler after a shutdown
+# period.  When you start the  Scheduler, it is in Global Auto Hold
+# mode  and  you  have  time  to  evaluate  all jobs whose starting
+# conditions have passed and are eligible to run.  This option lets
+# you manually start jobs so that the system is not overloaded with
+# job start events.
+#
+# The valid values are:
+#
+#    0 = The Global Auto Hold mode is off
+#    1 = The Global Auto Hold mode is on
+#
+# Default: 0
+#
+GlobalAutoHold=0
+
+
+#+----------
+#
+# Keyword: LocalMachineDefinition=<name>
+#
+# Specifies the host name of a  type 'a' machine  that acts as  the
+# localhost. This machine must be defined in the event server.
+#
+# Notes:
+#
+# 1. If the LocalMachineDefinition parameter has  an empty value, a
+#    warning  message  is  issued  and  CA Workload  Automation  AE
+#    performs system calls to get the host name of the machine. The
+#    clients  can  add  a machine definition while the scheduler is
+#    running and the scheduler picks up this machine definition and
+#    starts running jobs on the localhost.
+#
+# 2. When you define a  job, if  you  set  the machine attribute to
+#    localhost,  and the  LocalMachineDefinition  parameter  has an
+#    empty value,  CA Workload Automation AE  runs  the job  on the
+#    localhost or on the  machine  where the scheduler is currently
+#    running.  The LocalMachineDefinition parameter  value must  be
+#    the same on both the primary scheduler and shadow scheduler.
+#
+#LocalMachineDefinition=
+
+
+#+----------
+#
+# Keyword: ResourceWaitPollInterval=<value>
+#
+# Defines the poll interval value (in seconds) of how frequently to
+# poll the resource manager for resource availability. The resource
+# manager is polled at the  specified  intervals  to  determine the
+# resource availability for all jobs in RESWAIT state. The eligible
+# jobs are started when the resources are available.
+#
+# Default: 15
+#
+ResourceWaitPollInterval=15
+
+#+----------
+#
+# Keyword: AppendEventMessageText=<value>
+#
+# Specifies whether the text  associated with an event is  appended
+# to the corresponding  event message  or  printed  as a standalone
+# message in the scheduler log file.
+#
+# The valid values are as follows:
+#
+#    1 = Specifies that the event  message  text is appended to the
+#        corresponding event message in the scheduler log file.  In
+#        the event message, the text is displayed after the keyword
+#        TEXT.
+#
+#    0 = Specifies  that  the  event  message  text is printed as a
+#        standalone message. This is the default.
+#
+# Default: 0
+#
+AppendEventMessageText=0
+
+#+----------
+#
+# Keyword: SetJobAttributeEnvironmentals=<value>
+#
+# Specifies whether the scheduler adds environment variables  based
+# on  selected  attributes  of  the  command or  filewatcher job to
+# the local runtime environment of the job.
+#
+# The valid values are as follows:
+#
+#    1 = Specifies  that  the   scheduler  add  the  job  attribute
+#        environment variables to  the local runtime environment of
+#        the job.
+#
+#    0 = Specifies  that the scheduler not add  the  job  attribute
+#        environment variables to  the local runtime environment of
+#        the job. This is the default.
+#
+# Default: 0
+#
+SetJobAttributeEnvironmentals=0
+
+#+----------
+#
+# Keyword: SchedAuxiliaryListeningPort=<value>
+#
+# Defines the  port number  the  scheduler  uses  for  all  non-SSA
+# communication. This scheduler auxiliary listening port is used to
+# communicate with the agents running on platforms that use non-SSA
+# ports (for example, agents running on i5OS and z/OS platforms).
+#
+# Notes:
+#
+# 1. The scheduler auxiliary listening  port must be different from
+#    the application server auxiliary listening port.
+#
+# 2. When you install CA Workload Automation AE, virtual  ports are
+#    used by default.  However,  after installation, if you set the
+#    SchedAuxiliaryListeningPort parameter, CA  Workload Automation
+#    AE uses both  the virtual ports and the auxiliary ports at the
+#    same time.
+#
+SchedAuxiliaryListeningPort=7507
+
+#+----------
+#
+# Keyword: GlobalPendMachDelay=<value>
+#
+# Defines the interval that the scheduler waits before moving a job
+# to its GlobalPendMachStatus. This value is specified in seconds.
+#
+# Notes:
+#
+# 1. When  this  value is set to 0 the scheduler immeidiately moves
+#    the job to its GlobalPendMachStatus.
+#
+# 2. The delay maximum interval  is 60 minutes or 1 hour (a maximum
+#    value of 3600 seconds).
+#
+# Default: 0
+#
+GlobalPendMachDelay=0
+
+#+----------
+#
+# Keyword: GlobalPendMachInterval=<interval>,<burst>
+#
+# Defines the interval that the  scheduler  waits between the start
+# of jobs coming out of the PEND_MACH state when  a  machine status
+# changes to ONLINE. This value is specified in seconds.
+#
+# The burst  value  specifies  the  number of  jobs  to  start  per
+# interval.
+#
+#
+# 1. The maximum interval  is 60 minutes or 1 hour (a maximum value
+#    of 3600 seconds).
+#
+# 2. The minimum burst value is 1. If  not  specified the scheduler
+#    will start one job per interval.
+#
+# Default: 0
+#
+GlobalPendMachInterval=0
+
+#+----------
+#
+# Keyword: GlobalPendMachStatus=<value>
+#
+# Defines the completion status for all jobs that cannot be started
+# because the machine status is OFFLINE.
+# Valid statuses are: FAILURE, INACTIVE, ON_ICE, PEND_MACH, SUCCESS
+# and TERMINATED.
+#
+# Notes:
+#
+# 1. If GlobalPendMachDelay is set  to a  value greater than 0, the
+#    job   will   remain   in   the   PEND_MACH  state   until  the
+#    GlobalPendMachDelay interval has expired.
+# 2. If the job is set to a status other  than  PEND_MACH it is not
+#    eligible for restart during machine online processing.
+#
+# Default: PEND_MACH
+#
+GlobalPendMachStatus=PEND_MACH
+
+#+----------
+#
+# Keyword: PrimaryFailbackMode=<value>
+#
+# Defines the mode the primary scheduler  will  enter on restart if
+# it detects the system is currently in a failed over state.
+#
+# The valid values are as follows:
+#
+#    0 = OFF
+#        Specifies that the primary scheduler  will  shutdown if it
+#        detects the system is in a failed over state.
+#
+#    1 = DORMANT
+#        Specifies that  the  primary  scheduler  will  enter  into
+#        dormant state if it detects the system is in a failed over
+#        state. It will  remain dormant until it is either shutdown
+#        or notified by the shadow scheduler to resume processing.
+#
+#    2 = IMMEDIATE
+#        Specifies that the primary  scheduler  will  takeover  and
+#        resume processing if it  detects the system is in a failed
+#        over state. The shadow scheduler will be  notified  by the
+#        primary scheduler to reenter its dormant state.
+#
+# Default: 0
+#
+PrimaryFailbackMode=0
+
+#+----------
+#
+# Keyword: AggregateStatistics=<value>
+#
+# Aggregate  CA Workload Automation AE   statistics  into   hourly,
+# daily, weekly, and  monthly  tables that other programs will  use
+# to generate  reports. The CA Workload Automation AE  SDKs provide
+# APIs to retrieve the data generated by the aggregation process.
+#
+# The valid values are as follows:
+#
+#    0 = Specifies no aggregation is to be performed.
+#
+#    1 = Specifies  aggregation  will  be  performed  to update the
+#        hourly, daily, weekly and monthly tables.
+#
+# Notes:
+#
+# 1. Daily  aggregation  is   performed  at midnight  on  each  new
+#    calendar day.
+# 2. Weekly aggregation  is performed at midnight on Sunday of each
+#    new calendar week.
+# 3. Monthly aggregation is performed at midnight on the 1st day of
+#    each new calendar month.
+#
+# Default: 1
+#
+AggregateStatistics=1
+
+#+----------
+#
+# Keyword: EvaluateQueuedJobStarts=<value>
+#
+# Specifies   whether  the    scheduler   evaluates   the  starting
+# conditions of a job exiting the QUE_WAIT state due  to  available
+# machine load units, the PEND_MACH state due  to an online machine
+# or the RESWAIT state due to available resources.
+#
+# The valid values are as follows:
+#
+#    0 = Off
+#
+#        Specifies that the scheduler  immediately starts  the  job
+#        without evaluating the job's starting conditions.
+#
+#    1 = Skip same day check
+#
+#        Specifies   that  the   scheduler  evaluates   the   job's
+#        starting  conditions  (job  dependencies,  etc..) ignoring
+#        date   condition   checks   (run_calendar,   days_of_week,
+#        start_times, and start_mins) before starting the job.
+#        The  scheduler  considers  the date conditions for the job
+#        as  already  met  from  the  time the  job  is placed in a
+#        queued  state. The  scheduler  starts  the  job as long as
+#        it is not scheduled on an excluded day  or outside its run
+#        window (exclude_calendar and run_window are honored).
+#        If  the  starting  conditions for the job are not met, the
+#        scheduler places  the  job in the ACTIVATED status if  the
+#        job  is in a running box job,  otherwise it places the job
+#        in  the  INACTIVE status.  Jobs  with  date conditions are
+#        rescheduled to their next start time.
+#
+#    2 = Include same day check
+#
+#        Specifies   that  the   scheduler  evaluates   the   job's
+#        starting  conditions (job  dependencies,  etc..) including
+#        date condition  checks (run_calendar or  days_of_week, but
+#        not start_times or start_mins) before starting the job.
+#        The  scheduler  starts  the job as long as it can  run  on
+#        the  day  it  is  evaluated,  and is  not  scheduled on an
+#        excluded  day or outside its run window  (exclude_calendar
+#        and run_window are honored).
+#        If  the  starting  conditions for the job are not met, the
+#        scheduler places  the  job in the ACTIVATED status if  the
+#        job  is in a running box job,  otherwise it places the job
+#        in  the  INACTIVE status.  Jobs  with  date conditions are
+#        rescheduled to their next start time.
+#
+# Default: 1
+#
+EvaluateQueuedJobStarts=1
+
+#-------------------------------------------------------------------#
+#      #  #  #  #  Application Server Parameters  #  #  #  #        #
+#-------------------------------------------------------------------#
+
+#+----------
+#
+# Keyword: AutoServer=<hostname>
+#
+# Defines the host name of the  application server that you want to
+# connect to.
+#
+AutoServer=s00vl9957605,s00vl9957622
+
+
+#+----------
+#
+# Keyword: AutoServerPort=<port>
+#
+# Defines  the  application  server  listening  port  for  all  SSA
+# communication.
+#
+# Default: 9000
+#
+AutoServerPort=11610
+
+
+#+----------
+#
+# Keyword: AutoServerId=<unique_ID>
+#
+# Defines a unique  identifier  that  the  application  server uses
+# to communicate with non zOS agents.
+#
+# Default: <INSTANCE_NAME>_APP_<MachineName>
+#
+#AutoServerId=
+
+#+----------
+#
+# Keyword: AutoServerAliasId=<unique_ID>
+#
+# Defines a unique  identifier  that  the  application  server uses
+# to communicate with zOS agents.
+#
+# Default: <INSTANCE_NAME>_<Up to first 12 characters of MachineName>
+#
+# Notes:
+#
+# 1. The maximum length of AutoServerAliasId is 16 characters.
+#
+# 2. The identifier should be coded in upper case. If its specified
+#    in either lower or mixed case the underlying communications
+#    infrastructure will uppercase it before attempting any
+#    communication.
+#
+AutoServerAliasId=QI1_S00VL9941381
+
+#+----------
+#
+# Keyword: AppSrvAuxiliaryListeningPort=<port>
+#
+# Defines  the  port  number  the  application  server uses for all
+# non-SSA communication. The application server auxiliary listening
+# port is used to communicate with the agents running on  platforms
+# that use non-SSA ports (for example, agents running on  i5OS  and
+# z/OS platforms).
+#
+# Notes:
+#
+# 1. The  application  server  auxiliary  listening  port  must  be
+#    different from the scheduler auxiliary listening port.
+#
+# 2. When you install CA Workload Automation AE,  the virtual ports
+#    are used by default. However, after installation  if  you  set
+#    AppSrvAuxiliaryListeningPort,  CA Workload Automation AE  uses
+#    both  the virtual  ports and  the auxiliary  ports at the same
+#    time.
+#
+AppSrvAuxiliaryListeningPort=7500
+
+#+----------
+#
+# Keyword: LogMaxEndLines=<value>
+#
+# Defines the  maximum number of lines to retrieve  from the end of
+# the output log file associated with a job.
+#
+# Valid  settings are  between 0 and 10,000.  If the values are not
+# within the specified range, the Application Server will reset the
+# value to the default.
+#
+# Default: 0
+#
+# The valid values are as follows:
+#
+#    0 = Specifies  that the Application Server retrieve the entire
+#        job output log file.
+#
+#   >0 = Specifies  that the  Application Server retrieve only  the
+#        last specified number of lines of the job output log file.
+#
+LogMaxEndLines=0
+
+
+#-------------------------------------------------------------------#
+#          #  #  #  #  Agent / Job Parameters  #  #  #  #           #
+#-------------------------------------------------------------------#
+
+
+#+----------
+#
+# Keyword: Check_Heartbeat=<value>
+#
+# Defines the time interval (in minutes)  that  the  scheduler uses
+# when checking for heartbeats
+#
+# Default: 2
+#
+#Check_Heartbeat=2
+
+
+#+----------
+#
+# Keyword: AutoRemoteDir=<directory>
+#
+# (For compatibility with agent versions older than 11.3.)
+#
+# Defines the  enterprise  wide  logging directory on the scheduler
+# where  CA  Workload Automation AE writes the legacy agent's (4.0,
+# 4,5,  4.5.1  and  r11)  log  files  to.  This  directory  must be
+# writable and must exist on startup.  For legacy  agents, you  can
+# override the enterprise wide logging  directory  by  setting  the
+# local agent logging directory.
+#
+# Note:  Some operating systems have  problems  with  file locks in
+#        /tmp.  If this  is a  known  problem on your system, use a
+#        directory other than /tmp.
+#
+#AutoRemoteDir=/tmp
+
+
+#+----------
+#
+# Keyword: CleanTmpFiles=<1|0>
+#
+# (For compatibility with agent versions older than 11.3.)
+#
+# Specifies whether  the legacy agents  remove  the  temporary  log
+# files when a task completes successfully.
+#
+# The valid values are as follows:
+#
+#    1 = Specifies that the legacy agents remove  the temporary log
+#        files ( /tmp/auto_rem* )  from  the  local  agent  logging
+#        directory when a task completes successfully.  This is the
+#        default.
+#
+#    0 = Specifies  the legacy agents  do not remove the  temporary
+#        logs files when a task  completes  successfully. The files
+#        remain in  the  directories  until you run the clean_files
+#        process.
+#
+# Default: 1
+#
+CleanTmpFiles=1
+
+
+#+----------
+#
+# Keyword: RemoteProFiles=<1|0>
+#
+# (For compatibility with agent versions older than 11.3.)
+#
+# Specifies whether the scheduler redirects all  standard error and
+# standard output information to the auto.rem* log file. The output
+# information  is  generated  when  the  /etc/auto.profile file  is
+# sourced.
+#
+# The valid values are as follows:
+#
+#    1 = Specifies that the scheduler redirects all standard  error
+#        and standard output information to the auto.rem* log file.
+#        This is the default.
+#
+#    0 = Specifies  that  the  scheduler  does  not   redirect  the
+#        standard  error  and  standard output information  to  the
+#        auto.rem* log file.
+#
+# Default: 1
+#
+RemoteProFiles=1
+
+
+#+----------
+#
+# Keyword: AutoRemPort=<port>
+#
+# (For compatibility with agent versions older than 11.3.)
+#
+# The Scheduler communicates to the Agent through a  TCP/IP  socket
+# connection. The AutoRemPort  parameter  defines  the  port number
+# for this socket connection.  The internet services daemon (inetd)
+# on the Client computer uses the  port number to point to the name
+# of the service  (found in /etc/services).  The  service  name  is
+# located in the inetd configuration file  (/etc/inetd.conf), where
+# it finds the path to the Agent binary.
+#
+# Default: 0
+#
+AutoRemPort=0
+
+
+#+----------
+#
+# Keyword: AutoInstWideAppend=<0|1|2>
+#
+# Specifies  whether  the  CA  Workload  Automation   AE   instance
+# overwrites  or  appends  information to  the  standard  error and
+# standard output files.
+#
+# The valid values are as follows:
+#
+#    1 = Specifies  that  the  CA  Workload  Automation AE instance
+#        appends information to the standard  output  and  standard
+#        error files. This is the default.
+#
+#    0 = Specifies  that  the  CA  Workload  Automation AE instance
+#        overwrites information to the standard output and standard
+#        error files.
+#
+#    2 = Specifies that  the information  is forcefully appended to
+#        the  standard output  and standard  error files; the agent
+#        setting is overridden
+#
+# Default: 1
+#
+AutoInstWideAppend=1
+
+
+#+----------
+#
+# Keyword: MaxRestartTrys=<value>
+#
+# Specifies  the maximum number of times to restart a  job  due  to
+# system   problems   such   as:  computer  unavailability,  socket
+# connection  time-out,  inability  of  the  Agent to start another
+# process, or failure of the file system space resource check.
+#
+# Default: 10
+#
+MaxRestartTrys=10
+
+
+#+----------
+#
+# Keyword: RestartConstant=<value>
+# Keyword: RestartFactor=<value>
+# Keyword: MaxRestartWait=<value>
+#
+# RestartConstant
+#   Defines the Restart  Constant value  used  for  calculating the
+#   wait time (in seconds) between attempts to restart a job.
+#
+# Default: 10
+#
+# RestartFactor
+#   Defines the Restart Factor value used for calculating  the wait
+#   time (in seconds) between attempts to restart a job. This value
+#   multiplies  with  every  job  restart and is  used to gradually
+#   increase the number of seconds per retry attempt.
+#
+# Default: 5
+#
+# MaxRestartWait
+#   Defines  the  maximum  amount  of  time  (in seconds)  that  CA
+#   Workload Automation AE  waits before it tries to restart a job.
+#
+# Default: 300
+#
+# CA Workload Automation AE uses the following formula to calculate
+# the amount of time (in seconds) between each attempt to restart a
+# job:
+#
+#   WaitTime = RestartConstant + ( Num_of_Trys * RestartFactor )
+#   if ( WaitTime > MaxRestartWait ) then WaitTime = MaxRestartWait
+#
+RestartConstant=10
+RestartFactor=5
+MaxRestartWait=300
+
+
+#+----------
+#
+# Keyword: MachineMethod=<value>
+#
+# Defines the method  that determines  the percentage of CPU cycles
+# available on a real machine belonging to a  virtual machine. This
+# method is used to achieve load balancing.
+#
+# Valid values are as follows:
+#
+# vmstat (default)
+#     Specifies that  the vmstat  method  is used  to determine the
+#     percentage of available CPU cycles. This is the default.
+#
+#     Note: For type 'a' machines if vmstat is selected it  will be
+#           internally converted to use the cpu_mon method.
+#
+# rstatd
+#     Specifies that  the  rstatd  method is  used to determine the
+#     percentage of available CPU cycles.
+#
+#     Note: Make  sure  the  rstatd  daemon is active on all  agent
+#           computers.
+#
+# job_load
+#     Specifies that  the job_load method is used  to determine the
+#     percentage of available CPU cycles.
+#
+# cpu_mon
+#     Specifies that the cpu_mon method will be used  to  determine
+#     the  percentage  of  available  CPU  cycles. This  method  is
+#     supported  by type 'a' machines only and is not supported  on
+#     all platforms   (refer   to   your   platform  specific agent
+#     documentation   to   determine  if  cpu monitoring support is
+#     available).
+#
+#MachineMethod=vmstat
+
+
+#+----------
+#
+# Keyword: KillSignals=<value,value,...>
+#
+# Defines one or more signals to send to a job whenever the KILLJOB
+# event is sent.
+#
+# Default: 2,9
+#
+# Notes:
+#
+# 1. You can specify multiple signals.   Separate each value with a
+#    comma. The signals are sent in the order listed, with a  five-
+#    second interval between each call.
+#
+# 2. We recommend that you set the  KillSignals  parameter to 15,9.
+#    In  most  cases,  this configures CA Workload Automation AE to
+#    return a TERMINATED state for the target job. If it does  not,
+#    set the KillSignals parameter to 9.
+#
+KillSignals=2,9
+
+
+#-------------------------------------------------------------------#
+#    #  #  #  #  Cross-platform Interface Parameters  #  #  #  #    #
+#-------------------------------------------------------------------#
+
+
+#+----------
+#
+# Keyword: CrossPlatformScheduling=<value>
+#
+# Indicates  whether  the  Scheduler   should  activate  its  Cross
+# Platform Interface (CPI). If activated, job scheduling is allowed
+# to and from Unicenter-based systems on UNIX, Windows, AS400, VMS,
+# OS/390,  z/OS, and  CA Workload Automation AE Connect, and  other
+# CA Workload Automation AE instances running the CPI.
+#
+# Valid values are:
+#
+#    0 = Do not enable cross-platform scheduling.
+#
+#    1 = Enable outbound cross-platform scheduling  (manager only).
+#        When you select this  option,  CA  Workload  Automation AE
+#        instance can dispatch job requests to an agent.
+#
+#    2 = Enable  outbound  and  inbound  cross-platform  scheduling
+#        (manager  and  agent).  When  you  select  this option, CA
+#        Workload Automation AE instance  can dispatch job requests
+#        to an agent and receive job requests from a manager.
+#
+# Note:  This  option  takes  effect  only  when you initialize the
+#        scheduler.
+#
+CrossPlatformScheduling=0
+
+
+#-------------------------------------------------------------------#
+#          #  #  #  #  Integration Parameters  #  #  #  #           #
+#-------------------------------------------------------------------#
+
+
+#+----------
+#
+# Keyword: UnicenterEvents=<1|0>
+#
+# Specifies whether to forward  CA Workload Automation AE  messages
+# to the Event Management console.
+#
+# Note:  Before  enabling  Unicenter  event  integration,  you must
+#        install the Unicenter Event Agent on the Scheduler machine
+#        (at a minimum).
+#
+# The valid values are as follows:
+#
+#    0 = Do not forward CA Workload Automation AE  messages  to the
+#        Event Management console. This is the default.
+#
+#    1 = Forward CA Workload Automation  AE  messages  to the Event
+#        Management console.
+#
+UnicenterEvents=0
+
+#+----------
+#
+# Keyword: NotifyMethod=<0|1|2>
+#
+# Defines the notification method for this instance.
+#
+# The valid values are as follows:
+#
+#    0 = Do not send notification.  This is the default.
+#
+#    1 = Send notification  using standard  email  from CA Workload
+#        Automation  AE
+#
+#    2 = Send notification using Unicenter Notification Service
+#
+NotifyMethod=0
+
+#+----------
+#
+# Keyword: NotifySMTPHost=<host1>
+# Keyword: NotifySMTPFromAddress=<FromAddress>
+# Keyword: UseSMTPAuthentication=<0|1>
+# Keyword: NotifySMTPUser=<user/password>
+#
+# Activates  the  Email  Notification.  Scheduler will  send  email
+# notification if the job is defined with appropriate  notification
+# attributes.  These variables will be  used when  NotifyMethod  is
+# set to 1.
+#
+# NotifySMTPHost=hostname:port
+#   Defines  the  host  name  of  the  SMTP  server  to  which  the
+#   scheduler can  send  the email.  Include  port  number  if SMTP
+#   server is running on a non-default port.
+#
+#   Example:
+#    NotifySMTPHost=SMTPserver:333, if SMTP is running on  port 333
+#    NotifySMTPHost=SMTPServer, if SMTP is running on  default port
+#    25.
+#
+# NotifySMTPFromAddress=<valid email address>
+#   Defines the from address that will be assigned to the email. If
+#   this variable  is  not  defined  then  the  from  address  will
+#   default to CAWAAE.XXX.DO_NOT_REPLY where XXX  is instance name.
+#
+#   Example:
+#   NotifySMTPFromAddress=autosys@ca.com
+#
+# UseSMTPAuthentication=0
+#   Specifies whether to use authentication while sending email.
+#
+#   The valid values are as follows:
+#
+#    0 = SMTP server does not require authentication.
+#
+#    1 = SMTP server requries authentication.
+#
+# Note:  You must check with  your email administrator  to check if
+#        your  SMTP  server requires  authentication to send email.
+#
+# NotifySMTPUser=user@email_domain.com/encryptedpassword
+#   Defines the user name and its associated password that  is used
+#   to connect to the SMTP server.
+#
+# Note:  Specify the user name in the form of an email address. For
+#        example, specify user@example.com.
+#
+#NotifySMTPHost=
+#NotifySMTPFromAddress=
+#UseSMTPAuthentication=
+#NotifySMTPUser=
+
+#+----------
+#
+# Keyword: NotifyServerNode=<host>
+# Keyword: NotifyAckTimeout=<value>
+#
+# Activates the Unicenter Notification interface.  When you set the
+# notification parameters, the scheduler can send a notification to
+# Unicenter Notification  Services if  the  job  the  scheduler  is
+# processing  was   defined   with   the  appropriate  notification
+# attributes.  These variables  will be  used when  NotifyMethod is
+# set to 2.
+#
+# NotifyServerNode=host
+#   Identifies  the  computer  name  of  the Unicenter Notification
+#   Server host name.
+#
+# NotifyAckTimeout=value
+#   Defines the time-out value (in seconds) the  client  uses  when
+#   requiring an acknowledgement from  the  Unicenter  Notification
+#   Server Acknowledgement time limit.
+#
+# Default: 30
+#
+# Note:  This  default is sufficient for the server to respond to a
+#        client request.
+#
+#NotifyServerNode=unshost
+#NotifyAckTimeout=30
+
+
+#+----------
+#
+# Keyword: ServiceDeskURL=<web_server_site>
+# Keyword: ServiceDeskUser=<user/password>
+# Keyword: ServiceDeskCust=<web_service_customer>
+#
+# Activates the  Unicenter  Service  Desk  interface.  When you set
+# these  service  desk  parameters,  the  scheduler  initiates  the
+# opening of a  service desk ticket  through Unicenter Service Desk
+# if the job the  scheduler is  processing  was  defined  with  the
+# appropriate service desk attributes.
+#
+# ServiceDeskURL=web_server_site
+#   Defines the address for the Unicenter Service Desk web service.
+#
+# ServiceDeskUser=user/password
+#   Defines the user name and its associated password that  is used
+#   to connect to the Unicenter Service Desk web service.
+#
+# ServiceDeskCust=web_server_customer
+#   Defines  the  customer  name for the Unicenter Service Desk web
+#   service.
+#
+# Note: The  ServiceDeskCust  parameter  can be substituted for the
+#      ServiceDeskUser parameter. That is, if you use a web service
+#      customer to access Unicenter  Service  Desk,  you can update
+#      the ServiceDeskCust parameter instead of the ServiceDeskUser
+#      parameter.
+#
+#ServiceDeskURL=http://servicedeskhost:8080/axis/services/USD_R11_WebService
+#ServiceDeskUser=autosys/6144633f4329447e46444662487b683e
+#ServiceDeskCust=
+
+
+#+----------
+#
+# Keyword: SnmpManagerHosts=<hostname1,hostname2,...>
+#
+# Defines the host names to which  the  scheduler sends SNMP traps.
+# It contains a list of  host names on the network that are running
+# as the SNMP managers, such as HP's OpenView or IBM's NetView, and
+# to which you want to  send  SNMP  traps  (for  example, post SNMP
+# events). When you enter  the  host  name with this parameter, you
+# enable this functionality.
+#
+#SnmpManagerHosts=host1,host2
+
+
+#+----------
+#
+# Keyword: SnmpCommunity=<public>
+#
+# Specifies the SNMP community associated with all SNMP traps sent.
+# It is  effectively  a  password  that  can be used to filter SNMP
+# traps by  SNMP  managers,  such  as  HP's OpenView. This value is
+# almost always "public",
+#
+#SnmpCommunity=public
+
+
+#-------------------------------------------------------------------#
+#         #  #  #  #  DCA Interface Parameters  #  #  #  #          #
+#-------------------------------------------------------------------#
+
+
+#+----------
+#
+# Keyword: DCAURL=<web_server_site>
+# Keyword: DCAUser=<user/password>
+#
+# Activates CA  Spectrum  Automation  Manager  integration  with CA
+# Workload Automation AE.  When you  set  the  DCAURL  and  DCAUser
+# parameters, CA Workload Automation AE integrates with CA Spectrum
+# Automation Manager to monitor and provision machines.
+#
+# DCAURL=web_server_site
+#    Defines the address for the CA Spectrum Automation Manager web
+#    service. For example https://dcamanager:443/aip/sc
+#
+#    Note: You can also access CA Spectrum Automation Manager using
+#    https://dcahostname:8443/UIFramework/DPMUI.html
+#
+# DCAUser=WebSvcId\EncryptedPassword
+#    Defines the user name and its associated password that is used
+#    to connect to the CA Spectrum Automation Manager web service.
+#
+#DCAURL=
+#DCAUser=
+
+
+#-------------------------------------------------------------------#
+#         #  #  #  #  Miscellaneous Parameters  #  #  #  #          #
+#-------------------------------------------------------------------#
+
+
+#+----------
+#
+# Keyword: DateFormat=<date_format>
+#
+# Specify the date format for entering and displaying dates.
+#
+DateFormat=MM/DD/YYYY
+
+
+#+----------
+#
+# Keyword: LOGROLLOVER=<value>
+#
+# Specify when to roll over the  Scheduler  and Application  Server
+# log file.
+#
+# Valid values are:
+#
+#    OFF              = Do not roll over the log file.
+#    MIDNIGHT         = Roll over the log file at midnight.
+#    SIZE(n)          = Roll  over  the  log  file  when it becomes
+#                       larger  than  the value specified in number
+#                       of megabytes.
+#    PURGE(n)         = Remove all  the  application  generated log
+#                       files older than  the  value  specified  in
+#                       number of days.
+#    MIDNIGHT,SIZE(n) = Roll over the log file at midnight or  when
+#                       it becomes larger than the value  specified
+#                       in MB.
+#
+LOGROLLOVER=OFF
+
+
+#+----------
+#
+# Keyword: ISDBGACTIV=<value,value,...>
+#
+# Defines the level of trace information to return to the scheduler
+# and application server logs. These values can be used together by
+# separating each keyword by a comma.
+#
+# The valid values are as follows:
+#
+#    OFF        - Returns no trace information. OFF is the default.
+#    MS         - Add milliseconds to the time in the log output.
+#    LIGHT      - Returns light trace information.
+#    HEAVY      - Returns full trace information.
+#    DUMP       - Traces  data sent and received  by  the product's
+#                 communication interface.
+#    JOB        - Traces the run time of a job.
+#    COMM       - Traces  network  communication  activity  at  the
+#                 socket level.
+#    GBE        - Traces scheduler events as they are read from the
+#                 ujo_event table.
+#    AFM        - Traces Automation Framework Messages (AFM).
+#    DBQUERY    - Traces and measures the  elapsed time of calls to
+#                 the database.
+#    EXTVJ      - Returns  trace  data  pertaining   to   the  user
+#                 verification exit.
+#    RESOURCEn  - Traces the Spectrum Automation SDK.  'n' can be a
+#                 value between 1-10.
+#
+#ISDBGACTIV=OFF

@@ -1,0 +1,118 @@
+Report of the autosys jobs le 20170517 a 180815
+
+###################################################################
+There are jobs on ice
+
+ICFT1P01-M0BOX-CD83CFT1                                          -----                -----                OI    0/0             
+ICFT1P01-M0BOX-CD8BCFT1                                          -----                -----                OI    0/0             
+ICFT1P01-M0BOX-CDP1CFT1                                          -----                -----                OI    0/0             
+ICFT1P01-M0BOX-CDP3CFT1                                          -----                -----                OI    0/0             
+ICFT1P01-M0BOX-CDP4CFT1                                          -----                -----                OI    0/0             
+ICFT1P01-M0BOX-CDP5CFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJ2HCFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJ83CFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJ8BCFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJA6CFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJASCFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJATCFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJB3CFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJEOCFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJLCCFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJLMCFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJP1CFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJP3CFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJP4CFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJP5CFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJPCCFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJPEACFT1                                         -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJPRCFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJRLCFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJVACFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJVECFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJVICFT1                                          -----                -----                OI    0/0             
+ICFT1P01-Q0BOX-CJVMCFT1                                          -----                -----                OI    0/0             
+ICFT1P01-M0BOX-CM4HCFT1                                          -----                -----                OI    0/0             
+ICFT1P01-M0BOX-CM8A                                              -----                -----                OI    0/0             
+ICFT1P01-M0BOX-CM8ACFT1                                          -----                -----                OI    0/0             
+ICFT1P01-M0BOX-CMA7CFT1                                          -----                -----                OI    0/0             
+ICFT1P01-M0BOX-CMASCFT1                                          -----                -----                OI    0/0             
+ICFT1P01-M0BOX-CMB6CFT1                                          -----                -----                OI    0/0             
+ICFT1P01-M0BOX-DJPCCFT1                                          -----                -----                OI    0/0             
+ISOLP01-C0BOX-JIBADM01-CYCL                                      05/30/2016 11:00:00  05/30/2016 11:00:12  OI    136754/1 1      
+ISOLP01-C0BOX-JIBBDM01-CYCL                                      05/30/2016 11:00:00  05/30/2016 11:16:34  OI    136752/1 9      
+ISOLP01-Q0BOX-DEXKDM01-B                                         -----                -----                OI    0/0             
+ISOLP01-Q0BOX-DEXLDM01-B                                         -----                -----                OI    0/0             
+ISOLP01-Q0BOX-DEXNDM01-B                                         -----                -----                OI    0/0             
+ISOLP01-Q0BOX-DEXODM01-B                                         -----                -----                OI    0/0             
+ISOLP01-Q0BOX-DEXPDM01-B                                         -----                -----                OI    0/0             
+IBFFP01-Q0BOX-DBIXREUN-B                                         -----                -----                OI    0/0             
+ IBFFP01-Q1MIG01-DBIXREUN-B-DBIFTX_0001                          -----                -----                OI    0/0             
+IBFFP01-Q0BOX-DBIYREUN-B                                         -----                -----                OI    0/0             
+ IBFFP01-Q1MIG01-DBIYREUN-B-DBIFTY_0001                          -----                -----                OI    0/0             
+IBFFP01-Q0BOX-DBIZREUN-B                                         -----                -----                OI    0/0             
+ IBFFP01-Q1MIG01-DBIZREUN-B-DBIFTZ_0001                          -----                -----                OI    0/0             
+IDCI00P01-Q0BOX-ADMIEGYP                                         -----                -----                OI    0/0             
+ IDCI00P01-Q1EXT01-BNPIBURK-JEXPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1IMP01-BNPIBURK-JIMPDIG_0001                         -----                -----                OI    0/0             
+IDCI00P01-Q0BOX-BNPIEGYP                                         -----                -----                OI    0/0             
+ IDCI00P01-Q1APP01-BNPIGUAD-JVIRU_0001                           -----                -----                OI    0/0             
+ IDCI00P01-Q1EXT01-BNPIGUIN-JEXPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1IMP01-BNPIGUIN-JIMPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1APP01-BNPIGUYA-JVIRU_0001                           -----                -----                OI    0/0             
+ IDCI00P01-Q1EXT01-BNPIIVOI-JEXPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1IMP01-BNPIIVOI-JIMPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1EXT01-BNPIMALI-JEXPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1IMP01-BNPIMALI-JIMPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1APP01-BNPIMART-JVIRU_0001                           -----                -----                OI    0/0             
+ IDCI00P01-Q1APP01-BNPIREUN-JVIRU_0001                           -----                -----                OI    0/0             
+ IDCI00P01-Q1EXT01-BNPIREUN-JEXPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1IMP01-BNPIREUN-JIMPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1EXT01-BNPISENE-JEXPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1IMP01-BNPISENE-JIMPDIG_0001                         -----                -----                OI    0/0             
+ IDCI00P01-Q1IMP01-BNPISENE-JMSG_0001                            -----                -----                OI    0/0             
+IDCI00P01-Q0BOX-BOUEGYP                                          11/18/2016 01:00:01  11/18/2016 01:02:58  OI    251497/1 0      
+IDCI00P01-Q0BOX-CLIEGYP                                          11/18/2016 01:01:35  11/18/2016 14:21:31  OI    251615/1 9      
+IDCI00P01-Q0BOX-DEMAGUAD                                         -----                -----                OI    0/0             
+IDCI00P01-Q0BOX-DEMAGUYA                                         -----                -----                OI    0/0             
+IDCI00P01-Q0BOX-DEMAMART                                         -----                -----                OI    0/0             
+IDCI00P01-Q0BOX-DEVEGYP                                          11/18/2016 01:00:03  11/18/2016 14:21:43  OI    251549/1 9      
+IDCI00P01-Q0BOX-J40EGYP                                          11/18/2016 01:01:45  11/18/2016 14:21:52  OI    251645/1 9      
+IDCI00P01-Q0BOX-J42EGYP                                          11/18/2016 01:00:04  11/18/2016 14:21:59  OI    251595/1 9      
+IDCI00P01-Q0BOX-MAILEGYP                                         -----                -----                OI    0/0             
+IDCI00P01-Q0BOX-MCFEGYP                                          11/18/2016 01:01:35  11/18/2016 14:22:06  OI    251636/1 9      
+IDCI00P01-Q0BOX-RLVEGYP                                          11/18/2016 01:00:02  11/18/2016 01:03:09  OI    251507/1 0      
+ IDCI00P01-Q0BOX-ADMTMARO                                        -----                -----                OI    0/0             
+ICAS00P01-M0BOX-CI_JSJOURNALIER                                  -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSJOURNALIER-CI_JJOURNALIER_0200           -----                -----                OI    0/0             
+ICAS00P01-M0BOX-CI_JSMENSUEL                                     -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL01_0001               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL02_0002               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL03_0003               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL04_0004               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL05_0005               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL06_0006               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL07_0007               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL08_0008               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL09_0009               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL10_0010               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL11_0011               -----                -----                OI    0/0             
+ ICAS00P01-M1APP01-CI_JSMENSUEL-CI_JMENSUEL12_0012               -----                -----                OI    0/0             
+ICAS00P01-Q0BOX-KSP_EXPORT                                       -----                -----                OI    0/0             
+ICAS00P01-Q0BOX-KSP_SAVE_UNIX                                    -----                -----                OI    0/0             
+  IPRT00P01-H1SAV01-HSAVMARO-JDOCU1_0001                         -----                -----                OI    0/0             
+IPRT00P01-Q0BOX-JSSP                                             -----                -----                OI    0/0             
+  IPRT00P01-Q1SAV01-JPURMARO-JBASE6_0001                         -----                -----                OI    0/0             
+  IPRT00P01-Q1TSM01-JPURMARO-JBASE5_0001                         -----                -----                OI    0/0             
+  IPRT00P01-Q1SAV01-JSAVMARO-JBASE1_0001                         -----                -----                OI    0/0             
+  IPRT00P01-Q1SAV01-JSAVMARO-JBASE2_0001                         -----                -----                OI    0/0             
+  IPRT00P01-Q1SAV01-JTSMMARO-JBASE3_0001                         -----                -----                OI    0/0             
+  IPRT00P01-Q1SAV01-JTSMMARO-JBASE4_0001                         -----                -----                OI    0/0             
+ IRTMP01-Q1EXP-VENDOR                                            -----                01/30/2017 00:00:12  OI    315667/1        
+ICTHQ01-Q0BOX-RMAN-BTSAUV-UOA_Q11606BP10                         03/27/2017 22:00:00  03/28/2017 16:39:43  OI    371934/1        
+ ICTHQ01-Q1SAV01-RMAN-UOA-Q11606BP10_BACKUP                      03/27/2017 22:00:10  03/28/2017 16:39:43  OI    371934/1        
+ ICTHQ01-Q1PUR01-BTSAUV-UOA-Q11606BP10_PURGE                     03/27/2017 22:00:15  03/27/2017 22:23:37  OI    371934/1        
+
+-------------------------------------------------------------------
+
+#### FIN JOB  20170517-180820 ####
+exit 5

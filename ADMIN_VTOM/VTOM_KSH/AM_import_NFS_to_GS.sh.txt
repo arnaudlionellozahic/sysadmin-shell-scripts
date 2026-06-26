@@ -1,0 +1,189 @@
+#!/bin/bash
+
+if [ -z "$AMERISC_ENV" ]
+then
+    echo "Erreur : Vous devez parametrer un environnement, car il n y a pas d'environnement courant" >&2
+    exit -1
+fi
+
+if [ -z "$AMERISC_CFG" ]
+then
+    echo "Erreur : Vous devez parametrer une configuration, car il n y a pas de configuration courante" >&2
+    exit -1
+fi
+
+function reportError()
+{
+        echo -e "Erreur : $1" >&2
+        echo -e "Erreur : $1" | mailx -s "[BATCH] NATIXIS V1 $AMERISC_CFG ECHEC" $AMERISC_MAIL_DEST -- -f$AMERISC_MAIL_DEST
+        exit -1
+}
+
+# Analyse de la ligne de commandes
+source $PROJECTTOOLS_REP_COMMON/shell/cmdline.sh
+
+addOption 't' 'type' 1 "Type batch" '[all|v1|eepe]' ''
+addOption 'A' 'all' 0 "Import all (diff,rating,def) excepted axe for given batch type" ''
+addOption 'd' 'diff' 0 "Import diffusables" ''
+addOption 'r' 'rating' 0 "Import rating" ''
+addOption 'D' 'def' 0 "Import defaut" ''
+addOption 'a' 'axe' 0 "Import axe" ''
+addOption 'm' 'threads' 1 "Number of parser threads. By default, use import script defaut value" '6'
+addOption 'n' 'nbDay' 1 "Only import files/folders last changed n*24 hours ago. By default, take all entries" ''
+addOption '9' 'debug' 0 "Debug mode : no write" ''
+addOption 'h' 'help' 0 "Examples :
+AM_import_NFS_to_GS.sh -t all -A -a to upload everything
+AM_import_NFS_to_GS.sh -a to upload only axes
+AM_import_NFS_to_GS.sh -a -n 1 to upload only axes created since now-24H
+AM_import_NFS_to_GS.sh -t all -A -a --debug to find nfs files without uploading them into GS" ''
+
+parseOPT "$@"
+
+_importDIFF=$(getOPT d)
+_importRAT=$(getOPT r)
+_importDEF=$(getOPT D)
+_importAXE=$(getOPT a)
+_importALL=$(getOPT A)
+_importTYPE=$(getOPT t)
+_importDBG=$(getOPT debug)
+_nbJour=$(getOPT n)
+_importNBTHREADS=$(getOPT m)
+
+_codeError=0
+
+if [ -z "$nbJour"]
+then
+        nbJour=-1
+fi
+
+if [ "$_importALL" -eq "1" ]
+then
+        _importDIFF=1
+        _importRAT=1
+        _importDEF=0
+fi
+
+_importV1=0
+_importEEPE=0
+
+if [ "$_importTYPE" = "all" -o "$_importTYPE" = "v1" ]
+then
+        _importV1=1
+fi
+if [ "$_importTYPE" = "all" -o "$_importTYPE" = "eepe" ]
+then
+        _importEEPE=1
+fi
+
+
+
+function importToGS() {
+        # 1 : type (axe, rating...)
+        # 2 : filtre (PROCESS_...)
+        # 3 : directory where  data are stored
+        # 4 : importing additional data (sub folder or file)
+        # 5 : option for importing (tag, recursive, ...)
+
+        echo "** Starting $1 data import from $3 ... **"
+
+        filtreTemps=""
+        if [ "$_nbJour" -ge "0" ]
+        then
+                filtreTemps=" -ctime -$_nbJour "
+        fi
+
+        filtreThread=""
+        if [ -n "$_importNBTHREADS" ]
+        then
+                filtreThread=" --threads $_importNBTHREADS "
+        fi
+
+        ListeRep="$(find $3/  -maxdepth 1 -type d $filtreTemps -name $2*)"
+        echo ""
+
+        for Rep in ${ListeRep}; do
+           #echo $Rep
+           _cmd="echo $Rep | sed -n 's/^.*$2\([0-9]*\)$/\1/p'"
+           id=$(eval $_cmd)
+           #echo $id
+
+           ImportingData=$Rep/$4
+           if [ -e $ImportingData ]
+           then
+                  _cmd_exec="$AMERISC_REP_DIST_COMMON/GSscripts/scripts/import.sh $1 --in $ImportingData $filtreThread $5 $id 2>&1"
+                  echo "Importing... $1:$id"
+                  echo "$_cmd_exec"
+
+                        if [ "$_importDBG" -eq 0 ]
+                        then
+                                _tmpError=0
+                                eval "$_cmd_exec"
+                                _tmpError=$?
+                                _codeError=$(($_codeError+$_tmpError))
+                        fi
+
+                fi
+           echo ""
+        done
+}
+
+
+########################################################################################
+## AXE
+########################################################################################
+if [ "$_importAXE" = 1 ]
+then
+        importToGS "axe" "ECO_" $AMERISC_ECONOMETRIE_DIR "amerisc.axe" "--tag"
+fi
+
+########################################################################################
+## DIFFUSABLES
+########################################################################################
+if [ "$_importDIFF" = 1 -a "$_importV1" = 1 ]
+then
+        importToGS "diffusable" "PROCESS_" $AMERISC_DIFFUSABLE_V1_NATIXIS "" "--recursive --idProcessing"
+        importToGS "diffusable" "PROCESS_" $AMERISC_DIFFUSABLE_V1_ABAQ "" "--recursive --idProcessing"
+        importToGS "diffusable" "PROCESS_" $AMERISC_DIFFUSABLE_V1_NY "" "--recursive --idProcessing"
+fi
+
+if [ "$_importDIFF" = 1 -a "$_importEEPE" = 1 ]
+then
+        importToGS "diffusable" "PROCESS_" $AMERISC_DIFFUSABLE_EEPE "" "--recursive --idProcessing"
+fi
+
+########################################################################################
+## RATING
+########################################################################################
+if [ "$_importRAT" = 1 -a "$_importV1" = 1 ]
+then
+        importToGS "rating" "PROCESS_" $AMERISC_RATING_V1_NATIXIS "RatSim" "--tag"
+fi
+
+if [ "$_importRAT" = 1 -a "$_importEEPE" = 1 ]
+then
+        importToGS "rating" "PROCESS_" $AMERISC_RATING_EEPE "RatSim" "--tag"
+fi
+
+########################################################################################
+## DEFAUT
+########################################################################################
+if [ "$_importDEF" = 1 -a "$_importV1" = 1 ]
+then
+        importToGS "defaut" "PROCESS_" $AMERISC_DEFAUT_V1_NATIXIS "" "--tag"
+fi
+
+if [ "$_importDEF" = 1 -a "$_importEEPE" = 1 ]
+then
+        importToGS "defaut" "PROCESS_" $AMERISC_DEFAUT_EEPE "" "--tag"
+fi
+
+########################################################################################
+
+if [ ${_codeError} -ne 0 ]
+then
+        echo "Return code is $_codeError. Error occured!"
+        exit 1
+fi
+
+echo "Importing data to GS... done"
+exit 0

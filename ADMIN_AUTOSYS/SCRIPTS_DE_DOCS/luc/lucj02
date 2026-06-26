@@ -1,0 +1,9 @@
+
+
+echo "`date` : Lancement de $0" >> /home/user6/luc.log
+
+cd /home/user6
+
+echo "`date` : Fin de $0" >> /home/user6/luc.log
+
+exit 0

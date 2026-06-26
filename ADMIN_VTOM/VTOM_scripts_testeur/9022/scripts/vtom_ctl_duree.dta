@@ -1,0 +1,5 @@
+# Environnement;Application;Traitement;Duree maxi d'execution en secondes
+VTOM_BAC_A_SABLE;Test_Derive;test_sleep;10
+APPLIS_METIER;291_Ametis;recup_caisses;1800
+APPLIS_UTIL;U_730_JDE;jdearret_Pd;5
+

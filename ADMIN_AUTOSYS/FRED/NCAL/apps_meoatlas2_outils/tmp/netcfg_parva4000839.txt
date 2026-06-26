@@ -1,0 +1,19 @@
+#**********************************************************************
+#           PRODUCTION  NETWORK CONFIGURATION                         * 
+#********************************************************************** 
+
+PRDHOST=parva4000839
+PRDALIAS=atcald-prd
+PRDIP=159.50.50.145
+PRDINTERFACE=en1
+PRDNETMASK=255.255.255.192
+
+#**********************************************************************
+#                 SFDI TEMPORARY IP                                   * 
+#********************************************************************** 
+
+Temporary IP  Temporary Hostname
+159.50.50.167  temporaire-atlas
+159.50.50.168  temporaire-atlas2
+159.50.50.169  temporaire-atlas3
+

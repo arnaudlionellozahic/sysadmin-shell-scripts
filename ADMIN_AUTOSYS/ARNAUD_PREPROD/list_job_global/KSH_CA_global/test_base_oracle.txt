@@ -1,0 +1,358 @@
+TEST SUR JOBNAME %JOBVERIFY%
+
+    set colsep '§'
+        set VERIFY OFF
+        SET ECHO OFF
+        SET NEWPAGE 0
+        SET PAGESIZE 0
+        SET FEEDBACK OFF
+        SET HEADING OFF
+        SET TRIMSPOOL ON
+        SET TAB OFF
+    SET LINESIZE 10000
+    set long  2048
+    set longc 2048
+        SELECT UJO_JOB.JOB_NAME as JOB_NAME,
+    UJO_INTCODES.TEXT as TEXT,
+    TO_CHAR(to_date('01011970','DDMMYYYY')+(AEDBADMIN.UJO_JOB_RUNS.STARTIME-(select int_val from AEDBADMIN.UJO_ALAMODE where type='gmt_offset'))/86400,'DD/MM/YYYY HH24:MI:SS') as STARTIME,
+    TO_CHAR(to_date('01011970','DDMMYYYY')+(AEDBADMIN.UJO_JOB_RUNS.ENDTIME-(select int_val from AEDBADMIN.UJO_ALAMODE where type='gmt_offset'))/86400,'DD/MM/YYYY HH24:MI:SS') as ENDTIME,
+    UJO_COMMAND_JOB.COMMAND as COMMAND,
+    UJO_JOB.PROFILE as PROFILE,
+    UJO_JOB.OWNER as OWNER,
+    UJO_JOB_RUNS.RUN_MACHINE as MACHINE,
+    UJO_JOB_RUNS.EXIT_CODE as EXIT_CODE,
+    UJO_JOB_RUNS.RUNTIME as RUNTIME,
+    UJO_JOB.HAS_OVERRIDE as HAS_OVERRIDE,
+    UJO_JOB_RUNS.RUN_NUM as RUN_NUM,
+    UJO_JOB_RUNS.NTRY as NBTRY,
+    UJO_JOB.DESCRIPTION as DESCRIPTION,
+    UJO_PROC_EVENTVU.STATUSTXT as STATUSTXT,
+    UJO_PROC_EVENTVU.EVENTTXT as EVENTTXT,
+    UJO_PROC_EVENTVU.TEXT as TEXT2,
+    TO_CHAR(UJO_PROC_EVENTVU.STAMP,'YYYY/MM/DD HH24:MI:SS') as STAMP,
+        UJO_PROC_EVENTVU.EVT_NUM as EVT_NUM,
+        UJO_JOB.UPDATE_STAMP as MODIF,
+        UJO_JOB.CREATE_STAMP as INS
+        FROM AEDBADMIN.UJO_JOB,
+                AEDBADMIN.UJO_INTCODES,
+                AEDBADMIN.UJO_COMMAND_JOB,
+                AEDBADMIN.UJO_JOB_RUNS,
+                AEDBADMIN.UJO_PROC_EVENTVU
+        WHERE (UJO_JOB_RUNS.STATUS = UJO_INTCODES.CODE)
+                AND (UJO_JOB.JOB_VER = UJO_JOB_RUNS.JOB_VER)
+                AND (UJO_JOB.JOID = UJO_JOB_RUNS.JOID)
+                AND (UJO_JOB.OVER_NUM = UJO_JOB_RUNS.OVER_NUM)
+                AND (UJO_JOB.WF_JOID = UJO_JOB_RUNS.WF_JOID)
+                AND (UJO_JOB_RUNS.JOB_VER = UJO_PROC_EVENTVU.JOB_VER)
+                AND (UJO_JOB_RUNS.JOID = UJO_PROC_EVENTVU.JOID)
+                AND (UJO_JOB_RUNS.OVER_NUM = UJO_PROC_EVENTVU.OVER_NUM)
+                AND (UJO_JOB_RUNS.RUN_NUM = UJO_PROC_EVENTVU.RUN_NUM)
+                AND (UJO_JOB_RUNS.NTRY = UJO_PROC_EVENTVU.NTRY)
+                AND (UJO_JOB.JOB_VER = UJO_COMMAND_JOB.JOB_VER(+))
+                AND (UJO_JOB.JOID = UJO_COMMAND_JOB.JOID(+))
+                AND (UJO_JOB.OVER_NUM = UJO_COMMAND_JOB.OVER_NUM(+))
+                AND UJO_JOB.JOB_NAME like '%JOBVERIF%'
+                AND to_date('01011970','DDMMYYYY')+(UJO_JOB_RUNS.STARTIME-(select int_val from AEDBADMIN.UJO_ALAMODE where type='gmt_offset'))/86400 BETWEEN to_date('21062017','DDMMYYYY HH24:MI:SS')
+                AND to_date('22062017','DDMMYYYY HH24:MI:SS');
+				order by UJO_JOB.JOB_NAME,UJO_JOB_RUNS.STARTIME,UJO_JOB_RUNS.RUN_NUM,UJO_JOB_RUNS.NTRY,UJO_PROC_EVENTVU.EVT_NUM,UJO_JOB.UPDATE_STAMP;
+
+###########################################################################################				
+
+TEST SUR JOBNAME %JOBVERIFY%
+				
+    set colsep '§'
+        set VERIFY OFF
+        SET ECHO OFF
+        SET NEWPAGE 0
+        SET PAGESIZE 0
+        SET FEEDBACK OFF
+        SET HEADING OFF
+        SET TRIMSPOOL ON
+        SET TAB OFF
+    SET LINESIZE 10000
+    set long  2048
+    set longc 2048
+        SELECT UJO_JOB.JOB_NAME as JOB_NAME,
+    UJO_INTCODES.TEXT as TEXT,
+    TO_CHAR(to_date('01011970','DDMMYYYY')+(AEDBADMIN.UJO_JOB_RUNS.STARTIME-(select int_val from AEDBADMIN.UJO_ALAMODE where type='gmt_offset'))/86400,'DD/MM/YYYY HH24:MI:SS') as STARTIME,
+    TO_CHAR(to_date('01011970','DDMMYYYY')+(AEDBADMIN.UJO_JOB_RUNS.ENDTIME-(select int_val from AEDBADMIN.UJO_ALAMODE where type='gmt_offset'))/86400,'DD/MM/YYYY HH24:MI:SS') as ENDTIME,
+    UJO_COMMAND_JOB.COMMAND as COMMAND,
+    UJO_JOB.PROFILE as PROFILE,
+    UJO_JOB.OWNER as OWNER,
+    UJO_JOB_RUNS.RUN_MACHINE as MACHINE,
+    UJO_JOB_RUNS.EXIT_CODE as EXIT_CODE,
+    UJO_JOB_RUNS.RUNTIME as RUNTIME,
+    UJO_JOB.HAS_OVERRIDE as HAS_OVERRIDE,
+    UJO_JOB_RUNS.RUN_NUM as RUN_NUM,
+    UJO_JOB_RUNS.NTRY as NBTRY,
+    UJO_JOB.DESCRIPTION as DESCRIPTION,
+    UJO_PROC_EVENTVU.STATUSTXT as STATUSTXT,
+    UJO_PROC_EVENTVU.EVENTTXT as EVENTTXT,
+    UJO_PROC_EVENTVU.TEXT as TEXT2,
+    TO_CHAR(UJO_PROC_EVENTVU.STAMP,'YYYY/MM/DD HH24:MI:SS') as STAMP,
+        UJO_PROC_EVENTVU.EVT_NUM as EVT_NUM,
+        UJO_JOB.UPDATE_STAMP as MODIF,
+        UJO_JOB.CREATE_STAMP as INS
+        FROM AEDBADMIN.UJO_JOB,
+                AEDBADMIN.UJO_INTCODES,
+                AEDBADMIN.UJO_COMMAND_JOB,
+                AEDBADMIN.UJO_JOB_RUNS,
+                AEDBADMIN.UJO_PROC_EVENTVU
+        WHERE (UJO_JOB_RUNS.STATUS = UJO_INTCODES.CODE)
+                AND (UJO_JOB.JOB_VER = UJO_JOB_RUNS.JOB_VER)
+                AND (UJO_JOB.JOID = UJO_JOB_RUNS.JOID)
+                AND (UJO_JOB.OVER_NUM = UJO_JOB_RUNS.OVER_NUM)
+                AND (UJO_JOB.WF_JOID = UJO_JOB_RUNS.WF_JOID)
+                AND (UJO_JOB_RUNS.JOB_VER = UJO_PROC_EVENTVU.JOB_VER)
+                AND (UJO_JOB_RUNS.JOID = UJO_PROC_EVENTVU.JOID)
+                AND (UJO_JOB_RUNS.OVER_NUM = UJO_PROC_EVENTVU.OVER_NUM)
+                AND (UJO_JOB_RUNS.RUN_NUM = UJO_PROC_EVENTVU.RUN_NUM)
+                AND (UJO_JOB_RUNS.NTRY = UJO_PROC_EVENTVU.NTRY)
+                AND (UJO_JOB.JOB_VER = UJO_COMMAND_JOB.JOB_VER(+))
+                AND (UJO_JOB.JOID = UJO_COMMAND_JOB.JOID(+))
+                AND (UJO_JOB.OVER_NUM = UJO_COMMAND_JOB.OVER_NUM(+))
+                AND UJO_JOB.JOB_NAME like '%JOBVERIF%'
+                AND to_date('01011970','DDMMYYYY')+(UJO_JOB_RUNS.STARTIME-(select int_val from AEDBADMIN.UJO_ALAMODE where type='gmt_offset'))/86400 BETWEEN to_date('21062017','DDMMYYYY HH24:MI:SS')
+                AND to_date('22062017','DDMMYYYY HH24:MI:SS');
+
+				
+=> Cela prend tous les statuts
+				
+###########################################################################################
+
+POUR TROUVER LES STATUTS
+
+select UJO_PROC_EVENTVU.STATUSTXT as STATUSTXT	
+FROM AEDBADMIN.UJO_JOB,
+                AEDBADMIN.UJO_INTCODES,
+                AEDBADMIN.UJO_COMMAND_JOB,
+                AEDBADMIN.UJO_JOB_RUNS,
+                AEDBADMIN.UJO_PROC_EVENTVU				
+WHERE STATUSTXT='FAILURE'; 
+				
+FAILURE
+FAILURE
+FAILURE
+FAILURE
+
+
+
+select UJO_PROC_EVENTVU.STATUSTXT as STATUSTXT	
+FROM AEDBADMIN.UJO_JOB,
+                AEDBADMIN.UJO_INTCODES,
+                AEDBADMIN.UJO_COMMAND_JOB,
+                AEDBADMIN.UJO_JOB_RUNS,
+                AEDBADMIN.UJO_PROC_EVENTVU				
+WHERE STATUSTXT like '%SU%'; 
+
+SUCCESS
+SUCCESS
+SUCCESS
+
+OK POUR TERMINATED ET RUNNING
+
+PAS HOLD, ON_ICE 
+
+
+###########################################################################################
+
+TROUVER JOBS EN RUNNING AND SUCCESS
+
+    set colsep '§'
+        set VERIFY OFF
+        SET ECHO OFF
+        SET NEWPAGE 0
+        SET PAGESIZE 0
+        SET FEEDBACK OFF
+        SET HEADING OFF
+        SET TRIMSPOOL ON
+        SET TAB OFF
+    SET LINESIZE 10000
+    set long  2048
+    set longc 2048
+        SELECT UJO_JOB.JOB_NAME as JOB_NAME,
+    UJO_INTCODES.TEXT as TEXT,
+    TO_CHAR(to_date('01011970','DDMMYYYY')+(AEDBADMIN.UJO_JOB_RUNS.STARTIME-(select int_val from AEDBADMIN.UJO_ALAMODE where type='gmt_offset'))/86400,'DD/MM/YYYY HH24:MI:SS') as STARTIME,
+    TO_CHAR(to_date('01011970','DDMMYYYY')+(AEDBADMIN.UJO_JOB_RUNS.ENDTIME-(select int_val from AEDBADMIN.UJO_ALAMODE where type='gmt_offset'))/86400,'DD/MM/YYYY HH24:MI:SS') as ENDTIME,
+    UJO_COMMAND_JOB.COMMAND as COMMAND,
+    UJO_JOB.PROFILE as PROFILE,
+    UJO_JOB.OWNER as OWNER,
+    UJO_JOB_RUNS.RUN_MACHINE as MACHINE,
+    UJO_JOB_RUNS.EXIT_CODE as EXIT_CODE,
+    UJO_JOB_RUNS.RUNTIME as RUNTIME,
+    UJO_JOB.HAS_OVERRIDE as HAS_OVERRIDE,
+    UJO_JOB_RUNS.RUN_NUM as RUN_NUM,
+    UJO_JOB_RUNS.NTRY as NBTRY,
+    UJO_JOB.DESCRIPTION as DESCRIPTION,
+    UJO_PROC_EVENTVU.STATUSTXT as STATUSTXT,
+    UJO_PROC_EVENTVU.EVENTTXT as EVENTTXT,
+    UJO_PROC_EVENTVU.TEXT as TEXT2,
+    TO_CHAR(UJO_PROC_EVENTVU.STAMP,'YYYY/MM/DD HH24:MI:SS') as STAMP,
+        UJO_PROC_EVENTVU.EVT_NUM as EVT_NUM,
+        UJO_JOB.UPDATE_STAMP as MODIF,
+        UJO_JOB.CREATE_STAMP as INS
+        FROM AEDBADMIN.UJO_JOB,
+                AEDBADMIN.UJO_INTCODES,
+                AEDBADMIN.UJO_COMMAND_JOB,
+                AEDBADMIN.UJO_JOB_RUNS,
+                AEDBADMIN.UJO_PROC_EVENTVU
+        WHERE (UJO_JOB_RUNS.STATUS = UJO_INTCODES.CODE)
+                AND (UJO_JOB.JOB_VER = UJO_JOB_RUNS.JOB_VER)
+                AND (UJO_JOB.JOID = UJO_JOB_RUNS.JOID)
+                AND (UJO_JOB.OVER_NUM = UJO_JOB_RUNS.OVER_NUM)
+                AND (UJO_JOB.WF_JOID = UJO_JOB_RUNS.WF_JOID)
+                AND (UJO_JOB_RUNS.JOB_VER = UJO_PROC_EVENTVU.JOB_VER)
+                AND (UJO_JOB_RUNS.JOID = UJO_PROC_EVENTVU.JOID)
+                AND (UJO_JOB_RUNS.OVER_NUM = UJO_PROC_EVENTVU.OVER_NUM)
+                AND (UJO_JOB_RUNS.RUN_NUM = UJO_PROC_EVENTVU.RUN_NUM)
+                AND (UJO_JOB_RUNS.NTRY = UJO_PROC_EVENTVU.NTRY)
+                AND (UJO_JOB.JOB_VER = UJO_COMMAND_JOB.JOB_VER(+))
+                AND (UJO_JOB.JOID = UJO_COMMAND_JOB.JOID(+))
+                AND (UJO_JOB.OVER_NUM = UJO_COMMAND_JOB.OVER_NUM(+))					
+                AND UJO_JOB.JOB_NAME like '%JOBVERIF%'
+                AND to_date('01011970','DDMMYYYY')+(UJO_JOB_RUNS.STARTIME-(select int_val from AEDBADMIN.UJO_ALAMODE where type='gmt_offset'))/86400 BETWEEN to_date('21062017','DDMMYYYY HH24:MI:SS')
+                AND to_date('22062017','DDMMYYYY HH24:MI:SS')
+				AND (STATUSTXT='RUNNING' OR STATUSTXT='SUCCESS')
+				order by UJO_JOB.JOB_NAME,UJO_JOB_RUNS.STARTIME,UJO_JOB_RUNS.RUN_NUM,UJO_JOB_RUNS.NTRY,UJO_PROC_EVENTVU.EVT_NUM,UJO_JOB.UPDATE_STAMP;
+				
+###########################################################################################
+
+                $JOB=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $STATUS=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $STARTIME=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $ENDTIME=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $COMMAND=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $PROFILE=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $OWNER=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $RUN_MACHINE=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $EXIT_CODE=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $RUNTIME=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $HAS_OVERRIDE=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $RUN_NUM=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $NTRY=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $DESCRIPTION=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $EVENTSTATUS=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $EVENTTXT=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $EVENTTEXT=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $EVENTSTAMP=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $EVENTNUM=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $MODIF=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+                $INS=~ s/(^[ \s]+)|([ \s]+$)//g; #delete des espaces dét et fin de ligne
+
+###########################################################################################
+				
+txrqLrf3                                                        §TERMINATED                    §22/06/2017 19:10:21§22/06/2017 19:19:21§
+
+
+
+
+                                                       §
+                                                                                               §atlas
+                         §parva4022576                                                                    §         1§       540§           0§    795031§         1§attente reception fichier flux RDJ_
+
+
+                    §RUNNING                       §CHANGE_STATUS                 §Monitored for CREATE
+                                                                                                                            §2017/06/22 19:10:21§   4446630§         §14-JUN-17
+###########################################################################################
+
+TEST PAS A PAS
+
+SELECT UJO_JOB.JOB_NAME as JOB_NAME
+FROM AEDBADMIN.UJO_JOB,
+                AEDBADMIN.UJO_INTCODES,
+                AEDBADMIN.UJO_COMMAND_JOB,
+                AEDBADMIN.UJO_JOB_RUNS,
+                AEDBADMIN.UJO_PROC_EVENTVU;
+
+-------------------------------------------------------------------------------------------
+				
+SELECT  UJO_INTCODES.TEXT as TEXT,
+    TO_CHAR(to_date('01011970','DDMMYYYY')+(AEDBADMIN.UJO_JOB_RUNS.STARTIME-(select int_val from AEDBADMIN.UJO_ALAMODE where type='gmt_offset'))/86400,'DD/MM/YYYY HH24:MI:SS') as STARTIME,
+    TO_CHAR(to_date('01011970','DDMMYYYY')+(AEDBADMIN.UJO_JOB_RUNS.ENDTIME-(select int_val from AEDBADMIN.UJO_ALAMODE where type='gmt_offset'))/86400,'DD/MM/YYYY HH24:MI:SS') as ENDTIME
+FROM AEDBADMIN.UJO_JOB,
+                AEDBADMIN.UJO_INTCODES,
+                AEDBADMIN.UJO_COMMAND_JOB,
+                AEDBADMIN.UJO_JOB_RUNS,
+                AEDBADMIN.UJO_PROC_EVENTVU;
+
+§20/06/2017 18:40:00§01/01/1970 11:00:00
+§20/06/2017 18:40:00§01/01/1970 11:00:00		
+		
+-------------------------------------------------------------------------------------------
+				
+SELECT UJO_COMMAND_JOB.COMMAND as COMMAND
+FROM AEDBADMIN.UJO_JOB,
+                AEDBADMIN.UJO_INTCODES,
+                AEDBADMIN.UJO_COMMAND_JOB,
+                AEDBADMIN.UJO_JOB_RUNS,
+                AEDBADMIN.UJO_PROC_EVENTVU;
+				
+date >> /apps/waae/custom/surveillance/jobverif.log
+date >> /apps/waae/custom/surveillance/jobverif.log
+
+-------------------------------------------------------------------------------------------
+				
+SELECT UJO_JOB.OWNER as OWNER
+FROM AEDBADMIN.UJO_JOB,
+                AEDBADMIN.UJO_INTCODES,
+                AEDBADMIN.UJO_COMMAND_JOB,
+                AEDBADMIN.UJO_JOB_RUNS,
+                AEDBADMIN.UJO_PROC_EVENTVU;
+
+atlas
+
+-------------------------------------------------------------------------------------------
+
+SELECT UJO_JOB_RUNS.RUNTIME as RUNTIME
+FROM AEDBADMIN.UJO_JOB,
+                AEDBADMIN.UJO_INTCODES,
+                AEDBADMIN.UJO_COMMAND_JOB,
+                AEDBADMIN.UJO_JOB_RUNS,
+                AEDBADMIN.UJO_PROC_EVENTVU;
+
+0
+0
+
+-------------------------------------------------------------------------------------------
+				
+SELECT UJO_JOB.HAS_OVERRIDE as HAS_OVERRIDE
+FROM AEDBADMIN.UJO_JOB,
+                AEDBADMIN.UJO_INTCODES,
+                AEDBADMIN.UJO_COMMAND_JOB,
+                AEDBADMIN.UJO_JOB_RUNS,
+                AEDBADMIN.UJO_PROC_EVENTVU;
+				
+0
+0				
+
+-------------------------------------------------------------------------------------------
+				
+SELECT TO_CHAR(UJO_PROC_EVENTVU.STAMP,'YYYY/MM/DD HH24:MI:SS') as STAMP
+FROM AEDBADMIN.UJO_JOB,
+                AEDBADMIN.UJO_INTCODES,
+                AEDBADMIN.UJO_COMMAND_JOB,
+                AEDBADMIN.UJO_JOB_RUNS,
+                AEDBADMIN.UJO_PROC_EVENTVU;
+
+2017/06/21 19:59:38
+2017/06/21 19:59:38
+
+-------------------------------------------------------------------------------------------
+				
+SELECT UJO_PROC_EVENTVU.EVENTTXT as EVENTTXT,
+    UJO_PROC_EVENTVU.TEXT as TEXT2,
+    TO_CHAR(UJO_PROC_EVENTVU.STAMP,'YYYY/MM/DD HH24:MI:SS') as STAMP,
+        UJO_PROC_EVENTVU.EVT_NUM as EVT_NUM,
+        UJO_JOB.UPDATE_STAMP as MODIF,
+        UJO_JOB.CREATE_STAMP as INS
+FROM AEDBADMIN.UJO_JOB,
+                AEDBADMIN.UJO_INTCODES,
+                AEDBADMIN.UJO_COMMAND_JOB,
+                AEDBADMIN.UJO_JOB_RUNS,
+                AEDBADMIN.UJO_PROC_EVENTVU
+
+STARTJOB  §Event was scheduled based on job definition.            §2017/06/21 19:59:38§   4417433§         §26-MAY-17				
+-------------------------------------------------------------------------------------------
+
+
+

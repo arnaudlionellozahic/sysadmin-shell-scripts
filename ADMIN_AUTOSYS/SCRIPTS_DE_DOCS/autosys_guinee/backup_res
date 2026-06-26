@@ -1,0 +1,386 @@
+
+
+/* ----------------- BWAED01-MAINTENANCE ----------------- */ 
+
+insert_resource: BWAED01-MAINTENANCE
+res_type: R
+amount: 3         
+
+
+/* ----------------- R_TDB ----------------- */ 
+
+insert_resource: R_TDB
+res_type: R
+description: "RESOURCE DES JOBS TDB LE JOUR MKSYSB"
+amount: 1         
+
+
+/* ----------------- asu91 ----------------- */ 
+
+insert_resource: asu91
+res_type: R
+description: "Bloquage dasu91 entre eux"
+amount: 1         
+
+
+/* ----------------- bnp01 ----------------- */ 
+
+insert_resource: bnp01
+res_type: R
+description: "Serialisation interface bnpinet"
+amount: 1         
+
+
+/* ----------------- bnpi1 ----------------- */ 
+
+insert_resource: bnpi1
+res_type: R
+description: "Serialisation jii501 (messagerie bnpinet)"
+amount: 1         
+
+
+/* ----------------- cati1 ----------------- */ 
+
+insert_resource: cati1
+res_type: R
+description: "Serialisation CATI sur fichier MT199"
+amount: 1         
+
+
+/* ----------------- cb01 ----------------- */ 
+
+insert_resource: cb01
+res_type: R
+description: "serialisation gestion des cartes"
+amount: 1         
+
+
+/* ----------------- che01 ----------------- */ 
+
+insert_resource: che01
+res_type: R
+description: "serialisation cheque"
+amount: 1         
+
+
+/* ----------------- cpu01 ----------------- */ 
+
+insert_resource: cpu01
+res_type: R
+description: "Processus UNIX"
+amount: 20        
+
+
+/* ----------------- dec01 ----------------- */ 
+
+insert_resource: dec01
+res_type: R
+description: "Serialisation dapz3a"
+amount: 1         
+
+
+/* ----------------- ext01 ----------------- */ 
+
+insert_resource: ext01
+res_type: R
+description: "Serialisation Extraction Demande TP"
+amount: 1         
+
+
+/* ----------------- ext02 ----------------- */ 
+
+insert_resource: ext02
+res_type: R
+description: "SERIALISATION ARRETES DE COMPTES"
+amount: 1         
+
+
+/* ----------------- ext03 ----------------- */ 
+
+insert_resource: ext03
+res_type: R
+description: "SERIALISATION ARRETES DE COMPTES"
+amount: 1         
+
+
+/* ----------------- ext04 ----------------- */ 
+
+insert_resource: ext04
+res_type: R
+description: "SERIALISATION ARRETES DE COMPTES"
+amount: 1         
+
+
+/* ----------------- ext05 ----------------- */ 
+
+insert_resource: ext05
+res_type: R
+description: "SERIALISATION ARRETES DE COMPTES"
+amount: 1         
+
+
+/* ----------------- ext06 ----------------- */ 
+
+insert_resource: ext06
+res_type: R
+description: "ressource entre dts1 et dara"
+amount: 1         
+
+
+/* ----------------- ext06Esa10 ----------------- */ 
+
+insert_resource: ext06Esa10
+res_type: R
+amount: 1         
+
+
+/* ----------------- ilb01 ----------------- */ 
+
+insert_resource: ilb01
+res_type: R
+description: "Serialisation ilb"
+amount: 1         
+
+
+/* ----------------- ima01 ----------------- */ 
+
+insert_resource: ima01
+res_type: R
+description: "Serialisation Prise d image"
+amount: 1         
+
+
+/* ----------------- ima01Esa10 ----------------- */ 
+
+insert_resource: ima01Esa10
+res_type: R
+amount: 1         
+
+
+/* ----------------- inf01 ----------------- */ 
+
+insert_resource: inf01
+res_type: R
+description: "Ressource pour la serialisation de chaine infocentre"
+amount: 1         
+
+
+/* ----------------- int01 ----------------- */ 
+
+insert_resource: int01
+res_type: R
+description: "Serialisation SMB avec intra-day"
+amount: 1         
+
+
+/* ----------------- jdz11 ----------------- */ 
+
+insert_resource: jdz11
+res_type: R
+description: "Resource of dasx11 between jpfa jpfb jpfc and jpfd"
+amount: 1         
+
+
+/* ----------------- jpz01 ----------------- */ 
+
+insert_resource: jpz01
+res_type: R
+description: "ressource entre jpfb jptc jpfd"
+amount: 1         
+
+
+/* ----------------- jsz01 ----------------- */ 
+
+insert_resource: jsz01
+res_type: R
+description: "ressource du dasx3a entre jser et jsex"
+amount: 1         
+
+
+/* ----------------- mov01 ----------------- */ 
+
+insert_resource: mov01
+res_type: R
+description: "Controle fichier mouvement"
+amount: 1         
+
+
+/* ----------------- msb01 ----------------- */ 
+
+insert_resource: msb01
+res_type: R
+description: "serialisation dasl24"
+amount: 1         
+
+
+/* ----------------- pce01 ----------------- */ 
+
+insert_resource: pce01
+res_type: R
+description: "Serialisation PCE"
+amount: 1         
+
+
+/* ----------------- pug01 ----------------- */ 
+
+insert_resource: pug01
+res_type: R
+description: "serialisation des purges"
+amount: 1         
+
+
+/* ----------------- rdj01 ----------------- */ 
+
+insert_resource: rdj01
+res_type: R
+description: "Ressource pour la serialisation de la chaine PE-Controle Bancaire"
+amount: 1         
+
+
+/* ----------------- sap01 ----------------- */ 
+
+insert_resource: sap01
+res_type: R
+description: "serialisation SAP"
+amount: 1         
+
+
+/* ----------------- sepa01 ----------------- */ 
+
+insert_resource: sepa01
+res_type: R
+description: "serialisation dechargement DZ3A"
+amount: 1         
+
+
+/* ----------------- smb01 ----------------- */ 
+
+insert_resource: smb01
+res_type: R
+description: "Serialisation SMB"
+amount: 1         
+
+
+/* ----------------- smb01Esa10 ----------------- */ 
+
+insert_resource: smb01Esa10
+res_type: R
+amount: 1         
+
+
+/* ----------------- soa01 ----------------- */ 
+
+insert_resource: soa01
+res_type: R
+description: "Controle fichiers oasis"
+amount: 1         
+
+
+/* ----------------- spz14 ----------------- */ 
+
+insert_resource: spz14
+res_type: R
+description: "Serialisation Systeme de paiement"
+amount: 1         
+
+
+/* ----------------- srf01 ----------------- */ 
+
+insert_resource: srf01
+res_type: R
+description: "Controle fichiers risques financiers"
+amount: 1         
+
+
+/* ----------------- sup01 ----------------- */ 
+
+insert_resource: sup01
+res_type: R
+description: "Serialisation SMB avec intra-day"
+amount: 1         
+
+
+/* ----------------- sup01Esa10 ----------------- */ 
+
+insert_resource: sup01Esa10
+res_type: R
+amount: 1         
+
+
+/* ----------------- sup02 ----------------- */ 
+
+insert_resource: sup02
+res_type: R
+description: "Reorg acces TDZ12 avec jfj1"
+amount: 1         
+
+
+/* ----------------- tape01 ----------------- */ 
+
+insert_resource: tape01
+res_type: R
+description: "Unite de sauvegarde Bande -cvf/dev/rmt0"
+amount: 1         
+
+
+/* ----------------- tape01Esa10 ----------------- */ 
+
+insert_resource: tape01Esa10
+res_type: R
+amount: 1         
+
+
+/* ----------------- tdq31 ----------------- */ 
+
+insert_resource: tdq31
+res_type: R
+description: "regularisation jimp05-japl01 acces TDQ31"
+amount: 1         
+
+
+/* ----------------- tdt51 ----------------- */ 
+
+insert_resource: tdt51
+res_type: R
+description: "regularisation acces TDT51"
+amount: 1         
+
+
+/* ----------------- tdx83 ----------------- */ 
+
+insert_resource: tdx83
+res_type: R
+description: "reorg index tdx83"
+amount: 1         
+
+
+/* ----------------- tdx90 ----------------- */ 
+
+insert_resource: tdx90
+res_type: R
+description: "reorg acces TDX90"
+amount: 1         
+
+
+/* ----------------- tdz01 ----------------- */ 
+
+insert_resource: tdz01
+res_type: R
+description: "ressource entre jim1 et jec7"
+amount: 1         
+
+
+/* ----------------- tre31 ----------------- */ 
+
+insert_resource: tre31
+res_type: R
+description: "reorg index tdc31"
+amount: 1         
+
+
+/* ----------------- tt76x ----------------- */ 
+
+insert_resource: tt76x
+res_type: R
+description: "ressource entre ji81 et jrj7"
+amount: 1         

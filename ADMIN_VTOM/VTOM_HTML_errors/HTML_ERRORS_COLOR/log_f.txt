@@ -1,0 +1,63 @@
+
+
+[1m[4mATTENTION !! un client en version 542 de Vtom fonctionne actuellt sur Linux
+(B[mLE SHELL EST : /bin/ksh
+  PID TTY          TIME CMD
+ 5824 ?        00:00:00 ksh
+ 5877 ?        00:00:00 ps
+31282 ?        00:00:00 vtsgbd
+31283 ?        00:07:17 vtserver
+31407 ?        00:00:01 postgres
+31409 ?        00:00:01 postgres
+31410 ?        00:00:00 postgres
+31411 ?        00:00:03 postgres
+31412 ?        00:00:20 postgres
+31413 ?        00:00:04 postgres
+31414 ?        00:00:00 postgres
+31415 ?        00:00:00 postgres
+31416 ?        00:00:00 postgres
+31417 ?        00:00:00 postgres
+31418 ?        00:00:00 postgres
+31419 ?        00:00:00 postgres
+31420 ?        00:00:00 postgres
+31421 ?        00:00:00 postgres
+31422 ?        00:00:00 postgres
+31440 ?        00:00:02 vtmonitor
+31456 ?        00:00:04 tengine
+
+Aucun BACKUP declare
+Aucun PRIMAIRE declare
+_______________________________________________________________________
+Job                 : 5:pid=5824 (AUTO) en mode NORMAL
+Job ID              : 16766
+Traitement          : TEST_COMMANDES/ADMINISTRATION/STATS_COLOR
+ 
+Machine             : savigny/savigny(savigny)
+Utilisateur         : alozahic/alozahic
+Shell               : /bin/ksh
+Queue batch         : queue_ksh
+Script              : /home4/alozahic/exploit/systeme/suivi/stats_errors_color_vfinal
+Arguments (ne)      : 
+ 
+Date d'exploitation : test_commandes(29/12/2011)
+Serveur VTOM        : savigny
+ 
+Periodicite         : DAY
+ 
+Repertoire courant  : /home4/alozahic/Linux/savigny
+Script (type)       : /home4/alozahic/exploit/systeme/suivi/stats_errors_color_vfinal: Korn shell script text executable
+_______________________________________________________________________
+29/12/2011 - 4/52/2011 - 363/2011 - 06:00:05 CET
+ Debut de l'execution du script ...
+_______________________________________________________________________
+ 
+TMAIL : 54 Build 2 LINUX 2011/10/14 Visual Tom (c) Absyss
+
+Mail sent
+_______________________________________________________________________
+29/12/2011 - 4/52/2011 - 363/2011 - 06:00:11 CET
+... Fin de l'execution du script.
+ 
+Termine --> Exit [0] donc acquitement
+_______________________________________________________________________
+## TEST_COMMANDES;ADMINISTRATION;STATS_COLOR;;NORMAL;savigny;savigny;alozahic;queue_ksh;test_commandes;29/12/2011;29/12/2011 06:00:05 CET;29/12/2011 06:00:11 CET;0;1;1;0;0 ##

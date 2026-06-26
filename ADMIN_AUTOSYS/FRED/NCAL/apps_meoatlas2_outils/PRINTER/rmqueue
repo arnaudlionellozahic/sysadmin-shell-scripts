@@ -1,0 +1,18 @@
+>./queue_desc_rmv
+echo "entrez les file d attente à supprimer"
+sleep 3
+vi ./queue_desc_rmv
+
+while read line
+ do
+if grep "^$line" /etc/qconfig > /dev/null
+
+then
+cd /var/spool/lpd/qdir
+rm *$line*
+export dev=$(lsallqdev -q$line)
+/usr/lib/lpd/pio/etc/piomisc_ext rmpq_other  $line:$dev 'remote.local'
+echo "$line:$dev"
+fi
+
+done < ./queue_desc_rmv

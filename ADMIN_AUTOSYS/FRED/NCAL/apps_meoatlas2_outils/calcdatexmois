@@ -1,0 +1,63 @@
+##########################################
+# GB 02/02/2007: adaptation calcdate6mois
+# x: nbre de mois (par defaut: 3 mois)
+# Definition des formats
+##########################################
+integer moisx
+integer annee
+integer jour
+jour=$( date +"%d" )
+mois=$( date +"%m" )
+x=3
+moisx=$mois+x
+########################
+# Calcul de l'annee cible
+########################
+if [[ $moisx -gt 12 ]]
+        then
+        annee=$( date +"%Y" )+1
+        moisx=$moisx-12
+else
+        annee=$( date +"%Y" )
+        moisx=$moisx
+fi
+cal $moisx $annee  > /tmp/dateplusxmois.$$
+########################
+# Calcul de la date cible
+########################
+if [[ $(awk -v day=$jour '$1 == day || $2 == day || $3 == day || $4 == day || $5 ==day || $6 == day || $7 == day ' /tmp/dateplusxmois.$$ ) = "" ]]
+        then
+        jour=$jour-1
+        if [[ $(awk -v day=$jour '$1 == day || $2 == day || $3 == day || $4 == day || $5 ==day || $6 == day || $7 == day ' /tmp/dateplusxmois.$$ ) = "" ]]
+                then
+                jour=$jour-1
+                if [[ $(awk -v day=$jour '$1 == day || $2 == day || $3 == day || $4 == day || $5 ==day || $6 == day || $7 == day ' /tmp/dateplusxmois.$$ ) = "" ]]
+                        then
+                        jour=$jour-1
+                        else
+                        jour=$jour
+                fi
+        fi
+        else
+        jour=$jour
+fi
+########################
+# Misee en forme de la date cible
+########################
+if [ $jour -lt 10 ]
+        then jourfin=0$jour
+        else
+        jourfin=$jour
+fi
+if [ $moisx -lt 10 ]
+        then moisfin=0${moisx}
+        else
+        moisfin=${moisx}
+fi
+anneecalc=$( echo $annee |cut -c 3-4 )
+#dateplusxmois=${moisfin}${jourfin}0000${anneecalc}
+dateplusxmois="${jourfin}-${moisfin}-20${anneecalc}"
+echo $dateplusxmois
+rm /tmp/dateplusxmois.$$
+
+

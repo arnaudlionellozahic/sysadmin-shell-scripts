@@ -1,0 +1,43 @@
+#!/bin/ksh -x
+
+backup ()
+{
+cd /slqdl7bdd01/appli
+tar -pcf ${fic} svn
+
+if [ $? == 0 ]
+then
+echo "Le backup du repertoire ${rep} est OK le $(date +'%d/%m/%Y a %H:%M')" > /tmp/backup.log
+mv ${fic} ${rep_backup}
+else 
+   echo "Le backup du repertoire ${rep} est KO le $(date +'%d/%m/%Y a %H:%M')" > /tmp/backup.log
+fi
+}
+
+tsm ()
+{
+cd ${rep_backup}
+dsmc ba ${rep_backup}/${fic} -optfile=/opt/tivoli/tsm/client/ba/bin/BK/SLQDL7BDD01_BK-dsm.opt
+
+#if [ $? == 0 ]
+#then
+#echo "La sauvegarde TSM de l'archive ${rep_backup}/${fic} est OK le $(date +'%d/%m/%Y a %H:%M')" >> /tmp/backup.log
+#else
+#   echo "La sauvegarde TSM de l'archive ${rep_backup}/${fic} est KO le $(date +'%d/%m/%Y a %H:%M')" >> /tmp/backup.log
+#fi
+}
+
+# Main
+rep=/slqdl7bdd01/appli/svn
+rep_backup=/slqdl7bdd01/appli/backup
+#rep_mail=/slqdl7bdd01/appli/backup/MAIL
+fic=svn_pcf.tar
+
+backup 
+tsm
+
+cat /tmp/purge.log >> /tmp/purge_backup.log
+
+rm -f ${rep_backup}/${fic}
+
+#ksh -x $rep_mail/sendmail.ksh

@@ -1,0 +1,18 @@
+%sc;info
+CPUID    VERSION  TIME ZONE                        INFO
+HADES    8.5      Europe/Paris                     AIX 1 6 00C152D54C00
+ARIANE   8.5      Europe/Paris                     Windows NT 3790 5.2 INTEL/Si
+M1_TEREE 8.5      Europe/Paris                     Windows NT 3790 5.2 INTEL/Si
+METIS    8.5      Europe/Paris                     AIX 1 6 00C152D54C00
+PPW0-CR+ 8.5      Europe/Paris                     Windows NT 7601 6.1 INTEL/Si
+PPW0-CR+ 8.5      Europe/Paris                     Windows NT 7601 6.1 INTEL/Si
+PRODEAF+ 8.5      Europe/Paris                     Linux 2.6.18-371.4.1.e #1 SM
+PVL0-CY+ 8.5.1    Europe/Paris                     Linux 2.6.32-358.2.1.e #1 SM
+PVL0-TA+ 9.2.0.00 Europe/Paris                     Linux 2.6.32-504.8.1.e #1 SM
+PVL0BE-+ 8.5.1    Europe/Paris                     Linux 2.6.32-358.11.1. #1 SM
+PVL0UL-+ 8.5.1    Europe/Paris                     Linux 2.6.32-358.18.1. #1 SM
+PVL1-DS+ 8.5.1    Europe/Paris                     Linux 2.6.32-358.2.1.e #1 SM
+PVL1-DS+ 8.5.1    Europe/Paris                     Linux 2.6.32-358.23.2. #1 SM
+RHEA     8.5      Europe/Paris                     AIX 1 6 00CC53A54C00
+ULYSSE   8.5      Europe/Paris                     Windows NT 3790 5.2 INTEL/Si
+ZEUS_S   8.5      Europe/Paris                     AIX 1 6 00C152D54C00

@@ -1,0 +1,89 @@
+#!/bin/ksh
+#Dans un script d'audit sur un serveur autosys
+#A lancer en auto113
+
+arncheck ()
+{
+chk_auto_up
+# chk_auto_up : Check la base, le scheduler
+# code retour : 11 => 1 scheduler, 1 base
+
+if [ $? == 11 ]
+then
+echo "1 base - 1 scheduler"
+else
+echo "toto"
+fi
+
+autoping -m ALL
+
+}
+
+echo $?
+11
+
+
+arnping
+
+
+
+
+
+
+arnservers ()
+{
+autorep -M ALL -n 
+}
+
+arnboxes ()
+{
+autorep -j % -l0 -n
+}
+
+arnjobs ()
+{
+autorep -j % -n
+}
+
+arnresources ()
+{
+autorep -V ALL -n
+}
+
+
+#Main
+
+REP=/ficsav/EQUIPE_MEO/arnaud/guinee/
+SERVER=${REP}/server
+BOX=${REP}/box
+JOB=${REP}/job
+RES=${REP}/res
+
+echo "AUTOSYS_AUDIT"
+echo ""
+echo "----------------------------------------------------------------"
+echo "----------------------------------------------------------------"
+
+echo "AUTOSYS_SERVERS
+arnservers > ${SERVER}
+echo "----------------------------------------------------------------"
+echo "----------------------------------------------------------------"
+echo ""
+
+echo "AUTOSYS_BOXES
+arnboxes > ${BOX}
+echo "----------------------------------------------------------------"
+echo "----------------------------------------------------------------"
+echo ""
+
+echo "AUTOSYS_JOBS
+arnjobs > ${JOB}
+echo "----------------------------------------------------------------"
+echo "----------------------------------------------------------------"
+echo ""
+
+echo "AUTOSYS_RESOURCES
+arnresources > ${RES}
+echo "----------------------------------------------------------------"
+echo "----------------------------------------------------------------"
+echo ""

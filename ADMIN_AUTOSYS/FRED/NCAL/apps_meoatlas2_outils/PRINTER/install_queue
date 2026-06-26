@@ -1,0 +1,12 @@
+DATE=$(date +"%Y%m%d.%H%M%S")
+# backup qconfig
+#cp -p /etc/qconfig /etc/qconfig_${DATE}
+#cp -p /etc/qconfig.bin /etc/qconfig.bin_${DATE}
+#
+exec 3<queue_desc
+while read -u3 row1 row2
+do
+/usr/lib/lpd/pio/etc/piomisc_ext mkpq_remote_local -p 'hplj-4' -D pcl -q  $row2 -h $row1 -r $row2 -t 'bsd' -4 'yes' -C 'FALSE'
+echo  "$row1 $row2 "
+sleep 5
+done

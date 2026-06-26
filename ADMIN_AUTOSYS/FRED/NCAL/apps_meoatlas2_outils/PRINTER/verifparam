@@ -1,0 +1,4 @@
+param1=$1
+param2=$2
+/usr/sbin/lsvirprt -q $param1 -d $param2 $(cat listeopt)
+

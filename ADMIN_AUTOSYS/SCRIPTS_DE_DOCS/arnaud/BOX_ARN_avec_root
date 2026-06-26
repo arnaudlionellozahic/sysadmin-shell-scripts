@@ -1,0 +1,39 @@
+update_job: GR2_JOBX   job_type: CMD
+owner: root
+update_job: GR2_BOX0   job_type: BOX
+owner: root@rh602
+ update_job: GR2_BOX1   job_type: BOX
+ owner: ejmcommander
+  update_job: GR2_BOX1_FT1   job_type: FT
+  owner: root
+  update_job: GR2_BOX1_J1   job_type: CMD
+  owner: root
+  update_job: GR2_BOX1_J2   job_type: CMD
+  owner: root
+ update_job: GR2_BOX2   job_type: BOX
+ owner: root
+  update_job: GR2_BOX2_J1   job_type: CMD
+  owner: root
+  update_job: GR2_BOX2_J3   job_type: CMD
+  owner: root
+  update_job: GR2_BOX2_J2   job_type: CMD
+  owner: root
+update_job: GR2_BOX4   job_type: BOX
+owner: root@rh602
+ update_job: GR2_BOX4_J1   job_type: CMD
+
+owner: root
+ update_job: GR2_BOX4_J2   job_type: CMD
+ owner: root
+ update_job: GR2_BOX4_J3   job_type: CMD
+ owner: root
+ update_job: GR2_BOX4_J4   job_type: CMD
+ owner: root
+ update_job: GR2_BOX4_J5   job_type: CMD
+ owner: root
+ update_job: GR2_BOX4_J6   job_type: CMD
+ owner: root
+ update_job: GR2_BOX4_J7   job_type: CMD
+ owner: root
+ update_job: GR2_BOX4_J8   job_type: CMD
+ owner: root

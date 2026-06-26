@@ -1,0 +1,278 @@
+#!/bin/ksh
+# ----------------------------------------------------------------------------
+# SQLLOADER : Chargement en base
+# ----------------------------------------------------------------------------
+# Parametres     :
+# Entrees        :
+# Sorties        :
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+
+######################################################
+# Diverses initialisations de variables obligatoires #
+######################################################
+
+# Parametres passes en arguments par CONTROL-M
+ODATE=${1}
+[ "X${ODATE}" = "X" ] && echo "Parm ODATE non specifie" && exit 1
+
+IDF=${2}
+[ "X${IDF}" = "X" ] && echo "Parm IDF non specifie" && exit 1
+
+FIC=${3}
+[ "X${FIC}" = "X" ] && echo "Parm FIC non specifie" && exit 1
+
+CTL=${4}
+[ "X${CTL}" = "X" ] && echo "Parm CTL non specifie" && exit 1
+
+REP_CTL=${5}
+[ "X${REP_CTL}" = "X" ] && echo "Parm REP_CTL non specifie" && exit 1
+
+REP=${6}
+[ "X${REP}" = "X" ] && echo "Parm REP non specifie" && exit 1
+
+
+# exporte les variables CTM0, GEHLOG, GEDAA, GEDAACC et GEDSOFT
+ctrlmExports ${0}
+
+# source l'environnement de la machine logique
+switch ${GEHLOG} > /dev/null
+
+
+############################################
+# Chargement des variables d'environnement #
+############################################
+
+GENERAL_ENV="${GEDAA}/etc/`echo ${GEIENV} | tr "UQP" "uqp"`v/env_q04.ksh"
+LOCAL_ENV="${REP}/`echo ${GEIENV} | tr "UQP" "uqp"`v/etc/env.ksh"
+
+if [ -f ${GENERAL_ENV} ]; then
+  . ${GENERAL_ENV}
+  [ $? -ne 0 ] && MsgError "impossible de charger l'environnement" && exit 1
+fi
+
+if [ -f ${LOCAL_ENV} ]; then
+  . ${LOCAL_ENV}
+  [ $? -ne 0 ] && MsgError "impossible de charger l'environnement" && exit 1
+fi
+
+#############################################################
+# Initialisation des variables n'ayant pas a etre modifiees #
+#############################################################
+
+DATE=`date +"%Y%m%d_%H%M%S"`
+
+#code retour
+_CODE=0
+#code retour pour fichier non present
+_CODE1=0
+#code retour pour le chargement des donnees
+_CODE2=0
+
+###################################################
+# Initialisation des variables specifiques au job #
+###################################################
+
+REP_LOG=${REP}/logs
+REP_WORK=${REP}/travaux
+REP_ERROR=${REP}/error
+
+CODEAPP=Q04
+
+#######################
+##LANCEMENT DU SCRIPT##
+#######################
+#-------------------------------------------------------------------
+# Debut du job
+#-------------------------------------------------------------------
+echo "----------------------------------------------------------------------------------------------------------"
+echo ""
+echo "#### DEBUT JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+echo ""
+
+echo "VARIABLES CTLM"
+echo "IDF=${IDF}"
+echo "FIC=${FIC}"
+echo "CTL=${CTL}"
+echo "REP_CTL=${REP_CTL}"
+echo "REP=${REP}"
+echo ""
+echo "VARIABLES VALORISEES DANS LE SCRIPT"
+echo "REP_WORK=${REP_WORK}"
+echo "REP_ERROR=${REP_ERROR}"
+echo "REP_LOG=${REP_LOG}"
+
+
+# ---------------------------------------------------------------------------- #
+# Information sur les fichiers presents dans le repertoire de travaux avant chargement
+# ---------------------------------------------------------------------------- #
+for i in `echo $FIC | awk -F '{print $1}'`
+do
+cd ${REP_WORK}
+	if [ -f ${i} ]; then
+		echo "**********************************************************************************************************"
+		echo ""
+        	echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Avant chargement : Information sur les fichiers presents dans ${REP_WORK}"
+        	echo "`ls -ltr ${REP_WORK} | grep -v total`"
+		echo ""
+		echo "**********************************************************************************************************"
+        	echo ""
+                	else
+			echo "**********************************************************************************************************"
+			echo ""
+                	echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Fichier ${i} vide ou non present : pas de chargement"
+			let "_CODE1+=2"
+			echo "code retour du fichier vide ou non present : ${_CODE1}"
+			echo ""
+                	echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Avant chargement : Information sur les fichiers presents dans ${REP_WORK}"
+			echo "`ls -ltr ${REP_WORK} | grep -v total`"
+			echo ""
+			echo "**********************************************************************************************************"
+                	echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+                	echo "exit ${_CODE1}"
+                	exit ${_CODE1}
+	fi
+
+# ---------------------------------------------------------------------------- #
+# Verification des fichiers attendus et chargement dans sqlloader
+# ---------------------------------------------------------------------------- #
+echo "CHARGEMENT DU FICHIER `echo $FIC | awk -F '{print $1}'` VIA SQLLOADER"
+echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : DEBUT CHARGEMENT DES DONNEES"
+
+# On boucle sur les tables à alimenter
+        if [ -f ${i} ]; then
+                #echo "${EXE_NAME_SQLL} ${EXE_PARM} "data=${REP_WORK}/${i}.dat control=${REP_CTL}/${CTL}.ctl log=${REP_LOG}/${i}-${ODATE}.log bad=${REP_LOG}/${i}-${ODATE}.bad errors=100000""
+		#echo "AVEC 0 REJET"
+                #echo ""data=${REP_WORK}/${i} control=${REP_CTL}/${CTL}.ctl log=${REP_LOG}/${i}-${ODATE}.log bad=${REP_LOG}/${i}-${ODATE}.bad errors=0""
+		echo ""
+		echo "---------------------------------------------------"
+		${EXE_NAME_SQLL} ${EXE_PARM} "data=${REP_WORK}/${i} control=${REP_CTL}/${CTL}.ctl log=${REP_LOG}/${i}-${ODATE}.log bad=${REP_LOG}/${i}-${ODATE}.bad errors=1000"
+		echo "---------------------------------------------------"
+		echo ""
+                _CODE2=$?
+        	# On verifie qu'il n'y a pas d'erreur du Loader
+        	if [ ${_CODE2} -ne 0 ] || [ `/bin/grep Loader-500 ${REP_LOG}/${i}-${ODATE}.log | wc -l` -gt 0 ] || [ `/bin/grep Loader-553 ${REP_LOG}/${i}-${ODATE}.log | wc -l` -gt 0 ] || [ `/bin/grep Loader-509 ${REP_LOG}/${i}-${ODATE}.log | wc -l` -gt 0 ]; then
+			echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : PROBLEME DE CHARGEMENT DE DONNEES POUR LA TABLE ${i}"
+			echo "Deplacement du fichier ${i} dans ${REP_ERROR}"
+			mv ${REP_WORK}/${i} ${REP_ERROR}/${i}-${DATE}
+			let "_CODE2+=2"
+                        echo ""
+                        echo "**********************************************************************************************************"
+                        echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+                        echo "exit ${_CODE2}"
+                        exit ${_CODE2}	
+                                else
+                                echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Chargement des donnees OK pour la table ${i}"
+				echo "Suppression du fichier ${REP_WORK}/${i}"
+				\rm -f ${i}
+				echo ""
+				echo "**********************************************************************************************************"
+                fi
+                        else
+                        echo "**********************************************************************************************************"
+                       	echo ""
+                       	echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Fichier ${i} vide ou non present : pas de chargement"
+                       	let "_CODE1+=2"
+                       	echo "code retour du fichier vide ou non present : ${_CODE1}"
+                       	echo ""
+                       	echo "**********************************************************************************************************"
+                       	echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+                       	echo "${_CODE1}"
+                       	exit ${_CODE1}
+        fi
+
+# ---------------------------------------------------------------------------- #
+# Verification de la log de chargement
+# ---------------------------------------------------------------------------- #
+cd ${REP_LOG}
+        if [ ! -f ${i}-${ODATE}.log ]; then
+                echo ""
+                echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : VERIFICATION DE LA LOG DE CHARGEMENT : ${i}-${ODATE}.log est vide ou n'existe pas"
+                echo ""
+                echo "**********************************************************************************************************"
+                echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+                echo "exit 1"
+                exit 1
+                        else
+                        echo ""
+                        echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : VERIFICATION DE LA LOG DE CHARGEMENT : ${i}-${ODATE}.log existe et n'est pas vide"
+                        echo "EXTRACTION DES DERNIERES LIGNES DE LA LOG de CHARGEMENT : "
+                        if [ `/bin/grep Rows ${i}-${ODATE}.log | wc -l` -gt 0 ]; then
+                        echo ""
+                        echo "`cat ${i}-${ODATE}.log | tail -20`"
+                        fi
+        fi
+
+# ---------------------------------------------------------------------------- #
+# Verification des rejets suite au chargement des donnees en base
+# ---------------------------------------------------------------------------- #
+#cd ${REP_LOG}
+#        if [ -f ${i}-${ODATE}.bad ]; then
+#                # On verifie l'existence de fichiers bad
+#                echo ""
+#                echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : VERIFICATION DE L'EXISTENCE DE FICHIERS BAD"
+#                echo "Le fichier ${i}-${ODATE}.bad contient des erreurs, il est deplace dans ${REP_ERROR}"
+#                echo ""
+#                echo "**********************************************************************************************************"
+#                mv ${i}-${ODATE}.bad ${REP_ERROR}/
+#                echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+#                echo "exit 1"
+#                exit 1
+#                        else
+#                        echo ""
+#                        echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : VERIFICATION DE L'EXISTENCE DE FICHIERS BAD"
+#                        echo "PAS DE REJETS DE CHARGEMENT"
+#			 echo ""
+#        fi
+done
+
+# ---------------------------------------------------------------------------- #
+# Information sur les fichiers presents dans le repertoire travaux et error apres chargement
+# ---------------------------------------------------------------------------- #
+echo "**********************************************************************************************************"
+if [ -s `ls -A ${REP_WORK}` ] && echo "" || echo ""; then
+        echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Apres chargement : Information sur les fichiers presents dans ${REP_WORK}"
+        echo "`ls -ltr ${REP_WORK} | grep -v total`"
+fi
+
+if [ -s `ls -A ${REP_ERROR}` ] && echo "" || echo ""; then
+        echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Apres chargement : Information sur les fichiers presents dans ${REP_ERROR}"
+        echo "`ls -ltr ${REP_ERROR} | grep -v total`"
+	echo ""
+fi
+echo "**********************************************************************************************************"
+
+
+# ---------------------------------------------------------------------------- #
+# Si des fichiers BAD sont generes, alors on envoit un mail
+# ---------------------------------------------------------------------------- #
+
+#BADFILES=`ls $REP_LOG/*bad`
+#BADFILE=`echo $BADFILES | tail -1`
+#FILENAME="All_badfiles.bad"
+
+#if [ -f $BADFILE ]; then
+#  for BAD in `echo $BADFILES`
+#  do
+#    cat $BAD >> ${REP_LOG}/${FILENAME}
+#  done
+#  GecMail -s "G(P1-MBX-RRI)" -o "${_MAIL_SUBJECT}" -d "${_MAIL_TO}" -M ${REP_LOG}/${FILENAME} -j ${BADFILE}
+#fi
+
+echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+#-------------------------------------------------------------------
+# Fin du job proprement dit
+#-------------------------------------------------------------------
+if [ ${_CODE2} -ne 0 ]; then
+        #echo "retour pour le chargement des donnees : ${_CODE2}"
+        echo "exit ${_CODE2}"
+        exit ${_CODE2}
+                elif [ ${_CODE1} -ne 0 ]; then
+                #echo "code retour du fichier vide ou non present : ${_CODE1}"
+                echo "exit ${_CODE1}"
+                exit ${_CODE1}
+                        else
+                        #echo "code retour : ${_CODE}"
+                        echo "exit ${_CODE}"
+                        exit ${_CODE}
+fi

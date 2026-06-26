@@ -1,0 +1,6 @@
+
+Machine Name                  Max Load   Current Load Factor  O/S         Status
+_____________________________ __________ ____________ _______ ___________ ______
+s00va9930772                  ---        ---          1.00    Sys Agent   Online
+BWAED01-PRIMARY.s00va9930772  100        0            0.00    Sys Agent   Online
+exploit.s00va9930772          ---        ---          ----    Sys Agent   Online

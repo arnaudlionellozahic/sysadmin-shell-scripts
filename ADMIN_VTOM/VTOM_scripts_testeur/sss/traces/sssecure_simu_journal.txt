@@ -1,0 +1,20 @@
+
+---------------------------------------
+HP-UX itanium B.11.23 U ia64 1220372574 unlimited-user license
+
+20-05-2010 15:12:15 - Demarrage des serveurs en mode securise
+20-05-2010 15:12:15 - Traces serveurs dans /home4/plair/traces
+20-05-2010 15:12:15 - Traces moteurs dans /home4/plair/traces
+20-05-2010 15:12:15 - Les archivages (traces, base VTOM, journal, ps, top, netstat) seront faits dans /home4/plair/sss/traces
+20-05-2010 15:12:15 - Commande ps avec vsz : UNIX95= ps -eo pid,time,user,comm,sz,vsz
+20-05-2010 15:12:15 - Commande ps : ps -ex
+20-05-2010 15:12:15 - Commande top : top -d 1 -n 10000
+20-05-2010 15:12:15 - Cycle Secure : 10
+20-05-2010 15:12:15 - Demarrage sssimu_vtsgbd
+20-05-2010 15:12:17 - Demarrage sssimu_vtserver
+20-05-2010 15:13:50 - Processus sssimu_vtserver absent
+20-05-2010 15:13:50 - Collecte netstat, vtping, top et ps
+20-05-2010 15:14:06 - Archivage traces serveurs
+20-05-2010 15:14:08 - Archivage base
+20-05-2010 15:15:56 - Redemarrage sssimu_vtserver
+20-05-2010 15:15:59 - Aucun moteur a redemarrer

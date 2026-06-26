@@ -1,0 +1,17 @@
+Date: 11/25/16               Object: TJOBSET               Page     1                    
+Jobset: jfu50Cald                                                                        
+  Qualifier: 2400  Station: exploit               Original Station: exploit              
+  Description: Dechargement: tar - compress                                              
+  Run Status: START      Calendar: DEMAND_C                                              
+  Abend Action: ABORT    Failcond: ( +0001 , +9999 )                                     
+  Anycpu: No  Autosel: No  Backlog: Yes Hold: Yes                                        
+  Priority: 01 History: 0010 Userenv: No                                                 
+  Early:      24-11-2016  05:00:00.00  Max. Time:                                        
+  Must Start:                          Must Comp.:                                       
+  Schedule:   24-11-2016  23:46:55.00  Available:  25-11-2016  04:01:01.00               
+  Start:      25-11-2016  04:01:01.00  End:                                              
+  Average:    00:07:36.00  High RC:                                                      
+  Users:                                                                                 
+   Cancel:                                   Demand:                                     
+   Force:                                    Release: root                               
+   Hold:                                                                                 

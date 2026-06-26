@@ -1,0 +1,29 @@
+Subject: DEHOLD DU JOBSET jfu50Cald serveur parva4000839
+Bonjour,
+
+
+Date d execution  : 20161124
+
+
+
+
+
+Date: 11/24/16               Object: TJOBSET               Page     1                    
+Jobset: jfu50Cald                                                                        
+  Qualifier: 2300  Station: exploit               Original Station: exploit              
+  Description: Dechargement: tar - compress                                              
+  Run Status: START      Calendar: DEMAND_C                                              
+  Abend Action: ABORT    Failcond: ( +0001 , +9999 )                                     
+  Anycpu: No  Autosel: No  Backlog: Yes Hold: Yes                                        
+  Priority: 01 History: 0010 Userenv: No                                                 
+  Early:      23-11-2016  05:00:00.00  Max. Time:                                        
+  Must Start:                          Must Comp.:                                       
+  Schedule:   23-11-2016  23:54:09.00  Available:  24-11-2016  04:01:01.00               
+  Start:      24-11-2016  04:01:01.00  End:                                              
+  Average:    00:07:41.00  High RC:                                                      
+  Users:                                                                                 
+   Cancel:                                   Demand:                                     
+   Force:                                    Release: root                               
+   Hold:                                                                                 
+Cordialement,
+.

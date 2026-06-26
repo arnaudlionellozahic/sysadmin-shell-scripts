@@ -1,0 +1,44 @@
+
+set -x
+
+TOTO=`date +"%m%d%Y"`
+
+#création d'un fichier à l'instant t
+touch -t $TOTO deb.txt
+
+# ! -newer ******** liste tout ce qui est plus vieux que ce fichier 
+liste=`find /data/archlog/ -name '*.log.Z' ! -newer deb.txt -exec ls -ltr {} \;`
+
+echo $liste
+
+# - newer ******* liste tout ce qui est plus récent que ce fichier 
+#liste=`find /data/archlog/ -name '*.log.Z' -newer deb.txt -exec ls -ltr {} \;`
+
+liste=`find /data/archlog/ -name '*.log' ! -newer deb.txt -exec ls -ltr {} \;`
+
+
+
+#----------------------------------
+
+
+PURGE DES LOGS
+
+
+set -x
+
+TOTO=`date +"%m%d%Y"`
+
+#création d'un fichier à l'instant t
+touch -t $TOTO deb.txt
+
+# ! -newer ******** liste tout ce qui est plus vieux que ce fichier 
+liste=`find /data/archlog/ -name '*.log' ! -newer deb.txt -exec ls -ltr {} \;`
+
+echo $liste
+
+# - newer ******* liste tout ce qui est plus récent que ce fichier 
+#liste=`find /data/archlog/ -name '*.log.Z' -newer deb.txt -exec ls -ltr {} \;`
+
+liste=`find /data/archlog/ -name '*.log' ! -newer deb.txt -exec ls -ltr {} \;`
+
+find /data/archlog/ -name '*.log' ! -newer deb.txt -exec  {} \;

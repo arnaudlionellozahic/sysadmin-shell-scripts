@@ -1,0 +1,737 @@
+centos63      ;68             ; hald                                                                  
+centos63      ;68             ; hald-addon-acpi: listening on acpid socket                            
+centos63      ;alozahic       ; /bin/sh -c . /home/alozahic/.profile; /home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/SURVEILL
+centos63      ;alozahic       ; /bin/sh -c . /home/alozahic/.profile; /home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/SURVEILL
+centos63      ;alozahic       ; /bin/sh -c . /home/alozahic/.profile; /home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/SURVEILL
+centos63      ;alozahic       ; /home/alozahic/Linux/centos63/Ver551/sgbd/bin/postgres -D /home/alozahic/Linux/centos63/Ver551/ba  
+centos63      ;alozahic       ; /home/alozahic/Linux/centos63/Ver551/vtom/bin/vtcentos63er                
+centos63      ;alozahic       ; /home/alozahic/Linux/centos63/Ver551/vtom/bin/vtsgbd                  
+centos63      ;alozahic       ; -ksh                                                                  
+centos63      ;alozahic       ; -ksh                                                                  
+centos63      ;alozahic       ; -ksh                                                                  
+centos63      ;alozahic       ; ksh -x domi_arn_ctrl_process                                          
+centos63      ;alozahic       ; postgres: autovacuum launcher process                                 
+centos63      ;alozahic       ; postgres: stats collector process                                     
+centos63      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40907) idle                             
+centos63      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40908) idle                             
+centos63      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40909) idle                             
+centos63      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40910) idle                             
+centos63      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40911) idle                             
+centos63      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40912) idle                             
+centos63      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40913) idle                             
+centos63      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40914) idle                             
+centos63      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40915) idle                             
+centos63      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40916) idle                             
+centos63      ;alozahic       ; postgres: wal writer process                                          
+centos63      ;alozahic       ; postgres: writer process                                              
+centos63      ;alozahic       ; ps -ef                                                                
+centos63      ;alozahic       ; sed s/centos63/centos63/g                                                 
+centos63      ;alozahic       ; sort                                                                  
+centos63      ;alozahic       ; sshd: alozahic@pts/0                                                  
+centos63      ;alozahic       ; sshd: alozahic@pts/1                                                  
+centos63      ;alozahic       ; /usr/sbin/postdrop -r                                                 
+centos63      ;alozahic       ; /usr/sbin/postdrop -r                                                 
+centos63      ;alozahic       ; /usr/sbin/postdrop -r                                                 
+centos63      ;alozahic       ; /usr/sbin/sendmail -FCronDaemon -i -odi -oem                          
+centos63      ;alozahic       ; /usr/sbin/sendmail -FCronDaemon -i -odi -oem                          
+centos63      ;alozahic       ; /usr/sbin/sendmail -FCronDaemon -i -odi -oem                          
+centos63      ;alozahic       ; vtmonitor                                                             
+centos63      ;avahi          ; avahi-daemon: chroot helper                                           
+centos63      ;avahi          ; avahi-daemon: running [centos63.local]                                
+centos63      ;dbus           ; dbus-daemon --system                                                  
+centos63      ;ntp            ; ntpd -u ntp:ntp -p /var/run/ntpd.pid                                  
+centos63      ;postfix        ; pickup -l -t fifo -u                                                  
+centos63      ;postfix        ; qmgr -l -t fifo -u                                                    
+centos63      ;root           ; abrt-dump-oops -d /var/spool/abrt -rwx /var/log/messages              
+centos63      ;root           ; [aio/0]                                                               
+centos63      ;root           ; [async/mgr]                                                           
+centos63      ;root           ; [ata/0]                                                               
+centos63      ;root           ; [ata_aux]                                                             
+centos63      ;root           ; auditd                                                                
+centos63      ;root           ; automount --pid-file /var/run/autofs.pid                              
+centos63      ;root           ; -bash                                                                 
+centos63      ;root           ; [bdi-default]                                                         
+centos63      ;root           ; [cgroup]                                                              
+centos63      ;root           ; crond                                                                 
+centos63      ;root           ; CROND                                                                 
+centos63      ;root           ; CROND                                                                 
+centos63      ;root           ; CROND                                                                 
+centos63      ;root           ; [crypto/0]                                                            
+centos63      ;root           ; cupsd -C /etc/cups/cupsd.conf                                         
+centos63      ;root           ; [events/0]                                                            
+centos63      ;root           ; [ext4-dio-unwrit]                                                     
+centos63      ;root           ; [ext4-dio-unwrit]                                                     
+centos63      ;root           ; [ext4-dio-unwrit]                                                     
+centos63      ;root           ; [ext4-dio-unwrit]                                                     
+centos63      ;root           ; [ext4-dio-unwrit]                                                     
+centos63      ;root           ; [ext4-dio-unwrit]                                                     
+centos63      ;root           ; [ext4-dio-unwrit]                                                     
+centos63      ;root           ; [flush-253:3]                                                         
+centos63      ;root           ; [flush-253:4]                                                         
+centos63      ;root           ; [flush-253:5]                                                         
+centos63      ;root           ; hald-addon-input: Listening on /dev/input/event0 /dev/input/event1    
+centos63      ;root           ; hald-runner                                                           
+centos63      ;root           ; /home/alozahic/Linux/centos63/Ver551/abm/bin/bdaemon                  
+centos63      ;root           ; [jbd2/dm-0-8]                                                         
+centos63      ;root           ; [jbd2/dm-2-8]                                                         
+centos63      ;root           ; [jbd2/dm-3-8]                                                         
+centos63      ;root           ; [jbd2/dm-4-8]                                                         
+centos63      ;root           ; [jbd2/dm-5-8]                                                         
+centos63      ;root           ; [jbd2/dm-6-8]                                                         
+centos63      ;root           ; [jbd2/sda1-8]                                                         
+centos63      ;root           ; [kacpid]                                                              
+centos63      ;root           ; [kacpi_hotplug]                                                       
+centos63      ;root           ; [kacpi_notify]                                                        
+centos63      ;root           ; [kauditd]                                                             
+centos63      ;root           ; [kblockd/0]                                                           
+centos63      ;root           ; [kdmflush]                                                            
+centos63      ;root           ; [kdmflush]                                                            
+centos63      ;root           ; [kdmflush]                                                            
+centos63      ;root           ; [kdmflush]                                                            
+centos63      ;root           ; [kdmflush]                                                            
+centos63      ;root           ; [kdmflush]                                                            
+centos63      ;root           ; [kdmflush]                                                            
+centos63      ;root           ; [khelper]                                                             
+centos63      ;root           ; [khubd]                                                               
+centos63      ;root           ; [khungtaskd]                                                          
+centos63      ;root           ; [kintegrityd/0]                                                       
+centos63      ;root           ; [kpsmoused]                                                           
+centos63      ;root           ; [kseriod]                                                             
+centos63      ;root           ; [ksmd]                                                                
+centos63      ;root           ; [ksoftirqd/0]                                                         
+centos63      ;root           ; [kstriped]                                                            
+centos63      ;root           ; [ksuspend_usbd]                                                       
+centos63      ;root           ; [kswapd0]                                                             
+centos63      ;root           ; [kthreadd]                                                            
+centos63      ;root           ; [kthrotld/0]                                                          
+centos63      ;root           ; login -- alozahic                                                     
+centos63      ;root           ; [md/0]                                                                
+centos63      ;root           ; [md_misc/0]                                                           
+centos63      ;root           ; [migration/0]                                                         
+centos63      ;root           ; [migration/0]                                                         
+centos63      ;root           ; [mpt/0]                                                               
+centos63      ;root           ; [mpt_poll_0]                                                          
+centos63      ;root           ; [netns]                                                               
+centos63      ;root           ; NetworkManager --pid-file=/var/run/NetworkManager/NetworkManager.pid   
+centos63      ;root           ; [pciehpd]                                                             
+centos63      ;root           ; [pm]                                                                  
+centos63      ;root           ; rpc.idmapd                                                            
+centos63      ;root           ; [rpciod/0]                                                            
+centos63      ;root           ; /sbin/init                                                            
+centos63      ;root           ; /sbin/mingetty /dev/tty2                                              
+centos63      ;root           ; /sbin/rsyslogd -i /var/run/syslogd.pid -c 5                           
+centos63      ;root           ; /sbin/udevd -d                                                        
+centos63      ;root           ; /sbin/udevd -d                                                        
+centos63      ;root           ; /sbin/udevd -d                                                        
+centos63      ;root           ; [scsi_eh_0]                                                           
+centos63      ;root           ; [scsi_eh_1]                                                           
+centos63      ;root           ; [scsi_eh_2]                                                           
+centos63      ;root           ; sshd: alozahic [priv]                                                 
+centos63      ;root           ; sshd: alozahic [priv]                                                 
+centos63      ;root           ; su -                                                                  
+centos63      ;root           ; [sync_supers]                                                         
+centos63      ;root           ; [usbhid_resumer]                                                      
+centos63      ;root           ; /usr/libexec/postfix/master                                           
+centos63      ;root           ; /usr/sbin/abrtd                                                       
+centos63      ;root           ; /usr/sbin/acpid                                                       
+centos63      ;root           ; /usr/sbin/atd                                                         
+centos63      ;root           ; /usr/sbin/certmonger -S -p /var/run/certmonger.pid                    
+centos63      ;root           ; /usr/sbin/console-kit-daemon --no-daemon                              
+centos63      ;root           ; /usr/sbin/modem-manager                                               
+centos63      ;root           ; /usr/sbin/sshd                                                        
+centos63      ;root           ; /usr/sbin/wpa_supplicant -c /etc/wpa_supplicant/wpa_supplicant.conf -B -u
+centos63      ;root           ; [vmmemctl]                                                            
+centos63      ;root           ; [watchdog/0]                                                          
+centos63      ;rpc            ; rpcbind                                                               
+centos63      ;rpcuser        ; rpc.statd                                                             
+centos63      ;UID            ; CMD                                                                   
+avize      ;68             ; hald                                                                  
+avize      ;68             ; hald-addon-acpi: listening on acpid socket                            
+avize      ;alozahic       ; /bin/sh -c . /home/alozahic/.profile; /home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/SURVEILL
+avize      ;alozahic       ; /bin/sh -c . /home/alozahic/.profile; /home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/SURVEILL
+avize      ;alozahic       ; /bin/sh -c . /home/alozahic/.profile; /home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/SURVEILL
+avize      ;alozahic       ; /home/alozahic/Linux/centos63/Ver551/sgbd/bin/postgres -D /home/alozahic/Linux/centos63/Ver551/ba  
+avize      ;alozahic       ; /home/alozahic/Linux/centos63/Ver551/vtom/bin/vtavizeer                
+avize      ;alozahic       ; /home/alozahic/Linux/centos63/Ver551/vtom/bin/vtsgbd                  
+avize      ;alozahic       ; -ksh                                                                  
+avize      ;alozahic       ; -ksh                                                                  
+avize      ;alozahic       ; -ksh                                                                  
+avize      ;alozahic       ; ksh -x domi_arn_ctrl_process                                          
+avize      ;alozahic       ; postgres: autovacuum launcher process                                 
+avize      ;alozahic       ; postgres: stats collector process                                     
+avize      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40907) idle                             
+avize      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40908) idle                             
+avize      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40909) idle                             
+avize      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40910) idle                             
+avize      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40911) idle                             
+avize      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40912) idle                             
+avize      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40913) idle                             
+avize      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40914) idle                             
+avize      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40915) idle                             
+avize      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40916) idle                             
+avize      ;alozahic       ; postgres: wal writer process                                          
+avize      ;alozahic       ; postgres: writer process                                              
+avize      ;alozahic       ; ps -ef                                                                
+avize      ;alozahic       ; sed s/avize/avize/g                                                    
+avize      ;alozahic       ; sort                                                                  
+avize      ;alozahic       ; sshd: alozahic@pts/0                                                  
+avize      ;alozahic       ; sshd: alozahic@pts/1                                                  
+avize      ;alozahic       ; /usr/sbin/postdrop -r                                                 
+avize      ;alozahic       ; /usr/sbin/postdrop -r                                                 
+avize      ;alozahic       ; /usr/sbin/postdrop -r                                                 
+avize      ;alozahic       ; /usr/sbin/sendmail -FCronDaemon -i -odi -oem                          
+avize      ;alozahic       ; /usr/sbin/sendmail -FCronDaemon -i -odi -oem                          
+avize      ;alozahic       ; /usr/sbin/sendmail -FCronDaemon -i -odi -oem                          
+avize      ;alozahic       ; vtmonitor                                                             
+avize      ;avahi          ; avahi-daemon: chroot helper                                           
+avize      ;avahi          ; avahi-daemon: running [centos63.local]                                
+avize      ;dbus           ; dbus-daemon --system                                                  
+avize      ;ntp            ; ntpd -u ntp:ntp -p /var/run/ntpd.pid                                  
+avize      ;postfix        ; pickup -l -t fifo -u                                                  
+avize      ;postfix        ; qmgr -l -t fifo -u                                                    
+avize      ;root           ; abrt-dump-oops -d /var/spool/abrt -rwx /var/log/messages              
+avize      ;root           ; [aio/0]                                                               
+avize      ;root           ; [async/mgr]                                                           
+avize      ;root           ; [ata/0]                                                               
+avize      ;root           ; [ata_aux]                                                             
+avize      ;root           ; auditd                                                                
+avize      ;root           ; automount --pid-file /var/run/autofs.pid                              
+avize      ;root           ; -bash                                                                 
+avize      ;root           ; [bdi-default]                                                         
+avize      ;root           ; [cgroup]                                                              
+avize      ;root           ; crond                                                                 
+avize      ;root           ; CROND                                                                 
+avize      ;root           ; CROND                                                                 
+avize      ;root           ; CROND                                                                 
+avize      ;root           ; [crypto/0]                                                            
+avize      ;root           ; cupsd -C /etc/cups/cupsd.conf                                         
+avize      ;root           ; [events/0]                                                            
+avize      ;root           ; [ext4-dio-unwrit]                                                     
+avize      ;root           ; [ext4-dio-unwrit]                                                     
+avize      ;root           ; [ext4-dio-unwrit]                                                     
+avize      ;root           ; [ext4-dio-unwrit]                                                     
+avize      ;root           ; [ext4-dio-unwrit]                                                     
+avize      ;root           ; [ext4-dio-unwrit]                                                     
+avize      ;root           ; [ext4-dio-unwrit]                                                     
+avize      ;root           ; [flush-253:3]                                                         
+avize      ;root           ; [flush-253:4]                                                         
+avize      ;root           ; [flush-253:5]                                                         
+avize      ;root           ; hald-addon-input: Listening on /dev/input/event0 /dev/input/event1    
+avize      ;root           ; hald-runner                                                           
+avize      ;root           ; /home/alozahic/Linux/centos63/Ver551/abm/bin/bdaemon                  
+avize      ;root           ; [jbd2/dm-0-8]                                                         
+avize      ;root           ; [jbd2/dm-2-8]                                                         
+avize      ;root           ; [jbd2/dm-3-8]                                                         
+avize      ;root           ; [jbd2/dm-4-8]                                                         
+avize      ;root           ; [jbd2/dm-5-8]                                                         
+avize      ;root           ; [jbd2/dm-6-8]                                                         
+avize      ;root           ; [jbd2/sda1-8]                                                         
+avize      ;root           ; [kacpid]                                                              
+avize      ;root           ; [kacpi_hotplug]                                                       
+avize      ;root           ; [kacpi_notify]                                                        
+avize      ;root           ; [kauditd]                                                             
+avize      ;root           ; [kblockd/0]                                                           
+avize      ;root           ; [kdmflush]                                                            
+avize      ;root           ; [kdmflush]                                                            
+avize      ;root           ; [kdmflush]                                                            
+avize      ;root           ; [kdmflush]                                                            
+avize      ;root           ; [kdmflush]                                                            
+avize      ;root           ; [kdmflush]                                                            
+avize      ;root           ; [kdmflush]                                                            
+avize      ;root           ; [khelper]                                                             
+avize      ;root           ; [khubd]                                                               
+avize      ;root           ; [khungtaskd]                                                          
+avize      ;root           ; [kintegrityd/0]                                                       
+avize      ;root           ; [kpsmoused]                                                           
+avize      ;root           ; [kseriod]                                                             
+avize      ;root           ; [ksmd]                                                                
+avize      ;root           ; [ksoftirqd/0]                                                         
+avize      ;root           ; [kstriped]                                                            
+avize      ;root           ; [ksuspend_usbd]                                                       
+avize      ;root           ; [kswapd0]                                                             
+avize      ;root           ; [kthreadd]                                                            
+avize      ;root           ; [kthrotld/0]                                                          
+avize      ;root           ; login -- alozahic                                                     
+avize      ;root           ; [md/0]                                                                
+avize      ;root           ; [md_misc/0]                                                           
+avize      ;root           ; [migration/0]                                                         
+avize      ;root           ; [migration/0]                                                         
+avize      ;root           ; [mpt/0]                                                               
+avize      ;root           ; [mpt_poll_0]                                                          
+avize      ;root           ; [netns]                                                               
+avize      ;root           ; NetworkManager --pid-file=/var/run/NetworkManager/NetworkManager.pid   
+avize      ;root           ; [pciehpd]                                                             
+avize      ;root           ; [pm]                                                                  
+avize      ;root           ; rpc.idmapd                                                            
+avize      ;root           ; [rpciod/0]                                                            
+avize      ;root           ; /sbin/init                                                            
+avize      ;root           ; /sbin/mingetty /dev/tty2                                              
+avize      ;root           ; /sbin/rsyslogd -i /var/run/syslogd.pid -c 5                           
+avize      ;root           ; /sbin/udevd -d                                                        
+avize      ;root           ; /sbin/udevd -d                                                        
+avize      ;root           ; /sbin/udevd -d                                                        
+avize      ;root           ; [scsi_eh_0]                                                           
+avize      ;root           ; [scsi_eh_1]                                                           
+avize      ;root           ; [scsi_eh_2]                                                           
+avize      ;root           ; sshd: alozahic [priv]                                                 
+avize      ;root           ; sshd: alozahic [priv]                                                 
+avize      ;root           ; su -                                                                  
+avize      ;root           ; [sync_supers]                                                         
+avize      ;root           ; [usbhid_resumer]                                                      
+avize      ;root           ; /usr/libexec/postfix/master                                           
+avize      ;root           ; /usr/sbin/abrtd                                                       
+avize      ;root           ; /usr/sbin/acpid                                                       
+avize      ;root           ; /usr/sbin/atd                                                         
+avize      ;root           ; /usr/sbin/certmonger -S -p /var/run/certmonger.pid                    
+avize      ;root           ; /usr/sbin/console-kit-daemon --no-daemon                              
+avize      ;root           ; /usr/sbin/modem-manager                                               
+avize      ;root           ; /usr/sbin/sshd                                                        
+avize      ;root           ; /usr/sbin/wpa_supplicant -c /etc/wpa_supplicant/wpa_supplicant.conf -B -u
+avize      ;root           ; [vmmemctl]                                                            
+avize      ;root           ; [watchdog/0]                                                          
+avize      ;rpc            ; rpcbind                                                               
+avize      ;rpcuser        ; rpc.statd                                                             
+avize      ;UID            ; CMD                                                                   
+athis      ;68             ; hald                                                                  
+athis      ;68             ; hald-addon-acpi: listening on acpid socket                            
+athis      ;alozahic       ; /bin/sh -c . /home/alozahic/.profile; /home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/SURVEILL
+athis      ;alozahic       ; /bin/sh -c . /home/alozahic/.profile; /home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/SURVEILL
+athis      ;alozahic       ; /bin/sh -c . /home/alozahic/.profile; /home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/SURVEILL
+athis      ;alozahic       ; cut -b 4-                                                             
+athis      ;alozahic       ; /home/alozahic/Linux/centos63/Ver551/sgbd/bin/postgres -D /home/alozahic/Linux/centos63/Ver551/ba  
+athis      ;alozahic       ; /home/alozahic/Linux/centos63/Ver551/vtom/bin/vtathiser                
+athis      ;alozahic       ; /home/alozahic/Linux/centos63/Ver551/vtom/bin/vtsgbd                  
+athis      ;alozahic       ; -ksh                                                                  
+athis      ;alozahic       ; -ksh                                                                  
+athis      ;alozahic       ; -ksh                                                                  
+athis      ;alozahic       ; ksh -x domi_arn_ctrl_process                                          
+athis      ;alozahic       ; ls                                                                    
+athis      ;alozahic       ; postgres: autovacuum launcher process                                 
+athis      ;alozahic       ; postgres: stats collector process                                     
+athis      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40907) idle                             
+athis      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40908) idle                             
+athis      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40909) idle                             
+athis      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40910) idle                             
+athis      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40911) idle                             
+athis      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40912) idle                             
+athis      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40913) idle                             
+athis      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40914) idle                             
+athis      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40915) idle                             
+athis      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40916) idle                             
+athis      ;alozahic       ; postgres: wal writer process                                          
+athis      ;alozahic       ; postgres: writer process                                              
+athis      ;alozahic       ; ps -ef                                                                
+athis      ;alozahic       ; sed s/athis/athis/g                                                    
+athis      ;alozahic       ; sort                                                                  
+athis      ;alozahic       ; sshd: alozahic@pts/0                                                  
+athis      ;alozahic       ; sshd: alozahic@pts/1                                                  
+athis      ;alozahic       ; /usr/sbin/postdrop -r                                                 
+athis      ;alozahic       ; /usr/sbin/postdrop -r                                                 
+athis      ;alozahic       ; /usr/sbin/postdrop -r                                                 
+athis      ;alozahic       ; /usr/sbin/sendmail -FCronDaemon -i -odi -oem                          
+athis      ;alozahic       ; /usr/sbin/sendmail -FCronDaemon -i -odi -oem                          
+athis      ;alozahic       ; /usr/sbin/sendmail -FCronDaemon -i -odi -oem                          
+athis      ;alozahic       ; vtmonitor                                                             
+athis      ;avahi          ; avahi-daemon: chroot helper                                           
+athis      ;avahi          ; avahi-daemon: running [centos63.local]                                
+athis      ;dbus           ; dbus-daemon --system                                                  
+athis      ;ntp            ; ntpd -u ntp:ntp -p /var/run/ntpd.pid                                  
+athis      ;postfix        ; pickup -l -t fifo -u                                                  
+athis      ;postfix        ; qmgr -l -t fifo -u                                                    
+athis      ;root           ; abrt-dump-oops -d /var/spool/abrt -rwx /var/log/messages              
+athis      ;root           ; [aio/0]                                                               
+athis      ;root           ; [async/mgr]                                                           
+athis      ;root           ; [ata/0]                                                               
+athis      ;root           ; [ata_aux]                                                             
+athis      ;root           ; auditd                                                                
+athis      ;root           ; automount --pid-file /var/run/autofs.pid                              
+athis      ;root           ; -bash                                                                 
+athis      ;root           ; [bdi-default]                                                         
+athis      ;root           ; [cgroup]                                                              
+athis      ;root           ; crond                                                                 
+athis      ;root           ; CROND                                                                 
+athis      ;root           ; CROND                                                                 
+athis      ;root           ; CROND                                                                 
+athis      ;root           ; [crypto/0]                                                            
+athis      ;root           ; cupsd -C /etc/cups/cupsd.conf                                         
+athis      ;root           ; [events/0]                                                            
+athis      ;root           ; [ext4-dio-unwrit]                                                     
+athis      ;root           ; [ext4-dio-unwrit]                                                     
+athis      ;root           ; [ext4-dio-unwrit]                                                     
+athis      ;root           ; [ext4-dio-unwrit]                                                     
+athis      ;root           ; [ext4-dio-unwrit]                                                     
+athis      ;root           ; [ext4-dio-unwrit]                                                     
+athis      ;root           ; [ext4-dio-unwrit]                                                     
+athis      ;root           ; [flush-253:3]                                                         
+athis      ;root           ; [flush-253:4]                                                         
+athis      ;root           ; [flush-253:5]                                                         
+athis      ;root           ; hald-addon-input: Listening on /dev/input/event0 /dev/input/event1    
+athis      ;root           ; hald-runner                                                           
+athis      ;root           ; /home/alozahic/Linux/centos63/Ver551/abm/bin/bdaemon                  
+athis      ;root           ; [jbd2/dm-0-8]                                                         
+athis      ;root           ; [jbd2/dm-2-8]                                                         
+athis      ;root           ; [jbd2/dm-3-8]                                                         
+athis      ;root           ; [jbd2/dm-4-8]                                                         
+athis      ;root           ; [jbd2/dm-5-8]                                                         
+athis      ;root           ; [jbd2/dm-6-8]                                                         
+athis      ;root           ; [jbd2/sda1-8]                                                         
+athis      ;root           ; [kacpid]                                                              
+athis      ;root           ; [kacpi_hotplug]                                                       
+athis      ;root           ; [kacpi_notify]                                                        
+athis      ;root           ; [kauditd]                                                             
+athis      ;root           ; [kblockd/0]                                                           
+athis      ;root           ; [kdmflush]                                                            
+athis      ;root           ; [kdmflush]                                                            
+athis      ;root           ; [kdmflush]                                                            
+athis      ;root           ; [kdmflush]                                                            
+athis      ;root           ; [kdmflush]                                                            
+athis      ;root           ; [kdmflush]                                                            
+athis      ;root           ; [kdmflush]                                                            
+athis      ;root           ; [khelper]                                                             
+athis      ;root           ; [khubd]                                                               
+athis      ;root           ; [khungtaskd]                                                          
+athis      ;root           ; [kintegrityd/0]                                                       
+athis      ;root           ; [kpsmoused]                                                           
+athis      ;root           ; [kseriod]                                                             
+athis      ;root           ; [ksmd]                                                                
+athis      ;root           ; [ksoftirqd/0]                                                         
+athis      ;root           ; [kstriped]                                                            
+athis      ;root           ; [ksuspend_usbd]                                                       
+athis      ;root           ; [kswapd0]                                                             
+athis      ;root           ; [kthreadd]                                                            
+athis      ;root           ; [kthrotld/0]                                                          
+athis      ;root           ; login -- alozahic                                                     
+athis      ;root           ; [md/0]                                                                
+athis      ;root           ; [md_misc/0]                                                           
+athis      ;root           ; [migration/0]                                                         
+athis      ;root           ; [migration/0]                                                         
+athis      ;root           ; [mpt/0]                                                               
+athis      ;root           ; [mpt_poll_0]                                                          
+athis      ;root           ; [netns]                                                               
+athis      ;root           ; NetworkManager --pid-file=/var/run/NetworkManager/NetworkManager.pid   
+athis      ;root           ; [pciehpd]                                                             
+athis      ;root           ; [pm]                                                                  
+athis      ;root           ; rpc.idmapd                                                            
+athis      ;root           ; [rpciod/0]                                                            
+athis      ;root           ; /sbin/init                                                            
+athis      ;root           ; /sbin/mingetty /dev/tty2                                              
+athis      ;root           ; /sbin/rsyslogd -i /var/run/syslogd.pid -c 5                           
+athis      ;root           ; /sbin/udevd -d                                                        
+athis      ;root           ; /sbin/udevd -d                                                        
+athis      ;root           ; /sbin/udevd -d                                                        
+athis      ;root           ; [scsi_eh_0]                                                           
+athis      ;root           ; [scsi_eh_1]                                                           
+athis      ;root           ; [scsi_eh_2]                                                           
+athis      ;root           ; sshd: alozahic [priv]                                                 
+athis      ;root           ; sshd: alozahic [priv]                                                 
+athis      ;root           ; su -                                                                  
+athis      ;root           ; [sync_supers]                                                         
+athis      ;root           ; [usbhid_resumer]                                                      
+athis      ;root           ; /usr/libexec/postfix/master                                           
+athis      ;root           ; /usr/sbin/abrtd                                                       
+athis      ;root           ; /usr/sbin/acpid                                                       
+athis      ;root           ; /usr/sbin/atd                                                         
+athis      ;root           ; /usr/sbin/certmonger -S -p /var/run/certmonger.pid                    
+athis      ;root           ; /usr/sbin/console-kit-daemon --no-daemon                              
+athis      ;root           ; /usr/sbin/modem-manager                                               
+athis      ;root           ; /usr/sbin/sshd                                                        
+athis      ;root           ; /usr/sbin/wpa_supplicant -c /etc/wpa_supplicant/wpa_supplicant.conf -B -u
+athis      ;root           ; [vmmemctl]                                                            
+athis      ;root           ; [watchdog/0]                                                          
+athis      ;rpc            ; rpcbind                                                               
+athis      ;rpcuser        ; rpc.statd                                                             
+athis      ;UID            ; CMD                                                                   
+lisses      ;68             ; hald                                                                  
+lisses      ;68             ; hald-addon-acpi: listening on acpid socket                            
+lisses      ;alozahic       ; /bin/sh -c . /home/alozahic/.profile; /home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/SURVEILL
+lisses      ;alozahic       ; /bin/sh -c . /home/alozahic/.profile; /home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/SURVEILL
+lisses      ;alozahic       ; /bin/sh -c . /home/alozahic/.profile; /home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/SURVEILL
+lisses      ;alozahic       ; /home/alozahic/Linux/centos63/Ver551/sgbd/bin/postgres -D /home/alozahic/Linux/centos63/Ver551/ba  
+lisses      ;alozahic       ; /home/alozahic/Linux/centos63/Ver551/vtom/bin/vtlisseser                
+lisses      ;alozahic       ; /home/alozahic/Linux/centos63/Ver551/vtom/bin/vtsgbd                  
+lisses      ;alozahic       ; -ksh                                                                  
+lisses      ;alozahic       ; -ksh                                                                  
+lisses      ;alozahic       ; -ksh                                                                  
+lisses      ;alozahic       ; ksh -x domi_arn_ctrl_process                                          
+lisses      ;alozahic       ; postgres: autovacuum launcher process                                 
+lisses      ;alozahic       ; postgres: stats collector process                                     
+lisses      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40907) idle                             
+lisses      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40908) idle                             
+lisses      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40909) idle                             
+lisses      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40910) idle                             
+lisses      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40911) idle                             
+lisses      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40912) idle                             
+lisses      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40913) idle                             
+lisses      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40914) idle                             
+lisses      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40915) idle                             
+lisses      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40916) idle                             
+lisses      ;alozahic       ; postgres: wal writer process                                          
+lisses      ;alozahic       ; postgres: writer process                                              
+lisses      ;alozahic       ; ps -ef                                                                
+lisses      ;alozahic       ; sed s/lisses/lisses/g                                                   
+lisses      ;alozahic       ; sort                                                                  
+lisses      ;alozahic       ; sshd: alozahic@pts/0                                                  
+lisses      ;alozahic       ; sshd: alozahic@pts/1                                                  
+lisses      ;alozahic       ; /usr/sbin/postdrop -r                                                 
+lisses      ;alozahic       ; /usr/sbin/postdrop -r                                                 
+lisses      ;alozahic       ; /usr/sbin/postdrop -r                                                 
+lisses      ;alozahic       ; /usr/sbin/sendmail -FCronDaemon -i -odi -oem                          
+lisses      ;alozahic       ; /usr/sbin/sendmail -FCronDaemon -i -odi -oem                          
+lisses      ;alozahic       ; /usr/sbin/sendmail -FCronDaemon -i -odi -oem                          
+lisses      ;alozahic       ; vtmonitor                                                             
+lisses      ;avahi          ; avahi-daemon: chroot helper                                           
+lisses      ;avahi          ; avahi-daemon: running [centos63.local]                                
+lisses      ;dbus           ; dbus-daemon --system                                                  
+lisses      ;ntp            ; ntpd -u ntp:ntp -p /var/run/ntpd.pid                                  
+lisses      ;postfix        ; pickup -l -t fifo -u                                                  
+lisses      ;postfix        ; qmgr -l -t fifo -u                                                    
+lisses      ;root           ; abrt-dump-oops -d /var/spool/abrt -rwx /var/log/messages              
+lisses      ;root           ; [aio/0]                                                               
+lisses      ;root           ; [async/mgr]                                                           
+lisses      ;root           ; [ata/0]                                                               
+lisses      ;root           ; [ata_aux]                                                             
+lisses      ;root           ; auditd                                                                
+lisses      ;root           ; automount --pid-file /var/run/autofs.pid                              
+lisses      ;root           ; -bash                                                                 
+lisses      ;root           ; [bdi-default]                                                         
+lisses      ;root           ; [cgroup]                                                              
+lisses      ;root           ; crond                                                                 
+lisses      ;root           ; CROND                                                                 
+lisses      ;root           ; CROND                                                                 
+lisses      ;root           ; CROND                                                                 
+lisses      ;root           ; [crypto/0]                                                            
+lisses      ;root           ; cupsd -C /etc/cups/cupsd.conf                                         
+lisses      ;root           ; [events/0]                                                            
+lisses      ;root           ; [ext4-dio-unwrit]                                                     
+lisses      ;root           ; [ext4-dio-unwrit]                                                     
+lisses      ;root           ; [ext4-dio-unwrit]                                                     
+lisses      ;root           ; [ext4-dio-unwrit]                                                     
+lisses      ;root           ; [ext4-dio-unwrit]                                                     
+lisses      ;root           ; [ext4-dio-unwrit]                                                     
+lisses      ;root           ; [ext4-dio-unwrit]                                                     
+lisses      ;root           ; [flush-253:3]                                                         
+lisses      ;root           ; [flush-253:4]                                                         
+lisses      ;root           ; [flush-253:5]                                                         
+lisses      ;root           ; hald-addon-input: Listening on /dev/input/event0 /dev/input/event1    
+lisses      ;root           ; hald-runner                                                           
+lisses      ;root           ; /home/alozahic/Linux/centos63/Ver551/abm/bin/bdaemon                  
+lisses      ;root           ; [jbd2/dm-0-8]                                                         
+lisses      ;root           ; [jbd2/dm-2-8]                                                         
+lisses      ;root           ; [jbd2/dm-3-8]                                                         
+lisses      ;root           ; [jbd2/dm-4-8]                                                         
+lisses      ;root           ; [jbd2/dm-5-8]                                                         
+lisses      ;root           ; [jbd2/dm-6-8]                                                         
+lisses      ;root           ; [jbd2/sda1-8]                                                         
+lisses      ;root           ; [kacpid]                                                              
+lisses      ;root           ; [kacpi_hotplug]                                                       
+lisses      ;root           ; [kacpi_notify]                                                        
+lisses      ;root           ; [kauditd]                                                             
+lisses      ;root           ; [kblockd/0]                                                           
+lisses      ;root           ; [kdmflush]                                                            
+lisses      ;root           ; [kdmflush]                                                            
+lisses      ;root           ; [kdmflush]                                                            
+lisses      ;root           ; [kdmflush]                                                            
+lisses      ;root           ; [kdmflush]                                                            
+lisses      ;root           ; [kdmflush]                                                            
+lisses      ;root           ; [kdmflush]                                                            
+lisses      ;root           ; [khelper]                                                             
+lisses      ;root           ; [khubd]                                                               
+lisses      ;root           ; [khungtaskd]                                                          
+lisses      ;root           ; [kintegrityd/0]                                                       
+lisses      ;root           ; [kpsmoused]                                                           
+lisses      ;root           ; [kseriod]                                                             
+lisses      ;root           ; [ksmd]                                                                
+lisses      ;root           ; [ksoftirqd/0]                                                         
+lisses      ;root           ; [kstriped]                                                            
+lisses      ;root           ; [ksuspend_usbd]                                                       
+lisses      ;root           ; [kswapd0]                                                             
+lisses      ;root           ; [kthreadd]                                                            
+lisses      ;root           ; [kthrotld/0]                                                          
+lisses      ;root           ; login -- alozahic                                                     
+lisses      ;root           ; [md/0]                                                                
+lisses      ;root           ; [md_misc/0]                                                           
+lisses      ;root           ; [migration/0]                                                         
+lisses      ;root           ; [migration/0]                                                         
+lisses      ;root           ; [mpt/0]                                                               
+lisses      ;root           ; [mpt_poll_0]                                                          
+lisses      ;root           ; [netns]                                                               
+lisses      ;root           ; NetworkManager --pid-file=/var/run/NetworkManager/NetworkManager.pid   
+lisses      ;root           ; [pciehpd]                                                             
+lisses      ;root           ; [pm]                                                                  
+lisses      ;root           ; rpc.idmapd                                                            
+lisses      ;root           ; [rpciod/0]                                                            
+lisses      ;root           ; /sbin/init                                                            
+lisses      ;root           ; /sbin/mingetty /dev/tty2                                              
+lisses      ;root           ; /sbin/rsyslogd -i /var/run/syslogd.pid -c 5                           
+lisses      ;root           ; /sbin/udevd -d                                                        
+lisses      ;root           ; /sbin/udevd -d                                                        
+lisses      ;root           ; /sbin/udevd -d                                                        
+lisses      ;root           ; [scsi_eh_0]                                                           
+lisses      ;root           ; [scsi_eh_1]                                                           
+lisses      ;root           ; [scsi_eh_2]                                                           
+lisses      ;root           ; sshd: alozahic [priv]                                                 
+lisses      ;root           ; sshd: alozahic [priv]                                                 
+lisses      ;root           ; su -                                                                  
+lisses      ;root           ; [sync_supers]                                                         
+lisses      ;root           ; [usbhid_resumer]                                                      
+lisses      ;root           ; /usr/libexec/postfix/master                                           
+lisses      ;root           ; /usr/sbin/abrtd                                                       
+lisses      ;root           ; /usr/sbin/acpid                                                       
+lisses      ;root           ; /usr/sbin/atd                                                         
+lisses      ;root           ; /usr/sbin/certmonger -S -p /var/run/certmonger.pid                    
+lisses      ;root           ; /usr/sbin/console-kit-daemon --no-daemon                              
+lisses      ;root           ; /usr/sbin/modem-manager                                               
+lisses      ;root           ; /usr/sbin/sshd                                                        
+lisses      ;root           ; /usr/sbin/wpa_supplicant -c /etc/wpa_supplicant/wpa_supplicant.conf -B -u
+lisses      ;root           ; [vmmemctl]                                                            
+lisses      ;root           ; [watchdog/0]                                                          
+lisses      ;rpc            ; rpcbind                                                               
+lisses      ;rpcuser        ; rpc.statd                                                             
+lisses      ;UID            ; CMD                                                                   
+savigny      ;68             ; hald                                                                  
+savigny      ;68             ; hald-addon-acpi: listening on acpid socket                            
+savigny      ;alozahic       ; /bin/sh -c . /home/alozahic/.profile; /home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/SURVEILL
+savigny      ;alozahic       ; /bin/sh -c . /home/alozahic/.profile; /home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/SURVEILL
+savigny      ;alozahic       ; /bin/sh -c . /home/alozahic/.profile; /home/alozahic/exploit/systeme/suivi/ABSYSS_CENTOS/SURVEILL
+savigny      ;alozahic       ; /home/alozahic/Linux/centos63/Ver551/sgbd/bin/postgres -D /home/alozahic/Linux/centos63/Ver551/ba  
+savigny      ;alozahic       ; /home/alozahic/Linux/centos63/Ver551/vtom/bin/vtsavignyer                
+savigny      ;alozahic       ; /home/alozahic/Linux/centos63/Ver551/vtom/bin/vtsgbd                  
+savigny      ;alozahic       ; -ksh                                                                  
+savigny      ;alozahic       ; -ksh                                                                  
+savigny      ;alozahic       ; -ksh                                                                  
+savigny      ;alozahic       ; ksh -x domi_arn_ctrl_process                                          
+savigny      ;alozahic       ; postgres: autovacuum launcher process                                 
+savigny      ;alozahic       ; postgres: stats collector process                                     
+savigny      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40907) idle                             
+savigny      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40908) idle                             
+savigny      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40909) idle                             
+savigny      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40910) idle                             
+savigny      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40911) idle                             
+savigny      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40912) idle                             
+savigny      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40913) idle                             
+savigny      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40914) idle                             
+savigny      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40915) idle                             
+savigny      ;alozahic       ; postgres: vtom vtom 127.0.0.1(40916) idle                             
+savigny      ;alozahic       ; postgres: wal writer process                                          
+savigny      ;alozahic       ; postgres: writer process                                              
+savigny      ;alozahic       ; ps -ef                                                                
+savigny      ;alozahic       ; sed s/savigny/savigny/g                                                  
+savigny      ;alozahic       ; sort                                                                  
+savigny      ;alozahic       ; sshd: alozahic@pts/0                                                  
+savigny      ;alozahic       ; sshd: alozahic@pts/1                                                  
+savigny      ;alozahic       ; /usr/sbin/postdrop -r                                                 
+savigny      ;alozahic       ; /usr/sbin/postdrop -r                                                 
+savigny      ;alozahic       ; /usr/sbin/postdrop -r                                                 
+savigny      ;alozahic       ; /usr/sbin/sendmail -FCronDaemon -i -odi -oem                          
+savigny      ;alozahic       ; /usr/sbin/sendmail -FCronDaemon -i -odi -oem                          
+savigny      ;alozahic       ; /usr/sbin/sendmail -FCronDaemon -i -odi -oem                          
+savigny      ;alozahic       ; vtmonitor                                                             
+savigny      ;avahi          ; avahi-daemon: chroot helper                                           
+savigny      ;avahi          ; avahi-daemon: running [centos63.local]                                
+savigny      ;dbus           ; dbus-daemon --system                                                  
+savigny      ;ntp            ; ntpd -u ntp:ntp -p /var/run/ntpd.pid                                  
+savigny      ;postfix        ; pickup -l -t fifo -u                                                  
+savigny      ;postfix        ; qmgr -l -t fifo -u                                                    
+savigny      ;root           ; abrt-dump-oops -d /var/spool/abrt -rwx /var/log/messages              
+savigny      ;root           ; [aio/0]                                                               
+savigny      ;root           ; [async/mgr]                                                           
+savigny      ;root           ; [ata/0]                                                               
+savigny      ;root           ; [ata_aux]                                                             
+savigny      ;root           ; auditd                                                                
+savigny      ;root           ; automount --pid-file /var/run/autofs.pid                              
+savigny      ;root           ; -bash                                                                 
+savigny      ;root           ; [bdi-default]                                                         
+savigny      ;root           ; [cgroup]                                                              
+savigny      ;root           ; crond                                                                 
+savigny      ;root           ; CROND                                                                 
+savigny      ;root           ; CROND                                                                 
+savigny      ;root           ; CROND                                                                 
+savigny      ;root           ; [crypto/0]                                                            
+savigny      ;root           ; cupsd -C /etc/cups/cupsd.conf                                         
+savigny      ;root           ; [events/0]                                                            
+savigny      ;root           ; [ext4-dio-unwrit]                                                     
+savigny      ;root           ; [ext4-dio-unwrit]                                                     
+savigny      ;root           ; [ext4-dio-unwrit]                                                     
+savigny      ;root           ; [ext4-dio-unwrit]                                                     
+savigny      ;root           ; [ext4-dio-unwrit]                                                     
+savigny      ;root           ; [ext4-dio-unwrit]                                                     
+savigny      ;root           ; [ext4-dio-unwrit]                                                     
+savigny      ;root           ; [flush-253:3]                                                         
+savigny      ;root           ; [flush-253:4]                                                         
+savigny      ;root           ; [flush-253:5]                                                         
+savigny      ;root           ; hald-addon-input: Listening on /dev/input/event0 /dev/input/event1    
+savigny      ;root           ; hald-runner                                                           
+savigny      ;root           ; /home/alozahic/Linux/centos63/Ver551/abm/bin/bdaemon                  
+savigny      ;root           ; [jbd2/dm-0-8]                                                         
+savigny      ;root           ; [jbd2/dm-2-8]                                                         
+savigny      ;root           ; [jbd2/dm-3-8]                                                         
+savigny      ;root           ; [jbd2/dm-4-8]                                                         
+savigny      ;root           ; [jbd2/dm-5-8]                                                         
+savigny      ;root           ; [jbd2/dm-6-8]                                                         
+savigny      ;root           ; [jbd2/sda1-8]                                                         
+savigny      ;root           ; [kacpid]                                                              
+savigny      ;root           ; [kacpi_hotplug]                                                       
+savigny      ;root           ; [kacpi_notify]                                                        
+savigny      ;root           ; [kauditd]                                                             
+savigny      ;root           ; [kblockd/0]                                                           
+savigny      ;root           ; [kdmflush]                                                            
+savigny      ;root           ; [kdmflush]                                                            
+savigny      ;root           ; [kdmflush]                                                            
+savigny      ;root           ; [kdmflush]                                                            
+savigny      ;root           ; [kdmflush]                                                            
+savigny      ;root           ; [kdmflush]                                                            
+savigny      ;root           ; [kdmflush]                                                            
+savigny      ;root           ; [khelper]                                                             
+savigny      ;root           ; [khubd]                                                               
+savigny      ;root           ; [khungtaskd]                                                          
+savigny      ;root           ; [kintegrityd/0]                                                       
+savigny      ;root           ; [kpsmoused]                                                           
+savigny      ;root           ; [kseriod]                                                             
+savigny      ;root           ; [ksmd]                                                                
+savigny      ;root           ; [ksoftirqd/0]                                                         
+savigny      ;root           ; [kstriped]                                                            
+savigny      ;root           ; [ksuspend_usbd]                                                       
+savigny      ;root           ; [kswapd0]                                                             
+savigny      ;root           ; [kthreadd]                                                            
+savigny      ;root           ; [kthrotld/0]                                                          
+savigny      ;root           ; login -- alozahic                                                     
+savigny      ;root           ; [md/0]                                                                
+savigny      ;root           ; [md_misc/0]                                                           
+savigny      ;root           ; [migration/0]                                                         
+savigny      ;root           ; [migration/0]                                                         
+savigny      ;root           ; [mpt/0]                                                               
+savigny      ;root           ; [mpt_poll_0]                                                          
+savigny      ;root           ; [netns]                                                               
+savigny      ;root           ; NetworkManager --pid-file=/var/run/NetworkManager/NetworkManager.pid   
+savigny      ;root           ; [pciehpd]                                                             
+savigny      ;root           ; [pm]                                                                  
+savigny      ;root           ; rpc.idmapd                                                            
+savigny      ;root           ; [rpciod/0]                                                            
+savigny      ;root           ; /sbin/init                                                            
+savigny      ;root           ; /sbin/mingetty /dev/tty2                                              
+savigny      ;root           ; /sbin/rsyslogd -i /var/run/syslogd.pid -c 5                           
+savigny      ;root           ; /sbin/udevd -d                                                        
+savigny      ;root           ; /sbin/udevd -d                                                        
+savigny      ;root           ; /sbin/udevd -d                                                        
+savigny      ;root           ; [scsi_eh_0]                                                           
+savigny      ;root           ; [scsi_eh_1]                                                           
+savigny      ;root           ; [scsi_eh_2]                                                           
+savigny      ;root           ; sshd: alozahic [priv]                                                 
+savigny      ;root           ; sshd: alozahic [priv]                                                 
+savigny      ;root           ; su -                                                                  
+savigny      ;root           ; [sync_supers]                                                         
+savigny      ;root           ; [usbhid_resumer]                                                      
+savigny      ;root           ; /usr/libexec/postfix/master                                           
+savigny      ;root           ; /usr/sbin/abrtd                                                       
+savigny      ;root           ; /usr/sbin/acpid                                                       
+savigny      ;root           ; /usr/sbin/atd                                                         
+savigny      ;root           ; /usr/sbin/certmonger -S -p /var/run/certmonger.pid                    
+savigny      ;root           ; /usr/sbin/console-kit-daemon --no-daemon                              
+savigny      ;root           ; /usr/sbin/modem-manager                                               
+savigny      ;root           ; /usr/sbin/sshd                                                        
+savigny      ;root           ; /usr/sbin/wpa_supplicant -c /etc/wpa_supplicant/wpa_supplicant.conf -B -u
+savigny      ;root           ; [vmmemctl]                                                            
+savigny      ;root           ; [watchdog/0]                                                          
+savigny      ;rpc            ; rpcbind                                                               
+savigny      ;rpcuser        ; rpc.statd                                                             
+savigny      ;UID            ; CMD                                                                   

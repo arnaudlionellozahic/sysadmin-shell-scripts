@@ -1,0 +1,12 @@
+
+
+echo "`date` : Lancement de $0" >> /home/user6/luc.log
+
+cd /home/user6
+for i in `ls fic1*`
+do
+        mv $i `date +%Y%m%d%H%M%S`.$i
+done
+
+echo "`date` : Fin de $0" >> /home/user6/luc.log
+

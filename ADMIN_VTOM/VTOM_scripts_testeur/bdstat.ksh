@@ -1,0 +1,4 @@
+
+
+${ABM_BIN}/bstat
+

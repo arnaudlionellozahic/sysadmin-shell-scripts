@@ -1,0 +1,428 @@
+
+
+####################################################################
+
+0. Health Check Report (CPU,Process,Disk Usage, Memory)
+
+####################################################################
+
+=====================================
+===== Server Name, Date, UPtime =====
+=====================================
+
+****************************************
+
+Date :- Tue May 24 16:48:05 GMT 2016
+
+****************************************
+
+Hostname : s00va9930435
+Hostname : AIX s00va9930435 3 5 00C1D71A4C00
+
+****************************************
+
+Kernel Version : /usr/lib/boot/unix_64
+Kernel Version : KERNEL_BITMODE:                    	64
+Kernel Version : HARDWARE_BITMODE:                  	64
+
+****************************************
+
+****************************************
+
+OS Version
+Fileset                                 Actual Level        Maintenance Level
+-----------------------------------------------------------------------------
+bos.rte                                 5.3.9.0             5.3.0.0
+
+****************************************
+
+Service Pack version
+5300-08-10-1015
+
+****************************************
+
+oslevel -r : 5300-08
+
+****************************************
+
+Run level :    .        run-level 2 Apr 15 13:26       2    0    S
+
+****************************************
+
+UPTIME :-   04:48PM   up 43 days,   9:57,  9 users,  load average: 1.15, 0.83, 0.72
+
+****************************************
+
+
+=====================================
+======== CPU and Memory Info ========
+=====================================
+
+**************************************************************************************
+**************************************************************************************
+
+          CPU :-       16
+
+       Memory :- size     73728 Total amount of physical memory in Mbytes  False
+
+**************************************************************************************
+**************************************************************************************
+
+lparstat -l
+-----------
+
+
+System configuration: type=Shared mode=Uncapped smt=Off lcpu=16 mem=73728 psize=16 ent=13.00 
+
+%user  %sys  %wait  %idle physc %entc  pbusy   app  vcsw phint
+----- ----- ------ ------ ----- ----- ------   --- ----- -----
+  2.9   2.2    0.4   94.5  0.81   6.2   80.0 15.18 4572299039 1803930 
+
+**************************************************************************************
+
+Lists details on the LPAR configuration : lparstat -i
+-----------------------------------------------------
+
+Node Name                                  : s00va9930435
+Partition Name                            : s00va9930435
+Partition Number                           : 1
+Type                                       : Shared
+Mode                                       : Uncapped
+Entitled Capacity                          : 13.00
+Partition Group-ID                         : 32769
+Shared Pool ID                             : 0
+Online Virtual CPUs                        : 16
+Maximum Virtual CPUs                       : 16
+Minimum Virtual CPUs                       : 1
+Online Memory                              : 73728 MB
+Maximum Memory                             : 81920 MB
+Minimum Memory                             : 1024 MB
+Variable Capacity Weight                   : 128
+Minimum Capacity                           : 0.10
+Maximum Capacity                           : 16.00
+Capacity Increment                         : 0.01
+Maximum Physical CPUs in system            : 16
+Active Physical CPUs in system             : 16
+Active CPUs in Pool                        : 16
+Shared Physical CPUs in system             : 16
+Maximum Capacity of Pool                   : 1600
+Entitled Capacity of Pool                  : 1300
+Unallocated Capacity                       : 0.00
+Physical CPU Percentage                    : 81.25%
+Unallocated Weight                         : 0
+
+****************************************
+
+
+=====================================
+===== Important Kernel Params =======
+=====================================
+
+lsattr : Displays attribute characteristics and possible values of attributes for devices in the system
+
+****************************************
+
+autoconfig available STATE to be configured at system restart True
+fastpath   enable    State of fast path                       True
+kprocprio  39        Server PRIORITY                          True
+maxreqs    4096      Maximum number of REQUESTS               True
+maxservers 10        MAXIMUM number of servers per cpu        True
+minservers 1         MINIMUM number of servers                True
+
+****************************************
+
+****************************************
+
+SW_dist_intr    false              Enable SW distribution of interrupts              True
+autorestart     true               Automatically REBOOT OS after a crash             True
+boottype        disk               N/A                                               False
+capacity_inc    0.01               Processor capacity increment                      False
+capped          false              Partition is capped                               False
+conslogin       enable             System Console Login                              False
+cpuguard        enable             CPU Guard                                         True
+dedicated       false              Partition is dedicated                            False
+ent_capacity    13.00              Entitled processor capacity                       False
+frequency       2128000000         System Bus Frequency                              False
+fullcore        false              Enable full CORE dump                             True
+fwversion       IBM,EM350_108      Firmware version and revision levels              False
+id_to_partition 0X800002305DE00001 Partition ID                                      False
+id_to_system    0X800002305DE00000 System ID                                         False
+iostat          true               Continuously maintain DISK I/O history            True
+keylock         normal             State of system keylock at boot time              False
+log_pg_dealloc  true               Log predictive memory page deallocation events    True
+max_capacity    16.00              Maximum potential processor capacity              False
+max_logname     9                  Maximum login name length at boot time            True
+maxbuf          20                 Maximum number of pages in block I/O BUFFER CACHE True
+maxmbuf         0                  Maximum Kbytes of real memory allowed for MBUFS   True
+maxpout         0                  HIGH water mark for pending write I/Os per file   True
+maxuproc        25000              Maximum number of PROCESSES allowed per user      True
+min_capacity    0.10               Minimum potential processor capacity              False
+minpout         0                  LOW water mark for pending write I/Os per file    True
+modelname       IBM,9117-MMA       Machine name                                      False
+ncargs          256                ARG/ENV list size in 4K byte blocks               True
+nfs4_acl_compat secure             NFS4 ACL Compatibility Mode                       True
+pre430core      false              Use pre-430 style CORE dump                       True
+pre520tune      disable            Pre-520 tuning compatibility mode                 True
+realmem         75497472           Amount of usable physical memory in Kbytes        False
+rtasversion     1                  Open Firmware RTAS version                        False
+sed_config      select             Stack Execution Disable (SED) Mode                True
+systemid        IBM,02101D71A      Hardware system identifier                        False
+variable_weight 128                Variable processor capacity weight                False
+
+****************************************
+
+****************************************
+
+ulimit
+------
+time(seconds)        unlimited
+file(blocks)         unlimited
+data(kbytes)         unlimited
+stack(kbytes)        32768
+memory(kbytes)       unlimited
+coredump(blocks)     2097151
+nofiles(descriptors) 40000
+
+****************************************
+
+
+=====================================
+====== CPU Usage Information ========
+=====================================
+
+VMSTAT : CPU USED : 3%
+
+**************************************************************************************
+
+MPSTAT : CPU USED : display per-processor statistics; 12 seconds apart; 5 times
+
+System configuration: lcpu=16 ent=13.0 mode=Uncapped 
+
+cpu  min  maj  mpc  int   cs  ics   rq  mig lpa sysc us sy wt id   pc  %ec  lcs
+  0  148    0    0  313  384  164    0   98 100 4509 49 50  0  1 0.16  1.2  286
+  1  126    0    0  126  729  288    0  113 100 7435 67 32  0  1 0.16  1.2  208
+  2    0    0    0   57    3    1    0    9 100   22 98  1  0  1 0.03  0.2   56
+  3   34    0    0   10    0    0    0    1 100   88 33 60  0  7 0.00  0.0   10
+  4    0    0    0   44    0    0    0    1 100    3  1 34  0 65 0.00  0.0   44
+  5    0    0    0   10    0    0    0    0   -    0  0 38  0 62 0.00  0.0   10
+  6    0    0    0   10    0    0    0    0   -    0  0 39  0 61 0.00  0.0   10
+  7    0    0    0   10    0    0    0    0   -    0  0 37  0 63 0.00  0.0   10
+  8    0    0    0   10    0    0    0    0   -    0  0 38  0 62 0.00  0.0   10
+  9    0    0    0   10    0    0    0    0   -    0  0 40  0 60 0.00  0.0   10
+ 10    0    0    0   10    0    0    0    0   -    0  0 37  0 63 0.00  0.0   10
+ 11    0    0    0   10    0    0    0    0   -    0  0 33  0 67 0.00  0.0   10
+ 12    0    0    0   10    0    0    0    0   -    0  0 36  0 64 0.00  0.0   10
+ 13    0    0    0   10    0    0    0    0   -    0  0 32  0 68 0.00  0.0   10
+ 14    0    0    0   10    0    0    0    0   -    0  0 32  0 68 0.00  0.0   10
+ 15    0    0    0   10    0    0    0    0   -    0  0 34  0 66 0.00  0.0   10
+  U    -    -    -    -    -    -    -    -   -    -  -  -  0 97 12.65 97.3    -
+ALL  308    0    0  660 1116  453    0  222 100 12057  2  1  0 97 0.35  2.7  714
+--------------------------------------------------------------------------------
+  0  306    0    0  315 3826 1134    0  175 100 43264 54 44  0  2 0.34  2.6 1219
+  1  151    0    0  126 5555 1138    0  151 100 63440 57 39  0  4 0.17  1.3 1193
+  2    0    0    0   10    0    0    0    0   -    0  0 45  0 55 0.00  0.0   10
+  3    0    0    0   10    0    0    0    0   -    0  0 41  0 59 0.00  0.0   10
+  4    0    0    0   10    0    0    0    0   -    0  0 39  0 61 0.00  0.0   10
+  5    0    0    0   10    0    0    0    0   -    0  0 38  0 62 0.00  0.0   10
+  6    0    0    0   10    0    0    0    0   -    0  0 39  0 61 0.00  0.0   10
+  7    0    0    0   10    0    0    0    0   -    0  0 37  0 63 0.00  0.0   10
+  8    0    0    0   10    0    0    0    0   -    0  0 38  0 62 0.00  0.0   10
+  9    0    0    0   10    0    0    0    0   -    0  0 39  0 61 0.00  0.0   10
+ 10    0    0    0   10    0    0    0    0   -    0  0 37  0 63 0.00  0.0   10
+ 11    0    0    0   10    0    0    0    0   -    0  0 33  0 67 0.00  0.0   10
+ 12    0    0    0   10    0    0    0    0   -    0  0 33  0 67 0.00  0.0   10
+ 13    0    0    0   10    0    0    0    0   -    0  0 36  0 64 0.00  0.0   10
+ 14    0    0    0   10    0    0    0    0   -    0  0 32  0 68 0.00  0.0   10
+ 15    0    0    0   10    0    0    0    2 100    0  0 37  0 63 0.00  0.0   10
+  U    -    -    -    -    -    -    -    -   -    -  -  -  0 96 12.48 96.0    -
+ALL  457    0    0  581 9381 2272    0  328 100 106704  2  2  0 96 0.52  4.0 2552
+
+**************************************************************************************
+
+SAR : CPU USED
+--------------
+
+
+AIX s00va9930435 3 5 00C1D71A4C00    05/24/16
+
+System configuration: lcpu=16 ent=13.00 mode=Uncapped 
+
+16:48:40    %usr    %sys    %wio   %idle   physc   %entc
+16:48:45       2       1       0      98    0.31     2.4
+16:48:50       2       1       0      98    0.33     2.6
+16:48:55       2       1       0      97    0.36     2.7
+16:49:00       2       1       0      97    0.39     3.0
+16:49:05       2       1       0      97    0.40     3.1
+16:49:10       2       2       0      96    0.48     3.7
+16:49:15       2       5       0      93    0.89     6.9
+16:49:20       2       1       0      97    0.37     2.9
+16:49:25       2       1       0      98    0.33     2.5
+16:49:30       2       1       0      98    0.33     2.5
+
+Average        2       1       0      97    0.42     3.2
+
+
+=====================================
+===== Memory Usage Information ======
+=====================================
+
+RAM SERVER (EN MB) : 73728.00
+RAM USED (EN MB) : 73647.80
+RAM FREE (EN MB) : 80.2
+
+
+
+****************************************
+
+Memory Used :- 99%
+
+total memory = 73728 MB
+free memory = 80 MB
+used memory = 73648 MB
+
+
+
+****************************************
+
+=====================================
+=====   Page file usage info.   =====
+=====================================
+
+Total Paging Space   Percent Used
+      16384MB               1%
+
+
+=====================================
+=====   Bases Oracle on line    =====
+=====================================
+
+
+atdr01 
+atrefl01 
+atpr01 
+
+
+=====================================
+=====       Oracle version      =====
+=====================================
+
+The version of Oracle is "O920"
+
+
+=====================================
+==== FS Mount Point Information  ====
+=====================================
+
+Filesystem                             GB        Free      %Used   %Iused  Mounted
+/dev/lv_orabck                         395.00    26.27     94%     1%      /apps/oradbf/backup
+/dev/lv_ead                            8.00      1.06      87%     3%      /apps/ead
+/dev/lv_tempo                          30.00     4.50      85%     1%      /apps/tempo
+/dev/hd10opt                           0.25      0.04      85%     6%      /opt
+/dev/lv_meoatlas2                      2.00      0.34      83%     13%     /apps/meoatlas2
+/dev/lv_savecfg                        1.00      0.19      81%     1%      /savecfg
+/dev/lv_atdr01                         1000.00   232.73    77%     1%      /apps/oradbf/atdr01
+/dev/fslv00                            600.00    147.44    76%     1%      /apps/oradbf/backup_refl
+/dev/hd2                               3.00      0.86      72%     6%      /usr
+/dev/lv_tng_base                       2.00      0.59      71%     1%      /apps/unicenter/EM/3.1/bases
+/dev/lv_oracle                         12.00     3.55      71%     8%      /apps/oracle
+/dev/fslv01                            707.00    207.94    71%     1%      /apps/oradbf/atrefl01
+/dev/hd4                               2.25      0.71      69%     2%      /   
+/dev/lv_livr                           19.00     6.18      68%     1%      /livraisons
+/dev/lv_uf1fic                         1275.12   421.43    67%     1%      /apps/atlas/atlas2v0/uf1/data1/fic
+/dev/hd1                               7.25      2.58      65%     1%      /home
+/dev/lv_uf1ficsav                      200.00    85.62     58%     1%      /apps/atlas/atlas2v0/uf1/ficsav
+/dev/lv_ficsav                         200.00    85.62     58%     1%      /ficsav
+/dev/lv_atpr01                         1000.00   446.93    56%     1%      /apps/oradbf/atpr01
+/dev/lv_amelia                         2.00      0.89      56%     14%     /apps/amelia
+/dev/lv_exploit                        12.00     5.66      53%     4%      /apps/exploit
+/dev/lv_unikix                         2.00      0.99      51%     4%      /apps/unikix
+/dev/lv_atpr01_log3                    2.00      1.00      51%     1%      /apps/oradbf/atpr01/log3
+/dev/lv_atpr01_log2                    2.00      1.00      51%     1%      /apps/oradbf/atpr01/log2
+/dev/lv_atpr01_log1                    2.00      1.00      51%     1%      /apps/oradbf/atpr01/log1
+/dev/lv_atdr01_log3                    2.00      1.00      51%     1%      /apps/oradbf/atdr01/log3
+/dev/lv_atdr01_log2                    2.00      1.00      51%     1%      /apps/oradbf/atdr01/log2
+/dev/lv_atdr01_log1                    2.00      1.00      51%     1%      /apps/oradbf/atdr01/log1
+/dev/lv_archimp                        243.00    119.41    51%     1%      /apps/arch
+/dev/lv_tng                            0.75      0.38      50%     11%     /apps/unicenter
+/dev/lv_oracle920                      8.00      4.27      47%     3%      /apps/oracle/product/920
+/dev/lv_ptcom                          1.00      0.55      46%     1%      /apps/ptcom
+/dev/lv_uf1                            116.00    70.42     40%     1%      /apps/atlas/atlas2v0/uf1
+/dev/lv_oracle817                      1.00      0.60      40%     2%      /apps/oracle/product/817
+/dev/hd3                               17.75     11.19     37%     1%      /tmp
+/dev/lvusrecc                          2.50      1.61      36%     2%      /usr/ecc
+/dev/hd9var                            5.00      3.22      36%     8%      /var
+/dev/lv_packages                       7.00      4.65      34%     1%      /apps/amelia/packages
+/dev/lv_mqapp                          1.00      0.68      32%     3%      /apps/mqm/product
+/dev/lv_nyrsk                          1.00      0.76      24%     6%      /apps/nyrsk
+/dev/lv_meo                            180.00    140.02    23%     1%      /ficsav/EQUIPE_MEO
+/dev/lv_fic03                          126.00    97.53     23%     1%      /apps/atlas/atlas2v0/uf1/data1/fic03
+/dev/lv_scm                            0.50      0.39      22%     1%      /apps/SCM/5.1
+/dev/lv_fic02                          120.00    94.81     21%     1%      /apps/atlas/atlas2v0/uf1/data1/fic02
+/dev/lv_etac                           1.50      1.19      21%     1%      /apps/eTAC
+/dev/lv_uf1orion                       1.00      0.82      18%     3%      /apps/orion/031/uf1
+/dev/lv_uf1data1                       99.00     82.30     17%     1%      /apps/atlas/atlas2v0/uf1/data1
+/dev/lv_syncsort                       0.25      0.21      16%     1%      /apps/syncsort
+/dev/lv_nas                            0.25      0.22      14%     1%      /apps/unicenter/AT/3.1/NewAgentScript
+/dev/lv_archatpr01                     220.00    194.45    12%     1%      /apps/arch/atpr01
+/dev/lv_tng_logs                       2.25      2.09      8%      1%      /apps/unicenter/EM/3.1/opr/logs
+/dev/lv_nimsoft                        0.75      0.70      8%      1%      /apps/nimsoft
+/dev/lv_itcm                           2.00      1.85      8%      1%      /apps/ITCM
+/dev/lv_atpr01_ctl3                    0.88      0.83      6%      1%      /apps/oradbf/atpr01/ctl3
+/dev/lv_atpr01_ctl2                    0.88      0.83      6%      1%      /apps/oradbf/atpr01/ctl2
+/dev/lv_atpr01_ctl1                    0.88      0.83      6%      1%      /apps/oradbf/atpr01/ctl1
+/dev/lv_atdr01_ctl3                    0.88      0.83      6%      1%      /apps/oradbf/atdr01/ctl3
+/dev/lv_atdr01_ctl2                    0.88      0.83      6%      1%      /apps/oradbf/atdr01/ctl2
+/dev/lv_atdr01_ctl1                    0.88      0.83      6%      1%      /apps/oradbf/atdr01/ctl1
+/dev/lv_data1refl                      11.00     10.53     5%      1%      /apps/atlas/atlas2v0/uf1/data1_refl
+/dev/lv_cobol                          5.25      5.01      5%      1%      /apps/cobol
+/dev/lv_cft                            4.25      4.05      5%      1%      /apps/cft
+/dev/lv_2v0                            6.00      5.73      5%      1%      /apps/atlas/atlas2v0
+/dev/lv_evatl                          2.00      1.92      4%      1%      /apps/evatl
+/dev/lv_convert                        2.00      1.94      4%      1%      /apps/convert
+/dev/lv_uf1imp                         64.00     62.51     3%      1%      /apps/atlas/atlas2v0/uf1/data1/imp
+/dev/lv_qpasa                          0.38      0.37      3%      1%      /apps/qpasa
+/dev/lv_mqadm                          0.38      0.37      3%      1%      /apps/mqm/admin
+/dev/lv_uf1rfper                       1.00      0.99      2%      1%      /apps/rfper/020/uf1
+/dev/lv_rfper30                        1.00      0.99      2%      1%      /apps/rfper/030/uf1
+/dev/lv_rfper                          1.00      0.99      2%      1%      /apps/rfper
+/dev/lv_carto                          1.00      0.99      2%      1%      /apps/carto
+/dev/lv_work                           138.00    137.97    1%      1%      /apps/exploit/work
+/dev/lv_uf1ptcom                       1.00      1.00      1%      1%      /apps/ptcom/030/uf1
+/dev/lv_uf1data1info                   200.00    199.97    1%      1%      /apps/atlas/atlas2v0/uf1/infoc
+/dev/lv_uf1argos                       0.50      0.50      1%      1%      /apps/argos/010/uf1
+/dev/lv_sonar                          1.00      1.00      1%      1%      /apps/sonar
+/dev/lv_perfs                          2.00      1.99      1%      1%      /apps/sys/log/stats
+/dev/lv_outils                         10.00     9.99      1%      1%      /apps/outils_barsac
+/dev/lv_orion                          6.00      6.00      1%      1%      /apps/orion
+/dev/lv_oradbf                         0.62      0.62      1%      1%      /apps/oradbf
+/dev/lv_mqm                            0.38      0.37      1%      1%      /var/mqm
+/dev/lv_mqerr                          0.38      0.37      1%      1%      /var/mqm/errors
+/dev/lv_inter                          1.00      1.00      1%      1%      /apps/inter
+/dev/lv_evtec                          1.00      1.00      1%      1%      /apps/evtec
+/dev/lv_dsm                            0.75      0.75      1%      1%      /apps/unicenter/DSM
+/dev/lv_cftdata                        1.00      1.00      1%      1%      /apps/cft_data
+/dev/lv_argos                          0.50      0.50      1%      1%      /apps/argos
+/dev/lv_archatrefl01                   1.00      1.00      1%      1%      /apps/arch/atrefl01
+/dev/lv_appsmatl                       27.50     27.38     1%      1%      /apps/matl
+/proc                                  -         -         -       -       /proc
+
+
+=====================================
+=====     Network statistics    =====
+=====================================
+
+Name  Mtu    Network      Address           Ipkts      Ierrs Opkts      Oerrs Coll
+en0   1500   link#2       0.14.5e.b7.f8.11  1427891891 0     527446583  3     0   
+en0   1500   10.13.21     10.13.21.14       1427891891 0     527446583  3     0   
+lo0   16896  link#1       18485487          0          18485353 0          0         
+lo0   16896  127          127.0.0.1         18485487   0     18485353   0     0   
+
+
+=====================================
+=====      Syncsort version     =====
+=====================================
+
+The version of syncsort is : 3.11
+
+END
+exit 0

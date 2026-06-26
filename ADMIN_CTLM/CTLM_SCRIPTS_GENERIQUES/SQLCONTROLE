@@ -1,0 +1,220 @@
+#!/bin/ksh
+# ----------------------------------------------------------------------------
+# SQLSELECT : Lancement d'une procedure SQL (select)
+# ----------------------------------------------------------------------------
+# Parametres     :
+# Entrees        :
+# Sorties        :
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+
+######################################################
+# Diverses initialisations de variables obligatoires #
+######################################################
+
+# Parametres passes en arguments par CONTROL-M
+ODATE=${1}
+[ "X${ODATE}" = "X" ] && echo "Parm ODATE non specifie" && exit 1
+
+PROC=${2}
+[ "X${PROC}" = "X" ] && echo "Parm PROC non specifie" && exit 1
+
+FIC_OUT=${3}
+[ "X${FIC_OUT}" = "X" ] && echo "Parm FIC_OUT non specifie" && exit 1
+
+LINESIZE=${4}
+[ "X${LINESIZE}" = "X" ] && echo "Parm LINESIZE non specifie" && exit 1
+
+HEADING=${5}
+[ "X${HEADING}" = "X" ] && echo "Parm HEADING non specifie" && exit 1
+
+SQLS=${6}
+[ "X${SQLS}" = "X" ] && echo "Parm SQLS non specifie" && exit 1
+
+REP_PARAM=${7}
+[ "X${REP_PARAM}" = "X" ] && echo "Parm REP_PARAM non specifie" && exit 1
+
+REP=${8}
+[ "X${REP}" = "X" ] && echo "Parm REP non specifie" && exit 1
+
+# exporte les variables CTM0, GEHLOG, GEDAA, GEDAACC et GEDSOFT
+ctrlmExports ${0}
+
+# source l'environnement de la machine logique
+switch ${GEHLOG} > /dev/null
+
+
+############################################
+# Chargement des variables d'environnement #
+############################################
+
+GENERAL_ENV="${GEDAA}/etc/`echo ${GEIENV} | tr "UQP" "uqp"`v/env_q04.ksh"
+LOCAL_ENV="${REP}/`echo ${GEIENV} | tr "UQP" "uqp"`v/etc/env.ksh"
+
+if [ -f ${GENERAL_ENV} ]; then
+  . ${GENERAL_ENV}
+  [ $? -ne 0 ] && MsgError "impossible de charger l'environnement" && exit 1
+fi
+
+if [ -f ${LOCAL_ENV} ]; then
+  . ${LOCAL_ENV}
+  [ $? -ne 0 ] && MsgError "impossible de charger l'environnement" && exit 1
+fi
+
+#############################################################
+# Initialisation des variables n'ayant pas a etre modifiees #
+#############################################################
+
+DATE=`date +"%y%m%d_%H%M%S"`
+
+###################################################
+# Initialisation des variables specifiques au job #
+###################################################
+
+_FIC_OUT=${REP_PARAM}/${FIC_OUT}
+
+CODEAPP=Q04
+
+#######################
+##LANCEMENT DU SCRIPT##
+#######################
+#-------------------------------------------------------------------
+# Debut du job
+#-------------------------------------------------------------------
+echo "----------------------------------------------------------------------------------------------------------"
+echo "----------------------------------------------------------------------------------------------------------"
+echo ""
+echo "#### DEBUT JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+echo ""
+
+sql_select ()
+{
+
+sqlplus -s /nolog <<EOF >/dev/null
+connect $EXE_PARM
+
+set linesize ${LINESIZE};
+set termout off;
+set newpage NONE;
+set feed off;
+spool ${_FIC_OUT};
+
+set heading ${HEADING}
+SELECT 'NbLigne;NbDoublonParfait;NbDoublon' FROM DUAL
+UNION ALL
+select 
+(select count(*) from ${PROC}) ||';'||
+(select count(*) FROM ( select TYPE , CURRENCY , COURS  from CUST_COURS_SPOT GROUP BY TYPE , CURRENCY , COURS HAVING count(*)>1 )) ||';'||
+(select count(*) FROM ( select TYPE , CURRENCY from CUST_COURS_SPOT GROUP BY TYPE , CURRENCY HAVING count(*)>1 ))
+FROM DUAL;
+spool off;
+
+quit
+EOF
+}
+
+
+verif_avant_proc()
+{
+# ---------------------------------------------------------------------------- #
+# Information sur le fichier de sortie (avant lancement de la procedure) 
+# ---------------------------------------------------------------------------- #
+if [ -f ${FIC_OUT} ]; then
+	echo "Information sur le repertoire ${REP_PARAM}"
+        echo "`ls -dl ${REP_PARAM}`"
+	echo ""
+        echo "Information sur le fichier ${FIC_OUT}"
+        echo "`ls -ltr ${FIC_OUT}`"
+		else
+		echo "Information sur le repertoire ${REP_PARAM}"
+		echo "`ls -dl ${REP_PARAM}`"
+		echo ""
+		echo "Information sur le fichier ${FIC_OUT}"
+                echo "Le fichier ${_FIC_OUT} est vide ou n'existe pas"
+		echo "`ls -ltr ${FIC_OUT}`"
+fi
+}
+
+
+verif_apres_proc()
+{
+# ---------------------------------------------------------------------------- #
+# Information sur le fichier de sortie (apres lancement de la procedure)
+# ---------------------------------------------------------------------------- #
+# On verifie existance du fichier genere
+if [ -f ${FIC_OUT} ]; then
+        echo "Information sur le fichier ${FIC_OUT}"
+	echo "Le fichier ${_FIC_OUT} existe et n'est pas vide"
+        echo "`ls -ltr ${FIC_OUT}`"
+		else 
+		echo "Information sur le fichier ${FIC_OUT}"
+		echo "Le fichier ${_FIC_OUT} est vide ou n'existe pas"
+		echo "`ls -ltr ${FIC_OUT}`"
+		echo ""
+		echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+		echo "exit 1"
+		exit 1
+fi
+
+
+# On verifie qu'il n'y a pas d'erreur ORACLE
+if [ `/bin/grep ERROR ${_FIC_OUT} | wc -l` -gt 0 ] || [ `/bin/grep SP2-0640 ${_FIC_OUT} | wc -l` -gt 0 ]; then
+  echo ""
+  echo "PLANTAGE DE LA PROCEDURE ${PROC} AVEC L'ERREUR SUIVANTE : "
+  echo ""
+  echo "`cat ${_FIC_OUT}`"
+  echo "**********************************************************************************************************"
+  echo ""
+  echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+  echo "exit 2"
+  exit 2
+        else
+        echo ""
+        echo "PAS D'ERREUR DANS LE FICHIER ${_FIC_OUT} DE LA PROCEDURE $PROC"
+        echo "**********************************************************************************************************"
+fi
+
+}
+
+
+#Main
+echo "VARIABLES CTLM"
+echo "PROC=${PROC}"
+echo "FIC_OUT=${FIC_OUT}"
+echo "LINESIZE=${LINESIZE}"
+echo "HEADING=${HEADING}"
+echo "SQLS=${SQLS}"
+echo "REP_PARAM=${REP_PARAM}"
+echo "REP=${REP}"
+echo ""
+echo "VARIABLES VALORISEES DANS LE SCRIPT"
+echo "GENERAL_ENV=${GENERAL_ENV}"
+echo "LOCAL_ENV=${LOCAL_ENV}"
+echo "_FIC_OUT=${_FIC_OUT}"
+
+cd ${REP_PARAM}
+
+echo ""
+echo "**********************************************************************************************************"
+echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : VERIFICATION AVANT LANCEMENT PROCEDURE SQL"
+echo ""
+verif_avant_proc
+echo ""
+echo "**********************************************************************************************************"
+echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : LANCEMENT DE LA PROCEDURE SQL ${PROC}"
+$SQLS
+echo ""
+echo "**********************************************************************************************************"
+echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : VERIFICATION APRES LANCEMENT PROCEDURE SQL"
+echo ""
+verif_apres_proc
+
+
+echo ""
+echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+#-------------------------------------------------------------------
+# Fin du job proprement dit
+#-------------------------------------------------------------------
+echo "exit ${?}"
+exit ${?}
+

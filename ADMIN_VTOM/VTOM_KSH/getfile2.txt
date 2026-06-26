@@ -1,0 +1,80 @@
+##########################################################
+##                                                      ##
+##  Script de transfert des fichiers Cassiope de l'IHM  ##
+##                                                      ##
+##  Original    : M.KEMAKHEM (etd)                      ##
+##                                                      ##
+######################### updates ########################
+##  03/09/2010  : G.TESSIER (e2i) Ajout verbosite et suppression anonymisation
+##                                                      ##
+##########################################################
+## argument $0 : prod ou preprod -> détermine l'environnement.
+## Le fichier $LOGS_FILE historise les transferts et leurs résultats
+
+if [[ $# -ne 1 ]]; then
+	echo "le script prend un argument"
+	exit 2
+fi
+if [[ $1 == "prod" ]]; then
+	ENV="prod"
+	IP_ECHANGE="echange2.cpr-idf.justice.gouv.fr"
+elif [[ $1 == "preprod" ]]; then
+	ENV="pprod"
+	IP_ECHANGE="preprod.echange2.cpr-idf.justice.gouv.fr"
+else
+	echo "environnement non prit en charge. Utiliser prod ou preprod"
+	exit 2
+fi
+
+# fichier de log permanent
+LOGS_FILE="${HOME}/scripts/getFileEchange2.log"
+[ ! -f $LOGS_FILE ] && touch "$LOGS_FILE"
+
+echo "--------- `date  +-%Y-%m-%d_%H:%M:%S`---------" >> $LOGS_FILE
+# initialisation des flags
+
+echo "------------------------------------------"
+echo "DEBUT $0: `date  +-%Y-%m-%d_%H:%M:%S`"
+SOURCEDIR="/var/opt/application/infokcop/${ENV}"
+ARCHIVE_SOURCEDIR="/var/opt/application/infokcop/${ENV}/arch"
+SOURCE_CONN="infokcop@${IP_ECHANGE}"
+echo $SOURCE_CONN
+DESTDIR="/ikcop/echange"
+FLAG_EXT="end"
+
+FILE_LIST=`ssh ${SOURCE_CONN} ls ${SOURCEDIR}/*.${FLAG_EXT}`
+if [[ $FILE_LIST == "" ]]; then
+	echo "Aucun fichier disponible"
+	echo "Aucun fichier disponible" >> $LOGS_FILE
+	echo ""
+	echo "" >> $LOGS_FILE
+	exit 1
+else
+	for i in $FILE_LIST; do
+		RACINE=`echo $i|awk -F ".${FLAG_EXT}" '{print $1}'`
+		echo "++ fichier a traiter : ${RACINE}.tar.gz ++"
+		# récupération du fichier
+		scp ${SOURCE_CONN}:${RACINE}*.gz ${DESTDIR}/. >> /dev/null
+		if [[ $? -eq 0 ]]; then
+			echo "  - Transfert du fichier ${RACINE}.tar.gz : OK"
+			echo "  - Transfert du fichier ${RACINE}.tar.gz : OK" >> $LOGS_FILE
+		else
+			echo "  - Transfert du fichier ${RACINE}.tar.gz : KO"
+			echo "  - Transfert du fichier ${RACINE}.tar.gz : KO" >> $LOGS_FILE
+		fi	
+		# archivage du fichier
+		ssh ${SOURCE_CONN} mv ${RACINE}* ${ARCHIVE_SOURCEDIR}/.
+		if [[ $? -eq 0 ]]; then
+			echo "  - Archivage du fichier ${RACINE}.tar.gz : OK"
+			echo "  - Archivage du fichier ${RACINE}.tar.gz : OK" >> $LOGS_FILE
+		else
+			echo "  - Archivage du fichier ${RACINE}.tar.gz : KO"
+			echo "  - Archivage du fichier ${RACINE}.tar.gz : KO" >> $LOGS_FILE
+		fi
+	done
+fi
+	
+
+echo "FIN $0: `date  +-%Y-%m-%d_%H:%M:%S`"
+echo ""
+echo "" >> $LOGS_FILE

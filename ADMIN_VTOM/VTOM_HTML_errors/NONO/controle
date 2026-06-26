@@ -1,0 +1,18 @@
+LANG=en_EN
+JOUR=`date "+%e"`;export JOUR
+MOIS=`date "+%b"`;export MOIS
+HEURE=`date +%H:%M`
+CTOUT=/tmp/controle.log
+touch $CTOUT.old
+echo "Controle de la disponibilite des ressources de `hostname`\n"> $CTOUT
+grep "^$MOIS $JOUR" /var/adm/syslog/syslog.log|grep inetd >> $CTOUT
+errpt -AD -s $(date +"%m%d%H%M%y") >> $CTOUT
+diff $CTOUT $CTOUT.old|wc -l|read DIFF
+if [ $DIFF -ne 0 ]
+then
+        /usr/bin/mailx -s " `hostname` - suivi syteme - $JOUR $HEURE" arnaud.lozahic@mondial-assistance.fr < $CTOUT
+
+# lp  $CTOUT
+        cp $CTOUT $CTOUT.old
+
+fi

@@ -1,0 +1,377 @@
+**********************************************************************
+
+  HISTORY REPORT -   JOB        = *
+  JOBSET     = mre*
+  STATION    = *                    
+
+**********************************************************************
+
+Jobset = mre8Cald, Qualifier = 1100
+  Available date and time = 10/12/2014 03.50.38
+  Start date and time     = 10/12/2014 03.54.10
+  End date and time       = 10/12/2014 11.18.34
+  Station                 = exploit
+  Average time            = 0007.16.36
+  Elapsed time            = 0007.24.24
+
+    Job = mreo10
+      Jno = 0001, Qualifier = 1101
+      Available date and time = 10/12/2014 03.50.58
+      Start date and time     = 10/12/2014 03.54.11
+      End date and time       = 10/12/2014 04.44.23
+      Station                 = exploit
+      Average time            = 0000.51.19
+  Elapsed time            = 0000.50.12
+
+      CPU Time                = 0001.01.27
+      Completion code         = 00000000
+
+    Job = mreo16
+      Jno = 0001, Qualifier = 1101
+      Available date and time = 10/12/2014 03.50.58
+      Start date and time     = 10/12/2014 04.44.24
+      End date and time       = 10/12/2014 11.18.34
+      Station                 = exploit
+      Average time            = 0006.25.14
+  Elapsed time            = 0006.34.10
+
+      CPU Time                = 0003.11.41
+      Completion code         = 00000000
+
+Jobset = mre8Cald, Qualifier = 2500
+  Available date and time = 01/25/2015 05.00.30
+  Start date and time     = 01/25/2015 15.49.25
+  End date and time       = 01/25/2015 23.32.27
+  Station                 = exploit
+  Average time            = 0007.21.53
+  Elapsed time            = 0007.43.02
+
+    Job = mreo10
+      Jno = 0001, Qualifier = 2501
+      Available date and time = 01/25/2015 05.00.30
+      Start date and time     = 01/25/2015 15.49.26
+      End date and time       = 01/25/2015 16.40.36
+      Station                 = exploit
+      Average time            = 0000.51.17
+  Elapsed time            = 0000.51.10
+
+      CPU Time                = 0001.01.41
+      Completion code         = 00000000
+
+    Job = mreo16
+      Jno = 0001, Qualifier = 2501
+      Available date and time = 01/25/2015 05.00.30
+      Start date and time     = 01/25/2015 16.40.37
+      End date and time       = 01/25/2015 23.32.27
+      Station                 = exploit
+      Average time            = 0006.30.33
+  Elapsed time            = 0006.51.50
+
+      CPU Time                = 0003.13.23
+      Completion code         = 00000000
+
+Jobset = mre8Cald, Qualifier = 2200
+  Available date and time = 02/22/2015 05.00.14
+  Start date and time     = 02/22/2015 07.00.25
+  End date and time       = 02/22/2015 14.50.43
+  Station                 = exploit
+  Average time            = 0007.26.37
+  Elapsed time            = 0007.50.18
+
+    Job = mreo10
+      Jno = 0001, Qualifier = 2201
+      Available date and time = 02/22/2015 05.00.14
+      Start date and time     = 02/22/2015 07.00.26
+      End date and time       = 02/22/2015 07.50.45
+      Station                 = exploit
+      Average time            = 0000.51.07
+  Elapsed time            = 0000.50.19
+
+      CPU Time                = 0001.01.59
+      Completion code         = 00000000
+
+    Job = mreo16
+      Jno = 0001, Qualifier = 2201
+      Available date and time = 02/22/2015 05.00.14
+      Start date and time     = 02/22/2015 07.50.46
+      End date and time       = 02/22/2015 14.50.42
+      Station                 = exploit
+      Average time            = 0006.35.27
+  Elapsed time            = 0006.59.56
+
+      CPU Time                = 0003.14.50
+      Completion code         = 00000000
+
+Jobset = mre8Cald, Qualifier = 1500
+  Available date and time = 03/15/2015 05.00.11
+  Start date and time     = 03/15/2015 07.00.15
+  End date and time       = 03/15/2015 14.47.08
+  Station                 = exploit
+  Average time            = 0007.29.31
+  Elapsed time            = 0007.46.53
+
+    Job = mreo10
+      Jno = 0001, Qualifier = 1501
+      Available date and time = 03/15/2015 05.00.11
+      Start date and time     = 03/15/2015 07.00.16
+      End date and time       = 03/15/2015 07.50.53
+      Station                 = exploit
+      Average time            = 0000.51.03
+  Elapsed time            = 0000.50.37
+
+      CPU Time                = 0001.02.11
+      Completion code         = 00000000
+
+    Job = mreo16
+      Jno = 0001, Qualifier = 1501
+      Available date and time = 03/15/2015 05.00.11
+      Start date and time     = 03/15/2015 07.50.54
+      End date and time       = 03/15/2015 14.47.08
+      Station                 = exploit
+      Average time            = 0006.38.25
+  Elapsed time            = 0006.56.14
+
+      CPU Time                = 0003.16.01
+      Completion code         = 00000000
+
+Jobset = mre8Cald, Qualifier = 1900
+  Available date and time = 04/19/2015 05.00.20
+  Start date and time     = 04/19/2015 07.00.10
+  End date and time       = 04/19/2015 14.44.53
+  Station                 = exploit
+  Average time            = 0007.31.25
+  Elapsed time            = 0007.44.43
+
+    Job = mreo10
+      Jno = 0001, Qualifier = 1901
+      Available date and time = 04/19/2015 05.00.20
+      Start date and time     = 04/19/2015 07.00.12
+      End date and time       = 04/19/2015 07.50.51
+      Station                 = exploit
+      Average time            = 0000.51.00
+  Elapsed time            = 0000.50.39
+
+      CPU Time                = 0001.02.23
+      Completion code         = 00000000
+
+    Job = mreo10
+      Jno = 0001, Qualifier = 1901
+      Available date and time = 07/19/2015 05.00.08
+      Start date and time     = 07/19/2015 07.00.27
+      End date and time       = 07/19/2015 07.51.32
+      Station                 = exploit
+      Average time            = 0000.50.56
+  Elapsed time            = 0000.51.05
+
+      CPU Time                = 0001.02.51
+      Completion code         = 00000000
+
+    Job = mreo16
+      Jno = 0001, Qualifier = 1901
+      Available date and time = 04/19/2015 05.00.20
+      Start date and time     = 04/19/2015 07.50.52
+      End date and time       = 04/19/2015 14.44.52
+      Station                 = exploit
+      Average time            = 0006.40.22
+  Elapsed time            = 0006.54.00
+
+      CPU Time                = 0003.17.01
+      Completion code         = 00000000
+
+    Job = mreo16
+      Jno = 0001, Qualifier = 1901
+      Available date and time = 07/19/2015 05.00.08
+      Start date and time     = 07/19/2015 07.51.33
+      End date and time       = 07/19/2015 14.50.03
+      Station                 = exploit
+      Average time            = 0006.46.32
+  Elapsed time            = 0006.58.30
+
+      CPU Time                = 0003.19.07
+      Completion code         = 00000000
+
+Jobset = mre8Cald, Qualifier = 1700
+  Available date and time = 05/17/2015 05.00.07
+  Start date and time     = 05/17/2015 07.00.23
+  End date and time       = 05/17/2015 15.14.59
+  Station                 = exploit
+  Average time            = 0007.36.13
+  Elapsed time            = 0008.14.36
+
+    Job = mreo10
+      Jno = 0001, Qualifier = 1701
+      Available date and time = 05/17/2015 05.00.07
+      Start date and time     = 05/17/2015 07.00.24
+      End date and time       = 05/17/2015 07.51.05
+      Station                 = exploit
+      Average time            = 0000.50.58
+  Elapsed time            = 0000.50.41
+
+      CPU Time                = 0001.02.35
+      Completion code         = 00000000
+
+    Job = mreo16
+      Jno = 0001, Qualifier = 1701
+      Available date and time = 05/17/2015 05.00.07
+      Start date and time     = 05/17/2015 07.51.06
+      End date and time       = 05/17/2015 15.14.59
+      Station                 = exploit
+      Average time            = 0006.45.12
+  Elapsed time            = 0007.23.53
+
+      CPU Time                = 0003.17.55
+      Completion code         = 00000000
+
+Jobset = mre8Cald, Qualifier = 2100
+  Available date and time = 06/21/2015 05.00.11
+  Start date and time     = 06/21/2015 07.00.12
+  End date and time       = 06/21/2015 14.37.26
+  Station                 = exploit
+  Average time            = 0007.36.19
+  Elapsed time            = 0007.37.14
+
+    Job = mreo10
+      Jno = 0001, Qualifier = 2101
+      Available date and time = 06/21/2015 05.00.12
+      Start date and time     = 06/21/2015 07.00.14
+      End date and time       = 06/21/2015 07.50.43
+      Station                 = exploit
+      Average time            = 0000.50.55
+  Elapsed time            = 0000.50.29
+
+      CPU Time                = 0001.02.44
+      Completion code         = 00000000
+
+    Job = mreo16
+      Jno = 0001, Qualifier = 2101
+      Available date and time = 06/21/2015 05.00.12
+      Start date and time     = 06/21/2015 07.50.44
+      End date and time       = 06/21/2015 14.37.26
+      Station                 = exploit
+      Average time            = 0006.45.21
+  Elapsed time            = 0006.46.42
+
+      CPU Time                = 0003.18.29
+      Completion code         = 00000000
+
+Jobset = mre8Cald, Qualifier = 1900
+  Available date and time = 07/19/2015 05.00.08
+  Start date and time     = 07/19/2015 07.00.26
+  End date and time       = 07/19/2015 14.50.03
+  Station                 = exploit
+  Average time            = 0007.37.31
+  Elapsed time            = 0007.49.37
+
+    Job = mreo10
+      Jno = 0001, Qualifier = 1901
+      Available date and time = 04/19/2015 05.00.20
+      Start date and time     = 04/19/2015 07.00.12
+      End date and time       = 04/19/2015 07.50.51
+      Station                 = exploit
+      Average time            = 0000.51.00
+  Elapsed time            = 0000.50.39
+
+      CPU Time                = 0001.02.23
+      Completion code         = 00000000
+
+    Job = mreo10
+      Jno = 0001, Qualifier = 1901
+      Available date and time = 07/19/2015 05.00.08
+      Start date and time     = 07/19/2015 07.00.27
+      End date and time       = 07/19/2015 07.51.32
+      Station                 = exploit
+      Average time            = 0000.50.56
+  Elapsed time            = 0000.51.05
+
+      CPU Time                = 0001.02.51
+      Completion code         = 00000000
+
+    Job = mreo16
+      Jno = 0001, Qualifier = 1901
+      Available date and time = 04/19/2015 05.00.20
+      Start date and time     = 04/19/2015 07.50.52
+      End date and time       = 04/19/2015 14.44.52
+      Station                 = exploit
+      Average time            = 0006.40.22
+  Elapsed time            = 0006.54.00
+
+      CPU Time                = 0003.17.01
+      Completion code         = 00000000
+
+    Job = mreo16
+      Jno = 0001, Qualifier = 1901
+      Available date and time = 07/19/2015 05.00.08
+      Start date and time     = 07/19/2015 07.51.33
+      End date and time       = 07/19/2015 14.50.03
+      Station                 = exploit
+      Average time            = 0006.46.32
+  Elapsed time            = 0006.58.30
+
+      CPU Time                = 0003.19.07
+      Completion code         = 00000000
+
+Jobset = mre8Cald, Qualifier = 3000
+  Available date and time = 08/30/2015 05.00.09
+  Start date and time     = 08/30/2015 07.00.14
+  End date and time       = 08/30/2015 14.50.34
+  Station                 = exploit
+  Average time            = 0007.41.41
+  Elapsed time            = 0007.50.20
+
+    Job = mreo10
+      Jno = 0001, Qualifier = 3001
+      Available date and time = 08/30/2015 05.00.10
+      Start date and time     = 08/30/2015 07.00.16
+      End date and time       = 08/30/2015 07.51.16
+      Station                 = exploit
+      Average time            = 0000.50.42
+  Elapsed time            = 0000.51.00
+
+      CPU Time                = 0001.03.12
+      Completion code         = 00000000
+
+    Job = mreo16
+      Jno = 0001, Qualifier = 3001
+      Available date and time = 08/30/2015 05.00.10
+      Start date and time     = 08/30/2015 07.51.17
+      End date and time       = 08/30/2015 14.50.34
+      Station                 = exploit
+      Average time            = 0006.50.56
+  Elapsed time            = 0006.59.17
+
+      CPU Time                = 0003.21.01
+      Completion code         = 00000000
+
+Jobset = mre8Cald, Qualifier = 2000
+  Available date and time = 09/20/2015 05.00.36
+  Start date and time     = 09/20/2015 07.00.23
+  End date and time       = 09/20/2015 14.42.31
+  Station                 = exploit
+  Average time            = 0007.45.25
+  Elapsed time            = 0007.42.08
+
+    Job = mreo10
+      Jno = 0001, Qualifier = 2001
+      Available date and time = 09/20/2015 05.00.37
+      Start date and time     = 09/20/2015 07.00.24
+      End date and time       = 09/20/2015 07.51.49
+      Station                 = exploit
+      Average time            = 0000.50.53
+  Elapsed time            = 0000.51.25
+
+      CPU Time                = 0001.03.30
+      Completion code         = 00000000
+
+    Job = mreo16
+      Jno = 0001, Qualifier = 2001
+      Available date and time = 09/20/2015 05.00.37
+      Start date and time     = 09/20/2015 07.51.51
+      End date and time       = 09/20/2015 14.42.30
+      Station                 = exploit
+      Average time            = 0006.54.29
+  Elapsed time            = 0006.50.39
+
+      CPU Time                = 0003.22.33
+      Completion code         = 00000000
+
+

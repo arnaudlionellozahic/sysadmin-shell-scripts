@@ -1,0 +1,117 @@
+/*
+
+
+insert_job: gr6_lucbox2   job_type: BOX
+owner: user6
+permission:
+date_conditions: 1
+days_of_week: tu,we,th
+start_mins: 15,30,45,00
+alarm_if_fail: 1
+success_codes : 0,99
+
+
+
+ insert_job: GR6_lucFT2   job_type: FT
+ box_name: gr6_lucbox2
+ machine: localhost
+ owner: user6
+ permission:
+ date_conditions: 0
+ alarm_if_fail: 1
+ watch_file: "/home/user6/fic2"
+ watch_file_recursive: 0
+ watch_file_type: CREATE
+ watch_no_change: 0
+ continuous: 0
+ watch_file_change_type: "SIZE"
+
+
+ insert_job: GR6_lucj02   job_type: CMD
+ box_name: gr6_lucbox2
+ command: /home/user6/lucj02
+ machine: localhost
+ owner: user6
+ permission:
+ date_conditions: 0
+ condition: s(GR6_lucFT2)
+ alarm_if_fail: 1
+
+ insert_job: GR6_lucj03   job_type: CMD
+ box_name: gr6_lucbox2
+ command: /home/user6/lucj03
+ machine: localhost
+ owner: user6
+ permission:
+ date_conditions: 0
+ condition:  e(GR6_lucj02)=0
+ alarm_if_fail: 1
+
+update_job: gr6_lucbox2
+box_success: e(GR6_lucj02)=99 OR s(GR6_lucj03)
+
+
+update_job: GR6_lucj02
+box_terminator: 1
+
+update_job: GR6_lucFT2
+term_run_time: 2
+box_terminator: 1
+watch_file_type: GENERATE
+watch_file_change_type:
+watch_no_change: 1
+
+ insert_job: GR6_lucj04   job_type: CMD
+ command: /home/user6/lucj04
+ machine: localhost
+ owner: user6
+ permission:
+ date_conditions: 0
+ condition:  t(GR6_lucFT2)
+ alarm_if_fail: 1
+
+*/
+
+
+insert_job: gr6_lucsb   job_type: BOX
+owner: user6
+permission:
+date_conditions: 1
+days_of_week: tu,we,th
+start_mins: 15,30,45,00
+alarm_if_fail: 1
+
+insert_job: gr6_lucbx1   job_type: BOX
+owner: user6
+box-name: gr6_lucsb
+
+insert_job: gr6_lucbx2   job_type: BOX
+owner: user6
+box-name: gr6_lucsb
+
+ insert_job: GR6_lucj05   job_type: CMD
+ command: /home/user6/lucj02
+ box-name: gr6_lucbx1
+ machine: localhost
+ owner: user6
+ permission:
+ date_conditions: 0
+ alarm_if_fail: 1
+
+ insert_job: GR6_lucj06   job_type: CMD
+ command: /home/user6/lucj02
+ box-name: gr6_lucbx1
+ machine: localhost
+ owner: user6
+ permission:
+ date_conditions: 0
+ alarm_if_fail: 1
+
+ insert_job: GR6_lucj07   job_type: CMD
+ command: /home/user6/lucj02
+ box-name: gr6_lucbx2
+ machine: localhost
+ owner: user6
+ permission:
+ date_conditions: 0
+ alarm_if_fail: 1

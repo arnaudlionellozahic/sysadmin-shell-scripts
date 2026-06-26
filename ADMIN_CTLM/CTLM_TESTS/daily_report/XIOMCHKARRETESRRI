@@ -1,0 +1,85 @@
+#!/bin/ksh
+# ---------------------------------------------------------------------------- #
+# ?IODCHKARRETESRRI : Check des dumps d'arretes recopies sur msarretes         #
+# ---------------------------------------------------------------------------- #
+# SVE  14/12/2012  creation                                                    #
+# ---------------------------------------------------------------------------- #
+
+ODATE=${1}
+[ "X${ODATE}" = "X" ] && echo "Parm ODATE non specifie" && exit 1
+
+ctrlmExports ${0} # exporte les variables CTM0, GEHLOG, GEDAA, GEDAACC et GEDSOFT
+switch ${GEHLOG} > /dev/null
+
+_GENERAL_ENV="${GEDAA}/etc/`echo ${GEIENV} | tr "PXG" "pxg"`v/env.ksh"
+_LOCAL_ENV="${GEDAACC}/etc/env.ksh"
+[ -a ${_GENERAL_ENV} ] && . ${_GENERAL_ENV}
+[ -a ${_LOCAL_ENV} ] && . ${_LOCAL_ENV}
+
+# ---------------------------------------------------------------------------- #
+# Variables
+# ---------------------------------------------------------------------------- #
+_CODE=0
+_MESSAGE="${GEDAACH}/travaux/message.html"
+
+# ---------------------------------------------------------------------------- #
+echo "DEBUT JOB ${CTM0} $(date "+%Y%m%d-%H%M%S")"
+# ---------------------------------------------------------------------------- #
+
+> ${_MESSAGE}
+
+echo "<p>Bonjour,<br /><br />" >> ${_MESSAGE}
+echo "Merci de verifier dans la liste ci-dessous que les dumps d'arretes recopies sur msarretes sont coherents par rapport au souhait de la MOE indiquee ci-contre.<br /><br />" >> ${_MESSAGE}
+
+echo "<b><u>Liste de reference des dumps a garder</u></b><br />" >> ${_MESSAGE}
+echo "<table border=\"1\"><tr><th>Application</th><th>Dataserver</th><th>Dump(s) a garder</th></tr>" >> ${_MESSAGE}
+echo "<tr><td> Amerisc (AM) </td><td> SX_TP_AM2 </td><td> 3 dumps full : Le 31, le 1er et le 2 </td></tr>" >> ${_MESSAGE}
+echo "<tr><td> B2C (BX) </td><td> SX_TP_BX </td><td> 3 dumps full : Le 31, le 1er et le 2 </td></tr>" >> ${_MESSAGE}
+echo "<tr><td> Circé (CL) </td><td> SX_TP_CL </td><td>  3 dumps full : Le 31, le 1er et le 2 </td></tr>" >> ${_MESSAGE}
+echo "<tr><td> Fermat (FE) </td><td> MX_TP_FE </td><td> 1 dump full : Le 1er jour du mois </td></tr>" >> ${_MESSAGE}
+echo "<tr><td> Fermat Conso (FG) </td><td> OX_TP_FG </td><td> 1 dump full : Le 1er jour du mois </td></tr>" >> ${_MESSAGE}
+echo "<tr><td> Osirisk (OJ) </td><td> SX_TP_OJ </td><td> 3 dumps full : Le 31, le 1er et le 2 </td></tr>" >> ${_MESSAGE}
+echo "<tr><td> R2M (RJ) </td><td> SX_TP_RJ </td><td> 3 dumps full : Le 31, le 1er et le 2 </td></tr>" >> ${_MESSAGE}
+echo "<tr><td> Risk Mandate (EJ) </td><td> SX_TP_EJ </td><td> 3 dumps full : Le 31, le 1er et le 2 </td></tr>" >> ${_MESSAGE}
+echo "<tr><td> RMS (R3) </td><td> SX_TP_R3 </td><td> 3 dumps full : Le 31, le 1er et le 2 </td></tr>" >> ${_MESSAGE}
+echo "<tr><td> Scenarisk (SR) </td><td> MX_SV_TPSR </td><td> 3 dumps full : Le 31, le 1er et le 2 </td></tr>" >> ${_MESSAGE}
+echo "<tr><td> TRR (RR) </td><td> SX_TP_RR </td><td> 3 dumps full : Le 31, le 1er et le 2 </td></tr>" >> ${_MESSAGE}
+echo "<tr><td> PNLHYO (PH) </td><td> IX_DW_PH </td><td> Pas de recopie </td></tr>" >> ${_MESSAGE}
+echo "<tr><td> Madonne (MO) </td><td> SX_TP_MO </td><td> Pas de recopie </td></tr>" >> ${_MESSAGE}
+echo "<tr><td> Madonne (MO) </td><td> IX_DW_MO </td><td> 1 dump full : Le dernier dimanche du mois <br /> + les dumps incrémentaux apres le dernier dimanche du mois jusqu'au 1er jour du mois suivant inclus </td></tr>" >> ${_MESSAGE}
+echo "<tr><td> Madonne (MO) </td><td> IX_DW_PH </td><td> a completer </td></tr>" >> ${_MESSAGE}
+echo "</table><br /><br />" >> ${_MESSAGE}
+
+for rep in $(find /${GEHLOG}/archivage_arretes/TSM -type d -name "*RRI*"|grep -v '_ARCHIVED')
+do
+	echo "<b><u>Liste des dumps recopies dans ${rep}</u></b><br />" >> ${_MESSAGE} 
+	if [ "$(ls -l ${rep})" = "total 0" ]
+	then
+		echo "<b><font color=\"red\">Pas de fichiers de dumps presents ! Merci de checker le job de recopie X$(echo ${rep}|awk -F'.' '{print $2}')_MARCHIV_SGBD</font></b><hr><br /><br />" >> ${_MESSAGE}
+	else
+		echo "<table border=\"1\"><tr><th>Taille</th><th>Date</th><th>Fichier</th></tr>" >> ${_MESSAGE}
+		ls -l ${rep}|grep -v 'total'|awk -F' ' '{ print "<tr><td> "$5" </td><td> "$6" "$7" "$8" </td><td> "$NF" </td></tr>" }' >> ${_MESSAGE}
+		echo "</table><b><font color=\"blue\">Merci de checker la coherence des dumps recopies pour archivage par rapport a la liste de reference.</font></b><hr><br /><br />" >> ${_MESSAGE}
+	fi
+done
+
+echo "Cordialement,<br />" >> ${_MESSAGE}
+echo "L'equipe RRI<br /></p>" >> ${_MESSAGE}
+
+FROM="BAL-DSI-R2C-RPA-PRR-PR2@natixis.com"
+MAILTO="BAL-DSI-R2C-RPA-PRR-PR2@natixis.com"
+OBJET="[RRI][PROD][MSARRETES] Vérification des dumps d'arrêtés avant archivage TSM"
+(
+ echo "FROM: $FROM"
+ echo "To: $MAILTO"
+ echo "Subject: $OBJET"
+ echo "MIME-Version: 1.0"
+ echo "Importance: High"
+ echo "Content-Type: text/html"
+ cat ${_MESSAGE}
+) | /usr/sbin/sendmail -fmbx-tip-app-bfi-rri@natixis.com $MAILTO
+
+# ---------------------------------------------------------------------------- #
+echo "FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S")"
+# ---------------------------------------------------------------------------- #
+exit ${_CODE}

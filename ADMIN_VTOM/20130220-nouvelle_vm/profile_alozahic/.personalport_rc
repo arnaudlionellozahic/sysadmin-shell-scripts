@@ -1,0 +1,11 @@
+[ports]
+tomDBd:al_tomDBd
+gwd:al_gwd
+ntfy:al_ntfy
+bdaemon:al_bdaemon
+vtlicense:al_vtlicense
+vtserver:al_vtserver
+AgtVTOM:al_AgtVTOM
+vtsgbd:al_vtsgbd
+vtnotifier:al_vtnotifier
+vthttpd:al_vthttpd

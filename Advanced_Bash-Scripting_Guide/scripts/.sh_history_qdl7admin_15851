@@ -1,0 +1,7 @@
+echo -e '\E[34;47mThis prints in blue.'; tput sgr0
+exit
+ll
+ls
+ls -ltr
+cat mailheader template.html | mailx -t;
+exit

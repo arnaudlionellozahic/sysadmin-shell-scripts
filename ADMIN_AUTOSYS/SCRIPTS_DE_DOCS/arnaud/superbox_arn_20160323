@@ -1,0 +1,137 @@
+
+
+/* ----------------- GR2_JOBX ----------------- */
+
+insert_job: GR2_JOBX   job_type: CMD
+command: echo TOTO
+machine: rh602
+owner: user2
+permission:
+date_conditions: 0
+condition: t(GR2_BOX1_FT1)
+alarm_if_fail: 1
+
+
+/* ----------------- GR2_BOX0 ----------------- */
+
+insert_job: GR2_BOX0   job_type: BOX
+owner: user2@rh602
+permission:
+date_conditions: 0
+alarm_if_fail: 1
+
+
+ /* ----------------- GR2_BOX1 ----------------- */
+
+ insert_job: GR2_BOX1   job_type: BOX
+ box_name: GR2_BOX0
+ owner: ejmcommander
+ permission:
+ date_conditions: 0
+ box_success: e(GR2_BOX1_J1) = 99 | s(GR2_BOX1_J2)
+ alarm_if_fail: 1
+
+
+  /* ----------------- GR2_BOX1_FT1 ----------------- */
+
+  insert_job: GR2_BOX1_FT1   job_type: FT
+  box_name: GR2_BOX1
+  machine: rh602
+  owner: user2
+  permission:
+  date_conditions: 0
+  term_run_time: 2
+  box_terminator: 1
+  alarm_if_fail: 1
+  watch_file: "/tmp/GR2_fic1_AL"
+  watch_file_recursive: 0
+  watch_file_type: CREATE
+  watch_no_change: 0
+  continuous: 0
+  watch_file_change_type: "SIZE"
+
+
+  /* ----------------- GR2_BOX1_J1 ----------------- */
+
+  insert_job: GR2_BOX1_J1   job_type: CMD
+  box_name: GR2_BOX1
+  command: echo ok
+  machine: rh602
+  owner: user2
+  permission:
+  date_conditions: 0
+  condition: s(GR2_BOX1_FT1)
+  box_terminator: 1
+  std_out_file: ">/tmp/$AUTO_JOB_NAME.log"
+  std_err_file: ">/tmp/$AUTO_JOB_NAME.err"
+  alarm_if_fail: 1
+  success_codes: 0,99
+
+
+  /* ----------------- GR2_BOX1_J2 ----------------- */
+
+  insert_job: GR2_BOX1_J2   job_type: CMD
+  box_name: GR2_BOX1
+  command: echo ok
+  machine: rh602
+  owner: user2
+  permission:
+  date_conditions: 0
+  condition: e(GR2_BOX1_J1) = 0
+  std_out_file: ">/tmp/$AUTO_JOB_NAME.log"
+  std_err_file: ">/tmp/$AUTO_JOB_NAME.err"
+  alarm_if_fail: 1
+
+
+ /* ----------------- GR2_BOX2 ----------------- */
+
+ insert_job: GR2_BOX2   job_type: BOX
+ box_name: GR2_BOX0
+ owner: autosys
+ permission:
+ date_conditions: 0
+ condition: d(GR2_BOX1)
+ alarm_if_fail: 1
+
+
+  /* ----------------- GR2_BOX2_J1 ----------------- */
+
+  insert_job: GR2_BOX2_J1   job_type: CMD
+  box_name: GR2_BOX2
+  command: echo ok
+  machine: rh602
+  owner: user2
+  permission:
+  date_conditions: 0
+  condition: d(GR2_BOX2_J3) & d(GR2_BOX2_J2)
+  std_out_file: ">/tmp/$AUTO_JOB_NAME.log"
+  std_err_file: ">/tmp/$AUTO_JOB_NAME.err"
+  alarm_if_fail: 1
+
+
+  /* ----------------- GR2_BOX2_J3 ----------------- */
+
+  insert_job: GR2_BOX2_J3   job_type: CMD
+  box_name: GR2_BOX2
+  command: echo ok
+  machine: rh602
+  owner: user2
+  permission:
+  date_conditions: 0
+  std_out_file: ">/tmp/$AUTO_JOB_NAME.log"
+  std_err_file: ">/tmp/$AUTO_JOB_NAME.err"
+  alarm_if_fail: 1
+
+
+  /* ----------------- GR2_BOX2_J2 ----------------- */
+
+  insert_job: GR2_BOX2_J2   job_type: CMD
+  box_name: GR2_BOX2
+  command: echo ok
+  machine: rh602
+  owner: user2
+  permission:
+  date_conditions: 0
+  std_out_file: ">/tmp/$AUTO_JOB_NAME.log"
+  std_err_file: ">/tmp/$AUTO_JOB_NAME.err"
+  alarm_if_fail: 1

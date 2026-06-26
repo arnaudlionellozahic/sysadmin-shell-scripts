@@ -1,0 +1,82 @@
+/*
+
+update_job: GR2_BOX1_J1
+box_name: GR2_BOX1
+owner: user2
+machine: rh602
+command: echo ok
+std_out_file: >/tmp/$AUTO_JOB_NAME.log
+std_err_file: >/tmp/$AUTO_JOB_NAME.err
+
+update_job: GR2_BOX1_FT1
+box_name: GR2_BOX1
+owner: user2
+machine: rh602
+command: echo ok
+std_out_file: >/tmp/$AUTO_JOB_NAME.log
+std_err_file: >/tmp/$AUTO_JOB_NAME.err
+
+update_job: GR2_BOX1_J2
+box_name: GR2_BOX1
+condition: e(GR2_BOX1_J1) = 0
+owner: user2
+machine: rh602
+command: echo ok
+std_out_file: >/tmp/$AUTO_JOB_NAME.log
+std_err_file: >/tmp/$AUTO_JOB_NAME.err
+
+
+
+
+update_job: GR2_BOX2_J1
+box_name: GR2_BOX2
+owner: user2
+machine: rh602
+command: echo ok
+condition: D(GR2_BOX2_J3)&D(GR2_BOX2_J2)
+std_out_file: >/tmp/$AUTO_JOB_NAME.log
+std_err_file: >/tmp/$AUTO_JOB_NAME.err
+
+update_job: GR2_BOX2_J3
+box_name: GR2_BOX2
+owner: user2
+machine: rh602
+command: echo ok
+std_out_file: >/tmp/$AUTO_JOB_NAME.log
+std_err_file: >/tmp/$AUTO_JOB_NAME.err
+
+update_job: GR2_BOX2_J2
+box_name: GR2_BOX2
+owner: user2
+machine: rh602
+command: echo ok
+std_out_file: >/tmp/$AUTO_JOB_NAME.log
+std_err_file: >/tmp/$AUTO_JOB_NAME.err
+
+
+*/
+
+/* CONDITION ENTRE BOX1 ET BOX2
+SUR BOX2 */
+update_job: GR2_BOX2
+condition: d(GR2_BOX1)
+
+
+
+
+/* CREATION BOX */
+/* insert_job: GR2_BOX0
+job_type: BOX */
+
+/* DELETE BOX OR JOB
+delete_job: GR2_BOX3 */
+
+/* INSERTION DE BOX1 ET BOX2 DANS SUPERBOX GR2_BOX0
+update_job: GR2_BOX2
+box_name: GR2_BOX0
+
+update_job: GR2_BOX1
+box_name: GR2_BOX0 */
+
+
+

@@ -1,0 +1,5 @@
+#!/bin/ksh  
+
+
+
+vtbackup -d -p /home4/cnavel/HP-UX/itanium/Ver544/logs

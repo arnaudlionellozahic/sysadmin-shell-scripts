@@ -1,0 +1,37 @@
+echo ' <html>
+     <head>
+  <title></title>
+  <style type="text/css">
+    body {
+    color: black;
+    background-color: yellow;
+    background-position: 30px 50px;
+    background-image: url(/exploit/systeme/suivi/1.jpg);
+	background-position:center center;
+    background-attachment: fixed; }
+  </style>
+     </head> ' > $OUTPUT_FILE
+	 
+	 
+	 
+	 
+echo ' <html>
+     <head>
+  <title></title>
+    <body text="black" bgcolor="yellow">
+  </style>
+     </head> ' > $OUTPUT_FILE
+
+#    <body text="black" bgcolor="yellow" bordercolordark="green" bordercolorlight="yellow">
+
+
+
+echo ' <html>
+     <head>
+  <title></title>
+  <style type="text/css">
+  body {
+    color: black;
+    background-color: yellow}
+  </style>
+</head> ' > $OUTPUT_FILE

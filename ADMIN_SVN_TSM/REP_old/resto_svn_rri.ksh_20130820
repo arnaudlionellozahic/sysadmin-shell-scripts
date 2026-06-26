@@ -1,0 +1,131 @@
+#!/bin/ksh -x 
+
+
+resto_tar_svn ()
+{
+if [ `/bin/grep ${fic2} ${out1} | wc -l` -eq 1 ]
+then
+	cp -p ${fic2} ${rep_appli}/${fic}
+else
+	echo -e "\033[31mPas de fichier ${fic2} a restaurer\033[00m"
+	echo "Bonjour," > ${out}
+	echo "" >> ${out}
+	echo "Veuillez vérifier la présence de l'archive ${rep_backup}/${fic2}" >> ${out}	
+	echo "" >> ${out}
+	echo "Dans le cas contraire, lancez le job ctlm QDL7_DREST_SVN_RRI/QDL7ORESTBCK." >> ${out}
+	echo "" >> ${out}
+	echo "cdt," >> ${out}
+	mailx -r mbx-tip-app-bfi-rri@natixis.com -s "[${ENVI}][SVN] - Pas de fichier ${fic2} a restaurer le ${J_DAY}" arnaud.lozahic-ext@natixis.com < ${out}
+	exit 1
+fi
+}
+
+
+resto_svn ()
+{
+if [ `/bin/grep ${fic} ${out1} | wc -l` -eq 1 ]
+then
+	echo -e "\033[31mLe service httpd de svn va etre arrete le temps de la restauration de la sauvegarde du repository\033[00m"
+	echo "Bonjour," > ${out}
+        echo "" >> ${out}
+        echo "Le service httpd de svn va etre arrete le temps de la restauration de la sauvegarde du repository." >> ${out}
+        echo "" >> ${out}
+        echo "cdt," >> ${out}
+        mailx -r mbx-tip-app-bfi-rri@natixis.com -s "[${ENVI}][SVN] - Arret du service httpd de svn le ${J_DAY} pour restauration  du repository" arnaud.lozahic-ext@natixis.com < ${out}
+	Stop -s HTTPD_SVN
+else
+	echo -e "\033[31mLa restauration de l'archive svn est KO\033[00m"
+        echo "Bonjour," > ${out}
+        echo "" >> ${out}
+        echo "La restauration de l'archive svn est KO le $(date +'%d/%m/%Y a %H:%M')" >> ${out}
+	echo "" >> ${out}
+        echo "cdt," >> ${out}
+        mailx -r mbx-tip-app-bfi-rri@natixis.com -s "[${ENVI}][SVN] - La restauration de l'archive svn est KO le ${J_DAY}" arnaud.lozahic-ext@natixis.com < ${out}
+        exit 1
+fi
+}
+
+
+controle_arret_httpd ()
+{
+if [ `/bin/grep httpd ${out1} | wc -l` -eq 0 ]
+then
+	echo -e "\033[31mLe service httpd est arrete, l'archive svn va etre decompressee\033[00m"
+	echo "" >> ${out}
+	echo "Le service httpd est arrete, l'archive svn va etre decompressee le $(date +'%d/%m/%Y a %H:%M')" >> ${out}
+	mailx -r mbx-tip-app-bfi-rri@natixis.com -s "[${ENVI}][SVN] - Le service httpd est arrete, l'archive svn va etre decompressee le ${J_DAY}" arnaud.lozahic-ext@natixis.com < ${out}
+else
+	echo -e "\033[31mL'arret du service httpd de svn est KO\033[00m"
+	echo "" >> ${out}
+	echo "Le service httpd de svn ne s'est pas arrete correctement le $(date +'%d/%m/%Y a %H:%M')" >> ${out}
+	mailx -r mbx-tip-app-bfi-rri@natixis.com -s "[${ENVI}][SVN] - L'arret du service httpd de svn est KO le ${J_DAY}" arnaud.lozahic-ext@natixis.com < ${out} 
+	exit 1
+fi
+}
+
+
+resto_svn_2 ()
+{
+mv svn_rri svn_crash_rri
+tar xvf ${fic}
+
+if [ $? == 0 ]
+then
+        Start -s HTTPD_SVN
+else
+        exit 1
+fi
+}
+
+
+controle_demarrage_httpd ()
+{
+if [ `/bin/grep httpd ${out1} | wc -l` -ge 1 ]
+then
+	echo -e "\033[31mLe service httpd de svn est demarre\033[00m"
+	echo "Bonjour," > ${out}
+        echo "" >> ${out}
+	echo "La restauration du repertoire ${rep} est OK le $(date +'%d/%m/%Y a %H:%M')" >> ${out}
+        echo "" >> ${out}
+        echo "Le service httpd de svn est demarre, svn est disponible" >> ${out}
+        mailx -r mbx-tip-app-bfi-rri@natixis.com -s "[${ENVI}][SVN] - Demarrage du service httpd de svn le ${J_DAY}" arnaud.lozahic-ext@natixis.com < ${out}
+else
+	echo -e "\033[31mLe demarrage du service htppd de svn est KO\033[00m"
+        echo "Bonjour," > ${out}
+        echo "" >> ${out}
+        echo "Le service httpd de svn n'a pas demarree correctement le $(date +'%d/%m/%Y a %H:%M'), vérifier les process et le relancer manuellement" >> ${out}
+        echo "" >> ${out}
+        echo "Le service httpd de svn est demarre, svn est disponible" >> ${out}
+        mailx -r mbx-tip-app-bfi-rri@natixis.com -s "[${ENVI}][SVN] - Le demarrage du service htppd de svn est KO le ${J_DAY}" arnaud.lozahic-ext@natixis.com < ${out}
+	exit 1
+fi
+}
+
+# Main
+rep=/slqdl7bdd01/appli/dl7/svn_rri
+rep_backup=/slqdl7bdd01/appli/dl7/sp/backup
+rep_appli=/slqdl7bdd01/appli/dl7
+fic=svn_pcf_rri.tar
+fic2=subversion_rri.tar
+out=${rep_appli}/QDL7_OREST_SVN_RRI/logs/tsm.log
+out1=${rep_appli}/QDL7_OREST_SVN_RRI/logs/svn_tmp.log
+J_DAY=$(date "+%Y%m%d")
+ENVI=PREX
+
+cd ${rep_backup}
+ls -A | grep subversion_rri.tar > ${out1}
+resto_tar_svn
+
+cd ${rep_appli}
+ls -A | grep svn_pcf_rri.tar > ${out1}
+resto_svn && sleep 5
+
+ps -ef | grep httpd | grep -v grep > ${out1}
+controle_arret_httpd
+
+resto_svn_2 && sleep 5 
+
+ps -ef | grep httpd | grep -v grep > ${out1}
+controle_demarrage_httpd
+
+rm -f ${out} ${out1} ${rep_appli}/${fic}

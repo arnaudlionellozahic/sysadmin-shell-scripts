@@ -1,0 +1,93 @@
+
+/*
+insert_machine: GR2_arn
+machine: rh602
+*/
+
+/*CHOIX SERVEUR REPARTITION CHARGE
+update_job: GR2_BOX4_J3
+box_name: GR2_BOX4
+machine: `/home/user2/choix.sh`
+#machine: GR2_arn
+command: /home/user2/arn1
+owner: root
+std_out_file: /home/user2/toto_box4.log
+date_conditions: 1
+days_of_week: th
+start_mins: 15,30,45,00
+
+update_job: GR2_BOX4_J1
+box_name: GR2_BOX4
+command: /home/user2/arn1
+owner: root
+machine: GR2_arn
+std_out_file: >/home/user2/toto_box4.log
+date_conditions: 1
+days_of_week: tu,we,th
+start_mins: 15,30,45,00
+
+update_job: GR2_BOX4_J2
+box_name: GR2_BOX4
+command: /home/user2/arn1
+owner: root
+machine: GR2_arn
+std_out_file: >/home/user2/toto_box4.log
+date_conditions: 1
+days_of_week: tu,we,th
+start_mins: 15,30,45,00
+
+update_job: GR2_BOX4_J4
+box_name: GR2_BOX4
+command: /home/user2/arn1
+condition: VALUE(GR2_FLAG)=CAFE
+owner: root
+machine: GR2_arn
+std_out_file: >/home/user2/toto_box4.log
+date_conditions: 1
+days_of_week: tu,we,th
+start_mins: 15,30,45,00
+*/
+
+/*RESOURCES
+
+insert_resource: GR2_res1
+res_type: R
+amount: 1
+
+insert_resource: GR2_res2
+res_type: R
+amount: 1
+
+update_job: GR2_BOX4_J1
+resources: (GR2_res1, quantity=1, FREE=A)
+
+update_job: GR2_BOX4_J2
+resources: (GR2_res1, quantity=1, FREE=A)
+
+update_job: GR2_BOX4_J3
+resources: (GR2_res1, quantity=1, FREE=A)
+
+update_job: GR2_BOX4_J4
+resources: (GR2_res1, quantity=1, FREE=A)
+
+update_job: GR2_BOX4_J5
+resources: (GR2_res2, quantity=1, FREE=A)
+command: sleep 5
+
+update_job: GR2_BOX4_J6
+resources: (GR2_res2, quantity=1, FREE=A)
+command: sleep 5
+
+update_job: GR2_BOX4_J7
+resources: (GR2_res2, quantity=1, FREE=A)
+command: sleep 5 */
+
+update_job: GR2_BOX4_J8
+resources: (GR2_res2, quantity=1, FREE=A)
+command: sleep 5
+
+/* RENDRE LA BOX CYCLIQUE
+update_job: GR2_BOX4
+date_conditions: 1
+days_of_week: tu,we,th
+start_mins: 15,30,45,00 */

@@ -1,0 +1,253 @@
+#!/bin/ksh
+# ----------------------------------------------------------------------------
+# XALANSANSTRANS : 
+# ----------------------------------------------------------------------------
+# Parametres     :
+# Entrees        :
+# Sorties        :
+# ----------------------------------------------------------------------------
+# ----------------------------------------------------------------------------
+
+######################################################
+# Diverses initialisations de variables obligatoires #
+######################################################
+
+# Parametres passes en arguments par CONTROL-M
+ODATE=${1}
+[ "X${ODATE}" = "X" ] && echo "Parm ODATE non specifie" && exit 1
+
+IDF=${2}
+[ "X${IDF}" = "X" ] && echo "Parm IDF non specifie" && exit 1
+
+FIC=${3}
+[ "X${FIC}" = "X" ] && echo "Parm FIC non specifie" && exit 1
+
+FILTER=${4}
+[ "X${FILTER}" = "X" ] && echo "Parm FILTER non specifie" && exit 1
+
+REP_XSLT=${5}
+[ "X${REP_XSLT}" = "X" ] && echo "Parm REP_XSLT non specifie" && exit 1
+
+REP=${6}
+[ "X${REP}" = "X" ] && echo "Parm REP non specifie" && exit 1
+
+
+# exporte les variables CTM0, GEHLOG, GEDAA, GEDAACC et GEDSOFT
+ctrlmExports ${0}
+
+# source l'environnement de la machine logique
+switch ${GEHLOG} > /dev/null
+
+
+############################################
+# Chargement des variables d'environnement #
+############################################
+
+GENERAL_ENV="${GEDAA}/etc/`echo ${GEIENV} | tr "UQP" "uqp"`v/env_q04.ksh"
+LOCAL_ENV="${REP}/`echo ${GEIENV} | tr "UQP" "uqp"`v/etc/env.ksh"
+
+if [ -f ${GENERAL_ENV} ]; then
+  . ${GENERAL_ENV}
+  [ $? -ne 0 ] && MsgError "impossible de charger l'environnement" && exit 1
+fi
+
+if [ -f ${LOCAL_ENV} ]; then
+  . ${LOCAL_ENV}
+  [ $? -ne 0 ] && MsgError "impossible de charger l'environnement" && exit 1
+fi
+
+#############################################################
+# Initialisation des variables n'ayant pas a etre modifiees #
+#############################################################
+
+DATE=`date +"%Y%m%d_%H%M%S"`
+
+#code retour
+_CODE=0
+#code retour pour fichier non present
+_CODE1=0
+
+# Utilisation des filtres
+set -A _CUST_NAME ${FILTER}
+
+export CLASSES=${GEDAACH}/../etc/classes
+export CLASSPATH="${CLASSES}/serializer.jar:${CLASSES}/xalan.jar:${CLASSES}/xercesImpl.jar:${CLASSES}/xml-apis.jar"
+
+_EXE_NAME="java"
+NUMBER=0
+
+###################################################
+# Initialisation des variables specifiques au job #
+###################################################
+
+REP_LOG=${REP}/logs
+REP_WORK=${REP}/travaux
+REP_ERROR=${REP}/error
+
+CODEAPP=Q04
+
+#######################
+##LANCEMENT DU SCRIPT##
+#######################
+#-------------------------------------------------------------------
+# Debut du job
+#-------------------------------------------------------------------
+echo "----------------------------------------------------------------------------------------------------------"
+echo ""
+echo "#### DEBUT JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+echo ""
+
+echo "VARIABLES CTLM"
+echo "IDF=${IDF}"
+echo "FIC=${FIC}"
+echo "FILTER=${FILTER}"
+echo "REP_XSLT=${REP_XSLT}"
+echo "REP=${REP}"
+echo ""
+echo "VARIABLES VALORISEES DANS LE SCRIPT"
+echo "_EXE_NAME=${_EXE_NAME}"
+echo "_EXE_PARM=${_EXE_PARM}"
+echo "REP_WORK=${REP_WORK}"
+echo "REP_ERROR=${REP_ERROR}"
+echo "REP_LOG=${REP_LOG}"
+echo ""
+
+# ---------------------------------------------------------------------------- #
+# Information sur les fichiers presents dans le repertoire de travaux avant chargement
+# ---------------------------------------------------------------------------- #
+for i in `echo $FIC | awk -F '{print $1}'`
+do
+cd ${REP_WORK}
+	if [ -s ${i} ]; then
+		echo "**********************************************************************************************************"
+		echo ""
+        	echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Avant chargement : Information sur les fichiers presents dans ${REP_WORK}"
+        	echo "`ls -ltr ${REP_WORK} | grep -v total`"
+		echo ""
+		echo "**********************************************************************************************************"
+        	echo ""
+                	else
+			echo "**********************************************************************************************************"
+			echo ""
+                	echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Fichier ${i} vide ou non present : pas de chargement"
+			let "_CODE1+=2"
+			echo "code retour du fichier vide ou non present : ${_CODE1}"
+			echo ""
+                	echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Avant chargement : Information sur les fichiers presents dans ${REP_WORK}"
+			echo "`ls -ltr ${REP_WORK} | grep -v total`"
+			echo ""
+			echo "**********************************************************************************************************"
+                	echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+                	echo "exit ${_CODE1}"
+                	exit ${_CODE1}
+	fi
+done
+
+# ---------------------------------------------------------------------------- #
+# Verification des fichiers attendus et execution java
+# ---------------------------------------------------------------------------- #
+
+# Transformation de '&' en '&amp;', ' < ' en ' &lt; ', ' > ' en ' &gt; '
+#perl -pi -e 's/&/&amp;/g;s/ < / \&lt; /g;s/ > / \&gt; /g' ${FIC}
+
+if [ ! -f ${FIC} -o $? -ne 0 ]
+then
+        echo "Problème lors du sed du fichier ${FIC}"
+        exit 5
+fi
+
+while [ ${NUMBER} -lt ${#_CUST_NAME[*]} ]
+do
+        _EXE_PARM="-Xms2048m -Xmx2048m -classpath ${CLASSPATH} org.apache.xalan.xslt.Process -IN ${REP_WORK}/${FIC} -XSL ${REP_XSLT}/${_CUST_NAME[${NUMBER}]}.xsl -OUT ${REP_WORK}/${_CUST_NAME[${NUMBER}]}.dat"
+
+        echo "Traitement du fichier ${FIC} selon cust ${_CUST_NAME[${NUMBER}]} (les logs java sont redirigées sous ${REP_LOG}/${_CUST_NAME[${NUMBER}]}-*)."
+        echo "${_EXE_NAME} ${_EXE_PARM}"
+        echo ""
+
+        _LOGFILE="${REP_LOG}/${_CUST_NAME[${NUMBER}]}-$(date "+%Y%m%d_%H%M%S").log"
+        ${_EXE_NAME} ${_EXE_PARM} > ${_LOGFILE} 2>&1
+
+        if [ $? -ne 0 ]
+        then
+                echo "Problème lors du traitement de ${FIC} (log = ${_LOGFILE}) --> traitement de reprise avec le fichier j_1."
+
+                GecMail -s "[${GEIENV}] Fermat Marche : Problème lors d'un traitement Xalan" -d "G(gec),ldcitimefermat@exchange.cmi.net" -m "Problème lors du traitement de ${FIC} avec ${_CUST_NAME[${NUMBER}]}"
+                mv ${REP_WORK}/${FIC} ${REP_ERROR}/${FIC}.err
+                [ $? -ne 0 ] && echo "Probleme lors du deplacement de ${REP_WORK}/${FIC} en ${REP_ERROR}/${FIC}.err" && exit 6
+
+                if [ ! -f ${REP_WORK}/${FIC}.j_1 ]
+                then
+                        echo "Fichier ${REP_WORK}/${FIC}.j_1 non présent."
+                        exit 7
+                fi
+
+                cp -p ${REP_WORK}/${FIC}.j_1 ${REP_WORK}/${FIC}
+                [ $? -ne 0 ] && echo "Problème lors de la copie de ${REP_WORK}/${FIC}.j_1 en ${REP_WORK}/${FIC} pour reprise" && exit 8
+
+                echo "Traitement EN REPRISE du fichier ${FIC} avec le fichier ${FIC}.j_1"
+
+                # Remise à zero du compteur avant de lancer la reprise
+                NUMBER=0
+                while [ ${NUMBER} -lt ${#_CUST_NAME[*]} ]
+                do
+                        _EXE_PARM="-Xms2048m -Xmx2048m -classpath ${CLASSPATH} org.apache.xalan.xslt.Process -IN ${REP_WORK}/${FIC} -XSL ${REP_XSLT}/${_CUST_NAME[${NUMBER}]}.xsl -OUT ${REP_WORK}/${_CUST_NAME[${NUMBER}]}.dat"
+                        echo "Traitement du fichier ${FIC} selon cust ${_CUST_NAME} (les logs java sont redirigees sous ${REP_LOG}/${_CUST_NAME[${NUMBER}]}-*)."
+                        echo "${_EXE_NAME} ${_EXE_PARM}"
+                        echo ""
+
+                        _LOGFILE="${REP_LOG}/${_CUST_NAME[${NUMBER}]}-$(date "+%Y%m%d_%H%M%S").log"
+                        ${_EXE_NAME} ${_EXE_PARM} > ${_LOGFILE} 2>&1
+
+                        if [ $? -ne 0 ]
+                        then
+                                echo "Problème lors du traitement en reprise de ${FIC} --> sortie du job (log = ${_LOGFILE})."
+                                GecMail -s "[${GEIENV}] Fermat Marche : Problème lors d'un traitement Xalan" -d "G(gec),ldcitimefermat@exchange.cmi.net" -m "Problème lors du traitement EN REPRISE de ${FIC} avec ${_CUST_NAME[${NUMBER}]}"
+                                exit 9
+                        fi
+
+                        # Incrementation du compteur
+                        NUMBER=$((${NUMBER}+1))
+                done
+
+                # on sort de la boucle initiale puisque on a fait la reprise
+                break
+
+        else
+                cp -p ${REP_WORK}/${FIC} ${REP_WORK}/${FIC}.j_1
+                [ $? -ne 0 ] && echo "Problème lors de la copie de ${REP_WORK}/${FIC} en ${REP_WORK}/${FIC}.j_1" && _CODE=$((${_CODE}+2))
+        fi
+
+        # Incrementation du compteur
+        NUMBER=$((${NUMBER}+1))
+done
+
+# ---------------------------------------------------------------------------- #
+# Information sur les fichiers presents dans le repertoire travaux et error apres chargement
+# ---------------------------------------------------------------------------- #
+echo "**********************************************************************************************************"
+if [ -s `ls -A ${REP_WORK}` ] && echo "" || echo ""; then
+        echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Apres chargement : Information sur les fichiers presents dans ${REP_WORK}"
+        echo "`ls -ltr ${REP_WORK} | grep -v total`"
+fi
+
+if [ -s `ls -A ${REP_ERROR}` ] && echo "" || echo ""; then
+        echo "Le $(date "+%Y%m%d a %Hh%Mm%Ss") : Apres chargement : Information sur les fichiers presents dans ${REP_ERROR}"
+        echo "`ls -ltr ${REP_ERROR} | grep -v total`"
+	echo ""
+fi
+echo "**********************************************************************************************************"
+
+
+echo "#### FIN JOB ${CTM0} $(date "+%Y%m%d-%H%M%S") ####"
+#-------------------------------------------------------------------
+# Fin du job proprement dit
+#-------------------------------------------------------------------
+if [ ${_CODE1} -ne 0 ]; then
+#echo "code retour du fichier vide ou non present : ${_CODE1}"
+echo "exit ${_CODE1}"
+exit ${_CODE1}
+	else
+        #echo "code retour : ${_CODE}"
+        echo "exit ${_CODE}"
+        exit ${_CODE}
+fi

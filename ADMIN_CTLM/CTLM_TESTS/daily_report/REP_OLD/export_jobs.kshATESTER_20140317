@@ -1,0 +1,129 @@
+#!/bin/ksh -x
+
+mail_sendmail ()
+{
+if [ `/bin/grep P $out | wc -l` -lt 1 ]
+        then
+                echo -e "\033[31mPas de traitements et groupes en erreur, holdes ou en attente de ressources\033[00m"
+                echo "Pas de traitements et groupes en erreur, holdes ou en attente de ressources"
+                FROM="bal-dsi-r2c-rpa-prr-pr2@natixis.com"
+                MAILTO="arnaud.lozahic-ext@natixis.com"
+                OBJET="[${ENVI}] : Liste des traitements et groupes en erreur ou en hold entre le ${J_DAY} et le ${J_DAY2}"
+(
+ echo "FROM: $FROM"
+ echo "To: $MAILTO"
+ echo "Subject: $OBJET"
+ echo "MIME-Version: 1.0"
+ echo "Importance: High"
+ echo "Content-Type: text/plain"
+ cat << EOF
+Bonjour,
+
+Il n'y a pas de traitements et groupes en erreur, holdes ou en attente de ressources sur pctrr.
+
+Cordialement,
+L'equipe Integration Resultats et Risques
+EOF
+) | /usr/sbin/sendmail -fbal-dsi-r2c-rpa-prr-pr2@natixis.com $MAILTO
+
+        else
+
+                FROM="bal-dsi-r2c-rpa-prr-pr2@natixis.com"
+                MAILTO="arnaud.lozahic-ext@natixis.com"
+                OBJET="[${ENVI}] : Liste des traitements et groupes en erreur ou en hold entre le ${J_DAY} et le ${J_DAY2}"
+                export ATTACH="${FIC_HTML}"
+(
+ echo "FROM: $FROM"
+ echo "To: $MAILTO"
+ echo "Subject: $OBJET"
+ echo "MIME-Version: 1.0"
+ echo "Importance: High"
+ echo 'Content-Disposition: attachment; filename="'$(basename $ATTACH)'"'
+) | cat - ${ATTACH} | /usr/sbin/sendmail -fbal-dsi-r2c-rpa-prr-pr2@natixis.com -t $MAILTO
+
+fi
+}
+
+
+fonc_rapport ()
+{
+        echo "<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">" >> ${FIC_HTML}
+        echo "<html><head><title>Recapitulatif des reorgs pour le WE </title>" >> ${FIC_HTML}
+        echo "<meta http-equiv="Content-Type" content="text/html\;charset=windows-1252">" >> ${FIC_HTML}
+        echo "<meta content="MSHTML 6.00.2900.3157" name="GENERATOR"></head>" >> ${FIC_HTML}
+        echo "<body>" >> ${FIC_HTML}
+        echo "<br>" >> ${FIC_HTML}
+        echo "<table border=0 align="middle" bgcolor="#CCFFFF" width="60%">" >> ${FIC_HTML}
+        echo "<tr bgcolor="#DC143C">" >> ${FIC_HTML}
+        echo "<td>" >> ${FIC_HTML}
+        echo "<b><center>EXPORT DES ERREURS CONTROL-M</center></b>" >> ${FIC_HTML}
+        echo "</td>" >> ${FIC_HTML}
+        echo "</tr>" >> ${FIC_HTML}
+        cat ${out} | while read line
+        do
+                        echo "<tr bgcolor="#FFFFFF">" >> ${FIC_HTML}
+                        echo "<td>" >> ${FIC_HTML}
+                        #echo "$(echo ${line} | awk -F";" '{print $1}'| cut -c2-3)" >> ${FIC_HTML}
+                        #echo "</td>" >> ${FIC_HTML}
+                        #echo "<td>" >> ${FIC_HTML}
+                        #echo "$(echo ${line} | awk -F";" '{print $1}' |  awk -F"_" '{print $2}'| cut -c2-)" >> ${FIC_HTML}
+                        #echo "</td>" >> ${FIC_HTML}
+                        #echo "<td>" >> ${FIC_HTML}
+                        echo "$(echo ${line} | awk -F";" '{print $1}')" >> ${FIC_HTML}
+                        echo "</td>" >> ${FIC_HTML}
+                        echo "</tr>" >> ${FIC_HTML}
+        done
+
+        echo "</table>" >> ${FIC_HTML}
+        echo "<p><hr><b>" >> ${FIC_HTML}
+        echo "Pour un changement de planification, veuillez utiliser l'outils de gestion des purges/reorgs disponible sur <a href="http://web-ibo.smt.cib.net/mother/rapport_rri.php">mother</a>" >>${FIC_HTML}
+        echo "</b><hr></p>" >> ${FIC_HTML}
+        echo "<br>" >> ${FIC_HTML}
+        echo "</body>" >> ${FIC_HTML}
+        echo "</html>" >> ${FIC_HTML}
+}
+
+
+debut_h ()
+{
+
+echo '<html>
+     <head>
+  <title>ERREURS CONTROL-M</title>
+  <style type="text/css">
+  #ctlm {
+   color:red;
+   }
+   body {
+    color:blue;
+	background:#DCDCDC
+	}	
+  </style>
+</head>
+<body>
+<div id="ctlm"><h1 style="text-align:left;">ERREURS CONTROL-M</h1></div>
+</body>
+</html> '
+
+print "\n <p><B> Statistiques extraites le $(date "+%d-%m-%Y %Hh%M") </B><br /> \n"
+}
+
+
+#Main
+rep=/slqdl7bdd01/appli/dl7/sp/tests_ctlm/daily_report
+list=`cat ${rep}/liste_AJF.txt`
+out=${rep}/export_error_$(date "+%Y%m%d").csv
+out2=${rep}/export_temp.txt
+J_DAY=$(date "+%Y%m%d")
+J_DAY1=`TZ=MET+24 date "+%Y%m%d"`
+J_DAY2=`date --date '2 days ago' "+%Y%m%d"`
+ENVI=PREX
+FIC_HTML=/slqdl7bdd01/appli/dl7/sp/tests_ctlm/daily_report/rapport_$(date "+%Y%m%d").html
+
+> ${FIC_HTML}
+
+debut_h >> ${FIC_HTML}
+fonc_rapport >> ${FIC_HTML}
+
+mail_sendmail
+

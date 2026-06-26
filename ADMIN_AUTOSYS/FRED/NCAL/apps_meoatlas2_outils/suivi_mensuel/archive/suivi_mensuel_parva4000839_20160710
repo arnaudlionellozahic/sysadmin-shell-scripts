@@ -1,0 +1,10 @@
+Jul 3 23:50 # 04.12.16 .CASH_I_0062 m1sfCald msrf02 0001 0201 Aborted at 04.12.16, code: 00000222 at node parva4000839, Pid = 26083494
+Jul 3 23:50 # 06.16.07 .CASH_I_0069 m1sfCald msrf00 0001 0301 Started at 06.16.07 at node parva4000839, Pid = 18809040
+Jul 3 23:50 # 06.16.07 .CASH_I_0072 Jobset m1sfCald 0300 Started at 06.16.07
+Jul 3 23:50 # 06.16.13 .CASH_I_0054 m1sfCald msrf00 0001 0301 Completed at 06.16.13, code: 00000000 at node parva4000839, Pid = 18809040
+Jul 3 23:50 # 06.47.16 .CASH_I_0060 m1sfCald 0300 Completed at 06.47.16, code: 00000000
+Jul 3 23:50 # 06.47.16 .CASH_I_0072 Jobset m2sfCald 0300 Started at 06.47.16
+Jul 3 23:50 # 06.53.12 .CASH_I_0100 Jobset m2sfCald, Job msrf09, Jno 0001, Qual 0301 queued for submit
+Jul 3 23:50 # 06.53.16 .CASH_I_0069 m2sfCald msrf09 0001 0301 Started at 06.53.13 at node parva4000839, Pid = 65208564
+Jul 3 23:50 # 06.53.35 .CASH_I_0054 m2sfCald msrf09 0001 0301 Completed at 06.53.32, code: 00000000 at node parva4000839, Pid = 65208564
+Jul 3 23:50 # 06.53.35 .CASH_I_0060 m2sfCald 0300 Completed at 06.53.35, code: 00000000

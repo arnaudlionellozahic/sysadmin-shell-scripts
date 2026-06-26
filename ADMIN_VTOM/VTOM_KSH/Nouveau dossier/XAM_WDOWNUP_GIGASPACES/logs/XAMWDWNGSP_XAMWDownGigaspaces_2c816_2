@@ -1,0 +1,87 @@
+***** Debut du job : 2013/01/26 16:49:02 *****
+
+Stop gigaspaces on msampdgs01 :
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 21806
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+
+Stop gigaspaces on msampdgs02 :
+
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 10419
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+
+Stop gigaspaces on msampdgs03 :
+
+Host key verification failed.
+
+Stop gigaspaces on msampdgs04 :
+
+Host key verification failed.
+
+Stop gigaspaces on msampdgs05 :
+
+Host key verification failed.
+
+Stop gigaspaces on msampdgs06 :
+
+Host key verification failed.
+
+Stop gigaspaces on msampdgs07 :
+
+Host key verification failed.
+
+Stop gigaspaces on msampdgs08 :
+
+Host key verification failed.
+
+Stop gigaspaces on msampdgs09 :
+
+Host key verification failed.
+
+Stop gigaspaces on msampdgs10 :
+
+Host key verification failed.
+
+Stop gigaspaces on msampdgs11 :
+
+Host key verification failed.
+
+Stop gigaspaces on msampdgs12 :
+
+Host key verification failed.
+
+Stop gigaspaces on msampdgs13 :
+
+Host key verification failed.
+
+Stop gigaspaces on msampdgs14 :
+
+Host key verification failed.
+
+Stop gigaspaces on msampdgs15 :
+
+Host key verification failed.
+
+Stop gigaspaces on msampdgs16 :
+
+Host key verification failed.
+
+***** Fin du job : 2013/01/26 16:52:08 *****

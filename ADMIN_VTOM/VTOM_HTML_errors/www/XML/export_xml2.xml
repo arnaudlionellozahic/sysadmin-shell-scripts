@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xsl:stylesheet type="text/xsl" href="export.xsl"?>
+<Domain name="centos63" stamp="VTEXPORT : 5.5.1d LINUX 2012/10/25 Visual Tom (c) Absyss" version="5.5.1" generationDate="Wed Dec 12 17:26:39 2012">
+
+  <Calendars>
+    <Calendar name="cal_soumission" year="2012" publicHolidays="1" specificDays="1" firstInWeek="0" lastInWeek="0" firstInHalfMonth="0" lastInHalfMonth="0" firstInMonth="0" lastInMonth="0" firstInYear="0" lastInYear="0" daysInWeek="wwwwwhh" daysInYear="" holidaysGroupName="FR"/>
+  </Calendars>
+ 
+</Domain>

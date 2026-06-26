@@ -1,0 +1,377 @@
+***** Debut du job : 2013/02/09 16:33:38 *****
+
+Check gigaspaces on msampdgs01 :
+
+[INFO] : check des process ... 
+
+       1 GSA
+       1 GSM
+       1 LUS
+       6 GSC
+
+[INFO] : ptree du GSA ... 
+
+9666  zsched
+  8203  /bin/bash ./gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.gsm 1 gsa.g
+    8205  /msampdgs01/product/java/current/bin/amd64/java -Duser.home=/msampdgs
+      8206  /msampdgs01/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      8207  /msampdgs01/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      8208  /msampdgs01/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      8209  /msampdgs01/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      8210  /msampdgs01/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      8212  /msampdgs01/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      8213  /msampdgs01/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      8214  /msampdgs01/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+
+[INFO] : check done
+
+Check gigaspaces on msampdgs02 :
+
+[INFO] : check des process ... 
+
+       1 GSA
+       0 GSM
+       0 LUS
+       6 GSC
+
+[INFO] : ptree du GSA ... 
+
+6514  zsched
+  29958 /bin/bash ./gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 
+    29959 /msampdgs02/product/java/current/bin/amd64/java -Duser.home=/msampdgs
+      29960 /msampdgs02/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      29961 /msampdgs02/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      29962 /msampdgs02/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      29963 /msampdgs02/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      29964 /msampdgs02/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      29965 /msampdgs02/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+
+[INFO] : check done
+
+Check gigaspaces on msampdgs03 :
+
+[INFO] : check des process ... 
+
+       1 GSA
+       0 GSM
+       0 LUS
+       6 GSC
+
+[INFO] : ptree du GSA ... 
+
+1250  zsched
+  19022 /bin/bash ./gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 
+    19023 /msampdgs03/product/java/current/bin/amd64/java -Duser.home=/msampdgs
+      19024 /msampdgs03/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      19025 /msampdgs03/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      19026 /msampdgs03/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      19027 /msampdgs03/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      19028 /msampdgs03/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      19029 /msampdgs03/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+
+[INFO] : check done
+
+Check gigaspaces on msampdgs04 :
+
+[INFO] : check des process ... 
+
+       1 GSA
+       0 GSM
+       0 LUS
+       6 GSC
+
+[INFO] : ptree du GSA ... 
+
+1308  zsched
+  20898 /bin/bash ./gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 
+    20899 /msampdgs04/product/java/current/bin/amd64/java -Duser.home=/msampdgs
+      20900 /msampdgs04/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      20901 /msampdgs04/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      20902 /msampdgs04/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      20903 /msampdgs04/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      20904 /msampdgs04/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      20905 /msampdgs04/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+
+[INFO] : check done
+
+Check gigaspaces on msampdgs05 :
+
+[INFO] : check des process ... 
+
+       1 GSA
+       0 GSM
+       0 LUS
+       6 GSC
+
+[INFO] : ptree du GSA ... 
+
+6776  zsched
+  9723  /bin/bash ./gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 
+    9724  /msampdgs05/product/java/current/bin/amd64/java -Duser.home=/msampdgs
+      9725  /msampdgs05/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      9726  /msampdgs05/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      9727  /msampdgs05/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      9728  /msampdgs05/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      9729  /msampdgs05/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      9730  /msampdgs05/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+
+[INFO] : check done
+
+Check gigaspaces on msampdgs06 :
+
+[INFO] : check des process ... 
+
+       1 GSA
+       0 GSM
+       0 LUS
+       6 GSC
+
+[INFO] : ptree du GSA ... 
+
+18973 zsched
+  19982 /bin/bash ./gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 
+    19983 /msampdgs06/product/java/current/bin/amd64/java -Duser.home=/msampdgs
+      19984 /msampdgs06/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      19985 /msampdgs06/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      19986 /msampdgs06/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      19987 /msampdgs06/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      19988 /msampdgs06/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      19989 /msampdgs06/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+
+[INFO] : check done
+
+Check gigaspaces on msampdgs07 :
+
+[INFO] : check des process ... 
+
+       1 GSA
+       0 GSM
+       0 LUS
+       6 GSC
+
+[INFO] : ptree du GSA ... 
+
+27232 zsched
+  5344  /bin/bash ./gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 
+    5345  /msampdgs07/product/java/current/bin/amd64/java -Duser.home=/msampdgs
+      5346  /msampdgs07/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      5347  /msampdgs07/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      5348  /msampdgs07/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      5349  /msampdgs07/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      5350  /msampdgs07/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      5351  /msampdgs07/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+
+[INFO] : check done
+
+Check gigaspaces on msampdgs08 :
+
+[INFO] : check des process ... 
+
+       1 GSA
+       0 GSM
+       0 LUS
+       6 GSC
+
+[INFO] : ptree du GSA ... 
+
+1088  zsched
+  1864  /bin/bash ./gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 
+    1867  /msampdgs08/product/java/current/bin/amd64/java -Duser.home=/msampdgs
+      2209  /msampdgs08/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      2210  /msampdgs08/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      2211  /msampdgs08/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      2212  /msampdgs08/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      2213  /msampdgs08/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      2214  /msampdgs08/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+
+[INFO] : check done
+
+Check gigaspaces on msampdgs09 :
+
+[INFO] : check des process ... 
+
+       1 GSA
+       1 GSM
+       1 LUS
+       6 GSC
+
+[INFO] : ptree du GSA ... 
+
+1114  zsched
+  29493 /bin/bash ./gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.gsm 1 gsa.g
+    29494 /msampdgs09/product/java/current/bin/amd64/java -Duser.home=/msampdgs
+      29495 /msampdgs09/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      29496 /msampdgs09/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      29497 /msampdgs09/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      29498 /msampdgs09/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      29499 /msampdgs09/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      29500 /msampdgs09/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      29501 /msampdgs09/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      29502 /msampdgs09/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+
+[INFO] : check done
+
+Check gigaspaces on msampdgs10 :
+
+[INFO] : check des process ... 
+
+       1 GSA
+       0 GSM
+       0 LUS
+       6 GSC
+
+[INFO] : ptree du GSA ... 
+
+4076  zsched
+  24904 /bin/bash ./gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 
+    24905 /msampdgs10/product/java/current/bin/amd64/java -Duser.home=/msampdgs
+      24906 /msampdgs10/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      24907 /msampdgs10/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      24908 /msampdgs10/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      24909 /msampdgs10/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      24910 /msampdgs10/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      24911 /msampdgs10/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+
+[INFO] : check done
+
+Check gigaspaces on msampdgs11 :
+
+[INFO] : check des process ... 
+
+       1 GSA
+       0 GSM
+       0 LUS
+       6 GSC
+
+[INFO] : ptree du GSA ... 
+
+13140 zsched
+  18190 /bin/bash ./gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 
+    18191 /msampdgs11/product/java/current/bin/amd64/java -Duser.home=/msampdgs
+      18192 /msampdgs11/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      18193 /msampdgs11/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      18194 /msampdgs11/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      18195 /msampdgs11/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      18196 /msampdgs11/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      18197 /msampdgs11/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+
+[INFO] : check done
+
+Check gigaspaces on msampdgs12 :
+
+[INFO] : check des process ... 
+
+       1 GSA
+       0 GSM
+       0 LUS
+       6 GSC
+
+[INFO] : ptree du GSA ... 
+
+20555 zsched
+  9301  /bin/bash ./gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 
+    9302  /msampdgs12/product/java/current/bin/amd64/java -Duser.home=/msampdgs
+      9303  /msampdgs12/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      9304  /msampdgs12/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      9305  /msampdgs12/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      9306  /msampdgs12/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      9307  /msampdgs12/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      9308  /msampdgs12/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+
+[INFO] : check done
+
+Check gigaspaces on msampdgs13 :
+
+[INFO] : check des process ... 
+
+       1 GSA
+       0 GSM
+       0 LUS
+       6 GSC
+
+[INFO] : ptree du GSA ... 
+
+569   zsched
+  22107 /bin/bash ./gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 
+    22108 /msampdgs13/product/java/current/bin/amd64/java -Duser.home=/msampdgs
+      22109 /msampdgs13/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      22110 /msampdgs13/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      22111 /msampdgs13/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      22112 /msampdgs13/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      22113 /msampdgs13/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      22114 /msampdgs13/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+
+[INFO] : check done
+
+Check gigaspaces on msampdgs14 :
+
+[INFO] : check des process ... 
+
+       1 GSA
+       0 GSM
+       0 LUS
+       6 GSC
+
+[INFO] : ptree du GSA ... 
+
+10460 zsched
+  6597  /bin/bash ./gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 
+    6598  /msampdgs14/product/java/current/bin/amd64/java -Duser.home=/msampdgs
+      6599  /msampdgs14/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      6600  /msampdgs14/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      6601  /msampdgs14/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      6602  /msampdgs14/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      6603  /msampdgs14/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      6604  /msampdgs14/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+
+[INFO] : check done
+
+Check gigaspaces on msampdgs15 :
+
+[INFO] : check des process ... 
+
+       1 GSA
+       0 GSM
+       0 LUS
+       6 GSC
+
+[INFO] : ptree du GSA ... 
+
+1114  zsched
+  893   /bin/bash ./gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 
+    894   /msampdgs15/product/java/current/bin/amd64/java -Duser.home=/msampdgs
+      895   /msampdgs15/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      896   /msampdgs15/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      897   /msampdgs15/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      898   /msampdgs15/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      899   /msampdgs15/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      900   /msampdgs15/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+
+[INFO] : check done
+
+Check gigaspaces on msampdgs16 :
+
+[INFO] : check des process ... 
+
+       1 GSA
+       0 GSM
+       0 LUS
+       6 GSC
+
+[INFO] : ptree du GSA ... 
+
+22875 zsched
+  20323 /bin/bash ./gs-grid.sh start gsa.gsc 6 gsa.global.gsm 0 gsa.global.lus 
+    20324 /msampdgs16/product/java/current/bin/amd64/java -Duser.home=/msampdgs
+      20325 /msampdgs16/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      20326 /msampdgs16/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      20327 /msampdgs16/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      20328 /msampdgs16/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      20329 /msampdgs16/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+      20330 /msampdgs16/product/java/jdk1.6.0_29/jre/bin/amd64/java -Duser.home
+
+[INFO] : check done
+
+Check start gigaspaces OK
+
+***** Fin du job : 2013/02/09 16:34:02 *****

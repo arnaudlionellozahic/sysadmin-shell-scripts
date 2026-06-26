@@ -1,0 +1,223 @@
+***** Debut du job : 2013/10/19 16:00:14 *****
+Stop gigaspaces on msampdgs01 in progress, pid=20951
+
+Stop gigaspaces on msampdgs02 in progress, pid=20952
+
+Stop gigaspaces on msampdgs03 in progress, pid=20953
+
+Stop gigaspaces on msampdgs04 in progress, pid=20954
+
+Stop gigaspaces on msampdgs05 in progress, pid=20955
+
+Stop gigaspaces on msampdgs06 in progress, pid=20956
+
+Stop gigaspaces on msampdgs07 in progress, pid=20957
+
+Stop gigaspaces on msampdgs08 in progress, pid=20958
+
+Stop gigaspaces on msampdgs09 in progress, pid=20959
+
+Stop gigaspaces on msampdgs10 in progress, pid=20960
+
+Stop gigaspaces on msampdgs11 in progress, pid=20961
+
+Stop gigaspaces on msampdgs12 in progress, pid=20962
+
+Stop gigaspaces on msampdgs13 in progress, pid=20963
+
+Stop gigaspaces on msampdgs14 in progress, pid=20964
+
+Stop gigaspaces on msampdgs15 in progress, pid=20965
+
+Stop gigaspaces on msampdgs16 in progress, pid=20966
+
+
+
+Stop still in progress, pids : 20951 20952 20953 20954 20955 20956 20957 20958 20959 20960 20961 20962 20963 20964 20965 20966 ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 7421
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 15825
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 17481
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 16525
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 11236
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 568
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 3091
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 18767
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 13732
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 7063
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 28314
+[INFO] : Pause de 30 secs ... 
+[INFO] : stop in progress ... 
+
+[INFO] : kill du GSA -> 17363
+[INFO] : Pause de 30 secs ... 
+Stop still in progress, pids : 20951 20952 20953 20954 20955 20956 20957 20958 20959 20960 20961 20962 20963 20964 20965 20966 ... 
+Stop still in progress, pids : 20951 20952 20953 20954 20955 20956 20957 20958 20959 20960 20961 20962 20963 20964 20965 20966 ... 
+Stop still in progress, pids : 20951 20952 20953 20954 20955 20956 20957 20958 20959 20960 20961 20962 20963 20964 20965 20966 ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSA a killer
+[INFO] : Pause de 30 secs ... 
+Stop still in progress, pids : 20951 20952 20953 20954 20955 20956 20957 20958 20959 20960 20961 20962 20963 20964 20965 20966 ... 
+Stop still in progress, pids : 20951 20952 20953 20954 20955 20956 20957 20958 20959 20960 20961 20962 20963 20964 20965 20966 ... 
+Stop still in progress, pids : 20951 20952 20953 20954 20955 20956 20957 20958 20959 20960 20961 20962 20963 20964 20965 20966 ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+[INFO] : Pas de GSM a killer
+[INFO] : Pause de 30 secs ... 
+Stop still in progress, pids : 20951 20952 20953 20954 20955 20956 20957 20958 20959 20960 20961 20962 20963 20964 20965 20966 ... 
+Stop still in progress, pids : 20951 20952 20953 20954 20955 20956 20957 20958 20959 20960 20961 20962 20963 20964 20965 20966 ... 
+Stop still in progress, pids : 20951 20952 20953 20954 20955 20956 20957 20958 20959 20960 20961 20962 20963 20964 20965 20966 ... 
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+[INFO] : Pas de GSC a killer
+
+[INFO] : stop done
+Stop done for pid 20951
+Stop done for pid 20952
+Stop done for pid 20953
+Stop done for pid 20954
+Stop done for pid 20955
+Stop done for pid 20956
+Stop done for pid 20957
+Stop done for pid 20958
+Stop done for pid 20959
+Stop done for pid 20960
+Stop done for pid 20961
+Stop done for pid 20962
+Stop done for pid 20963
+Stop done for pid 20964
+Stop done for pid 20965
+Stop done for pid 20966
+
+***** Fin du job : 2013/10/19 16:01:55 *****

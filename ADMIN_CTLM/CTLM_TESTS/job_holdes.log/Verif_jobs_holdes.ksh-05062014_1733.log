@@ -1,0 +1,19 @@
+05062014_1733 : Creation de /slqdl7bdd01/appli/dl7/sp/tests_ctlm/job_holdes.log/Verif_jobs_holdes.ksh-05062014_1733.log
+05062014_1733 : Nbre de param. correct : 1
+05062014_1733 : Recuperation des statistiques
+05062014_1733 : ctmspsm -LISTALL > /slqdl7bdd01/appli/dl7/sp/tests_ctlm/job_holdes.log/Recup_statut_plan.txt -> recup ok
+05062014_1733 : cat /slqdl7bdd01/appli/dl7/sp/tests_ctlm/job_holdes.log/Recup_statut_plan.txt | grep 20140605 | grep Q04 | grep Hold 
+0000mij1|QQ04_DALIM_ABAQUE|TBL  |20140605|Wait Con|      |        |     | Hold
+0000mij2|QQ04DWTCAMFEABAQ |CMD  |20140605|Wait Sch|      |        |     | Hold
+0000mij3|QQ04DDCPFLUXABAQ |CMD  |20140605|Wait Sch|      |        |     | Hold
+0000mij4|QQ04DLOAAMABAQUES|CMD  |20140605|Wait Sch|      |        |     | Hold
+0000mij5|QQ04DLOAAMREFACTI|CMD  |20140605|Wait Sch|      |        |     | Hold
+0000mij6|QQ04DALITIERSABAQ|CMD  |20140605|Wait Sch|      |        |     | Hold
+0000mij7|QQ04DALIABAQEXPO |CMD  |20140605|Wait Sch|      |        |     | Hold
+0000mij8|QQ04DALIABAQHISTO|CMD  |20140605|Wait Sch|      |        |     | Hold
+0000mij9|QQ04DALIREFACTION|CMD  |20140605|Wait Sch|      |        |     | Hold
+0000mija|QQ04DCPYFLUXABAQ |CMD  |20140605|Wait Sch|      |        |     | Hold
+0000mijb|QQ04DMOVAMFEABAQ |CMD  |20140605|Wait Sch|      |        |     | Hold
+0000mijc|QQ04DMOVREFACTION|CMD  |20140605|Wait Sch|      |        |     | Hold
+0000mijd|QQ04DTOPFINABAQ  |DMY  |20140605|Wait Sch|      |        |     | Hold
+05062014_1733 :  -> Les groupes et jobs ci-dessous holdes sur le plan du jour

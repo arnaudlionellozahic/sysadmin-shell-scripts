@@ -1,0 +1,57 @@
+/* ----------------- GR2_BOX1_J2 ----------------- */
+
+update_job: GR2_BOX1_J1
+box_name: GR2_BOX1
+owner: user2
+machine: rh602
+command: echo ok
+std_out_file: >/tmp/$AUTO_JOB_NAME.log
+std_err_file: >/tmp/$AUTO_JOB_NAME.err
+
+update_job: GR2_BOX1_FT1
+box_name: GR2_BOX1
+condition: T(GR2_BOX1_J1)
+owner: user2
+machine: rh602
+command: echo ok
+std_out_file: >/tmp/$AUTO_JOB_NAME.log
+std_err_file: >/tmp/$AUTO_JOB_NAME.err
+
+update_job: GR2_BOX1_J2
+box_name: GR2_BOX1
+condition: T(GR2_BOX1_J1)
+owner: user2
+machine: rh602
+command: echo ok
+std_out_file: >/tmp/$AUTO_JOB_NAME.log
+std_err_file: >/tmp/$AUTO_JOB_NAME.err
+
+
+
+/* ----------------- GR2_BOX1_J2 ----------------- */
+
+insert_job: GR2_BOX2_J1
+box_name: GR2_BOX2
+owner: user2
+machine: rh602
+command: echo ok
+std_out_file: >/tmp/$AUTO_JOB_NAME.log
+std_err_file: >/tmp/$AUTO_JOB_NAME.err
+
+insert_job: GR2_BOX2_FT1
+box_name: GR2_BOX2
+condition: T(GR2_BOX2_J1)
+owner: user2
+machine: rh602
+command: echo ok
+std_out_file: >/tmp/$AUTO_JOB_NAME.log
+std_err_file: >/tmp/$AUTO_JOB_NAME.err
+
+insert_job: GR2_BOX2_J2
+box_name: GR2_BOX2
+condition: T(GR2_BOX2_J1)
+owner: user2
+machine: rh602
+command: echo ok
+std_out_file: >/tmp/$AUTO_JOB_NAME.log
+std_err_file: >/tmp/$AUTO_JOB_NAME.err

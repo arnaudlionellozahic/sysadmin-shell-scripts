@@ -1,0 +1,96 @@
+#!/bin/ksh
+#* Version : 1.00
+#***************************************************************
+#*     Recherche des jfs2 que l'on pourra réduire              *
+#*                                                             *
+#*  SCRIPT   : fs2reduce 				       *
+#*  INTITULE :  Outils MEO pour FS/VG/LV                       *
+#*  AUTEUR   : C. REVERSEZ                                     *
+#*  DATE     : 05/08/2010                                      *
+#*  MODIF    : JJ/MM/AAAA    Prenom NOM                        *
+#*             Motif Modification                              *
+#*                                                             *
+#***************************************************************
+#* Paramètres du script  :                                     *
+#*       fs2reduce [point de montage du FS]                    *
+#* Exemples :                                                  *
+#*       fs2reduce                                             *
+#*       fs2reduce /apps/oradbf/atpr01                         *
+#***************************************************************
+
+set -A info_machine $(uname -a | awk '{ print ( $2 " " $1 " " $4 " " $3)}')
+
+clear
+echo "#####################################################"
+echo "Machine : ${info_machine[0]}, Version ${info_machine[1]} : ${info_machine[2]}.${info_machine[3]}."
+echo "#####################################################"
+
+if [[ ! ( (${info_machine[2]} -ge 5) && (${info_machine[3]} -ge 3) ) ]]
+then
+  echo "\033[1;31mVotre système n'est pas au minimum en 5.3. Vous ne pourrez pas réduire les fs.\033[0m"
+  exit 3
+else
+  echo "Votre système est au moins en 5.3. Début d'analyse." 
+fi
+
+unset info_machine
+
+if [[ -n $1 ]]
+then
+  if [[ ! (-n $(df -g $1)  && -d $1) ]]
+  then
+    echo "Le FS spécifié en paramètre n'existe pas, n'est pas monté ou n'est pas un un FS."
+    echo "Veuillez spécifier en paramètre un FS existant, ou ne pas mettre de paramètres."
+    exit 2
+  fi
+
+  export nom_lv=$(df -g $1 | grep -v GB | awk '{ print ($1)}' | awk -F"/" '{ print ($3)}')
+  export liste_VG=$(lslv $nom_lv |grep "VOLUME GROUP" | awk '{ print ($6)}' )
+  echo "Le FS $1 fait parti du VG $liste_VG (LV : $nom_lv)\n" 
+  echo "TailleTOTALE\tFREE\t(%used)\t\tFS"
+  df -g $1 |grep -v GB | awk  '{ print ( "\t" $2 "\t" $3 "\t(" $4 ")\t\t" $7 "\n")}'  
+
+  export type_jfs=$(lslv $nom_lv |grep "TYPE" | awk '{ print ($2)}' )
+  case $type_jfs in  
+	"jfs"  )
+		echo "\033[1;31mVotre LV est en jfs. Veuillez le recréer en jfs2 .\033[0m"
+		echo "NB :tout ajout de mémoire à un jfs ne peut être retiré.\n"
+		;;
+	"jfs2" )
+		echo "\033[1;32m¤ Ne retirez pas trop de mémoire à un un FS d'un environnement utilisé pour certains projets consommateurs (FIC et BASE ont besoin de mémoire).\033[0m"
+	 	echo "\033[1;32m¤ Vérifiez qu'une restoration n'est pas en cours (Taille FREE énorme).\033[0m\n"
+		;;
+	"*")
+		echo "\033[1;31mType de FS non reconnu !\033[0m\n"
+		unset liste_VG
+		unset type_jfs
+		unset nom_lv
+
+		exit 1
+		;;
+  esac  
+else
+  export liste_VG=$(lsvg)
+  echo "La liste des VG qui va être traitée : \n$liste_VG\n"
+fi
+
+for nom_VG in $liste_VG
+do
+  echo "Nom du VG qui contient des jfs2 à réduire : \033[1;35m$nom_VG\033[0m ."
+  echo "Il reste actuellement sur le VG \033[1;35m"$(lsvg $nom_VG| grep FREE | awk '{print ($7)}' | sed "s/(//g")"\033[0m Mo libres."
+  echo "-----------------------------------------------------" 
+  echo "TailleTOTALE\tFREE\t(%used)\t\tFS"
+  for nom in $(lsvg -l $nom_VG | grep open | grep jfs2 | grep -v "N/A" | awk '{ print ($7)}' );
+  do 
+    df -g $nom |grep -v GB | awk  '{ print ( "\t" $2 "\t" $3 "\t(" $4 ")\t\t" $7)}'
+  done
+  echo "-----------------------------------------------------\n"
+done
+
+unset nom 
+unset liste_VG
+unset type_jfs 
+unset nom_lv
+
+exit 0
+

@@ -1,0 +1,13 @@
+Nov 4 23:59 # 01.42.14 .CASH_I_0072 Jobset mfu17Cald 0300 Started at 01.42.14
+Nov 4 23:59 # 01.43.12 .CASH_I_0060 mfu17Cald 0300 Completed at 01.43.12, code: 00000000
+Nov 4 23:59 # 02.16.06 .CASH_I_0072 Jobset mfu50Cald 0300 Started at 02.16.06
+Nov 4 23:59 # 02.38.29 .CASH_I_0060 mfu50Cald 0300 Completed at 02.38.29, code: 00000000
+Nov 4 23:59 # 07.00.40 .CASH_I_0072 Jobset m1sfCald 0400 Started at 07.00.40
+Nov 4 23:59 # 07.00.41 .CASH_I_0069 m1sfCald msrf00 0001 0401 Started at 07.00.41 at node parva4000839, Pid = 64356582
+Nov 4 23:59 # 07.00.46 .CASH_I_0054 m1sfCald msrf00 0001 0401 Completed at 07.00.46, code: 00000000 at node parva4000839, Pid = 64356582
+Nov 4 23:59 # 07.54.40 .CASH_I_0060 m1sfCald 0400 Completed at 07.54.40, code: 00000000
+Nov 4 23:59 # 07.54.40 .CASH_I_0072 Jobset m2sfCald 0400 Started at 07.54.40
+Nov 4 23:59 # 08.01.14 .CASH_I_0100 Jobset m2sfCald, Job msrf09, Jno 0001, Qual 0401 queued for submit
+Nov 4 23:59 # 08.01.17 .CASH_I_0069 m2sfCald msrf09 0001 0401 Started at 08.01.16 at node parva4000839, Pid = 49152440
+Nov 4 23:59 # 08.02.32 .CASH_I_0054 m2sfCald msrf09 0001 0401 Completed at 08.02.32, code: 00000000 at node parva4000839, Pid = 49152440
+Nov 4 23:59 # 08.02.32 .CASH_I_0060 m2sfCald 0400 Completed at 08.02.32, code: 00000000
