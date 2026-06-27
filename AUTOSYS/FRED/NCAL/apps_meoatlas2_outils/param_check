@@ -1,0 +1,27 @@
+#A adapter en fonction des sites
+#------------------------------
+
+#Jobset/Job DEBUT TP - DEBUT BATCH 
+JS_TP=jtp1
+J_TP=jcics1 
+JS_BATCH=jtp2
+J_BATCH=jcics2
+
+
+#Sauvegardes TIMEFINDER (oui/non)
+export BCK_TF=oui
+
+
+#Jobsets de debut et fin de Déchargement infocentre (infoc)
+export A0="jfu01"
+export A1="jfu50"
+
+
+#Fichiers de Sauvegardes apres EOD 
+export NODE_TSM="-virtualnodename=parva4000630"
+export PASS_TSM="-password=parva4000630"
+export INST_TSM="-se=TSMEMEAM"
+FILES="/ficsav/parva4000839/apres/atpr01* /ficsav/parva4000839/apres/FIC.JSAVF1* /ficsav/parva4000839/apres/FIC.JSAVF2*"
+
+#Mail du destinataire
+export MAIL_DEST="amadou.biteye@externe.bnpparibas.com,meo_atlas_paris"

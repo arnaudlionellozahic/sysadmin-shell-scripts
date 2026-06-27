@@ -1,0 +1,197 @@
+#!/usr/bin/ksh
+################################################################################
+#<PROCEDURE>
+#</PROCEDURE>
+#<VERSION>
+#      Version V00.11 
+#</VERSION>
+#<CREATION>
+#      Created by "MEO ATLAS 2 RB" - "date unknown"
+#</CREATION>
+################################################################################
+#<DESCRIPTION>
+#   Description :
+#   -------------
+#     
+# Ce script sert à remettre dans l'ordre l'apparition des FS defini
+# dans le fichier /etc/filesystems passe en parametre
+#
+# Objectif : Reordonner l'ordre d'apparition des FS
+#            Les FS peres avant les FS fils
+#
+#</DESCRIPTION>
+#
+#<USAGE>
+#   Usage :
+#   -------
+#   ReorderFS  /etc/filesystems
+#</USAGE>
+#
+#<ERREUR_MESS>
+#   Messages d'erreur / Error Messages :
+#   ------------------------------------
+#
+#</ERREUR_MESS>
+#
+#<PROG_ASSOC>
+#   Programmes appeles / Called program :
+#   -------------------------------------
+#
+#</PROG_ASSOC>
+#<VARS>
+#   Variables :
+#   -----------
+#
+#</VARS>
+#<RMQ>
+#   Remarques/Comments :
+#   --------------------
+#        Code de retour : 0
+#	                  -1 pas d'arguments passés  
+#			  -1 repetition de stanza  
+#</RMQ>
+#<SAMPLE>
+#   Exemple/Sample :
+#   -----------------
+#        Exemple (donnM-i M-` titre indicatif et propre M-` Paris):
+#        > ReorderFS /etc/filesystems 
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#</SAMPLE>
+################################################################################
+#<MODIFICATIONS>
+#   Modifications :
+#   ---------------
+#
+#
+#</MODIFICATIONS>
+################################################################################
+
+PS4="ReorderFS + "
+
+
+function Save_File
+{
+        if test -f "$1"
+        then
+
+        savedfile=$(ls -ltr "$1".????????.?????? | tail -1 | awk '{ print $NF}') 2> /dev/null 
+
+                if test -z "$savedfile"
+                then
+                        date=`date +"%Y%m%d.%H%M%S"`
+                        cp -p $1  $1.$date
+			if [[ $? -ne 0 ]]
+			then
+				echo Probleme sauvegarde 
+				exit -1 
+			else 
+                        	echo Nouveau fichier 
+                        	echo "\033[1m"$(ls $1.$date) "\033[0m"
+                        	return 0
+			fi 
+                elif ! diff $1 $savedfile > /dev/null 2>&1
+                then
+                        date=`date +"%Y%m%d.%H%M%S"`
+                        cp -p $1  $1.$date
+			if [[ $? -ne 0 ]]
+                        then
+                                echo Probleme sauvegarde
+                                exit -1
+                        else
+                                echo Nouveau fichier
+                                echo "\033[1m"$(ls $1.$date) "\033[0m"
+                                return 0
+                        fi
+                else
+                        echo Fichier deja sauvegardé
+                        echo "\033[1m"$(ls $savedfile )"\033[0m"
+                        return 0
+                fi
+        else
+                echo fichier $1 innexistant
+                exit -1
+        fi
+}
+
+
+function stanza 
+{ 
+
+FS=$1
+file=$2
+
+awk -v FS=$FS '
+/^\/.*:/  { flag=0 ;
+if ( index($0,FS)==1) { flag=1 } }
+flag == 1 && !/^$/ { print }
+END { print "" }
+' $file 
+
+}  
+
+function usage 
+{ 
+echo  "Usage :  ReorderFS fichier "
+echo   exemple:  ReorderFS /etc/filesystems 
+}
+
+export A2_TMP=/apps/meoatlas2/outils/tmp
+export tmpfile=$A2_TMP/$(echo ${1} | xargs basename).tmp
+
+# Verifier l id utilistaeur 
+if [ $(id -un) != "root" ]
+then
+
+echo " Vous devez etre root pour executer ce script"
+exit -1 
+
+fi
+
+# Veifier le nombre de parametres 
+if [ $# -ne 1 ] 
+then 
+	usage  
+	exit -1  
+elif ! test -f "$1" 
+then
+	usage 
+	exit -1 
+fi 
+ 
+echo Sauvegarde du fichier $1 : 
+Save_File  $1 
+
+# Reprendre l'ancienne entete du fichier
+grep "^*" $1  > $tmpfile
+
+# Mettre les FS critiques 
+FS_CRTIC="^default / /home /usr /var /tmp /proc /opt /usr/ecc"
+for fs in $FS_CRTIC 
+do 
+	stanza $fs":" $1
+done >> $tmpfile 
+
+# Mettre les FS applicatifs dans l ordre  
+cat $1 | awk ' /^.*:$/ { print $0 }'  \
+|egrep -v "^default:|^/:|^/home:|^/usr:|^/var:|^/tmp:|^/proc:|^/opt:|^/usr/ecc" | sort -ru | while read FS 
+do 
+	stanza "$FS" $1
+done  >> $tmpfile
+
+mv $tmpfile $file
